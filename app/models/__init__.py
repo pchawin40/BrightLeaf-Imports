@@ -1,2 +1,6 @@
 from .db import db
 from .user import User
+from .image import Image
+from .product import Product
+from .review import Review
+from .shopping_cart import ShoppingCart
