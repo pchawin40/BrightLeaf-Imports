@@ -22,8 +22,10 @@ class Product(db.Model):
   #   'with_polymorphic': '*'
   # }
   
-  # connect products to shopping cart
-  # products = db.relationship('ShoppingCart')
+  # connect parent (1: shopping cart) to child (*: products)
+  products = db.relationship('ShoppingCart')
+  
+  review = db.relationship('Review', back_populates='products')
   
   # return product as object (dictionary)
   def to_dict(self):

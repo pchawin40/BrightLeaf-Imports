@@ -6,17 +6,19 @@ class ShoppingCart(db.Model):
   
   id = db.Column(db.Integer, primary_key=True)
   
-  # product_id = db.Column(db.Integer, db.ForeignKey('products.id', ondelete='CASCADE'))
-  product_id = db.Column(db.Integer)
-  user_id = db.Column(db.Integer)
+  product_id = db.Column(db.Integer, db.ForeignKey('products.id', ondelete='CASCADE'))
+  user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'))
   quantity = db.Column(db.Integer)
   price = db.Column(db.Numeric(5, 2))
   
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   
-  # connect shopping cart to products
-  # shopping_cart = db.relationship('Product', back_populates='products')
+  # connect parent (1: shopping cart) to child (*: products)
+  shopping_cart = db.relationship('Product', back_populates='products')
+  
+  # connect parent (1: user) user to child (*: shopping carts)
+  user = db.relationship('User', back_populates='carts')
   
   # return product as object (dictionary)
   def to_dict(self):

@@ -28,6 +28,10 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    # connect parent (1: user) user to child (*: shopping carts)
+    carts = db.relationship('ShoppingCart')
+    reviews = db.relationship('Review')
+
     # turn user to object (dictionary)
     def to_dict(self):
         return {

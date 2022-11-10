@@ -7,8 +7,8 @@ class Review(db.Model):
   # id = db.Column(db.Integer, db.ForeignKey('images.imageable_id', ondelete='CASCADE'), primary_key=True)
   id = db.Column(db.Integer, primary_key=True)
   
-  user_id = db.Column(db.Integer)
-  product_id = db.Column(db.Integer)
+  user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'))
+  product_id = db.Column(db.Integer, db.ForeignKey('products.id', ondelete='CASCADE'))
   review = db.Column(db.String(255))
   stars = db.Column(db.Integer)
   
@@ -20,6 +20,12 @@ class Review(db.Model):
   #   'polymorphic_identity': 'review',
   #   'with_polymorphic': '*'
   # }
+  
+  # connect parent (1: user) to child (*: reviews)
+  user = db.relationship('User', back_populates='reviews')
+  
+  # connect parent (1: review) to child (*: products)
+  products = db.relationship('Product')
   
   # return product as object (dictionary)
   def to_dict(self):
