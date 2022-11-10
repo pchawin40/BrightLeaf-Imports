@@ -1,15 +1,16 @@
 from .db import db
 import datetime
+from sqlalchemy.dialects.postgresql import ARRAY
 
 class ShoppingCart(db.Model):
   __tablename__ = 'shopping_carts'
   
-  id = db.Column(db.Integer, primary_key=True)
+  id = db.Column(db.Integer, primary_key=True, autoincrement=True)
   
-  product_id = db.Column(db.Integer, db.ForeignKey('products.id', ondelete='CASCADE'))
-  user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'))
-  quantity = db.Column(db.Integer)
-  price = db.Column(db.Numeric(5, 2))
+  product_id = db.Column(db.Integer, db.ForeignKey('products.id', ondelete='CASCADE'), nullable=False)
+  user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'), nullable=False)
+  quantity = db.Column(db.Integer, nullable=False)
+  price = db.Column(db.Numeric(5, 2), nullable=False)
   
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)

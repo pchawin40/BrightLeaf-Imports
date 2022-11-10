@@ -4,23 +4,23 @@ import datetime
 class Product(db.Model):
   __tablename__ = 'products'
   
-  # id = db.Column(db.Integer, db.ForeignKey('images.imageable_id', ondelete='CASCADE'), primary_key=True)
-  id = db.Column(db.Integer, primary_key=True)
+  id = db.Column(db.Integer, db.ForeignKey('images.imageable_id', ondelete='CASCADE'), primary_key=True, autoincrement=True)
   
-  name = db.Column(db.String(50))
-  review_id = db.Column(db.Integer)
+  name = db.Column(db.String(50), nullable=False)
   description = db.Column(db.String(255))
-  price = db.Column(db.Numeric(5, 2))
+  price = db.Column(db.Numeric(5, 2), nullable=False)
+  quantity = db.Column(db.Integer, nullable=False)
   preview_image = db.Column(db.String(255))
   
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   
   # connect polymorphic relationship
-  # __mapper_args__ = {
-  #   'polymorphic_identity': 'product',
-  #   'with_polymorphic': '*'
-  # }
+  __mapper_args__ = {
+    'polymorphic_identity': 'product',
+    'with_polymorphic': '*',
+    'concrete': True
+  }
   
   # connect parent (1: shopping cart) to child (*: products)
   products = db.relationship('ShoppingCart')

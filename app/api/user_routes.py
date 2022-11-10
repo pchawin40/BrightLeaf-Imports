@@ -7,7 +7,7 @@ from app.models import User, db
 user_routes = Blueprint('users', __name__)
 
 #* GET /api/users
-@user_routes.route('/', methods=['GET'])
+@user_routes.route('/')
 @login_required
 def users():
     """

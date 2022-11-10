@@ -4,22 +4,22 @@ import datetime
 class Review(db.Model):
   __tablename__ = 'reviews'
   
-  # id = db.Column(db.Integer, db.ForeignKey('images.imageable_id', ondelete='CASCADE'), primary_key=True)
-  id = db.Column(db.Integer, primary_key=True)
+  id = db.Column(db.Integer, db.ForeignKey('images.imageable_id', ondelete='CASCADE'), primary_key=True, autoincrement=True)
   
-  user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'))
-  product_id = db.Column(db.Integer, db.ForeignKey('products.id', ondelete='CASCADE'))
+  user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'), nullable=False)
+  product_id = db.Column(db.Integer, db.ForeignKey('products.id', ondelete='CASCADE'), nullable=False)
   review = db.Column(db.String(255))
-  stars = db.Column(db.Integer)
+  stars = db.Column(db.Integer, nullable=False)
   
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   
   # connect polymorphic relationship
-  # __mapper_args__ = {
-  #   'polymorphic_identity': 'review',
-  #   'with_polymorphic': '*'
-  # }
+  __mapper_args__ = {
+    'polymorphic_identity': 'review',
+    'with_polymorphic': '*',
+    'concrete': True
+  }
   
   # connect parent (1: user) to child (*: reviews)
   user = db.relationship('User', back_populates='reviews')
