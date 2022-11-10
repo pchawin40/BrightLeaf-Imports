@@ -1,11 +1,9 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import User, db
-from app.forms import LoginForm
-from app.forms import SignUpForm
+from app.forms import LoginForm, SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
 
 auth_routes = Blueprint('auth', __name__)
-
 
 def validation_errors_to_error_messages(validation_errors):
     """
@@ -17,7 +15,7 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-
+#* GET: /api/auth
 @auth_routes.route('/')
 def authenticate():
     """
@@ -27,7 +25,7 @@ def authenticate():
         return current_user.to_dict()
     return {'errors': ['Unauthorized']}
 
-
+#* POST: /api/auth/login
 @auth_routes.route('/login', methods=['POST'])
 def login():
     """
@@ -45,6 +43,7 @@ def login():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
+#* GET: /api/auth/logout
 @auth_routes.route('/logout')
 def logout():
     """
@@ -53,7 +52,7 @@ def logout():
     logout_user()
     return {'message': 'User logged out'}
 
-
+#* POST: /api/auth/signup
 @auth_routes.route('/signup', methods=['POST'])
 def sign_up():
     """
@@ -65,7 +64,8 @@ def sign_up():
         user = User(
             username=form.data['username'],
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            role=form.data['role']
         )
         db.session.add(user)
         db.session.commit()
@@ -73,7 +73,7 @@ def sign_up():
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-
+#* GET: /api/auth/unauthorized
 @auth_routes.route('/unauthorized')
 def unauthorized():
     """
