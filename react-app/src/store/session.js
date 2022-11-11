@@ -1,3 +1,5 @@
+// src/store/session.js
+
 /* --------- ACTIONS -------- */
 // constants
 const SET_USER = 'session/SET_USER';
