@@ -1,3 +1,4 @@
+/* --------- ACTIONS -------- */
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
@@ -11,10 +12,10 @@ const removeUser = () => ({
   type: REMOVE_USER,
 })
 
-const initialState = { user: null };
+/* --------- THUNKS -------- */
 
 export const authenticate = () => async (dispatch) => {
-  const response = await fetch('/api/auth/', {
+  const response = await fetch('/api/auth/authenticate', {
     headers: {
       'Content-Type': 'application/json'
     }
@@ -58,11 +59,7 @@ export const login = (email, password) => async (dispatch) => {
 }
 
 export const logout = () => async (dispatch) => {
-  const response = await fetch('/api/auth/logout', {
-    headers: {
-      'Content-Type': 'application/json',
-    }
-  });
+  const response = await fetch('/api/auth/logout');
 
   if (response.ok) {
     dispatch(removeUser());
@@ -70,7 +67,8 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const signUp = (username, email, password) => async (dispatch) => {
+export const signUp = (username, email, password, role='user') => async (dispatch) => {
+
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
@@ -80,9 +78,10 @@ export const signUp = (username, email, password) => async (dispatch) => {
       username,
       email,
       password,
+      role
     }),
   });
-  
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -97,7 +96,14 @@ export const signUp = (username, email, password) => async (dispatch) => {
   }
 }
 
-export default function reducer(state = initialState, action) {
+/* --------- SELECTOR FUNCTIONS -------- */
+export const getCurrentUserInfo = state => state.session.user;
+export const getCurrentUserId = state => state.session.user ? state.session.user.id : state.session.user;
+
+/* --------- REDUCERS -------- */
+const initialState = { user: null };
+
+export default function sessionReducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
       return { user: action.payload }

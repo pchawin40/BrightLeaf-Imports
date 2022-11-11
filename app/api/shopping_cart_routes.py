@@ -109,14 +109,7 @@ def secure_cart_by_id(cart_id):
   if request.method == 'DELETE':
     # remove itself from its own model
     # remove all reviews part of given product
-    # remove all shopping carts of given product
-    
-    print()
-    print()
-    print()
-    print()
-    print("current cart: ", shopping_cart)
-    
+    # remove all shopping carts of given product    
     db.session.delete(shopping_cart)
     
     db.session.commit()
