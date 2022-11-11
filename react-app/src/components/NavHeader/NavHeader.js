@@ -1,5 +1,9 @@
 // src/components/NavHeader/NavHeader.js
 
+// import component
+import { Modal } from '../../context/Modal';
+import UserModal from './UserModal/UserModal';
+
 // import css
 import './NavHeader.css';
 
@@ -12,18 +16,17 @@ const NavHeader = () => {
    * Controlled inputs
    */
   const [color, setColor] = useState('white');
+  const [showUserModal, setShowUserModal] = useState(false);
 
   const prevScrollY = useRef(0);
 
+  // function to handle changing of background based on y scroll position
   const changeBackground = () => {
     const currentScrollY = window.scrollY;
 
+    // if mid, change to black
     if (window.scrollY >= window.innerHeight && window.scrollY < (5 * window.innerHeight)) {
       setColor('black');
-    } else if (
-      window.scrollY >= (5 * window.innerHeight)
-    ) {
-      setColor('white');
     } else {
       setColor('white');
     }
@@ -40,8 +43,11 @@ const NavHeader = () => {
     <section id="nav-header-container">
       <section id="nav-header-section">
         {/* User Modal */}
-        <figure className={`nh-figure ${color}`}>
-          <i className="fa-regular fa-user fa-xl"/>
+        <figure
+          onClick={_ => setShowUserModal(true)}
+          className={`nh-figure ${color}`}
+        >
+          <i className="fa-regular fa-user fa-xl" />
         </figure>
         {/* Shopping Cart Modal */}
         <figure className={`nh-figure ${color}`}>
@@ -52,6 +58,18 @@ const NavHeader = () => {
           </span>
         </figure>
       </section>
+
+      {/* User Modal */}
+      {showUserModal && (
+        <Modal
+          onClose={(_) => {
+            setShowUserModal(false)
+            document.body.style.overflowY = "scroll"
+          }}
+        >
+          <UserModal setShowUserModal={setShowUserModal} />
+        </Modal>
+      )}
     </section>
   );
 };

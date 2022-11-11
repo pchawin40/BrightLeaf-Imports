@@ -17,7 +17,7 @@ const removeUser = () => ({
 /* --------- THUNKS -------- */
 
 export const authenticate = () => async (dispatch) => {
-  const response = await fetch('/api/auth/authenticate', {
+  const response = await fetch('/api/auth', {
     headers: {
       'Content-Type': 'application/json'
     }
