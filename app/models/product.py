@@ -23,18 +23,19 @@ class Product(db.Model):
   }
   
   # connect parent (1: shopping cart) to child (*: products)
-  products = db.relationship('ShoppingCart')
+  products = db.relationship('ShoppingCart', cascade='delete')
   
-  review = db.relationship('Review', back_populates='products')
+  review = db.relationship('Review', back_populates='products', cascade='delete')
   
   # return product as object (dictionary)
   def to_dict(self):
     return {
       'id': self.id,
       'name': self.name,
-      'review_id': self.review_id,
       'description': self.description,
-      'price': self.price,
+      # decimal is not convertable to JSON so using float instead (doesn't have to be precise exact)
+      'price': float(self.price),
+      'quantity': self.quantity,
       'preview_image': self.preview_image,
       'created_at': self.created_at,
       'updated_at': self.updated_at

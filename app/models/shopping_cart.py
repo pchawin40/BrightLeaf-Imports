@@ -28,7 +28,7 @@ class ShoppingCart(db.Model):
       'product_id': self.product_id,
       'user_id': self.user_id,
       'quantity': self.quantity,
-      'price': self.price,
+      'price': float(self.price),
       'created_at': self.created_at,
       'updated_at': self.updated_at
     }

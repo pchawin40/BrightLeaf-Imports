@@ -7,7 +7,7 @@ from .auth_routes import validation_errors_to_error_messages
 
 review_routes = Blueprint('reviews', __name__)
 
-#* GET /reviews
+#* GET /api/reviews
 @review_routes.route('/')
 def reviews():
   """
@@ -17,7 +17,7 @@ def reviews():
   reviews = Review.query.all()
   return {'reviews': {review.id: review.to_dict() for review in reviews}}
 
-#* POST /reviews
+#* POST /api/reviews
 @review_routes.route('/', methods=['POST'])
 @login_required
 def secure_reviews():
@@ -50,7 +50,7 @@ def secure_reviews():
   # else if form did not pass validation, return error
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-#* GET /reviews/:reviewId
+#* GET /api/reviews/:reviewId
 @review_routes.route('/<int:review_id>')
 def review_by_id(review_id):
   """
@@ -65,8 +65,8 @@ def review_by_id(review_id):
   # return successful response if found
   return review.to_dict()
 
-#* PUT /reviews/:reviewId
-#* DELETE /reviews/:reviewId
+#* PUT /api/reviews/:reviewId
+#* DELETE /api/reviews/:reviewId
 @review_routes.route('/<int:review_id>', methods=['PUT', 'DELETE'])
 @login_required
 def secure_review_by_id(review_id):
@@ -90,7 +90,6 @@ def secure_review_by_id(review_id):
     form['csrf_token'].data = request.cookies['csrf_token']
     
     # check if pass submit validation
-    # check if current user has permission
     if form.validate_on_submit():
       # if review exist
       if form.data['review']:
@@ -118,12 +117,7 @@ def secure_review_by_id(review_id):
     # filter through image and get rid of any that are review and imageable id of given review
     destroy_review_images = Image.query.filter(Image.imageable_id == review_id).filter(Image.imageable_type == "Review")
     
-    # test print
-    # print()
-    # print(f"DESTROY REVIEW IMAGES: {[destroy_review_image.to_dict() for destroy_review_image in destroy_review_images]}")
-    # print()
-    
-    destroy_review_images.delete(synchronize_session = False)
+    destroy_review_images.delete(synchronize_session=False)
     
     db.session.commit()
 

@@ -10,6 +10,8 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.image_routes import image_routes
 from .api.review_routes import review_routes
+from .api.product_routes import product_routes
+from .api.shopping_cart_routes import shopping_cart_routes
 
 from .seeds import seed_commands
 
@@ -26,7 +28,6 @@ login.login_view = 'auth.unauthorized'
 def load_user(id):
     return User.query.get(int(id))
 
-
 # Tell flask about our seed commands
 app.cli.add_command(seed_commands)
 
@@ -35,6 +36,9 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(image_routes, url_prefix='/api/images')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
+app.register_blueprint(product_routes, url_prefix='/api/products')
+app.register_blueprint(shopping_cart_routes, url_prefix='/api/shopping-carts')
+
 db.init_app(app)
 Migrate(app, db)
 

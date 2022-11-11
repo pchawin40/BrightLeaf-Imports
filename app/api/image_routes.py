@@ -7,7 +7,7 @@ from .auth_routes import validation_errors_to_error_messages
 
 image_routes = Blueprint('images', __name__)
 
-#* GET /images
+#* GET /api/images
 @image_routes.route('/')
 def images():
   """
@@ -17,7 +17,7 @@ def images():
   images = Image.query.all()
   return {'images': {image.id: image.to_dict() for image in images}}
 
-#* POST /images
+#* POST /api/images
 @image_routes.route('/', methods=['POST'])
 @login_required
 def secure_images():
@@ -51,7 +51,7 @@ def secure_images():
   # else if form did not pass validation, return error
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-#* GET /images/:imageId
+#* GET /api/images/:imageId
 @image_routes.route('/<int:image_id>')
 def image_by_id(image_id):
   """
@@ -66,8 +66,8 @@ def image_by_id(image_id):
   
   return image.to_dict()
 
-#* PUT /images/:imageId
-#* DELETE /images/:imageId
+#* PUT /api/images/:imageId
+#* DELETE /api/images/:imageId
 @image_routes.route('/<int:image_id>', methods=['PUT', 'DELETE'])
 @login_required
 def secure_image_by_id(image_id):
