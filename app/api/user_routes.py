@@ -3,6 +3,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.forms import LoginForm, EditUserForm
 from app.models import User, db
+from .auth_routes import validation_errors_to_error_messages
 
 user_routes = Blueprint('users', __name__)
 
@@ -83,7 +84,7 @@ def get_or_modify_user(user_id):
             return user.to_dict()
         
         # return error if any
-        return{"errors": [error_values for error in form.errors for error_values in form.errors[error]]}, 400
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
     # [DELETE] delete user information
     if request.method == 'DELETE':
@@ -105,6 +106,7 @@ def get_or_modify_user(user_id):
 
 #* GET - /api/users/current
 @user_routes.route('/current')
+@login_required
 def get_current_user():
     """
     get current user
