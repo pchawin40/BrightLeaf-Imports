@@ -1,0 +1,6 @@
+/* src/components/Footer/Footer.css */
+
+#footer-section{
+  background-color: black;
+  grid-area: footer;
+}

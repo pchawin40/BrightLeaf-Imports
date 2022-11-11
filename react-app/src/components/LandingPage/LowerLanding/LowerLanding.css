@@ -1,0 +1,6 @@
+/* src/components/LandingPage/LowerLanding/LowerLanding.css */
+
+#lower-landing-section{
+  background-color: white;
+  grid-area: "lower-landing";
+}

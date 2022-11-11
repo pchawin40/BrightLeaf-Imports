@@ -10,6 +10,7 @@ const LoginForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  // function to handle login
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
@@ -18,16 +19,26 @@ const LoginForm = () => {
     }
   };
 
+  // function to update email
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
 
+  // function to update password
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
 
   if (user) {
     return <Redirect to='/' />;
+  }
+
+  // function to handle demo login
+  const handleDemoLogin = async () => {
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data) {
+      setErrors(data);
+    }
   }
 
   return (
@@ -57,6 +68,14 @@ const LoginForm = () => {
           onChange={updatePassword}
         />
         <button type='submit'>Login</button>
+      </div>
+      <div>
+        <button
+          onClick={handleDemoLogin}
+          type="button"
+        >
+          Demo User
+        </button>
       </div>
     </form>
   );

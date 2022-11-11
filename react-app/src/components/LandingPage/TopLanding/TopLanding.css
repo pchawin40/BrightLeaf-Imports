@@ -1,0 +1,6 @@
+/* src/components/LandingPage/TopLanding/TopLanding.css */
+
+#top-landing-section{
+  background-color: green;
+  grid-area: "top-landing";
+}
