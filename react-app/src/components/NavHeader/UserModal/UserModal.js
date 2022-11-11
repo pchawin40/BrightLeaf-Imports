@@ -8,7 +8,7 @@ import './UserModal.css';
 
 // import component
 import LoginForm from '../../auth/LoginForm';
-import SignUpForm from '../../auth/SignUpForm';
+import SignUpForm from './SignUpForm';
 
 // import store
 import * as sessionActions from '../../../store/session';
@@ -34,43 +34,53 @@ const UserModal = ({ setShowUserModal }) => {
 
   return (
     <section id="user-modal-section">
-      <h1>
-        {
-          userSignUp
-            ?
-            <>
-              Sign Up
-            </>
-            :
-            <>
-              Log In
-            </>
-        }
-      </h1>
+      <section id="user-modal-inner-section">
 
-      <p>
-        Already a member?
-        <span
-          onClick={_ => setUserSignUp(!userSignUp)}
-        >
+        <h1>
           {
             userSignUp
               ?
               <>
-                Log In
+                Sign Up
               </>
               :
               <>
-                Sign Up
+                Log In
               </>
           }
-        </span>
-      </p>
+        </h1>
 
-      {/* Sign Up Form */}
-      {userSignUp ? <SignUpForm /> : <LoginForm />}
+        {
+          userSignUp
+            ?
+            <section id="ums-toggle-section">
+              <p>
+                Already a member?
+              </p>
+              <span
+                onClick={_ => setUserSignUp(!userSignUp)}
+              >
+                Log In
+              </span>
+            </section>
+            :
+            <section id="ums-toggle-section">
+              <p>
+                New to this site?
+              </p>
+              <span
+                onClick={_ => setUserSignUp(!userSignUp)}
+              >
+                Sign Up
+              </span>
+            </section>
+        }
 
-      {/* //! TODO: To implement sign up with facebook and google */}
+        {/* Sign Up Form */}
+        {userSignUp ? <SignUpForm /> : <LoginForm />}
+
+        {/* //! TODO: To implement sign up with facebook and google */}
+      </section>
       <i
         className="fa-solid fa-x fa-xl"
         onClick={_ => {

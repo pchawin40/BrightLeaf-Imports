@@ -11,15 +11,57 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
 
+#user-modal-section,
+#user-modal-section * {
 	margin: 0;
 	padding: 0;
 }
 
-#user-modal-section > h1 {
+#user-modal-inner-section {
+	width: 320px;
+	height: 60vh;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+#user-modal-inner-section > h1 {
 	text-transform: uppercase;
 	font-family: 'Raleway', sans-serif;
-	font-size: x-large;
+	font-size: 48px;
+	line-height: 48px;
+	font-weight: 400;
+	letter-spacing: 12px;
+}
+
+#user-modal-inner-section > h1,
+#ums-toggle-section {
+	margin-bottom: 1rem;
+}
+
+#ums-toggle-section {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	font-size: 18px;
+}
+
+#ums-toggle-section > p {
+	font-family: 'Questrial', sans-serif;
+	word-spacing: 2px;
+	margin-right: 4px;
+}
+
+#ums-toggle-section > span {
+	color: rgb(131, 156, 128);
+}
+
+#ums-toggle-section > span:hover {
+	cursor: pointer;
 }
 
 #user-modal-section > i {
