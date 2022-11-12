@@ -60,6 +60,16 @@ export const login = (email, password) => async (dispatch) => {
 
 }
 
+
+export const thunkAPILogin = (response, role = "user") => async dispatch => {
+  const apiUser = {
+    ...response,
+    role
+  }
+  
+  dispatch(setUser(apiUser));
+}
+
 export const logout = () => async (dispatch) => {
   const response = await fetch('/api/auth/logout');
 

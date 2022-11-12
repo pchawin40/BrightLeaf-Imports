@@ -38,7 +38,6 @@ const ForgotPasswordForm = () => {
       });
 
       if (res.ok) {
-        console.log(res.data);
 
         if (res.data === 'email not in db') {
           setShowError(true);
@@ -48,7 +47,7 @@ const ForgotPasswordForm = () => {
           setMessageFromServer("recovery email sent");
         }
       } else {
-        console.log("res errors: ", res);
+        // console.log("res errors: ", res);
       }
     }
   }
@@ -87,7 +86,7 @@ const ForgotPasswordForm = () => {
           </div>
         )
       }
-      
+
       <div id="fpf-email-container" className="fpf-container">
         <label htmlFor='email'>Email</label>
         <input

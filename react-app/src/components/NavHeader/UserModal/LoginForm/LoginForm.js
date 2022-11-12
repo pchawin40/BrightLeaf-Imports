@@ -4,7 +4,7 @@
 import './LoginForm.css';
 
 // import component
-import FacebookLoginComponent from '../../../../facebooklogin';
+import FacebookLoginComponent from '../FacebookLoginComponent';
 
 // import context
 import { useNavHeader } from '../../../../context/NavHeaderContext';
@@ -38,8 +38,27 @@ const LoginForm = () => {
 
   //* Google API: function to handle google login
   const handleGoogleLogin = useGoogleLogin({
-    onSuccess: codeResponse => console.log(codeResponse),
-    flow: 'auth-code',
+    onSuccess: async tokenResponse => {
+      const res = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+        headers: {
+          'Authorization': `Bearer ${tokenResponse.access_token}`
+        }
+      });
+
+      if (res.status >= 200 && res.status < 300) {
+        const googleUserData = await res.json();
+
+        const googleUserResponse = {
+          name: googleUserData.name,
+          email: googleUserData.email,
+          id: googleUserData.sub
+        }
+
+        dispatch(sessionActions.thunkAPILogin(googleUserResponse));
+      } else {
+        throw new Error(`Error fetching user data with token: ${tokenResponse.access_token}`)
+      }
+    }
   });
 
   // function to handle login
@@ -72,21 +91,6 @@ const LoginForm = () => {
     // if data is return, there is an error. set the errors
     // turn modal off on successful log in
     data ? setErrors(data) : setShowUserModal(false);
-  }
-
-  //* Facebook Login
-  const handleFacebookLogin = () => {
-
-    // response:
-    // {
-    //   status: 'connected',
-    //     authResponse: {
-    //     accessToken: '...',
-    //       expiresIn: '...',
-    //         signedRequest: '...',
-    //           userID: '...'
-    //   }
-    // }
   }
 
   return (
@@ -163,9 +167,7 @@ const LoginForm = () => {
       {/* Alternative Sign Up (API Todo) */}
       <div id="lf-asu-container">
         {/* Facebook Login API */}
-        <span
-          onClick={handleFacebookLogin}
-        >
+        <span>
           <FacebookLoginComponent />
         </span>
 

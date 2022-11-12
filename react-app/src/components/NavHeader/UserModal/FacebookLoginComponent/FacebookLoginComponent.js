@@ -1,27 +1,53 @@
+// src/components/NavHeader/UserModal/FacebookLoginComponent/FacebookLoginComponent.js
+// import react
 import React, { useState } from "react";
+
+// import react-redux
+import { useDispatch } from "react-redux";
+
+// import libraries
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
-function FacebookLoginComponent() {
+// import store
+import * as sessionActions from '../../../../store/session';
+
+//? FacebookLogin Component
+const FacebookLoginComponent = () => {
   const [login, setLogin] = useState(false);
   const [data, setData] = useState({});
   const [picture, setPicture] = useState("");
 
-  const responseFacebook = (response) => {
-    console.log(response);
+  // invoke dispatch
+  const dispatch = useDispatch();
+
+  const responseFacebook = (res) => {
     // Login failed
-    if (response.status === "unknown") {
+    if (res.status === "unknown") {
       alert("Login failed!");
       setLogin(false);
       return false;
     }
-    setData(response);
-    setPicture(response.picture.data.url);
-    if (response.accessToken) {
+    setData(res);
+    setPicture(res.picture.data.url);
+    if (res.accessToken) {
+      // on successful login
       setLogin(true);
+
+      // grab information from response
+      const facebookUserResponse = {
+        name: res.name,
+        email: res.email,
+        id: res.id
+      }
+
+      // call on thunk to set user information
+      dispatch(sessionActions.thunkAPILogin(facebookUserResponse));
     } else {
       setLogin(false);
     }
   };
+
+  // function to handle facebook logout
   const logout = () => {
     setLogin(false);
     setData({});
@@ -69,4 +95,5 @@ function FacebookLoginComponent() {
   );
 }
 
+// export default component
 export default FacebookLoginComponent;

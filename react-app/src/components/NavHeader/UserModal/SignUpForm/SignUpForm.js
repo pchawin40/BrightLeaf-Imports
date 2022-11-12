@@ -1,7 +1,7 @@
 // src/components/auth/SignUpForm.js
 
 // import component
-import FacebookLoginComponent from '../../../../facebooklogin';
+import FacebookLoginComponent from '../FacebookLoginComponent';
 
 // import context
 import { useNavHeader } from '../../../../context/NavHeaderContext';
@@ -44,8 +44,27 @@ const SignUpForm = () => {
 
   //* Google API: function to handle google login
   const handleGoogleLogin = useGoogleLogin({
-    onSuccess: codeResponse => console.log(codeResponse),
-    flow: 'auth-code',
+    onSuccess: async tokenResponse => {
+      const res = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+        headers: {
+          'Authorization': `Bearer ${tokenResponse.access_token}`
+        }
+      });
+
+      if (res.status >= 200 && res.status < 300) {
+        const googleUserData = await res.json();
+
+        const googleUserResponse = {
+          name: googleUserData.name,
+          email: googleUserData.email,
+          id: googleUserData.sub
+        }
+
+        dispatch(sessionActions.thunkAPILogin(googleUserResponse));
+      } else {
+        throw new Error(`Error fetching user data with token: ${tokenResponse.access_token}`)
+      }
+    }
   });
 
   //* ReCaptcha API
@@ -102,21 +121,6 @@ const SignUpForm = () => {
 
   if (user) {
     return <Redirect to='/' />;
-  }
-
-  //* Facebook Login
-  const handleFacebookLogin = () => {
-
-    // response:
-    // {
-    //   status: 'connected',
-    //     authResponse: {
-    //     accessToken: '...',
-    //       expiresIn: '...',
-    //         signedRequest: '...',
-    //           userID: '...'
-    //   }
-    // }
   }
 
   // function to handle demo login
@@ -231,9 +235,7 @@ const SignUpForm = () => {
       {/* Alternative Sign Up (API Todo) */}
       <div id="suf-asu-container">
         {/* Facebook Login API */}
-        <span
-          onClick={handleFacebookLogin}
-        >
+        <span>
           <FacebookLoginComponent />
         </span>
 
