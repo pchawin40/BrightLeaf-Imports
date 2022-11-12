@@ -139,10 +139,10 @@ const LoginForm = () => {
         <button
           id="lf-fpw-btn"
           type="button"
-          onClick={_ => {
-            setForgotPassword(true)
-            
-          }}
+        // onClick={_ => {
+        //   setForgotPassword(true)
+
+        // }}
         >
           Forgot password?
         </button>

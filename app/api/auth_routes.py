@@ -1,6 +1,6 @@
-from flask import Blueprint, jsonify, session, request
+from flask import Blueprint, jsonify, session, request, current_app
 from app.models import User, db
-from app.forms import LoginForm, SignUpForm
+from app.forms import LoginForm, SignUpForm, PasswordForm
 from flask_login import current_user, login_user, logout_user, login_required
 
 auth_routes = Blueprint('auth', __name__)
@@ -80,3 +80,6 @@ def unauthorized():
     Returns unauthorized JSON when flask-login authentication fails
     """
     return {'errors': ['Unauthorized']}, 401
+        
+        
+        
