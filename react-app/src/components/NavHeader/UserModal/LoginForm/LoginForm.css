@@ -23,6 +23,7 @@
 	border-top: none;
 	border-left: none;
 	border-right: none;
+	border-width: 2px;
 	outline: none;
 
 	font-size: 16px;
@@ -35,6 +36,14 @@
 	padding: 2px;
 	text-indent: 0px;
 	text-overflow: ellipsis;
+}
+
+.lf-container > input:hover {
+	border-color: black;
+}
+
+.lf-container > input:focus {
+	border-color: #839c80;
 }
 
 .lf-container > label {

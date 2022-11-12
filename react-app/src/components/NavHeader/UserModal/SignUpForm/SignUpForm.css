@@ -21,6 +21,7 @@
 	border-top: none;
 	border-left: none;
 	border-right: none;
+	border-width: 2px;
 	outline: none;
 
 	font-size: 16px;
@@ -33,6 +34,14 @@
 	padding: 2px;
 	text-indent: 0px;
 	text-overflow: ellipsis;
+}
+
+.suf-container > input:hover {
+	border-color: black;
+}
+
+.suf-container > input:focus {
+	border-color: #839c80;
 }
 
 #suf-rpw-container {

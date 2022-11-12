@@ -5,7 +5,7 @@
 	height: fit-content;
 	width: 10rem;
 	background-color: rgb(250, 252, 248);
-	right: 3rem;
+	right: 3.75rem;
 	top: 3rem;
 	position: absolute;
 }
@@ -28,7 +28,10 @@
 }
 
 #logged-ums-ul > span {
-	padding-bottom: 0.1rem;
+	padding-bottom: 0.02rem;
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
+	width: 70%;
 }
 
 #logged-ums-ul > * {
