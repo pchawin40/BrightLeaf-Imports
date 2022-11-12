@@ -1,5 +1,9 @@
 /* src/components/auth/SignUpForm.css */
 
+#sign-up-form {
+	margin-bottom: 50rem;
+}
+
 #sign-up-form,
 .suf-container {
 	width: 100%;
@@ -76,7 +80,8 @@
 
 #suf-asulb-container {
 	/* background-color: pink; */
-	margin-top: 1rem;
+	margin-top: 2rem;
+	margin-bottom: 1rem;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	align-items: center;
@@ -101,23 +106,27 @@
 
 	margin-top: 1rem;
 	height: 10rem;
-
-	/* background-color: red; */
+	width: 100%;
 }
 
 /* Facebook Login */
-#fb-login-img-figure {
+#fb-login-img-figure,
+#google-login-img-figure {
 	width: 2rem;
 	height: 2rem;
-	margin: 0;
+	margin: 0 1rem;
 	padding: 0;
 }
 
-#fb-login-img-figure:hover {
+#fb-login-img-figure:hover,
+#google-login-img-figure,
+#fb-login-img:hover,
+#google-login-img:hover {
 	cursor: pointer;
 }
 
-#fb-login-img {
+#fb-login-img,
+#google-login-img {
 	object-fit: cover;
 	height: 100%;
 	width: 100%;

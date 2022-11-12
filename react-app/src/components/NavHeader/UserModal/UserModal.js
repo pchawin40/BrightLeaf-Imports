@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import './UserModal.css';
 
 // import component
-import LoginForm from '../../auth/LoginForm';
+import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 
 // import store

@@ -13,5 +13,8 @@ body {
 
 /* solve iframe issue */
 iframe {
-	display: none !important;
+	height: fit-content;
+	width: fit-content;
+	z-index: -1;
+	/* display: none !important; */
 }

@@ -21,8 +21,7 @@ import * as sessionActions from '../../../../store/session';
 // import libraries
 import ReCAPTCHA from "react-google-recaptcha";
 import FB from "react-facebook-login";
-
-var gapi;
+import { useGoogleLogin } from '@react-oauth/google';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -36,6 +35,13 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  //* Google API: function to handle google login
+  const handleGoogleLogin = useGoogleLogin({
+    onSuccess: codeResponse => console.log(codeResponse),
+    flow: 'auth-code',
+  });
+
+  //* ReCaptcha API
   useEffect(() => {
     if (errors.length > 0) {
       errors.map(error => {
@@ -91,6 +97,7 @@ const SignUpForm = () => {
     return <Redirect to='/' />;
   }
 
+  //* Facebook Login
   const handleFacebookLogin = () => {
 
     // response:
@@ -105,28 +112,8 @@ const SignUpForm = () => {
     // }
   }
 
-  function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-  }
-
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-  }
-
   return (
     <form id="sign-up-form" onSubmit={onSignUp}>
-      {/* <div id="suf-errors-container">
-        {Object.values(errors).map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div> */}
       <div id="suf-email-container" className="suf-container">
         <label>Email</label>
         <input
@@ -231,8 +218,19 @@ const SignUpForm = () => {
         >
           <FacebookLoginComponent />
         </span>
+
+        {/* Google Login API */}
         <span>
-          {/* Google Login API */}
+          <figure
+            id="google-login-img-figure"
+            onClick={() => handleGoogleLogin()}
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png"
+              alt="google-login"
+              id="google-login-img"
+            />
+          </figure>
         </span>
       </div>
     </form>

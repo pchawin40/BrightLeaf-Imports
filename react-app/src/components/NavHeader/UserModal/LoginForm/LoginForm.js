@@ -1,7 +1,9 @@
+// src/components/NavHeader/userModal/LoginForm/LoginForm.js
+
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { login } from '../../store/session';
+import { login } from '../../../../store/session';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
