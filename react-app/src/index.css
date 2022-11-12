@@ -11,6 +11,10 @@ body {
 	position: relative;
 }
 
+body * {
+	font-family: questrial, sans-serif;
+}
+
 /* solve iframe issue */
 iframe {
 	height: fit-content;

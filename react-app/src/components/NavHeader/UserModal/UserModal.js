@@ -10,9 +10,14 @@ import './UserModal.css';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 
+// import context
+import { useNavHeader } from '../../../context/NavHeaderContext';
+
 // import store
 import * as sessionActions from '../../../store/session';
 import { useState } from 'react';
+import ForgotPasswordForm from './ForgotPasswordForm';
+
 
 //? UserModal component
 const UserModal = ({ setShowUserModal }) => {
@@ -25,16 +30,17 @@ const UserModal = ({ setShowUserModal }) => {
   /**
    * controlled inputs
    */
-  const [userSignUp, setUserSignUp] = useState(true)
-
-  // function to handle switch of userStep
-  const handleSwitch = () => {
-
-  };
+  const [userSignUp, setUserSignUp] = useState(true);
+  const { forgotPassword, setForgotPassword } = useNavHeader();
 
   return (
-    <section id="user-modal-section">
-      <section id="user-modal-inner-section">
+    <section
+      id="user-modal-section"
+    >
+      <section
+        id="user-modal-inner-section"
+        className={`user-modal-inner-section-${forgotPassword}`}
+      >
 
         <h1>
           {
@@ -44,9 +50,16 @@ const UserModal = ({ setShowUserModal }) => {
                 Sign Up
               </>
               :
-              <>
-                Log In
-              </>
+              (
+                forgotPassword ?
+                  <>
+                    Create New Password
+                  </>
+                  :
+                  <>
+                    Log In
+                  </>
+              )
           }
         </h1>
 
@@ -64,27 +77,49 @@ const UserModal = ({ setShowUserModal }) => {
               </span>
             </section>
             :
-            <section id="ums-toggle-section">
-              <p>
-                New to this site?
-              </p>
-              <span
-                onClick={_ => setUserSignUp(!userSignUp)}
-              >
-                Sign Up
-              </span>
-            </section>
+            (
+              forgotPassword
+                ?
+                <section id="ums-toggle-section">
+                  <p id="ums-ts-cnp">
+                    Please enter your email address
+                  </p>
+                </section>
+                :
+                <section id="ums-toggle-section">
+                  <p>
+                    New to this site?
+                  </p>
+                  <span
+                    onClick={_ => setUserSignUp(!userSignUp)}
+                  >
+                    Sign Up
+                  </span>
+                </section>
+            )
         }
 
         {/* Sign Up Form */}
-        {userSignUp ? <SignUpForm /> : <LoginForm />}
+        {userSignUp
+          ?
+          <SignUpForm />
+          :
+          (
+            forgotPassword
+              ?
+              <ForgotPasswordForm />
+              :
+              <LoginForm />
+          )
+        }
 
         {/* //! TODO: To implement sign up with facebook and google */}
       </section>
       <i
         className="fa-solid fa-x fa-xl"
         onClick={_ => {
-          setShowUserModal(false)
+          setShowUserModal(false);
+          setForgotPassword(false);
           document.body.style.overflowY = "scroll"
         }}
       />

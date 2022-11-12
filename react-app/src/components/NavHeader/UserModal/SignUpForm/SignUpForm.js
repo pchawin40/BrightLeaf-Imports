@@ -1,7 +1,7 @@
 // src/components/auth/SignUpForm.js
 
 // import component
-import FacebookLoginComponent from '../../../../facebooklogin.component';
+import FacebookLoginComponent from '../../../../facebooklogin';
 
 // import css
 import './SignUpForm.css';

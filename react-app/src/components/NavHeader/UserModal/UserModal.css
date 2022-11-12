@@ -9,7 +9,6 @@
 
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 }
 
@@ -20,13 +19,22 @@
 }
 
 #user-modal-inner-section {
-	width: 20vw;
-	height: 65vh;
-
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
 	align-items: center;
+}
+
+.user-modal-inner-section-false {
+	height: 500px;
+	width: 400px;
+	margin-top: 15vh !important;
+}
+
+.user-modal-inner-section-true {
+	height: 300px;
+	width: 1000px;
+	margin-top: 33vh !important;
+	justify-content: center;
 }
 
 #user-modal-inner-section > h1 {
@@ -48,6 +56,10 @@
 	flex-direction: row;
 	align-items: center;
 	font-size: 18px;
+}
+
+#ums-ts-cnp {
+	margin-bottom: 1.5rem;
 }
 
 #ums-toggle-section > p {
