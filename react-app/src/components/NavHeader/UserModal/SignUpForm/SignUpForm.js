@@ -3,6 +3,9 @@
 // import component
 import FacebookLoginComponent from '../../../../facebooklogin';
 
+// import context
+import { useNavHeader } from '../../../../context/NavHeaderContext';
+
 // import css
 import './SignUpForm.css';
 
@@ -24,6 +27,9 @@ import FB from "react-facebook-login";
 import { useGoogleLogin } from '@react-oauth/google';
 
 const SignUpForm = () => {
+  /**
+   * Controlled inputs
+   */
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,6 +37,7 @@ const SignUpForm = () => {
   const [validToken, setValidToken] = useState(false);
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
+  const { showUserModal, setShowUserModal } = useNavHeader();
 
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
@@ -110,6 +117,15 @@ const SignUpForm = () => {
     //           userID: '...'
     //   }
     // }
+  }
+
+  // function to handle demo login
+  const handleDemoLogin = async () => {
+    const data = await dispatch(sessionActions.login('demo@aa.io', 'password'));
+
+    // if data is return, there is an error. set the errors
+    // turn modal off on successful log in
+    data ? setErrors(data) : setShowUserModal(false);
   }
 
   return (
@@ -195,7 +211,9 @@ const SignUpForm = () => {
       <button
         id="suf-demo-btn"
         className="suf-submit-btn suf-submit-btn-true"
-        type='submit'>
+        type='button'
+        onClick={handleDemoLogin}
+      >
         <span>
           Demo User
         </span>

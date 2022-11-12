@@ -19,7 +19,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 // import store
-import { login } from '../../../../store/session';
+import * as sessionActions from '../../../../store/session';
 
 // import libraries
 import FB from "react-facebook-login";
@@ -30,6 +30,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { forgotPassword, setForgotPassword } = useNavHeader();
+  const { showUserModal, setShowUserModal } = useNavHeader();
 
   const user = useSelector(state => state.session.user);
 
@@ -44,7 +45,7 @@ const LoginForm = () => {
   // function to handle login
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
+    const data = await dispatch(sessionActions.login(email, password));
     if (data) {
       setErrors(data);
     }
@@ -66,10 +67,11 @@ const LoginForm = () => {
 
   // function to handle demo login
   const handleDemoLogin = async () => {
-    const data = await dispatch(login('demo@aa.io', 'password'));
-    if (data) {
-      setErrors(data);
-    }
+    const data = await dispatch(sessionActions.login('demo@aa.io', 'password'));
+
+    // if data is return, there is an error. set the errors
+    // turn modal off on successful log in
+    data ? setErrors(data) : setShowUserModal(false);
   }
 
   //* Facebook Login
@@ -128,7 +130,9 @@ const LoginForm = () => {
       <button
         id="lf-demo-btn"
         className="lf-submit-btn lf-submit-btn-true"
-        type='submit'>
+        type='button'
+        onClick={handleDemoLogin}
+      >
         <span>
           Demo User
         </span>
@@ -139,10 +143,10 @@ const LoginForm = () => {
         <button
           id="lf-fpw-btn"
           type="button"
-        // onClick={_ => {
-        //   setForgotPassword(true)
+          onClick={_ => {
+            setForgotPassword(true)
 
-        // }}
+          }}
         >
           Forgot password?
         </button>
