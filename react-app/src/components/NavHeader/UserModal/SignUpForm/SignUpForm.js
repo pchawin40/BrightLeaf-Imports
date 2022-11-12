@@ -1,5 +1,8 @@
 // src/components/auth/SignUpForm.js
 
+// import component
+import FacebookLoginComponent from '../../../../facebooklogin.component';
+
 // import css
 import './SignUpForm.css';
 
@@ -17,6 +20,9 @@ import * as sessionActions from '../../../../store/session';
 
 // import libraries
 import ReCAPTCHA from "react-google-recaptcha";
+import FB from "react-facebook-login";
+
+var gapi;
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -83,6 +89,35 @@ const SignUpForm = () => {
 
   if (user) {
     return <Redirect to='/' />;
+  }
+
+  const handleFacebookLogin = () => {
+
+    // response:
+    // {
+    //   status: 'connected',
+    //     authResponse: {
+    //     accessToken: '...',
+    //       expiresIn: '...',
+    //         signedRequest: '...',
+    //           userID: '...'
+    //   }
+    // }
+  }
+
+  function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  }
+
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
   }
 
   return (
@@ -153,7 +188,7 @@ const SignUpForm = () => {
           ?
           <button
             id="suf-submit-btn"
-            className="suf-submit-btn-true"
+            className="suf-submit-btn suf-submit-btn-true"
             type='submit'>
             <span>
               Sign Up
@@ -162,7 +197,7 @@ const SignUpForm = () => {
           :
           <button
             id="suf-submit-btn"
-            className="suf-submit-btn-false"
+            className="suf-submit-btn suf-submit-btn-false"
             type='button'>
             <span>
               Sign Up
@@ -171,8 +206,8 @@ const SignUpForm = () => {
       }
 
       <button
-        id="suf-submit-btn"
-        className="suf-submit-btn-true"
+        id="suf-demo-btn"
+        className="suf-submit-btn suf-submit-btn-true"
         type='submit'>
         <span>
           Demo User
@@ -181,18 +216,23 @@ const SignUpForm = () => {
 
       {/* Alternative Sign Up Line Break */}
       <div id="suf-asulb-container">
-        <span>
+        <span className="line-span" />
+        <span id="suf-asulb-container-text-span">
           or sign up with
         </span>
+        <span className="line-span" />
       </div>
 
       {/* Alternative Sign Up (API Todo) */}
       <div id="suf-asu-container">
-        <span>
-          F
+        {/* Facebook Login API */}
+        <span
+          onClick={handleFacebookLogin}
+        >
+          <FacebookLoginComponent />
         </span>
         <span>
-          G
+          {/* Google Login API */}
         </span>
       </div>
     </form>

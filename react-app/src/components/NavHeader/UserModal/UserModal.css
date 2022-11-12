@@ -20,8 +20,8 @@
 }
 
 #user-modal-inner-section {
-	width: 320px;
-	height: 60vh;
+	width: 20vw;
+	height: 65vh;
 
 	display: flex;
 	flex-direction: column;
