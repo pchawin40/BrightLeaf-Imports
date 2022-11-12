@@ -1,5 +1,8 @@
 // src/components/NavHeader/NavHeader.js
 
+// import context
+import { useNavHeader } from '../../context/NavHeaderContext';
+
 // import component
 import { Modal } from '../../context/Modal';
 import UserModal from './UserModal/UserModal';
@@ -16,7 +19,7 @@ const NavHeader = () => {
    * Controlled inputs
    */
   const [color, setColor] = useState('white');
-  const [showUserModal, setShowUserModal] = useState(false);
+  const { showUserModal, setShowUserModal } = useNavHeader();
 
   const prevScrollY = useRef(0);
 

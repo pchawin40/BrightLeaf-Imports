@@ -9,13 +9,15 @@ export const useNavHeader = () => useContext(NavHeaderContext);
 export default function NavHeaderProvider({ children }) {
   // state for context
   const [forgotPassword, setForgotPassword] = useState(false);
+  const [showUserModal, setShowUserModal] = useState(false);
 
   // Landing Provider
   return (
     <>
       <NavHeaderContext.Provider
         value={{
-          forgotPassword, setForgotPassword
+          forgotPassword, setForgotPassword,
+          showUserModal, setShowUserModal
         }}
       >
         {children}
