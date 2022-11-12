@@ -25,7 +25,7 @@ const UserModal = ({ setShowUserModal }) => {
   document.body.style.overflow = "hidden"
 
   // load data
-  // const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
+  const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
 
   /**
    * controlled inputs
