@@ -1,7 +1,7 @@
 // src/components/NavHeader/UserModal/UserModal.js
 
 // import react-redux
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import css
 import './UserModal.css';
@@ -20,110 +20,134 @@ import ForgotPasswordForm from './ForgotPasswordForm';
 
 
 //? UserModal component
-const UserModal = ({ setShowUserModal }) => {
-  // turn body overflow off on opening
-  document.body.style.overflow = "hidden"
-
+const UserModal = () => {
   // load data
   const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
+
+  // turn body overflow off on opening
+  document.body.style.overflow = !currentUserInfo ? "hidden" : "scroll"
 
   /**
    * controlled inputs
    */
   const [userSignUp, setUserSignUp] = useState(true);
   const { forgotPassword, setForgotPassword } = useNavHeader();
+  const { showUserModal, setShowUserModal } = useNavHeader();
+
+  // invoke dispatch
+  const dispatch = useDispatch();
+
+  // function to handle log out
+  const handleLogout = async (e) => {
+    await dispatch(sessionActions.logout());
+  };
 
   return (
-    <section
-      id="user-modal-section"
-    >
+    currentUserInfo
+      ?
       <section
-        id="user-modal-inner-section"
-        className={`user-modal-inner-section-${forgotPassword}`}
+        id="logged-user-modal-section"
       >
+        <ul id="logged-ums-ul">
+          <li>My Orders</li>
+          <li>My Addresses</li>
+          <li>My Wallet</li>
+          <li>My Wishlist</li>
+          <li>My Account</li>
+          <span className="line-span" />
+          <li onClick={handleLogout}>Log Out</li>
+        </ul>
+      </section>
+      :
+      <section
+        id="user-modal-section"
+      >
+        <section
+          id="user-modal-inner-section"
+          className={`user-modal-inner-section-${forgotPassword}`}
+        >
+          <h1>
+            {
+              userSignUp
+                ?
+                <>
+                  Sign Up
+                </>
+                :
+                (
+                  forgotPassword ?
+                    <>
+                      Create New Password
+                    </>
+                    :
+                    <>
+                      Log In
+                    </>
+                )
+            }
+          </h1>
 
-        <h1>
           {
             userSignUp
               ?
-              <>
-                Sign Up
-              </>
+              <section id="ums-toggle-section">
+                <p>
+                  Already a member?
+                </p>
+                <span
+                  onClick={_ => setUserSignUp(!userSignUp)}
+                >
+                  Log In
+                </span>
+              </section>
               :
               (
-                forgotPassword ?
-                  <>
-                    Create New Password
-                  </>
+                forgotPassword
+                  ?
+                  <section id="ums-toggle-section">
+                    <p id="ums-ts-cnp">
+                      Please enter your email address
+                    </p>
+                  </section>
                   :
-                  <>
-                    Log In
-                  </>
+                  <section id="ums-toggle-section">
+                    <p>
+                      New to this site?
+                    </p>
+                    <span
+                      onClick={_ => setUserSignUp(!userSignUp)}
+                    >
+                      Sign Up
+                    </span>
+                  </section>
               )
           }
-        </h1>
 
-        {
-          userSignUp
+          {/* Sign Up Form */}
+          {userSignUp
             ?
-            <section id="ums-toggle-section">
-              <p>
-                Already a member?
-              </p>
-              <span
-                onClick={_ => setUserSignUp(!userSignUp)}
-              >
-                Log In
-              </span>
-            </section>
+            <SignUpForm />
             :
             (
               forgotPassword
                 ?
-                <section id="ums-toggle-section">
-                  <p id="ums-ts-cnp">
-                    Please enter your email address
-                  </p>
-                </section>
+                <ForgotPasswordForm />
                 :
-                <section id="ums-toggle-section">
-                  <p>
-                    New to this site?
-                  </p>
-                  <span
-                    onClick={_ => setUserSignUp(!userSignUp)}
-                  >
-                    Sign Up
-                  </span>
-                </section>
+                <LoginForm />
             )
-        }
+          }
 
-        {/* Sign Up Form */}
-        {userSignUp
-          ?
-          <SignUpForm />
-          :
-          (
-            forgotPassword
-              ?
-              <ForgotPasswordForm />
-              :
-              <LoginForm />
-          )
-        }
-
-        {/* //! TODO: To implement sign up with facebook and google */}
+          {/* //! TODO: To implement sign up with facebook and google */}
+        </section>
+        <i
+          className="fa-solid fa-x fa-xl"
+          onClick={_ => {
+            setShowUserModal(false);
+            setForgotPassword(false);
+            document.body.style.overflowY = "scroll"
+          }}
+        />
       </section>
-      <i
-        className="fa-solid fa-x fa-xl"
-        onClick={_ => {
-          setShowUserModal(false);
-          setForgotPassword(false);
-          document.body.style.overflowY = "scroll"
-        }}
-      />
-    </section>
   );
 };
 

@@ -70,7 +70,7 @@ const NavHeader = () => {
             document.body.style.overflowY = "scroll"
           }}
         >
-          <UserModal setShowUserModal={setShowUserModal} />
+          <UserModal />
         </Modal>
       )}
     </section>
