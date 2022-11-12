@@ -1,4 +1,8 @@
 // src/components/NavHeader/UserModal/FacebookLoginComponent/FacebookLoginComponent.js
+
+// import component
+import { useNavHeader } from "../../../../context/NavHeaderContext";
+
 // import react
 import React, { useState } from "react";
 
@@ -13,9 +17,13 @@ import * as sessionActions from '../../../../store/session';
 
 //? FacebookLogin Component
 const FacebookLoginComponent = () => {
+  /**
+   * Controlled inputs
+   */
   const [login, setLogin] = useState(false);
   const [data, setData] = useState({});
   const [picture, setPicture] = useState("");
+  const { showUserModal, setShowUserModal } = useNavHeader();
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -42,6 +50,8 @@ const FacebookLoginComponent = () => {
 
       // call on thunk to set user information
       dispatch(sessionActions.thunkAPILogin(facebookUserResponse));
+
+      setShowUserModal(false);
     } else {
       setLogin(false);
     }

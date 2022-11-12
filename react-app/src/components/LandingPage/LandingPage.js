@@ -14,13 +14,13 @@ const LandingPage = () => {
   return (
     <section id="landing-page-section">
       {/* Top Landing */}
-      <TopLanding/>
+      {/* <TopLanding/> */}
       
       {/* Lower Landing */}
-      <LowerLanding/>
+      {/* <LowerLanding/> */}
       
       {/* Footer */}
-      <Footer/>
+      {/* <Footer/> */}
     </section>
   );
 };

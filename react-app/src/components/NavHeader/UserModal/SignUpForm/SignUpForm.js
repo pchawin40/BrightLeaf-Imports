@@ -61,6 +61,8 @@ const SignUpForm = () => {
         }
 
         dispatch(sessionActions.thunkAPILogin(googleUserResponse));
+
+        setShowUserModal(false);
       } else {
         throw new Error(`Error fetching user data with token: ${tokenResponse.access_token}`)
       }
