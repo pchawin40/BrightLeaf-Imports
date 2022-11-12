@@ -1,0 +1,51 @@
+/* src/components/NavHeader/NavHeader.css */
+
+#nav-header-container{
+  position: absolute;
+  right: 1rem;
+  z-index: 1;
+  height: 100%;
+  width: 5rem;
+}
+
+#nav-header-section{
+  position: sticky;
+  top: 1rem;
+  width: 100%;
+  height: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#nav-header-section, #nav-header-section * {
+  margin: 0;
+  padding: 0;
+}
+
+.nh-figure{
+  position: relative;
+}
+
+.nh-figure > span{
+  position: absolute;
+  top: -.1rem;
+  right: .55rem;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.nh-figure.white > i,
+.nh-figure > span.white{
+  color: white;
+}
+
+.nh-figure.black > i,
+.nh-figure > span.black {
+  color: black;
+}
+
+.nh-figure > i:hover{
+  cursor: pointer;
+}

@@ -1,3 +1,6 @@
+// src/store/session.js
+
+/* --------- ACTIONS -------- */
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
@@ -11,10 +14,10 @@ const removeUser = () => ({
   type: REMOVE_USER,
 })
 
-const initialState = { user: null };
+/* --------- THUNKS -------- */
 
 export const authenticate = () => async (dispatch) => {
-  const response = await fetch('/api/auth/', {
+  const response = await fetch('/api/auth', {
     headers: {
       'Content-Type': 'application/json'
     }
@@ -24,7 +27,7 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
       return;
     }
-  
+
     dispatch(setUser(data));
   }
 }
@@ -40,8 +43,8 @@ export const login = (email, password) => async (dispatch) => {
       password
     })
   });
-  
-  
+
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -57,12 +60,18 @@ export const login = (email, password) => async (dispatch) => {
 
 }
 
+
+export const thunkAPILogin = (response, role = "user") => async dispatch => {
+  const apiUser = {
+    ...response,
+    role
+  }
+  
+  dispatch(setUser(apiUser));
+}
+
 export const logout = () => async (dispatch) => {
-  const response = await fetch('/api/auth/logout', {
-    headers: {
-      'Content-Type': 'application/json',
-    }
-  });
+  const response = await fetch('/api/auth/logout');
 
   if (response.ok) {
     dispatch(removeUser());
@@ -70,19 +79,20 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const signUp = (username, email, password) => async (dispatch) => {
+export const signUp = (email, password, role = "user") => async (dispatch) => {
+
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      username,
       email,
       password,
+      role
     }),
   });
-  
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -97,7 +107,14 @@ export const signUp = (username, email, password) => async (dispatch) => {
   }
 }
 
-export default function reducer(state = initialState, action) {
+/* --------- SELECTOR FUNCTIONS -------- */
+export const getCurrentUserInfo = state => state.session.user;
+export const getCurrentUserId = state => state.session.user ? state.session.user.id : state.session.user;
+
+/* --------- REDUCERS -------- */
+const initialState = { user: null };
+
+export default function sessionReducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
       return { user: action.payload }

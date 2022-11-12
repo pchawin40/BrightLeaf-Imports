@@ -1,0 +1,139 @@
+/* src/components/NavHeader/UserModal/UserModal.css */
+
+/*? Logged In User Modal Section */
+#logged-user-modal-section {
+	height: fit-content;
+	width: 10rem;
+	background-color: rgb(250, 252, 248);
+	right: 3.75rem;
+	top: 3rem;
+	position: absolute;
+}
+
+#logged-ums-ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#logged-ums-ul li:first-child {
+	margin-top: 0.5rem;
+}
+
+#logged-ums-ul li:last-child {
+	margin-bottom: 0.5rem;
+}
+
+#logged-ums-ul > span {
+	padding-bottom: 0.02rem;
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
+	width: 70%;
+}
+
+#logged-ums-ul > * {
+	width: 100%;
+	height: 100%;
+}
+
+#logged-ums-ul > li {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 3rem;
+}
+
+#logged-ums-ul > li:hover {
+	color: #959d74;
+	cursor: pointer;
+}
+
+/*? Not Logged In User Modal Section */
+
+#user-modal-section {
+	height: 100vh;
+	width: 100vw;
+
+	position: relative;
+	background-color: white;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#user-modal-section,
+#user-modal-section * {
+	margin: 0;
+	padding: 0;
+}
+
+#user-modal-inner-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.user-modal-inner-section-false {
+	height: 500px;
+	width: 400px;
+	margin-top: 15vh !important;
+}
+
+.user-modal-inner-section-true {
+	height: 300px;
+	width: 1000px;
+	margin-top: 33vh !important;
+	justify-content: center;
+}
+
+#user-modal-inner-section > h1 {
+	text-transform: uppercase;
+	font-family: 'Raleway', sans-serif;
+	font-size: 48px;
+	line-height: 48px;
+	font-weight: 400;
+	letter-spacing: 12px;
+}
+
+#user-modal-inner-section > h1,
+#ums-toggle-section {
+	margin-bottom: 1rem;
+}
+
+#ums-toggle-section {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	font-size: 18px;
+}
+
+#ums-ts-cnp {
+	margin-bottom: 1.5rem;
+}
+
+#ums-toggle-section > p {
+	font-family: 'Questrial', sans-serif;
+	word-spacing: 2px;
+	margin-right: 4px;
+}
+
+#ums-toggle-section > span {
+	color: rgb(131, 156, 128);
+}
+
+#ums-toggle-section > span:hover {
+	cursor: pointer;
+}
+
+#user-modal-section > i {
+	position: absolute;
+	top: 3rem;
+	right: 3rem;
+}
+
+#user-modal-section > i:hover {
+	cursor: pointer;
+}

@@ -1,0 +1,13 @@
+/* src/components/LandingPage/LandingPage.css */
+
+#landing-page-section {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 100vh 400vh 100vh;
+	grid-auto-rows: max-content;
+	grid-template-areas:
+		'top-landing'
+		'lower-landing'
+		'footer';
+	position: relative;
+}

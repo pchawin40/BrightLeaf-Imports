@@ -2,7 +2,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.forms import LoginForm, EditUserForm
-from app.models import User, db
+from app.models import User, db, Review, ShoppingCart
 from .auth_routes import validation_errors_to_error_messages
 
 user_routes = Blueprint('users', __name__)
@@ -114,6 +114,18 @@ def get_current_user():
     user = User.query.get(current_user.get_id())
     return user.to_dict()
 
-#* GET /users/reviews
+#* GET /api/users/reviews
+@user_routes.route('/reviews')
+@login_required
+def user_reviews():
+    current_user_reviews = Review.query.filter(Review.user_id == int(current_user.get_id())).all()
+    
+    return {'reviews': {current_user_review.id: current_user_review.to_dict() for current_user_review in current_user_reviews}}
+    
 
-#* GET /users/shopping-cart
+#* GET /api/users/shopping-carts
+@user_routes.route('/shopping-carts')
+def user_carts():
+    current_user_carts = ShoppingCart.query.filter(ShoppingCart.user_id == int(current_user.get_id())).all()
+    
+    return {'shopping_carts': {current_user_cart.id: current_user_cart.to_dict() for current_user_cart in current_user_carts}}

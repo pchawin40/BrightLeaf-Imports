@@ -8,8 +8,8 @@ class Image(db.Model):
   
   # image PA can be null to account for non-product or -review related images
   imageable_id = db.Column(db.Integer, db.ForeignKey('products.id', ondelete='CASCADE'))
-  imageable_id = db.Column(db.Integer, db.ForeignKey('reviews.id', ondelete='CASCADE'))
-  imageable_type = db.Column(db.String(50))
+  imageable_id = db.Column(db.Integer, db.ForeignKey('reviews.id', ondelete='CASCADE'), nullable=False)
+  imageable_type = db.Column(db.String(50), nullable=False)
   
   url = db.Column(db.String(255), nullable=False)
   description = db.Column(db.String(255))

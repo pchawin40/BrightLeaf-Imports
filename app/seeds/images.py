@@ -30,26 +30,16 @@ def seed_images():
     db.session.commit()
   
   # seed from non-reviews and non-product reviews
-  image_1 = Image(
-    url="picture_url",
-    description="image_1's description"
-  )
-  
-  image_2 = Image(
-    url="picture_url",
-    description="image_2's description"
-  )
-  
-  image_3 = Image(
-    url="picture_url",
-    description="image_3's description"
-  )
-  
-  db.session.add(image_1)
-  db.session.add(image_2)
-  db.session.add(image_3)
-  
-  db.session.commit()
+  for index in range(3):
+    current_review_image = Image(
+      imageable_id=index + 1,
+      imageable_type="None",
+      url="None Image URL",
+      description=f"None Image {index + 1} URL's description"
+    )
+
+    db.session.add(current_review_image)
+    db.session.commit()
 
 # undo image seeds
 def undo_images():

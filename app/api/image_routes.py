@@ -8,13 +8,18 @@ from .auth_routes import validation_errors_to_error_messages
 image_routes = Blueprint('images', __name__)
 
 #* GET /api/images
+#* GET /api/images/search
+# Example of search request args: api/images/?search=Product
 @image_routes.route('/')
+@image_routes.route('/search')
 def images():
   """
-  GET: Get all availables images
+  GET: Get all availables images | by search arguments
   """
   # otherwise, method is get
-  images = Image.query.all()
+  images = Image.query.all() if request.args.get('search') is None else Image.query.filter(Image.imageable_type.ilike(f"%{request.args.get('search')}%")).all()
+  
+  # return succesful response
   return {'images': {image.id: image.to_dict() for image in images}}
 
 #* POST /api/images

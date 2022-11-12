@@ -4,6 +4,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
+from app.forms import PasswordForm
 
 from .models import db, User
 from .api.user_routes import user_routes
@@ -22,7 +23,6 @@ app = Flask(__name__)
 # Setup login manager
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
-
 
 @login.user_loader
 def load_user(id):
@@ -44,7 +44,6 @@ Migrate(app, db)
 
 # Application Security
 CORS(app)
-
 
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.
@@ -78,3 +77,25 @@ def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
+
+#! TODO
+# #* POST /forgotPassword
+# @app.route('/forgotPassword', methods=['POST'])
+# def forgot_password():
+#     """
+#     method for using w/ flask_mail and for resetting user's password
+#     """
+#     form = PasswordForm()
+    
+#     # validate csrf token
+#     form['csrf_token'].data = request.cookies['csrf_token']
+    
+#     recipient = request 
+    
+#     if form.validate_on_submit():
+#         msg = Message('Create Your New Password', sender = 'brightleafs_imports@mailtrap.io', recipients = [request.json['email']])
+#         msg.body = f"Hello {request.json['email']}, your password confirmation code is 1234"
+#         mail.send(msg)
+#         return "Message sent!"
+    
+#     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8" />
-    <title>Simple React App</title>
+    <title>Woodworking Supply Store | Brightleaf Imports LLC | United States</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico?v=2" />
+
+    <!-- Import Font Awesome -->
+    <script src="https://kit.fontawesome.com/3d9c105ac5.js" crossorigin="anonymous"></script>
   </head>
+
   <body>
     <div id="root"></div>
+
+    <!-- Facebook SDK -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v15.0&appId=525043799200328&autoLogAppEvents=1"
+      nonce="lpABL9cW"></script>
+
+    <!-- Google Account SDK -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="1082422331077-c0eugbsvcaj0tbv9v500qorljk16ucl3.apps.googleusercontent.com">
   </body>
+
+  <!-- Facebook SDK -->
+  <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '525043799200328',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v15.0'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<!-- Google Account SDK -->
+
 </html>
