@@ -125,6 +125,6 @@ def user_reviews():
 #* GET /api/users/shopping-carts
 @user_routes.route('/shopping-carts')
 def user_carts():
-    current_user_carts = ShoppingCart.query.filter(ShoppingCart.user_id == int(current_user.get_id())).all()
+    current_user_carts = ShoppingCart.query.filter(ShoppingCart.user_id == current_user.get_id()).all()
     
     return {'shopping_carts': {current_user_cart.id: current_user_cart.to_dict() for current_user_cart in current_user_carts}}
