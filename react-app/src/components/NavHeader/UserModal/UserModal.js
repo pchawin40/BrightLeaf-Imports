@@ -21,7 +21,7 @@ import ForgotPasswordForm from './ForgotPasswordForm';
 
 //? UserModal component
 const UserModal = () => {
-  // load user data
+  // load data
   const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
 
   // turn body overflow off on opening
@@ -30,7 +30,7 @@ const UserModal = () => {
   /**
    * controlled inputs
    */
-  const [userSignUp, setUserSignUp] = useState(true);
+  const [userSignUp, setUserSignUp] = useState(false);
   const { forgotPassword, setForgotPassword } = useNavHeader();
   const { showUserModal, setShowUserModal } = useNavHeader();
 

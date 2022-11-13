@@ -43,6 +43,8 @@ export const thunkGetSessionUserCarts = () => async (dispatch) => {
     // dispatch load shopping carts w/ loaded carts
     dispatch(loadShoppingCarts(shoppingCartData.shopping_carts));
 
+    console.log('shoppingCartData', shoppingCartData);
+
     // return carts
     return shoppingCartData;
   }
