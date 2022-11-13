@@ -30,6 +30,10 @@
 	position: absolute;
 }
 
+#scms-top-section > i:hover {
+	cursor: pointer;
+}
+
 #scms-top-section > p {
 	position: absolute;
 	left: 153px;
@@ -43,7 +47,6 @@
 #scms-lower-section {
 	background-color: white;
 	color: #424242;
-	font-size: 18px;
 	line-height: 29px;
 	text-align: center;
 
@@ -54,4 +57,5 @@
 	position: absolute;
 	top: 18px;
 	left: 122px;
+	font-size: 18px;
 }

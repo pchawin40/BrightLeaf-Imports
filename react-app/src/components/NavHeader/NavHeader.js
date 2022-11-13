@@ -90,7 +90,7 @@ const NavHeader = () => {
             document.body.style.overflowY = "scroll"
           }}
         >
-          <ShoppingCartModal />
+          <ShoppingCartModal setShowCartModal={setShowCartModal} />
         </Modal>
       )}
     </section>

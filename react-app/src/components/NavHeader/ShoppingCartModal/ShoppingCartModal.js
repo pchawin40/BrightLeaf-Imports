@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import * as sessionActions from '../../../store/session';
 
 //? ShoppingCartModal component
-const ShoppingCartModal = () => {
+const ShoppingCartModal = ({ setShowCartModal }) => {
   // load data
   const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
 
@@ -20,7 +20,10 @@ const ShoppingCartModal = () => {
     <section id="shopping-cart-modal-section">
       {/* Top Section */}
       <section id="scms-top-section">
-        <i className="fa-solid fa-chevron-right" />
+        <i
+          onClick={_ => setShowCartModal(false)}
+          className="fa-solid fa-chevron-right"
+        />
 
         <p>
           Cart
