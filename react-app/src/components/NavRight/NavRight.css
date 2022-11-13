@@ -40,3 +40,8 @@
 #nav-rn-figure > ul > span {
 	height: 4px;
 }
+
+.line-span.nav-rn {
+	background-color: white;
+	opacity: 1;
+}

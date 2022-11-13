@@ -35,11 +35,21 @@ const TopLanding = () => {
         {/* Image Carousel */}
         <aside>
           <figure className="tls-ic-figure">
+            {/* left clicker */}
+            <figure className="tls-ic-inner-figure left-clicker">
+              <i className="fa-solid fa-chevron-left fa-2xl" />
+            </figure>
+
             <img
               className="tls-ic-img"
               src="https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668326915/image-gallery_dyqr4i.webp"
               alt="tl-carousel"
             />
+
+            {/* right clicker */}
+            <figure className="tls-ic-inner-figure right-clicker">
+              <i className="fa-solid fa-chevron-right fa-2xl" />
+            </figure>
           </figure>
         </aside>
       </figure>

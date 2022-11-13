@@ -13,9 +13,9 @@ const NavRight = () => {
         id="nav-rn-figure"
       >
         <ul>
-          <span className="line-span" />
-          <span className="line-span" />
-          <span className="line-span" />
+          <span className="line-span nav-rn" />
+          <span className="line-span nav-rn" />
+          <span className="line-span nav-rn" />
         </ul>
       </figure>
     </section>
