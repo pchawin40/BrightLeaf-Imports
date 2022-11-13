@@ -2,28 +2,23 @@
 
 #nav-header-container {
 	position: absolute;
-	right: 1rem;
-	z-index: 1;
+	right: 0;
+	z-index: 5;
 	height: 100%;
-	width: 5rem;
+	width: 8rem;
 }
 
 #nav-header-section {
 	position: sticky;
 	top: 1rem;
-	width: 100%;
+	width: 80%;
 	height: 2rem;
 
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
-}
 
-#nav-header-scm-section {
-	position: sticky;
-	top: 0;
-	margin-left: 23rem;
-	background-color: red;
+	margin-right: 3rem;
 }
 
 #nav-header-section,
@@ -61,4 +56,11 @@
 .nh-figure > i:hover,
 #nhs-cart-span {
 	cursor: pointer;
+}
+
+/* Right Nav Clicker Modal */
+#nav-header-rnc-section {
+	position: sticky;
+	margin-top: 42vh;
+	margin-left: 1rem;
 }

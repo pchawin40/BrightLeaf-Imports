@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import store
 import * as sessionActions from './store/session';
 import * as shoppingCartActions from './store/shoppingCarts';
+import NavRight from './components/NavRight';
 
 function App() {
   /**
@@ -54,6 +55,7 @@ function App() {
     <BrowserRouter>
       {/* NavHeader */}
       <NavHeader />
+
       <Switch>
         <Route path='/' exact={true} >
           <LandingPage />

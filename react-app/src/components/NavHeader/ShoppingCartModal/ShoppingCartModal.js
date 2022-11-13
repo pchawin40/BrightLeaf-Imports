@@ -42,21 +42,6 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
     if (loadCartModal) {
       document.addEventListener('click', handleOutsideClick);
     }
-
-    let before = 400;
-    let after = 0;
-
-    if (loadCartModal) {
-      before = 0;
-      after = 400;
-
-      console.log("true lcm | before", before);
-      console.log("true lcm | after", after);
-    } else {
-      console.log("false lcm | before", before);
-      console.log("false lcm | after", after);
-    }
-
   }, [loadCartModal]);
 
   const box = createRef();
@@ -78,11 +63,11 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
     // >
     <Animate
       play={loadCartModal}
-      duration={1}
+      duration={.8}
       start={{
         transform: `translateX(400px)`
       }}
-      end={{ transform: `translateX(-640px)` }}
+      end={{ transform: `translateX(-240px)` }}
     >
       <section
         id="shopping-cart-modal-section"

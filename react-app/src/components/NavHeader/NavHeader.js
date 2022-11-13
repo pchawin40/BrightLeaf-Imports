@@ -24,6 +24,7 @@ import * as shoppingCartActions from '../../store/shoppingCarts';
 
 // import libraries
 import { Animate, AnimateKeyframes, AnimateGroup } from "react-simple-animate";
+import NavRight from '../NavRight';
 
 //? NavHeader component
 const NavHeader = () => {
@@ -52,7 +53,7 @@ const NavHeader = () => {
     const currentScrollY = window.scrollY;
 
     // if mid, change to black
-    if (window.scrollY >= window.innerHeight && window.scrollY < (5 * window.innerHeight)) {
+    if (window.scrollY >= window.innerHeight + 100 && window.scrollY < (5 * window.innerHeight - 25)) {
       setColor('black');
     } else {
       setColor('white');
@@ -75,7 +76,7 @@ const NavHeader = () => {
           onClick={_ => setShowUserModal(true)}
           className={`nh-figure ${color}`}
         >
-          <i className="fa-regular fa-user fa-xl" />
+          <i className="fa-regular fa-user fa-xl nh-user-icon" />
         </figure>
 
         {/* Shopping Cart Modal */}
@@ -95,10 +96,10 @@ const NavHeader = () => {
             }
           </span>
         </figure>
+
+        <NavRight />
       </section>
-
       {/* Shopping Cart Modal */}
-
       <section
         id="nav-header-scm-section"
         className={`nav-header-scm-section-${loadCartModal}`}
