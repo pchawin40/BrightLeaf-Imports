@@ -19,6 +19,13 @@
 	justify-content: space-evenly;
 }
 
+#nav-header-scm-section {
+	position: sticky;
+	top: 0;
+	margin-left: 23rem;
+	background-color: red;
+}
+
 #nav-header-section,
 #nav-header-section * {
 	margin: 0;

@@ -1,17 +1,6 @@
 /* src/components/NavHeader/ShoppingCartModal/ShoppingCartModal.css */
 
 #shopping-cart-modal-section {
-}
-
-/* #shopping-cart-modal-outer-section.false {
-	right: -368px;
-}
-
-#shopping-cart-modal-outer-section.true {
-	right: 0;
-} */
-
-#shopping-cart-modal-section {
 	display: grid;
 	width: 368px;
 	height: 100vh;

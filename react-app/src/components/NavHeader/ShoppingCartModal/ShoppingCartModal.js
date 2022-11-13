@@ -68,6 +68,9 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
     }
   }
 
+  // turn body overflow off on opening
+  // document.body.style.overflowY = !currentUserInfo ? "hidden" : "scroll"
+
   return (
     // <section
     //   id="shopping-cart-modal-outer-section"
@@ -75,12 +78,12 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
     // >
     <Animate
       play={loadCartModal}
-      duration={.5}
+      duration={1}
       delay={0.3}
       start={{
         transform: `translateX(400px)`
       }}
-      end={{ transform: `translateX(-272px)` }}
+      end={{ transform: `translateX(-640px)` }}
     >
       <section
         id="shopping-cart-modal-section"

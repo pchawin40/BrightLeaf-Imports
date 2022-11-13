@@ -10,4 +10,6 @@
 		'lower-landing'
 		'footer';
 	position: relative;
+
+	overflow-y: auto;
 }

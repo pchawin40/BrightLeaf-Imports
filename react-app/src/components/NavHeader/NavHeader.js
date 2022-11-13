@@ -22,6 +22,9 @@ import { useSelector } from 'react-redux';
 // import store
 import * as shoppingCartActions from '../../store/shoppingCarts';
 
+// import libraries
+import { Animate, AnimateKeyframes, AnimateGroup } from "react-simple-animate";
+
 //? NavHeader component
 const NavHeader = () => {
   /**
@@ -65,7 +68,8 @@ const NavHeader = () => {
 
   return (
     <section id="nav-header-container">
-      <section id="nav-header-section">
+      <section id="nav-header-section" className={`nav-header-section-${!loadCartModal}`}>
+
         {/* User Modal */}
         <figure
           onClick={_ => setShowUserModal(true)}
@@ -73,10 +77,12 @@ const NavHeader = () => {
         >
           <i className="fa-regular fa-user fa-xl" />
         </figure>
+
         {/* Shopping Cart Modal */}
         <figure
           onClick={_ => {
             // setShowCartModal(true);
+
             setLoadCartModal(true);
           }}
           className={`nh-figure ${color}`}
@@ -91,6 +97,15 @@ const NavHeader = () => {
         </figure>
       </section>
 
+      {/* Shopping Cart Modal */}
+
+      <section
+        id="nav-header-scm-section"
+        className={`nav-header-scm-section-${loadCartModal}`}
+      >
+        <ShoppingCartModal />
+      </section>
+
       {/* User Modal */}
       {showUserModal && (
         <Modal
@@ -103,8 +118,7 @@ const NavHeader = () => {
         </Modal>
       )}
 
-      {/* Shopping Cart Modal */}
-      <ShoppingCartModal />
+      {/* //! TODO: To fix that its not 'sticky' */}
     </section>
   );
 };
