@@ -48,7 +48,7 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
 
   // function to detect if click outside of custom modal
   const handleOutsideClick = e => {
-    if (box && !box.current.contains(e.target)) {
+    if (box && box.current && !box.current.contains(e.target)) {
       setLoadCartModal(false);
     }
   }

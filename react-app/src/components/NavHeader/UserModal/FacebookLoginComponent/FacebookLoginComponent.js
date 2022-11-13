@@ -10,7 +10,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 // import libraries
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+import { FacebookProvider, useLogin, useProfile } from 'react-facebook';
 
 // import store
 import * as sessionActions from '../../../../store/session';
@@ -20,87 +20,50 @@ const FacebookLoginComponent = () => {
   /**
    * Controlled inputs
    */
-  const [login, setLogin] = useState(false);
-  const [data, setData] = useState({});
-  const [picture, setPicture] = useState("");
+  // const [login, setLogin] = useState(false);
+  // const [data, setData] = useState({});
   const { showUserModal, setShowUserModal } = useNavHeader();
+
+  const { login, isLoading, error } = useLogin();
 
   // invoke dispatch
   const dispatch = useDispatch();
 
-  const responseFacebook = (res) => {
-    // Login failed
-    if (res.status === "unknown") {
-      alert("Login failed!");
-      setLogin(false);
-      return false;
-    }
-    setData(res);
-    setPicture(res.picture.data.url);
-    if (res.accessToken) {
-      // on successful login
-      setLogin(true);
+  const handleLogin = async () => {
+    try {
+      const res = await login({
+        scope: 'email',
+      });
 
-      // grab information from response
-      const facebookUserResponse = {
-        name: res.name,
-        email: res.email,
-        id: res.id
-      }
 
-      // call on thunk to set user information
+      const facebookUserResponse = await (await fetch(`https://graph.facebook.com/me?access_token=${res.authResponse.accessToken}`)).json();
+
       dispatch(sessionActions.thunkAPILogin(facebookUserResponse));
-
-      setShowUserModal(false);
-    } else {
-      setLogin(false);
+    } catch (error) {
+      console.log(error.message);
     }
-  };
-
-  // function to handle facebook logout
-  const logout = () => {
-    setLogin(false);
-    setData({});
-    setPicture("");
-  };
+  }
 
   return (
-    <div className="container">
-      {!login && (
-        <FacebookLogin
-          appId="569720507786195"
-          autoLoad={false}
-          fields="name,email,picture"
-          scope="public_profile,email,user_friends"
-          callback={responseFacebook}
-          render={renderProps => (
-            <figure
-              id="fb-login-img-figure"
-              onClick={renderProps.onClick}
-            >
-              <img
-                src="https://cdn2.downdetector.com/static/uploads/logo/FB-f-Logo__blue_512.png"
-                alt="facebook-login"
-                id="fb-login-img"
-              />
-            </figure>
-          )}
+    <div
+      className="container"
+    >
+      <figure
+        id="fb-login-img-figure"
+        disabled={isLoading}
+        onClick={handleLogin}
+      >
+        <img
+          src="https://cdn2.downdetector.com/static/uploads/logo/FB-f-Logo__blue_512.png"
+          alt="facebook-login"
+          id="fb-login-img"
         />
-      )}
-
-      {login && (
-        // To handle to login once click on sign in w/ facebook
-        <div className="card">
-          <div className="card-body">
-            <img className="rounded" src={picture} alt="Profile" />
-            <h5 className="card-title">{data.name}</h5>
-            <p className="card-text">Email ID: {data.email}</p>
-            <a href="#" className="btn btn-danger btn-sm" onClick={logout}>
-              Logout
-            </a>
-          </div>
-        </div>
-      )}
+      </figure>
+      {/* {
+        !isLoading
+        &&
+        <FacebookProfile />
+      } */}
     </div>
   );
 }

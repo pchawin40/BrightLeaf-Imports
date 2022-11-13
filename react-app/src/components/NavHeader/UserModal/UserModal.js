@@ -9,14 +9,19 @@ import './UserModal.css';
 // import component
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
+import ForgotPasswordForm from './ForgotPasswordForm';
 
 // import context
 import { useNavHeader } from '../../../context/NavHeaderContext';
 
+// import react
+import { useState } from 'react';
+
 // import store
 import * as sessionActions from '../../../store/session';
-import { useState } from 'react';
-import ForgotPasswordForm from './ForgotPasswordForm';
+
+// import libraries
+import { FacebookProvider } from 'react-facebook';
 
 
 //? UserModal component
@@ -123,19 +128,23 @@ const UserModal = () => {
               )
           }
 
-          {/* Sign Up Form */}
-          {userSignUp
-            ?
-            <SignUpForm />
-            :
-            (
-              forgotPassword
-                ?
-                <ForgotPasswordForm />
-                :
-                <LoginForm />
-            )
-          }
+          <FacebookProvider
+            appId='569720507786195'
+          >
+            {/* Sign Up Form */}
+            {userSignUp
+              ?
+              <SignUpForm />
+              :
+              (
+                forgotPassword
+                  ?
+                  <ForgotPasswordForm />
+                  :
+                  <LoginForm />
+              )
+            }
+          </FacebookProvider>
 
           {/* //! TODO: To implement sign up with facebook and google */}
         </section>

@@ -43,6 +43,7 @@ function App() {
   // load data
   useEffect(() => {
     if (currentUserInfo) {
+      //! TODO: To work on shopping cart error
       dispatch(shoppingCartActions.thunkGetSessionUserCarts());
     }
   }, [currentUserInfo]);
