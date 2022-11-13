@@ -1,15 +1,27 @@
 /* src/components/NavHeader/ShoppingCartModal/ShoppingCartModal.css */
 
 #shopping-cart-modal-section {
+}
+
+/* #shopping-cart-modal-outer-section.false {
+	right: -368px;
+}
+
+#shopping-cart-modal-outer-section.true {
+	right: 0;
+} */
+
+#shopping-cart-modal-section {
 	display: grid;
 	width: 368px;
+	height: 100vh;
 	grid-template-rows: 100px auto;
 	grid-auto-rows: max-content;
-
-	position: absolute;
+	background-color: pink;
+	position: sticky;
 	right: 0;
-	top: 0;
-	bottom: 0;
+	margin-top: -2rem;
+	margin-right: -1rem;
 }
 
 /* Top Section */

@@ -29,7 +29,8 @@ const NavHeader = () => {
    */
   const [color, setColor] = useState('white');
   const { showUserModal, setShowUserModal } = useNavHeader();
-  const [showCartModal, setShowCartModal] = useState(false);
+  // const [showCartModal, setShowCartModal] = useState(false);
+  const { loadCartModal, setLoadCartModal } = useNavHeader();
 
   /**
   * Selector functions
@@ -74,7 +75,10 @@ const NavHeader = () => {
         </figure>
         {/* Shopping Cart Modal */}
         <figure
-          onClick={_ => setShowCartModal(true)}
+          onClick={_ => {
+            // setShowCartModal(true);
+            setLoadCartModal(true);
+          }}
           className={`nh-figure ${color}`}
         >
           <i className="fa-solid fa-cart-shopping fa-xl" />
@@ -100,17 +104,7 @@ const NavHeader = () => {
       )}
 
       {/* Shopping Cart Modal */}
-      {/* User Modal */}
-      {showCartModal && (
-        <Modal
-          onClose={(_) => {
-            setShowCartModal(false)
-            document.body.style.overflowY = "scroll"
-          }}
-        >
-          <ShoppingCartModal setShowCartModal={setShowCartModal} />
-        </Modal>
-      )}
+      <ShoppingCartModal />
     </section>
   );
 };

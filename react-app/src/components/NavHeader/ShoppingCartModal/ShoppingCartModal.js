@@ -1,6 +1,13 @@
 // src/components/NavHeader/ShoppingCartModal/ShoppingCartModal.js
+
+// import context
+import { useNavHeader } from '../../../context/NavHeaderContext';
+
 // import css
 import './ShoppingCartModal.css';
+
+// import react
+import { useState, createRef, useEffect } from 'react';
 
 //import react-redux
 import { useSelector } from 'react-redux';
@@ -9,43 +16,100 @@ import { useSelector } from 'react-redux';
 import * as sessionActions from '../../../store/session';
 import * as shoppingCartActions from '../../../store/shoppingCarts';
 
+// import libraries
+import { Animate, AnimateKeyframes, AnimateGroup } from "react-simple-animate";
+
+
 //? ShoppingCartModal component
 const ShoppingCartModal = ({ setShowCartModal }) => {
+  /**
+   * Controlled inputs
+   */
+  const { loadCartModal, setLoadCartModal } = useNavHeader();
+
   /**
    * Selector functions
    */
   // select user
-  const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
+  // const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
   // select shopping cart
-  const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
+  // const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
 
-  // turn body overflow off on opening
-  document.body.style.overflowY = "hidden"
+  /**
+   * UseEffect
+   */
+  useEffect(() => {
+    if (loadCartModal) {
+      document.addEventListener('click', handleOutsideClick);
+    }
+
+    let before = 400;
+    let after = 0;
+
+    if (loadCartModal) {
+      before = 0;
+      after = 400;
+
+      console.log("true lcm | before", before);
+      console.log("true lcm | after", after);
+    } else {
+      console.log("false lcm | before", before);
+      console.log("false lcm | after", after);
+    }
+
+  }, [loadCartModal]);
+
+  const box = createRef();
+
+  // function to detect if click outside of custom modal
+  const handleOutsideClick = e => {
+    if (box && !box.current.contains(e.target)) {
+      setLoadCartModal(false);
+    }
+  }
 
   return (
-    <section id="shopping-cart-modal-section">
-      {/* Top Section */}
-      <section id="scms-top-section">
-        <i
-          onClick={_ => {
-            setShowCartModal(false);
-            document.body.style.overflowY = "scroll";
-          }}
-          className="fa-solid fa-chevron-right"
-        />
+    // <section
+    //   id="shopping-cart-modal-outer-section"
+    //   className={`${loadCartModal}`}
+    // >
+    <Animate
+      play={loadCartModal}
+      duration={.5}
+      delay={0.3}
+      start={{
+        transform: `translateX(400px)`
+      }}
+      end={{ transform: `translateX(-272px)` }}
+    >
+      <section
+        id="shopping-cart-modal-section"
+        ref={box}
+      >
+        {/* Top Section */}
+        <section id="scms-top-section">
+          <i
+            onClick={_ => {
+              setLoadCartModal(false);
+              document.body.style.overflowY = "scroll";
+            }}
+            className="fa-solid fa-chevron-right"
+          />
 
-        <p>
-          Cart
-        </p>
-      </section>
+          <p>
+            Cart
+          </p>
+        </section>
 
-      {/* Lower Section */}
-      <section id="scms-lower-section">
-        <p>
-          Cart is empty
-        </p>
+        {/* Lower Section */}
+        <section id="scms-lower-section">
+          <p>
+            Cart is empty
+          </p>
+        </section>
       </section>
-    </section>
+    </Animate>
+    // </section>
   );
 };
 
