@@ -22,7 +22,6 @@ import { Redirect } from 'react-router-dom';
 import * as sessionActions from '../../../../store/session';
 
 // import libraries
-import FB from "react-facebook-login";
 import { useGoogleLogin } from '@react-oauth/google';
 
 const LoginForm = () => {

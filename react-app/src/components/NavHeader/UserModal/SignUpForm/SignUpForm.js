@@ -23,7 +23,6 @@ import * as sessionActions from '../../../../store/session';
 
 // import libraries
 import ReCAPTCHA from "react-google-recaptcha";
-import FB from "react-facebook-login";
 import { useGoogleLogin } from '@react-oauth/google';
 
 const SignUpForm = () => {
@@ -238,7 +237,7 @@ const SignUpForm = () => {
       <div id="suf-asu-container">
         {/* Facebook Login API */}
         <span>
-          <FacebookLoginComponent />
+          {/* <FacebookLoginComponent /> */}
         </span>
 
         {/* Google Login API */}
