@@ -79,7 +79,6 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
     <Animate
       play={loadCartModal}
       duration={1}
-      delay={0.3}
       start={{
         transform: `translateX(400px)`
       }}
