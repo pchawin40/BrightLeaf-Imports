@@ -43,8 +43,6 @@ export const thunkGetSessionUserCarts = () => async (dispatch) => {
     // dispatch load shopping carts w/ loaded carts
     dispatch(loadShoppingCarts(shoppingCartData.shopping_carts));
 
-    console.log('shoppingCartData', shoppingCartData);
-
     // return carts
     return shoppingCartData;
   }
@@ -54,6 +52,8 @@ export const thunkGetSessionUserCarts = () => async (dispatch) => {
 }
 
 /* --------- SELECTOR FUNCTIONS -------- */
+export const getCurrentUserCarts = state => state.shoppingCarts;
+
 /* --------- REDUCERS -------- */
 const initialState = {}
 

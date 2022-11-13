@@ -122,7 +122,6 @@ def user_reviews():
     
     return {'reviews': {current_user_review.id: current_user_review.to_dict() for current_user_review in current_user_reviews}}
     
-
 #* GET /api/users/shopping-carts
 @user_routes.route('/shopping-carts')
 def user_carts():

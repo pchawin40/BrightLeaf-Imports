@@ -7,11 +7,17 @@ import { useSelector } from 'react-redux';
 
 // import store
 import * as sessionActions from '../../../store/session';
+import * as shoppingCartActions from '../../../store/shoppingCarts';
 
 //? ShoppingCartModal component
 const ShoppingCartModal = ({ setShowCartModal }) => {
-  // load data
-  // const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
+  /**
+   * Selector functions
+   */
+  // select user
+  const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
+  // select shopping cart
+  const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
 
   // turn body overflow off on opening
   document.body.style.overflowY = "hidden"

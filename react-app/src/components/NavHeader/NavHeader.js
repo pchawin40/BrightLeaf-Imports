@@ -1,20 +1,26 @@
 // src/components/NavHeader/NavHeader.js
 
 // import component
-import ShoppingCartModal from './ShoppingCartModal/ShoppingCartModal';
+import ShoppingCartModal from './ShoppingCartModal';
+import UserModal from './UserModal';
 
 // import context
 import { useNavHeader } from '../../context/NavHeaderContext';
 
 // import component
 import { Modal } from '../../context/Modal';
-import UserModal from './UserModal/UserModal';
 
 // import css
 import './NavHeader.css';
 
 // import react
 import { useEffect, useRef, useState } from 'react';
+
+// import react-redux
+import { useSelector } from 'react-redux';
+
+// import store
+import * as shoppingCartActions from '../../store/shoppingCarts';
 
 //? NavHeader component
 const NavHeader = () => {
@@ -25,10 +31,20 @@ const NavHeader = () => {
   const { showUserModal, setShowUserModal } = useNavHeader();
   const [showCartModal, setShowCartModal] = useState(false);
 
+  /**
+  * Selector functions
+  */
+  // grab shopping carts data
+  const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
   const prevScrollY = useRef(0);
+
+  /**
+   * UseEffect
+   */
 
   // function to handle changing of background based on y scroll position
   const changeBackground = () => {
+
     const currentScrollY = window.scrollY;
 
     // if mid, change to black
@@ -64,7 +80,9 @@ const NavHeader = () => {
           <i className="fa-solid fa-cart-shopping fa-xl" />
           <span id="nhs-cart-span" className={`${color === 'black' ? 'white' : 'black'}`}>
             {/* //TODO: TBD: To count how many items are in shopping cart for current user */}
-            0
+            {
+              Object.values(currentUserCarts).length
+            }
           </span>
         </figure>
       </section>
