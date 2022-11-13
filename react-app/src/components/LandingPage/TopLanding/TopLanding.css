@@ -2,6 +2,8 @@
 
 #top-landing-section {
 	grid-area: 'top-landing';
+
+	position: relative;
 }
 
 #background-img-container {
@@ -25,11 +27,36 @@
 }
 
 /* Top Landing Left Section */
+#tls-back-figure {
+	position: absolute;
+	left: 12.5vw;
+	height: 5rem;
+	width: 3rem;
+
+	padding: 0;
+	margin: 0;
+
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+#tls-back-figure:hover {
+	cursor: pointer;
+}
+
+#tls-back-figure > span {
+	transform: rotate(90deg);
+	text-transform: uppercase;
+	font-family: questrial, sans-serif;
+	letter-spacing: 1.5px;
+
+	display: flex;
+	opacity: 0.8rem;
+}
 
 #background-img-container > section {
 	color: white;
-
-	margin-left: 13.7rem;
 
 	display: flex;
 	align-items: center;
@@ -38,7 +65,7 @@
 #background-img-container > section > h1 {
 	font-size: 8vh;
 	margin-top: 10rem;
-	margin-left: 7.6vw;
+	margin-left: 20.45vw;
 	word-spacing: 100vw;
 	line-height: 100px;
 	padding: 0;
@@ -51,7 +78,7 @@
 	height: auto;
 	position: absolute;
 	top: 10rem;
-	left: 12rem;
+	left: 11.5vw;
 }
 
 #tls-brightleaf-logo {
@@ -65,18 +92,76 @@
 	position: relative;
 }
 
-.tls-ic-figure {
-	position: absolute;
+.trs-ic-figure {
+	position: relative;
 	top: 0;
 	bottom: 0;
 	left: -3rem;
-	margin-top: 15rem;
-	height: 50vh;
+	margin-top: 20vh;
+	height: 65vh;
 	width: 30vw;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
-.tls-ic-img {
+.trs-ic-img {
 	object-fit: cover;
 	height: 100%;
 	width: 100%;
+}
+
+.trs-ic-inner-figure {
+	width: 3rem;
+	height: 4.5rem;
+	background-color: #3d3939;
+	border-radius: 0.25rem;
+	opacity: 0.8;
+
+	position: absolute;
+	top: calc(50% - 1rem);
+
+	margin: 0;
+	padding: 0;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background-blend-mode: multiply;
+}
+
+.trs-ic-inner-figure.left-clicker {
+	left: 0.5rem;
+}
+
+.trs-ic-inner-figure.right-clicker {
+	right: 0.5rem;
+}
+
+.trs-ic-inner-figure > i {
+	color: white;
+}
+
+.trs-ic-inner-figure > i:hover {
+	cursor: pointer;
+}
+
+#trs-scroll-figure {
+	position: absolute;
+	right: 12.5rem;
+	bottom: 8rem;
+
+	width: 20vh;
+	display: flex;
+	align-items: center;
+
+	color: white;
+	transform: rotate(90deg);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	opacity: 0.8;
+}
+
+.trs-scroll.line-span {
+	margin-left: 1rem;
+	background-color: white;
 }
