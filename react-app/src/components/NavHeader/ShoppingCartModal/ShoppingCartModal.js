@@ -11,17 +11,20 @@ import * as sessionActions from '../../../store/session';
 //? ShoppingCartModal component
 const ShoppingCartModal = ({ setShowCartModal }) => {
   // load data
-  const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
+  // const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
 
   // turn body overflow off on opening
-  document.body.style.overflowY = !currentUserInfo ? "hidden" : "scroll"
+  document.body.style.overflowY = "hidden"
 
   return (
     <section id="shopping-cart-modal-section">
       {/* Top Section */}
       <section id="scms-top-section">
         <i
-          onClick={_ => setShowCartModal(false)}
+          onClick={_ => {
+            setShowCartModal(false);
+            document.body.style.overflowY = "scroll";
+          }}
           className="fa-solid fa-chevron-right"
         />
 

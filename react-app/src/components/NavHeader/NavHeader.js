@@ -63,7 +63,7 @@ const NavHeader = () => {
         >
           <i className="fa-solid fa-cart-shopping fa-xl" />
           <span id="nhs-cart-span" className={`${color === 'black' ? 'white' : 'black'}`}>
-            {/* TBD: To count how many items are in shopping cart for current user */}
+            {/* //TODO: TBD: To count how many items are in shopping cart for current user */}
             0
           </span>
         </figure>
