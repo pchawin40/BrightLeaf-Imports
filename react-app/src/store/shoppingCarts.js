@@ -52,6 +52,8 @@ export const thunkGetSessionUserCarts = () => async (dispatch) => {
 }
 
 /* --------- SELECTOR FUNCTIONS -------- */
+export const getCurrentUserCarts = state => state.shoppingCarts;
+
 /* --------- REDUCERS -------- */
 const initialState = {}
 

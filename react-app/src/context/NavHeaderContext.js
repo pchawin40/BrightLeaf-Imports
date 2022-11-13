@@ -10,6 +10,7 @@ export default function NavHeaderProvider({ children }) {
   // state for context
   const [forgotPassword, setForgotPassword] = useState(false);
   const [showUserModal, setShowUserModal] = useState(false);
+  const [loadCartModal, setLoadCartModal] = useState(false);
 
   // Landing Provider
   return (
@@ -17,7 +18,8 @@ export default function NavHeaderProvider({ children }) {
       <NavHeaderContext.Provider
         value={{
           forgotPassword, setForgotPassword,
-          showUserModal, setShowUserModal
+          showUserModal, setShowUserModal,
+          loadCartModal, setLoadCartModal
         }}
       >
         {children}

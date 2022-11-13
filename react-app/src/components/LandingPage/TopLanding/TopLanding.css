@@ -1,6 +1,82 @@
 /* src/components/LandingPage/TopLanding/TopLanding.css */
 
-#top-landing-section{
-  background-color: green;
-  grid-area: "top-landing";
+#top-landing-section {
+	grid-area: 'top-landing';
+}
+
+#background-img-container {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+
+	background-color: rgb(67, 70, 88, 0.85);
+	background-blend-mode: multiply;
+	background-position: top -20vh center;
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	transform: scale(1.3);
+
+	display: grid;
+
+	grid-template-columns: repeat(2, 50%);
+
+	position: relative;
+}
+
+/* Top Landing Left Section */
+
+#background-img-container > section {
+	color: white;
+
+	margin-left: 13.7rem;
+
+	display: flex;
+	align-items: center;
+}
+
+#background-img-container > section > h1 {
+	font-size: 8vh;
+	margin-top: 10rem;
+	margin-left: 7.6vw;
+	word-spacing: 100vw;
+	line-height: 100px;
+	padding: 0;
+
+	font-family: 'Martel Sans', sans-serif;
+}
+
+#tls-brightleaf-logo-container {
+	width: 25vw;
+	height: auto;
+	position: absolute;
+	top: 10rem;
+	left: 12rem;
+}
+
+#tls-brightleaf-logo {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+}
+
+/* Top Landing Right Aside */
+#background-img-container > aside {
+	position: relative;
+}
+
+.tls-ic-figure {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: -3rem;
+	margin-top: 15rem;
+	height: 50vh;
+	width: 30vw;
+}
+
+.tls-ic-img {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
 }

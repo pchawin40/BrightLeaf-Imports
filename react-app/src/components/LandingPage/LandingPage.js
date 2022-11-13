@@ -9,18 +9,23 @@ import NavHeader from "../NavHeader";
 import LowerLanding from "./LowerLanding";
 import TopLanding from "./TopLanding";
 
+// import react-redux
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
 //? LandingPage component
 const LandingPage = () => {
+
   return (
     <section id="landing-page-section">
       {/* Top Landing */}
-      {/* <TopLanding/> */}
-      
+      <TopLanding />
+
       {/* Lower Landing */}
-      {/* <LowerLanding/> */}
-      
+      <LowerLanding />
+
       {/* Footer */}
-      {/* <Footer/> */}
+      <Footer />
     </section>
   );
 };

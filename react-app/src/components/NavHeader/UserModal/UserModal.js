@@ -25,12 +25,12 @@ const UserModal = () => {
   const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
 
   // turn body overflow off on opening
-  document.body.style.overflow = !currentUserInfo ? "hidden" : "scroll"
+  document.body.style.overflowY = !currentUserInfo ? "hidden" : "scroll"
 
   /**
    * controlled inputs
    */
-  const [userSignUp, setUserSignUp] = useState(true);
+  const [userSignUp, setUserSignUp] = useState(false);
   const { forgotPassword, setForgotPassword } = useNavHeader();
   const { showUserModal, setShowUserModal } = useNavHeader();
 

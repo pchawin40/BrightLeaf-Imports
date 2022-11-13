@@ -1,17 +1,30 @@
 // src/components/NavHeader/NavHeader.js
 
+// import component
+import ShoppingCartModal from './ShoppingCartModal';
+import UserModal from './UserModal';
+
 // import context
 import { useNavHeader } from '../../context/NavHeaderContext';
 
 // import component
 import { Modal } from '../../context/Modal';
-import UserModal from './UserModal/UserModal';
 
 // import css
 import './NavHeader.css';
 
 // import react
 import { useEffect, useRef, useState } from 'react';
+
+// import react-redux
+import { useSelector } from 'react-redux';
+
+// import store
+import * as shoppingCartActions from '../../store/shoppingCarts';
+
+// import libraries
+import { Animate, AnimateKeyframes, AnimateGroup } from "react-simple-animate";
+import NavRight from '../NavRight';
 
 //? NavHeader component
 const NavHeader = () => {
@@ -20,15 +33,27 @@ const NavHeader = () => {
    */
   const [color, setColor] = useState('white');
   const { showUserModal, setShowUserModal } = useNavHeader();
+  // const [showCartModal, setShowCartModal] = useState(false);
+  const { loadCartModal, setLoadCartModal } = useNavHeader();
 
+  /**
+  * Selector functions
+  */
+  // grab shopping carts data
+  const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
   const prevScrollY = useRef(0);
+
+  /**
+   * UseEffect
+   */
 
   // function to handle changing of background based on y scroll position
   const changeBackground = () => {
+
     const currentScrollY = window.scrollY;
 
     // if mid, change to black
-    if (window.scrollY >= window.innerHeight && window.scrollY < (5 * window.innerHeight)) {
+    if (window.scrollY >= window.innerHeight + 100 && window.scrollY < (5 * window.innerHeight - 25)) {
       setColor('black');
     } else {
       setColor('white');
@@ -44,22 +69,42 @@ const NavHeader = () => {
 
   return (
     <section id="nav-header-container">
-      <section id="nav-header-section">
+      <section id="nav-header-section" className={`nav-header-section-${!loadCartModal}`}>
+
         {/* User Modal */}
         <figure
           onClick={_ => setShowUserModal(true)}
           className={`nh-figure ${color}`}
         >
-          <i className="fa-regular fa-user fa-xl" />
+          <i className="fa-regular fa-user fa-xl nh-user-icon" />
         </figure>
+
         {/* Shopping Cart Modal */}
-        <figure className={`nh-figure ${color}`}>
+        <figure
+          onClick={_ => {
+            // setShowCartModal(true);
+
+            setLoadCartModal(true);
+          }}
+          className={`nh-figure ${color}`}
+        >
           <i className="fa-solid fa-cart-shopping fa-xl" />
-          <span className={`${color === 'black' ? 'white' : 'black'}`}>
-            {/* TBD: To count how many items are in shopping cart for current user */}
-            0
+          <span id="nhs-cart-span" className={`${color === 'black' ? 'white' : 'black'}`}>
+            {/* //TODO: TBD: To count how many items are in shopping cart for current user */}
+            {
+              Object.values(currentUserCarts).length
+            }
           </span>
         </figure>
+
+        <NavRight />
+      </section>
+      {/* Shopping Cart Modal */}
+      <section
+        id="nav-header-scm-section"
+        className={`nav-header-scm-section-${loadCartModal}`}
+      >
+        <ShoppingCartModal />
       </section>
 
       {/* User Modal */}
@@ -73,6 +118,8 @@ const NavHeader = () => {
           <UserModal />
         </Modal>
       )}
+
+      {/* //! TODO: To fix that its not 'sticky' */}
     </section>
   );
 };
