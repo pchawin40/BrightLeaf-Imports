@@ -64,3 +64,8 @@
 	margin-top: 42vh;
 	margin-left: 1rem;
 }
+
+/* Shopping Cart Modal */
+#nav-header-scm-section {
+	height: 100%;
+}
