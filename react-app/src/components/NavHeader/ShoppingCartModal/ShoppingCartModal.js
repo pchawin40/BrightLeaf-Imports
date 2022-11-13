@@ -57,46 +57,46 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
   // document.body.style.overflowY = !currentUserInfo ? "hidden" : "scroll"
 
   return (
-    // <section
-    //   id="shopping-cart-modal-outer-section"
-    //   className={`${loadCartModal}`}
-    // >
-    <Animate
-      play={loadCartModal}
-      duration={.8}
-      start={{
-        transform: `translateX(400px)`
-      }}
-      end={{ transform: `translateX(-240px)` }}
+    <section
+      id="shopping-cart-modal-outer-section"
+      className={`${loadCartModal}`}
     >
-      <section
-        id="shopping-cart-modal-section"
-        ref={box}
+      <Animate
+        play={loadCartModal}
+        duration={.8}
+        start={{
+          transform: `translateX(400px)`
+        }}
+        end={{ transform: `translateX(-240px)` }}
       >
-        {/* Top Section */}
-        <section id="scms-top-section">
-          <i
-            onClick={_ => {
-              setLoadCartModal(false);
-              document.body.style.overflowY = "scroll";
-            }}
-            className="fa-solid fa-chevron-right"
-          />
+        <section
+          id="shopping-cart-modal-section"
+          ref={box}
+        >
+          {/* Top Section */}
+          <section id="scms-top-section">
+            <i
+              onClick={_ => {
+                setLoadCartModal(false);
+                document.body.style.overflowY = "scroll";
+              }}
+              className="fa-solid fa-chevron-right"
+            />
 
-          <p>
-            Cart
-          </p>
-        </section>
+            <p>
+              Cart
+            </p>
+          </section>
 
-        {/* Lower Section */}
-        <section id="scms-lower-section">
-          <p>
-            Cart is empty
-          </p>
+          {/* Lower Section */}
+          <section id="scms-lower-section">
+            <p>
+              Cart is empty
+            </p>
+          </section>
         </section>
-      </section>
-    </Animate>
-    // </section>
+      </Animate>
+    </section>
   );
 };
 
