@@ -21,11 +21,11 @@ import ForgotPasswordForm from './ForgotPasswordForm';
 
 //? UserModal component
 const UserModal = () => {
-  // load data
+  // load user data
   const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
 
   // turn body overflow off on opening
-  document.body.style.overflow = !currentUserInfo ? "hidden" : "scroll"
+  document.body.style.overflowY = !currentUserInfo ? "hidden" : "scroll"
 
   /**
    * controlled inputs

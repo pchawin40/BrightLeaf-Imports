@@ -1,5 +1,8 @@
 // src/components/NavHeader/NavHeader.js
 
+// import component
+import ShoppingCartModal from './ShoppingCartModal/ShoppingCartModal';
+
 // import context
 import { useNavHeader } from '../../context/NavHeaderContext';
 
@@ -20,6 +23,7 @@ const NavHeader = () => {
    */
   const [color, setColor] = useState('white');
   const { showUserModal, setShowUserModal } = useNavHeader();
+  const [showCartModal, setShowCartModal] = useState(false);
 
   const prevScrollY = useRef(0);
 
@@ -53,7 +57,10 @@ const NavHeader = () => {
           <i className="fa-regular fa-user fa-xl" />
         </figure>
         {/* Shopping Cart Modal */}
-        <figure className={`nh-figure ${color}`}>
+        <figure
+          onClick={_ => setShowCartModal(true)}
+          className={`nh-figure ${color}`}
+        >
           <i className="fa-solid fa-cart-shopping fa-xl" />
           <span className={`${color === 'black' ? 'white' : 'black'}`}>
             {/* TBD: To count how many items are in shopping cart for current user */}
@@ -71,6 +78,19 @@ const NavHeader = () => {
           }}
         >
           <UserModal />
+        </Modal>
+      )}
+
+      {/* Shopping Cart Modal */}
+      {/* User Modal */}
+      {showCartModal && (
+        <Modal
+          onClose={(_) => {
+            setShowCartModal(false)
+            document.body.style.overflowY = "scroll"
+          }}
+        >
+          <ShoppingCartModal />
         </Modal>
       )}
     </section>
