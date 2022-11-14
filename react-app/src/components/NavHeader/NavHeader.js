@@ -53,7 +53,7 @@ const NavHeader = () => {
     const currentScrollY = window.scrollY;
 
     // if mid, change to black
-    if (window.scrollY >= window.innerHeight + 100 && window.scrollY < (5 * window.innerHeight - 25)) {
+    if (window.scrollY >= window.innerHeight - (window.innerHeight / 25) && window.scrollY < (5 * (window.innerHeight))) {
       setColor('black');
     } else {
       setColor('white');
