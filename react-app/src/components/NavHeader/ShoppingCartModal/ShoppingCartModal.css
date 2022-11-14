@@ -86,8 +86,24 @@
 
 .scms-li > i {
 	font-size: 1.2vw;
+
+	margin: 0;
+	padding: 0;
 }
 
+/* Cart Item Total */
+#scms-cart-total-section {
+	/* background-color: pink; */
+
+	margin-top: 2vh;
+	font-weight: 500;
+}
+
+#scms-cart-total-section > span:first-child {
+	margin-right: 1vw;
+}
+
+/* Cart Checkout */
 #scms-ul-checkout-button {
 	background-color: #80ab63;
 	border: 3px solid #80ab63;

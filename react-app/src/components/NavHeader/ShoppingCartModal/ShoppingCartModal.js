@@ -29,6 +29,7 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
   const { loadCartModal, setLoadCartModal } = useNavHeader();
   const [cartLoaded, setCartLoaded] = useState(false);
   const [cartDisplay, setCartDisplay] = useState([]);
+  const [cartItemTotal, setCartItemTotal] = useState(0);
 
   /**
    * Selector functions
@@ -56,11 +57,14 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
       // set to loaded
       setCartLoaded(true);
 
+      // initialize new cart display
       const newCartDisplay = [];
+      // initialize new cart total
+      let newCartSum = 0;
 
       // set current products
       Object.values(currentUserCarts).map(cartItem => {
-        console.log('cartItem', cartItem);
+        // set cart items
         const currentCartItem = {
           quantity: cartItem.quantity,
           price: cartItem.price,
@@ -68,10 +72,16 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
         };
 
         newCartDisplay.push(currentCartItem);
+
+        // set cart total
+        newCartSum += cartItem.price;
       });
 
+      // set cart display
       setCartDisplay(newCartDisplay);
-      console.log('newCartDisplay', newCartDisplay);
+
+      // set cart total 
+      setCartItemTotal(Math.ceil(newCartSum * 100) / 100);
     }
   }, [loadCartModal]);
 
@@ -159,6 +169,16 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
                       );
                     })
                   }
+                  {/* Cart Items total */}
+                  <section id="scms-cart-total-section">
+                    <span>
+                      Total
+                    </span>
+                    <span>
+                      {`$${cartItemTotal} USD`}
+                    </span>
+                  </section>
+
                   <button id="scms-ul-checkout-button">
                     Check Out
                   </button>
