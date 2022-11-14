@@ -24,7 +24,7 @@ const TopLanding = () => {
           {/* Back Figure */}
           <figure id="tls-back-figure">
             <i className="fa-solid fa-chevron-left fa-xl" />
-            <span>Back</span>
+            <span>Portfolio</span>
           </figure>
 
           <figure
@@ -44,24 +44,6 @@ const TopLanding = () => {
         {/* Image Carousel */}
         <aside>
           <Carousel />
-          {/* <figure className="trs-ic-figure"> */}
-          {/* left clicker */}
-          {/* <figure className="trs-ic-inner-figure left-clicker">
-              <i className="fa-solid fa-chevron-left fa-2xl" />
-            </figure> */}
-
-          {/* Image Carousel */}
-          {/* <img
-              className="trs-ic-img"
-              src="https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668326915/image-gallery_dyqr4i.webp"
-              alt="trs-carousel"
-            /> */}
-
-          {/* right clicker */}
-          {/* <figure className="trs-ic-inner-figure right-clicker">
-              <i className="fa-solid fa-chevron-right fa-2xl" />
-            </figure> */}
-          {/* </figure> */}
 
           <figure id="trs-scroll-figure">
             <span>Scroll</span>

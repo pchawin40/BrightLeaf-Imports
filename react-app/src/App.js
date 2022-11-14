@@ -5,6 +5,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import LandingPage from './components/LandingPage/LandingPage';
 import NavHeader from './components/NavHeader';
 import NavRight from './components/NavRight';
+import NavFooter from './components/NavFooter';
 
 // import react
 import React, { useState, useEffect } from 'react';
@@ -60,6 +61,9 @@ function App() {
     <BrowserRouter>
       {/* NavHeader */}
       <NavHeader />
+
+      {/* NavFooter */}
+      <NavFooter />
 
       <Switch>
         <Route path='/' exact={true} >

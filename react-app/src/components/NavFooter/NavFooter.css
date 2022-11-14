@@ -1,0 +1,36 @@
+/* src/components/NavFooter/NavFooter.css */
+
+#nav-footer-section {
+	height: 100%;
+	width: 0;
+	background-color: red;
+	position: absolute;
+	left: 1vw;
+	z-index: 5;
+
+	display: flex;
+	justify-content: space-between;
+}
+
+#nav-footer-section > * {
+	position: sticky;
+
+	display: flex;
+	flex-direction: column;
+	width: 2rem;
+	height: 2rem;
+	top: 95vh;
+
+	margin: 0 1rem;
+
+	text-decoration: none;
+	font-size: 2vw;
+}
+
+.nfs-icon.white {
+	color: white;
+}
+
+.nfs-icon.black {
+	color: black;
+}
