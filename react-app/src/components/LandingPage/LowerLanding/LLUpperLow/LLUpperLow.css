@@ -95,8 +95,13 @@
 	font-size: 1.5vw;
 	letter-spacing: 0.1vw;
 	margin-left: 0.5vw;
+
+	transition: all 0.5s ease;
 }
 
 #uls-right-inner > button:hover {
 	cursor: pointer;
+
+	color: white;
+	background-color: #80ab63;
 }
