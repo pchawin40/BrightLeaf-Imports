@@ -1,11 +1,9 @@
 // src/components/Footer/Footer.js
 
 // import component
-import LowerFooterLeft from './LowerFooterLeft';
-import LowerFooterRight from './LowerFooterRight';
-import MidFooterLeft from './MidFooterLeft';
-import MidFooterRight from './MidFooterRight';
-import TopFooterHeader from './TopFooterHeader';
+import LowerFooter from './LowerFooter';
+import MidFooter from './MidFooter';
+import TopFooter from './TopFooter';
 
 // import css
 import './Footer.css';
@@ -14,21 +12,14 @@ import './Footer.css';
 const Footer = () => {
   return (
     <section id="footer-section">
-      {/* Top Footer: Header */}
-      <TopFooterHeader />
+      {/* //? Top */}
+      <TopFooter />
 
-      {/* Mid Footer: Left */}
-      <MidFooterLeft />
+      {/* //? Mid */}
+      <MidFooter />
 
-      {/* Mid Footer: Right */}
-      <MidFooterRight />
-
-      {/* Lower Footer: Left */}
-      <LowerFooterLeft />
-
-      {/* Lower Footer: Right */}
-      <LowerFooterRight />
-
+      {/* //? Lower */}
+      <LowerFooter />
     </section>
   );
 };

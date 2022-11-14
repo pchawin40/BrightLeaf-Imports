@@ -1,0 +1,11 @@
+/* src/components/Footer/MidFooter/MidFooter.css */
+
+#mid-footer-section {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+
+	height: 100%;
+	width: 100%;
+
+	margin-top: 2rem;
+}

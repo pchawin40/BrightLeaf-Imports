@@ -1,0 +1,133 @@
+/* src/components/Footer/MidFooterRight/MidFooterRight.css */
+
+#mfr-section {
+	/* background-color: blue; */
+
+	height: 50vh;
+
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: auto 15vh;
+	grid-template-areas:
+		'help menu'
+		'news news';
+	justify-items: end;
+
+	color: white;
+
+	margin-right: 15%;
+	margin-top: 5%;
+}
+
+#mfr-section > section {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+#mfr-section ul {
+	list-style-type: none;
+
+	font-size: 2vw;
+}
+
+#mfr-section li {
+	margin-bottom: 0.5rem;
+}
+
+#mfr-section li:hover {
+	cursor: pointer;
+
+	color: #80ab63;
+}
+
+#mfr-section h4 {
+	margin: 0;
+	padding: 0;
+
+	text-transform: uppercase;
+
+	font-size: 2vw;
+	letter-spacing: 5px;
+}
+
+/** Help Section */
+#mfr-help-section {
+	grid-area: help;
+	/* background-color: purple; */
+}
+
+/** Menu Section */
+#mfr-menu-section {
+	grid-area: menu;
+	/* background-color: green; */
+}
+
+/** Newsletter Section */
+#mfr-newsletter-section {
+	grid-area: news;
+	width: 50%;
+
+	font-size: 1.25vw;
+}
+
+#mfr-newsletter-section * {
+	margin-bottom: 1vh;
+}
+
+#mfr-newsletter-section > span:first-child {
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: bold;
+}
+
+#mfr-newsletter-section > span:nth-child(2) {
+	letter-spacing: 2px;
+
+	font-size: 1vw;
+}
+
+#mfr-newsletter-section > section {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+#mfr-newsletter-section > section > input {
+	height: 3vh;
+	padding-left: 2rem;
+
+	border: 3px solid #80ab63;
+}
+
+#mfr-newsletter-section > section > input:focus {
+	outline: #80ab63;
+	box-shadow: 0 0 10px #ccc;
+}
+
+#mfr-newsletter-section > section > input,
+#mfr-newsletter-section > section > input::placeholder {
+	color: #80ab63;
+	font-weight: bold;
+}
+
+#mfr-newsletter-section > section > button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #80ab63;
+	color: white;
+	text-transform: uppercase;
+	border: none;
+	padding: 1vh 0;
+	letter-spacing: 2px;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+#mfr-newsletter-section > section > button:hover {
+	cursor: pointer;
+}
+
+#mfr-newsletter-section > section > button:active {
+	box-shadow: 0 0 5px #ccc;
+}

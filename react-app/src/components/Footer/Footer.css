@@ -1,6 +1,10 @@
 /* src/components/Footer/Footer.css */
 
-#footer-section{
-  background-color: black;
-  grid-area: footer;
+#footer-section {
+	background-color: black;
+	grid-area: footer;
+
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 10vh auto 25vh;
 }

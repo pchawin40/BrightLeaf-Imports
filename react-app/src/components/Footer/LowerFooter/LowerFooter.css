@@ -1,0 +1,15 @@
+/* src/components/Footer/LowerFooter/LowerFooter.css */
+
+#lower-footer-section {
+	/* background-color: pink; */
+
+	display: grid;
+	grid-template-rows: 50% auto;
+}
+
+#lfs-top {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	height: 100%;
+	width: 100%;
+}
