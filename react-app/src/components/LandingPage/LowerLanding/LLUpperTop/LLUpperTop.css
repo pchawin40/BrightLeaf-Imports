@@ -4,7 +4,7 @@
 	display: grid;
 	grid-template-columns: 45% auto 5%;
 
-	padding-top: 5rem;
+	padding-top: 3rem;
 }
 
 /* Upper Top: Left Section */
@@ -48,10 +48,10 @@
 #ll-uts-right-inner > h2 {
 	text-align: center;
 	color: #80ab63;
-	font-size: 36px;
+	font-size: 2vw;
 }
 
 #ll-uts-right-inner > p {
-	font-size: 24px;
+	font-size: 1.25vw;
 	color: black;
 }
