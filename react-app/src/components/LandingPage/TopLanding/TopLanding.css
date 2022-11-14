@@ -100,7 +100,7 @@
 #trs-scroll-figure {
 	position: absolute;
 	right: 8vw;
-	bottom: 0;
+	top: 60vh;
 
 	width: 15vw;
 	display: flex;
