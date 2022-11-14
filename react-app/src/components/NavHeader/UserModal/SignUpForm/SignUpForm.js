@@ -237,7 +237,7 @@ const SignUpForm = () => {
       <div id="suf-asu-container">
         {/* Facebook Login API */}
         <span>
-          {/* <FacebookLoginComponent /> */}
+          <FacebookLoginComponent />
         </span>
 
         {/* Google Login API */}
