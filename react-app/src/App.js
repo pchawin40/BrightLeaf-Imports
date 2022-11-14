@@ -4,6 +4,7 @@
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import LandingPage from './components/LandingPage/LandingPage';
 import NavHeader from './components/NavHeader';
+import NavRight from './components/NavRight';
 
 // import react
 import React, { useState, useEffect } from 'react';
@@ -17,7 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import store
 import * as sessionActions from './store/session';
 import * as shoppingCartActions from './store/shoppingCarts';
-import NavRight from './components/NavRight';
+import * as imageActions from './store/images';
 
 function App() {
   /**
@@ -46,6 +47,9 @@ function App() {
       //! TODO: To work on shopping cart error
       dispatch(shoppingCartActions.thunkGetSessionUserCarts());
     }
+
+    // load images
+    dispatch(imageActions.thunkGetImages("None"));
   }, [currentUserInfo]);
 
   if (!loaded) {
