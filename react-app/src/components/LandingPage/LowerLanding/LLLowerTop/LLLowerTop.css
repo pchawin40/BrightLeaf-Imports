@@ -113,10 +113,15 @@
 	font-weight: 700;
 	letter-spacing: 1px;
 	text-transform: uppercase;
+
+	transition: all 0.5s ease;
 }
 
 #lts-left-lower > button:hover {
 	cursor: pointer;
+
+	color: white;
+	background-color: #80ab63;
 }
 
 #lts-left-lower > ul,
