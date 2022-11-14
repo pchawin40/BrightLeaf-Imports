@@ -6,8 +6,11 @@ import './MidFooterLeft.css';
 //? MidFooterLeft component
 const MidFooterLeft = () => {
   return (
-    <>
-    </>
+    <section id="mfl-section">
+      <h1>
+        Where <br /> outstanding <br /> design gets <br /> built.
+      </h1>
+    </section>
   );
 };
 
