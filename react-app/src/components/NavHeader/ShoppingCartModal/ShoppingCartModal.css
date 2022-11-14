@@ -64,6 +64,49 @@
 	position: relative;
 }
 
+#scms-ul {
+	list-style-type: none;
+
+	height: 100%;
+	width: 100%;
+
+	margin: 0;
+	padding: 0;
+
+	overflow: auto;
+}
+
+.scms-li {
+	height: 5vh;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+#scms-ul-checkout-button {
+	background-color: #80ab63;
+	border: 3px solid #80ab63;
+	color: white;
+	padding: 1vh 3vw;
+
+	margin-top: 3vh;
+
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+
+	text-transform: uppercase;
+
+	transition: box-shadow 0.5s ease;
+}
+
+#scms-ul-checkout-button:hover {
+	cursor: pointer;
+}
+
+#scms-ul-checkout-button:active {
+	box-shadow: 0 3px 15px rgb(0 0 0 / 0.5);
+}
+
 #scms-lower-section > p {
 	position: absolute;
 	top: 18px;

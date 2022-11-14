@@ -33,6 +33,8 @@ export const thunkGetProducts = () => async (dispatch) => {
 }
 
 /* --------- SELECTOR FUNCTIONS -------- */
+export const getCurrentProducts = state => state.products;
+
 /* --------- REDUCERS -------- */
 const initialState = {}
 

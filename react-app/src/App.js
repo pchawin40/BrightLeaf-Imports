@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from './store/session';
 import * as shoppingCartActions from './store/shoppingCarts';
 import * as imageActions from './store/images';
+import * as productActions from './store/products';
 
 function App() {
   /**
@@ -51,6 +52,9 @@ function App() {
 
     // load images
     dispatch(imageActions.thunkGetImages("None"));
+
+    // load products
+    dispatch(productActions.thunkGetProducts());
   }, [currentUserInfo]);
 
   if (!loaded) {
