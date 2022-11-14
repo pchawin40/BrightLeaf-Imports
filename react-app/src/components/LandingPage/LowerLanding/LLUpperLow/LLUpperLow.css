@@ -1,5 +1,100 @@
 /* src/components/LandingPage/LowerLanding/LLUpperLow/LLUpperLow.css */
 
 #ll-uls {
-	/* background-color: green; */
+	/* background-color: red; */
+
+	display: grid;
+	grid-template-columns: repeat(2, 50%);
+}
+
+#ll-uls > section {
+	height: 100%;
+	width: 100%;
+	margin-top: 7vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+/* Lower Top: Left */
+#uls-left {
+	/* background-color: pink; */
+}
+
+#uls-left-inner-figure {
+	width: fit-content;
+	height: fit-content;
+
+	padding: 0;
+}
+
+#uls-left-inner-figure > img {
+	border: 2px solid black;
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+
+	padding: 0;
+	margin: 0;
+}
+
+/* Lower Top: Right */
+#uls-right {
+	display: flex;
+	align-items: center;
+}
+
+#uls-right-inner {
+	/* background-color: blue; */
+	height: 50%;
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#uls-right-inner > * {
+	font-family: 'Merriweather', serif;
+	text-transform: uppercase;
+}
+
+#uls-right-inner > h2,
+#uls-right-inner > button {
+	color: #80ab63;
+}
+
+#uls-right-inner > h2 {
+	font-size: 4vw;
+
+	padding: 0;
+	margin: 0;
+}
+
+#uls-right-inner > h3 {
+	color: black;
+	font-weight: 700;
+	letter-spacing: 1px;
+	font-size: 1.5vw;
+
+	margin-left: 0.5vw;
+	margin-top: 3vh;
+	margin-bottom: 5vh;
+}
+
+#uls-right-inner > button {
+	width: fit-content;
+	font-family: questrial, sans-serif;
+	background-color: white;
+	border: 3px solid #80ab63;
+	padding: 0.5vw 2vw;
+	font-weight: 900;
+	font-size: 1.5vw;
+	letter-spacing: 0.1vw;
+	margin-left: 0.5vw;
+}
+
+#uls-right-inner > button:hover {
+	cursor: pointer;
 }
