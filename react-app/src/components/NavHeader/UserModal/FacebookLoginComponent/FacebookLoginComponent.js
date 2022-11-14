@@ -30,18 +30,18 @@ const FacebookLoginComponent = () => {
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
-    // try {
-    //   const res = await login({
-    //     scope: 'email',
-    //   });
+    try {
+      const res = await login({
+        scope: 'email',
+      });
 
 
-    //   const facebookUserResponse = await (await fetch(`https://graph.facebook.com/me?access_token=${res.authResponse.accessToken}`)).json();
+      const facebookUserResponse = await (await fetch(`https://graph.facebook.com/me?access_token=${res.authResponse.accessToken}`)).json();
 
-    //   dispatch(sessionActions.thunkAPILogin(facebookUserResponse));
-    // } catch (error) {
-    //   console.log(error.message);
-    // }
+      dispatch(sessionActions.thunkAPILogin(facebookUserResponse));
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   return (
