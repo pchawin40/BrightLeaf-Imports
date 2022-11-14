@@ -21,7 +21,7 @@ const NavFooter = () => {
     const currentScrollY = window.scrollY;
 
     // if mid, change to black
-    if (window.scrollY >= window.innerHeight - (window.innerHeight / 1.25) && window.scrollY < (5 * (window.innerHeight / 1.25))) {
+    if (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05) && window.scrollY < (5 * (window.innerHeight / 1.235))) {
       setColor('black');
     } else {
       setColor('white');
