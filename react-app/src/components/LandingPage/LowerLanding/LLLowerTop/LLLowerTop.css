@@ -1,1 +1,175 @@
 /* src/components/LandingPage/LowerLanding/LLLowerTop/LLLowerTop.css */
+
+#ll-lts {
+	display: grid;
+	/* grid-template: repeat(2, 50%) / repeat(2, 50%); */
+	grid-template-columns: repeat(2, 50%);
+	grid-template-rows: 50% auto;
+
+	margin-top: -5vh;
+	margin-bottom: -5rem;
+}
+
+#ll-lts * {
+	height: 100%;
+	width: 100%;
+
+	padding: 0;
+	margin: 0;
+}
+
+/*? Lower Top: Left */
+#lts-left {
+	/* background-color: pink; */
+}
+
+/** Lower Top: Left: Top */
+#lts-left-top {
+	/* background-color: cyan; */
+
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+#lts-left-top-inner-figure {
+	height: 100%;
+	width: 91%;
+}
+
+#lts-left-top-inner-figure > inner {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+
+/** Lower Top: Left: Lower */
+#lts-left-lower {
+	/* background-color: green; */
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 70%;
+	width: 100%;
+
+	position: relative;
+}
+
+/* Our Pieces */
+#lts-left-lower > figure {
+	position: absolute;
+
+	width: fit-content;
+	height: fit-content;
+	/* background-color: pink; */
+
+	bottom: 50%;
+	left: 0;
+	letter-spacing: 1px;
+	transform: rotate(-90deg);
+}
+
+#lts-left-lower > figure > i {
+	height: fit-content;
+	width: fit-content;
+	color: #80ab63;
+	margin-right: 0.5vh;
+}
+
+#lts-left-lower > figure > span {
+	text-transform: uppercase;
+}
+
+/* Text */
+#lts-left-lower > ul {
+	list-style-type: none;
+
+	height: fit-content;
+	width: fit-content;
+
+	position: absolute;
+}
+
+#lts-left-lower > ul > li {
+	font-size: 1.75vw;
+	line-height: 5vh;
+	text-transform: uppercase;
+}
+
+/* Button */
+#lts-left-lower > button {
+	height: fit-content;
+	width: fit-content;
+
+	padding: 0.5vh 3vw;
+	bottom: 7vh;
+
+	background-color: white;
+	border: 3px solid #80ab63;
+	color: #80ab63;
+	font-size: 1.5vw;
+	font-family: questrial, sans-serif;
+	font-weight: 700;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+#lts-left-lower > button:hover {
+	cursor: pointer;
+}
+
+#lts-left-lower > ul,
+#lts-left-lower > button {
+	position: absolute;
+	left: 7vw;
+}
+
+/*? Lower Top: Right */
+#lts-right {
+	/* background-color: blue; */
+}
+
+/** Lower Top: Right: Top */
+#lts-right-top {
+	/* background-color: purple; */
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+#lts-right-top-inner {
+	/* background-color: blue; */
+	height: fit-content;
+	min-width: fit-content;
+	width: 0;
+
+	display: flex;
+	align-items: flex-start;
+}
+
+#lts-right-top-inner > h2 {
+	transform: rotate(-90deg);
+	width: fit-content;
+	font-size: 5vw;
+	font-family: 'Lora', serif;
+	color: #80ab63;
+	letter-spacing: 1px;
+	text-align: left;
+}
+
+/** Lower Top: Left: Lower */
+#lts-right-lower {
+	/* background-color: beige; */
+}
+
+#lts-right-lower-figure {
+	height: 70%;
+	width: 91%;
+}
+
+#lts-right-lower-figure > img {
+	object-fit: cover;
+}
