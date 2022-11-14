@@ -43,7 +43,13 @@ const NavFooter = () => {
           return window.open('https://github.com/pchawin40', '_blank')
         }}
       >
-        <i className={`fa-brands fa-github nfs-icon ${color}`} />
+        <i
+          className="fa-brands fa-github nfs-icon"
+          style={{
+            color,
+            transition: "color 1s ease"
+          }}
+        />
       </NavLink>
       <NavLink
         to="/"
@@ -51,7 +57,13 @@ const NavFooter = () => {
           return window.open('https://www.linkedin.com/in/chawin-pathompornvivat/', '_blank')
         }}
       >
-        <i className={`fa-brands fa-linkedin-in nfs-icon ${color}`} />
+        <i
+          className="fa-brands fa-linkedin-in"
+          style={{
+            color,
+            transition: "color 1s ease"
+          }}
+        />
       </NavLink>
     </section>
   );

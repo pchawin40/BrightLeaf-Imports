@@ -53,7 +53,7 @@ const NavHeader = () => {
     const currentScrollY = window.scrollY;
 
     // if mid, change to black
-    if (window.scrollY >= window.innerHeight - (window.innerHeight / 25) && window.scrollY < (5 * (window.innerHeight))) {
+    if (window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (5 * (window.innerHeight))) {
       setColor('black');
     } else {
       setColor('white');
@@ -74,7 +74,11 @@ const NavHeader = () => {
         {/* User Modal */}
         <figure
           onClick={_ => setShowUserModal(true)}
-          className={`nh-figure ${color}`}
+          className="nh-figure"
+          style={{
+            color,
+            transition: "color 1s ease"
+          }}
         >
           <i className="fa-regular fa-user fa-xl nh-user-icon" />
         </figure>
@@ -82,11 +86,13 @@ const NavHeader = () => {
         {/* Shopping Cart Modal */}
         <figure
           onClick={_ => {
-            // setShowCartModal(true);
-
             setLoadCartModal(true);
           }}
-          className={`nh-figure ${color}`}
+          className="nh-figure"
+          style={{
+            color,
+            transition: "color 1s ease"
+          }}
         >
           <i className="fa-solid fa-cart-shopping fa-xl" />
           <span id="nhs-cart-span" className={`${color === 'black' ? 'white' : 'black'}`}>

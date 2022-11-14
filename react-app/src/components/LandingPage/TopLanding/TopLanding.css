@@ -11,7 +11,7 @@
 	width: 100%;
 	margin: 0;
 
-	background-color: rgb(67, 70, 88, 0.85);
+	background-color: rgb(72, 70, 68, 0.85);
 	background-blend-mode: multiply;
 	background-position: top -20vh center;
 	background-size: 100% auto;
@@ -100,7 +100,7 @@
 #trs-scroll-figure {
 	position: absolute;
 	right: 8vw;
-	bottom: 0;
+	top: 60vh;
 
 	width: 15vw;
 	display: flex;

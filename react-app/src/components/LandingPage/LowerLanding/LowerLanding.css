@@ -1,6 +1,15 @@
 /* src/components/LandingPage/LowerLanding/LowerLanding.css */
 
-#lower-landing-section{
-  background-color: white;
-  grid-area: "lower-landing";
+#lower-landing-section {
+	grid-area: 'lower-landing';
+
+	height: 100%;
+
+	display: grid;
+	grid-template-rows: repeat(4, 100vh);
+}
+
+#lower-landing-section > section {
+	height: 100%;
+	width: 100%;
 }

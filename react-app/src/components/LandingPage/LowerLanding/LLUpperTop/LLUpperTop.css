@@ -1,0 +1,57 @@
+/* src/components/LandingPage/LowerLanding/LLUpperTop/LLUpperTop.css */
+
+#ll-uts {
+	display: grid;
+	grid-template-columns: 45% auto 5%;
+
+	padding-top: 5rem;
+}
+
+/* Upper Top: Left Section */
+#ll-uts-left {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	position: relative;
+}
+
+#ll-uts-left-inner {
+	height: auto;
+	width: 80%;
+
+	position: absolute;
+	top: 19vh;
+}
+
+#ll-uts-left-inner > video {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+}
+
+/* Upper Top: Right Section */
+#ll-uts-right {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	text-align: justify;
+}
+
+#ll-uts-right-inner {
+	height: 100%;
+	width: 100%;
+	margin: 5rem;
+}
+
+#ll-uts-right-inner > h2 {
+	text-align: center;
+	color: #80ab63;
+	font-size: 36px;
+}
+
+#ll-uts-right-inner > p {
+	font-size: 24px;
+	color: black;
+}
