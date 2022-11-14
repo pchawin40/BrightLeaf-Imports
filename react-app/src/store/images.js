@@ -13,9 +13,9 @@ export const loadImages = (images) => {
 }
 
 /* --------- THUNKS -------- */
-export const thunkGetImages = () => async (dispatch) => {
+export const thunkGetImages = (search = "") => async (dispatch) => {
   // fetch all images
-  const res = await fetch('/api/images');
+  const res = await fetch(`/api/images/?search=${search}`);
 
   if (res.ok) {
     // parse res to image data
@@ -33,6 +33,8 @@ export const thunkGetImages = () => async (dispatch) => {
 }
 
 /* --------- SELECTOR FUNCTIONS -------- */
+export const getCurrentImages = state => state.images;
+
 /* --------- REDUCERS -------- */
 const initialState = {}
 

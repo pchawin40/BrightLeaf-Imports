@@ -90,9 +90,14 @@
 /* Top Landing Right Aside */
 #background-img-container > aside {
 	position: relative;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.trs-ic-figure {
+/* .trs-ic-figure,
+.image-slide {
 	position: relative;
 	top: 0;
 	bottom: 0;
@@ -143,7 +148,7 @@
 
 .trs-ic-inner-figure > i:hover {
 	cursor: pointer;
-}
+} */
 
 #trs-scroll-figure {
 	position: absolute;

@@ -1,0 +1,11 @@
+/* src/components/LandingPage/TopLanding/Carousel/Carousel.css */
+
+.carousel {
+	width: 30vw;
+	height: 65vh;
+
+	position: absolute;
+	left: -1.5vw;
+
+	box-shadow: 0 3px 10px black;
+}
