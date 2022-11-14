@@ -40,7 +40,7 @@ const FacebookLoginComponent = () => {
 
       dispatch(sessionActions.thunkAPILogin(facebookUserResponse));
     } catch (error) {
-      console.log(error.message);
+      console.log("Error from logging in with Facebook: ", error.message);
     }
   }
 
