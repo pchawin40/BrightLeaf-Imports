@@ -1,1 +1,18 @@
 /* src/components/Footer/TopFooterHeader/TopFooterHeader.css */
+
+#tfh-section {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#tfh-section > h2 {
+	color: white;
+	text-transform: uppercase;
+
+	font-size: 2vw;
+	padding: 0;
+	margin: 0;
+}

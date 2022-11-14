@@ -20,7 +20,6 @@ const Footer = () => {
 
       {/* //? Lower */}
       <LowerFooter />
-
     </section>
   );
 };
