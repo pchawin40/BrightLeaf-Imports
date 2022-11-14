@@ -1,1 +1,59 @@
 /* src/components/Footer/LowerFooterLeft/LowerFooterLeft.css */
+
+#lfl-section {
+	display: grid;
+	grid-template-rows: 45% 25% auto;
+	margin-left: 9%;
+}
+
+/* Lower Footer Left: Top */
+
+#lfl-section-top {
+	display: flex;
+	align-items: center;
+}
+
+#lfl-section-top > span {
+	height: 100%;
+	font-size: 2vw;
+
+	display: flex;
+	align-items: center;
+}
+
+#lfl-section-top > span:first-child {
+	margin-right: 1vw;
+}
+
+#lfl-section-top i {
+	color: white;
+}
+
+/* Lower Footer Left: Mid */
+#lfl-section-mid-inner,
+#lfl-section-lower-inner {
+	color: white;
+	height: 100%;
+	width: 100%;
+
+	display: flex;
+	align-items: center;
+
+	word-spacing: 0.2vw;
+	letter-spacing: 2px;
+}
+
+#lfl-section-mid-inner > p:last-child {
+	margin-left: 2vw;
+}
+
+/* Lower Footer Left: Lower */
+#lfl-section-lower {
+	height: 100%;
+	width: 100%;
+}
+
+#lfl-section-lower-inner > p {
+	margin: 0;
+	padding: 0;
+}

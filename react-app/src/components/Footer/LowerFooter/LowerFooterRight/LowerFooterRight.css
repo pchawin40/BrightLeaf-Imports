@@ -1,1 +1,23 @@
 /* src/components/Footer/LowerFooterRight/LowerFooterRight.css */
+
+#lfr-section {
+	display: flex;
+	justify-content: flex-end;
+	height: 100%;
+	width: 100%;
+
+	position: relative;
+}
+
+#lfr-section-inner-figure {
+	width: 15vh;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+
+	margin-right: 12%;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

@@ -20,10 +20,8 @@ const LowerFooter = () => {
         <LowerFooterRight />
       </section>
 
-      {/* Lower Footer: Lower */}
-      <section id="lfs-lower">
-
-      </section>
+      {/* Lower Footer: Lower | Leave blank for github/linkedin logos */}
+      <section id="lfs-lower" />
     </section>
   );
 };
