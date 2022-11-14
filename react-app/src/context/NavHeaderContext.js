@@ -11,6 +11,7 @@ export default function NavHeaderProvider({ children }) {
   const [forgotPassword, setForgotPassword] = useState(false);
   const [showUserModal, setShowUserModal] = useState(false);
   const [loadCartModal, setLoadCartModal] = useState(false);
+  const [backgroundColor, setBackgroundColor] = useState('#484644');
 
   // Landing Provider
   return (
@@ -19,7 +20,8 @@ export default function NavHeaderProvider({ children }) {
         value={{
           forgotPassword, setForgotPassword,
           showUserModal, setShowUserModal,
-          loadCartModal, setLoadCartModal
+          loadCartModal, setLoadCartModal,
+          backgroundColor, setBackgroundColor
         }}
       >
         {children}

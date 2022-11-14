@@ -1,6 +1,7 @@
 // src/components/LandingPage/TopLanding/TopLanding.js
 
 // import component
+import { useNavHeader } from '../../../context/NavHeaderContext';
 import Carousel from './Carousel';
 
 // import css
@@ -8,8 +9,16 @@ import './TopLanding.css';
 
 //? TopLanding component
 const TopLanding = () => {
+  const { backgroundColor, setBackgroundColor } = useNavHeader();
+
   return (
-    <section id="top-landing-section">
+    <section
+      id="top-landing-section"
+      style={{
+        backgroundColor,
+        transition: "background-color 1s ease"
+      }}
+    >
       {/* Image background */}
       <figure
         id="background-img-container"

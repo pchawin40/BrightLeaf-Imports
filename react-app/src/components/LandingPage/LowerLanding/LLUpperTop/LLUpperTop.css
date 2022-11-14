@@ -1,10 +1,10 @@
 /* src/components/LandingPage/LowerLanding/LLUpperTop/LLUpperTop.css */
 
 #ll-uts {
-	/* background-color: pink; */
-
 	display: grid;
-	grid-template-columns: repeat(2, 50%);
+	grid-template-columns: 45% auto 5%;
+
+	padding-top: 5rem;
 }
 
 /* Upper Top: Left Section */
@@ -36,6 +36,7 @@
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
+	text-align: justify;
 }
 
 #ll-uts-right-inner {
@@ -52,5 +53,5 @@
 
 #ll-uts-right-inner > p {
 	font-size: 24px;
-	color: white;
+	color: black;
 }

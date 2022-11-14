@@ -9,6 +9,9 @@ import NavHeader from "../NavHeader";
 import LowerLanding from "./LowerLanding";
 import TopLanding from "./TopLanding";
 
+// import context
+import { useNavHeader } from '../../context/NavHeaderContext';
+
 // import react
 import { useEffect, useRef, useState } from 'react';
 
@@ -18,7 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 //? LandingPage component
 const LandingPage = () => {
 
-  const [color, setColor] = useState('white');
+  const { backgroundColor, setBackgroundColor } = useNavHeader();
 
   const prevScrollY = useRef(0);
 
@@ -27,11 +30,11 @@ const LandingPage = () => {
 
     const currentScrollY = window.scrollY;
 
-    // if mid, change to black
-    if (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05) && window.scrollY < (5 * (window.innerHeight / 1.235))) {
-      setColor('black');
+    // set background color
+    if (window.scrollY >= window.innerHeight - (window.innerHeight / 1.25)) {
+      setBackgroundColor('white');
     } else {
-      setColor('white');
+      setBackgroundColor('#484644');
     }
 
     prevScrollY.current = currentScrollY;
@@ -40,10 +43,12 @@ const LandingPage = () => {
   useEffect(() => {
     window.addEventListener('scroll', changeBackground);
     return () => window.removeEventListener('scroll', changeBackground);
-  }, [color]);
+  }, [backgroundColor]);
 
   return (
-    <section id="landing-page-section">
+    <section
+      id="landing-page-section"
+    >
       {/* Top Landing */}
       <TopLanding />
 

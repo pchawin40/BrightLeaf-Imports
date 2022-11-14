@@ -47,7 +47,7 @@ const ForgotPasswordForm = () => {
           setMessageFromServer("recovery email sent");
         }
       } else {
-        // console.log("res errors: ", res);
+        console.log("error from sendEmail: ", res);
       }
     }
   }
