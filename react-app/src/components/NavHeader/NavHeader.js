@@ -74,7 +74,7 @@ const NavHeader = () => {
         {/* User Modal */}
         <figure
           onClick={_ => setShowUserModal(true)}
-          className="nh-figure"
+          className="nh-figure user-modal"
           style={{
             color,
             transition: "color 1s ease"
