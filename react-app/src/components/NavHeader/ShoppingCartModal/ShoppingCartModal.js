@@ -129,10 +129,11 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
                     cartDisplay.map(cartItem => {
                       return (
                         <li className="scms-li">
-                          {/* Delete */}
-
-
                           {/* Add more */}
+                          <i className="fa-solid fa-square-plus scms-li-add-quantity" />
+
+                          {/* Delete */}
+                          <i className="fa-solid fa-square-minus scms-li-delete-quantity" />
 
                           {/* Quantity */}
                           <span>

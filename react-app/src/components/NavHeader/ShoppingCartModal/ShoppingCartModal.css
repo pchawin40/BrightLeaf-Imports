@@ -84,6 +84,10 @@
 	justify-content: space-evenly;
 }
 
+.scms-li > i {
+	font-size: 1.2vw;
+}
+
 #scms-ul-checkout-button {
 	background-color: #80ab63;
 	border: 3px solid #80ab63;
@@ -99,10 +103,12 @@
 	transition: box-shadow 0.5s ease;
 }
 
+.scms-li > i:hover,
 #scms-ul-checkout-button:hover {
 	cursor: pointer;
 }
 
+.scms-li > i:active,
 #scms-ul-checkout-button:active {
 	box-shadow: 0 3px 15px rgb(0 0 0 / 0.5);
 }
