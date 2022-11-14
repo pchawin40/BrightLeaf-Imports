@@ -39,6 +39,7 @@ const FacebookLoginComponent = () => {
       const facebookUserResponse = await (await fetch(`https://graph.facebook.com/me?access_token=${res.authResponse.accessToken}`)).json();
 
       dispatch(sessionActions.thunkAPILogin(facebookUserResponse));
+      setShowUserModal(false);
     } catch (error) {
       console.log("Error from logging in with Facebook: ", error.message);
     }

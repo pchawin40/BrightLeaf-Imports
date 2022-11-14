@@ -5,6 +5,8 @@
 
 	display: grid;
 	grid-template-columns: repeat(2, 50%);
+
+	margin-top: -20vh;
 }
 
 #ll-uls > section {
