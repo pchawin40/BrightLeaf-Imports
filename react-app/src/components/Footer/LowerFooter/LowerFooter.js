@@ -11,11 +11,19 @@ import './LowerFooter.css';
 const LowerFooter = () => {
   return (
     <section id="lower-footer-section">
-      {/* Lower Footer: Left */}
-      <LowerFooterLeft />
+      {/* Lower Footer: Top */}
+      <section id="lfs-top">
+        {/* Lower Footer: Left */}
+        <LowerFooterLeft />
 
-      {/* Lower Footer: Right */}
-      <LowerFooterRight />
+        {/* Lower Footer: Right */}
+        <LowerFooterRight />
+      </section>
+
+      {/* Lower Footer: Lower */}
+      <section id="lfs-lower">
+
+      </section>
     </section>
   );
 };

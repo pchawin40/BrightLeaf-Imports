@@ -2,4 +2,11 @@
 
 #lower-footer-section {
 	background-color: green;
+
+	display: grid;
+	grid-template-rows: 60% 40%;
+}
+
+#lfs-top {
+	background-color: pink;
 }
