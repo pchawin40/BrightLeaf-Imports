@@ -169,7 +169,7 @@ const LoginForm = () => {
       <div id="lf-asu-container">
         {/* Facebook Login API */}
         <span>
-          {/* <FacebookLoginComponent /> */}
+          <FacebookLoginComponent />
         </span>
 
         {/* Google Login API */}
