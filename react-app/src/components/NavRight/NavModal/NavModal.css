@@ -1,0 +1,50 @@
+/* src/components/NavRight/NavModal/NavModal.css */
+#nav-modal-section {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	height: 100vh;
+	width: 100vw;
+
+	background-color: black;
+
+	display: grid;
+	grid-template-columns: repeat(2, 50%);
+}
+
+#nav-rn-figure-exit {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	height: 80px;
+	width: 80px;
+	background-color: #6fa04e;
+
+	z-index: 5;
+}
+
+#nav-rn-figure-exit:hover {
+	cursor: pointer;
+}
+
+#nav-rn-figure-exit > ul {
+	display: flex;
+	margin: 0;
+	padding: 0;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	padding-top: 1.2rem;
+	padding-left: 1.3rem;
+	height: 50%;
+	width: 50%;
+}
+
+#nav-rn-figure-exit > ul > span {
+	height: 4px;
+}

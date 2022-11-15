@@ -18,6 +18,8 @@
 	height: 80px;
 	width: 80px;
 	background-color: #6fa04e;
+
+	z-index: 5;
 }
 
 #nav-rn-figure:hover {
