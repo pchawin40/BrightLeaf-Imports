@@ -1,0 +1,31 @@
+/* src/components/NavRight/NavModal/NavModalRight/NavModalRight.css */
+
+#nmr-section {
+}
+
+#nmr-menu-ul {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+
+	list-style-type: none;
+
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+
+	padding-left: 5vw;
+}
+
+#nmr-menu-ul > li {
+	font-size: 4vw;
+	color: white;
+	font-family: 'Merriweather', serif;
+}
+
+#nmr-menu-ul > li:hover {
+	color: #80ab63;
+	cursor: pointer;
+}

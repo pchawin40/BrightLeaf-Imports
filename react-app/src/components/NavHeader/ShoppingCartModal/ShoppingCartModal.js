@@ -47,7 +47,10 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
     if (loadCartModal) {
       document.addEventListener('click', handleOutsideClick);
     }
+  }, [loadCartModal]);
 
+  // per cart load
+  useEffect(() => {
     if (
       Object.values(currentUserCarts).length > 0
       &&
@@ -68,7 +71,7 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
       // set cart display
       setCartDisplay(Object.values(currentUserCarts));
     }
-  }, [loadCartModal, cartLoaded, currentUserCarts]);
+  }, [cartLoaded, currentUserCarts]);
 
   const box = createRef();
 
@@ -132,11 +135,11 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
     >
       <Animate
         play={loadCartModal}
-        duration={.8}
+        duration={1}
         start={{
           transform: `translateX(400px)`
         }}
-        end={{ transform: `translateX(-240px)` }}
+        end={{ transform: `translateX(-191px)` }}
       >
         <section
           id="shopping-cart-modal-section"
