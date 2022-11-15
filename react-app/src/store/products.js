@@ -15,7 +15,7 @@ export const loadProducts = (products) => {
 /* --------- THUNKS -------- */
 export const thunkGetProducts = () => async (dispatch) => {
   // fetch all products
-  const res = await fetch('/api/products');
+  const res = await fetch('/api/products/');
 
   if (res.ok) {
     // parse res to product data
