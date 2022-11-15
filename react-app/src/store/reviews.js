@@ -15,7 +15,7 @@ export const loadReviews = (reviews) => {
 /* --------- THUNKS -------- */
 export const thunkGetReviews = () => async (dispatch) => {
   // fetch all reviews
-  const res = await fetch('/api/reviews');
+  const res = await fetch('/api/reviews/');
 
   if (res.ok) {
     // parse res to review data

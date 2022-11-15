@@ -15,7 +15,7 @@ export const loadUsers = (users) => {
 /* --------- THUNKS -------- */
 export const thunkGetUsers = () => async (dispatch) => {
   // fetch all users
-  const res = await fetch('/api/users');
+  const res = await fetch('/api/users/');
 
   if (res.ok) {
     // parse res to user data

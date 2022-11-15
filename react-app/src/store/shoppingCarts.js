@@ -37,7 +37,7 @@ export const deleteShoppingCart = (cartId) => {
 /* --------- THUNKS -------- */
 export const thunkGetAllShoppingCarts = () => async (dispatch) => {
   // fetch all shopping carts
-  const res = await fetch('/api/shopping-carts');
+  const res = await fetch('/api/shopping-carts/');
 
   if (res.ok) {
     // parse res to shopping cart data
