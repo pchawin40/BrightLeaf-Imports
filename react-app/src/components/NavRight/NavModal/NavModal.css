@@ -10,7 +10,7 @@
 	width: 100vw;
 
 	position: absolute;
-	z-index: 90;
+	z-index: 2;
 
 	background-color: blue;
 
@@ -27,8 +27,6 @@
 	height: 80px;
 	width: 80px;
 	background-color: #6fa04e;
-
-	/* z-index: 5; */
 }
 
 #nav-rn-figure-exit:hover {

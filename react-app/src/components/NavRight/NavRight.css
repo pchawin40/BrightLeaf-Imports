@@ -2,22 +2,18 @@
 
 #nav-rn-section {
 	height: calc(100% - 5rem);
-	margin-top: 5rem;
-	width: 5rem;
+	margin-top: 4rem;
+	width: 4rem;
 
 	position: fixed;
 	top: 40vh;
-	right: 0;
+	right: 0.5vw;
 
 	user-select: none;
-	z-index: 100;
-	/* z-index: 0; */
+	z-index: 5;
 }
 
 #nav-rn-figure {
-	position: inherit;
-	/* z-index: inherit; */
-
 	top: 50%;
 	margin: 0;
 	padding: 0;
@@ -25,30 +21,12 @@
 	width: 80px;
 
 	background-color: #6fa04e;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 #nav-rn-figure:hover {
 	cursor: pointer;
-}
-
-#nav-rn-figure > ul {
-	display: flex;
-	margin: 0;
-	padding: 0;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-	padding-top: 1.2rem;
-	padding-left: 1.3rem;
-	height: 50%;
-	width: 50%;
-}
-
-#nav-rn-figure > ul > span {
-	height: 4px;
-}
-
-.line-span.nav-rn {
-	background-color: white;
-	opacity: 1;
 }

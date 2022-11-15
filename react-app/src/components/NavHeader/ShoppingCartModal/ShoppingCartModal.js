@@ -135,7 +135,7 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
     >
       <Animate
         play={loadCartModal}
-        duration={.8}
+        duration={1}
         start={{
           transform: `translateX(400px)`
         }}
