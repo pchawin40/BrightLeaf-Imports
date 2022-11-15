@@ -7,10 +7,10 @@
 
 	position: fixed;
 	top: 40vh;
-	right: 0.5vw;
+	/* right: 0.5vw; */
 
 	user-select: none;
-	z-index: 5;
+	z-index: 6;
 }
 
 #nav-rn-figure {

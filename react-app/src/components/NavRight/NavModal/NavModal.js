@@ -13,7 +13,7 @@ import NavModalRight from "./NavModalRight";
 const NavModal = () => {
   const { showNavModal, setShowNavModal } = useNavRight();
 
-  // document.body.style.overflowY = "hidden";
+  document.body.style.overflowY = "hidden";
 
   return (
     <section id="nav-modal-section">

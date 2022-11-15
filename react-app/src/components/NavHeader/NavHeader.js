@@ -33,7 +33,7 @@ const NavHeader = () => {
   /**
    * Controlled inputs
    */
-  const [color, setColor] = useState('white');
+  const { color, setColor } = useNavHeader();
   const { showUserModal, setShowUserModal } = useNavHeader();
   // const [showCartModal, setShowCartModal] = useState(false);
   const { loadCartModal, setLoadCartModal } = useNavHeader();
@@ -44,11 +44,9 @@ const NavHeader = () => {
   */
   // grab shopping carts data
   const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
+  
+  // ref
   const prevScrollY = useRef(0);
-
-  /**
-   * UseEffect
-   */
 
   // function to handle changing of background based on y scroll position
   const changeBackground = () => {
@@ -71,7 +69,12 @@ const NavHeader = () => {
   }, [color]);
 
   return (
-    <section id="nav-header-container">
+    <section
+      id="nav-header-container"
+      style={{
+        right: showNavModal ? "2.95vw" : "2.55vw"
+      }}
+    >
       <section id="nav-header-section" className={`nav-header-section-${!loadCartModal}`}>
 
         {/* User Modal */}
