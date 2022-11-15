@@ -76,9 +76,6 @@ export const thunkGetSessionUserCarts = () => async (dispatch) => {
 // thunk to update cart
 export const thunkUpdateCart = (updateCart, cartId) => async (dispatch) => {
   // fetch route to update cart
-  console.log('cartId', cartId);
-  console.log('updateCart', updateCart);
-
   const res = await fetch(`/api/shopping-carts/${cartId}`, {
     method: 'PUT',
     headers: {

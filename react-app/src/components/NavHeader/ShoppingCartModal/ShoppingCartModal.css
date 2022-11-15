@@ -82,13 +82,25 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
+
+	position: relative;
 }
 
 .scms-li > i {
-	font-size: 1.2vw;
+	font-size: 24px;
 
 	margin: 0;
 	padding: 0;
+
+	position: absolute;
+}
+
+.scms-li-add-quantity {
+	left: 1vw;
+}
+
+.scms-li-delete-quantity {
+	left: 3vw;
 }
 
 /* Cart Item Total */
@@ -127,6 +139,10 @@
 .scms-li > i:active,
 #scms-ul-checkout-button:active {
 	box-shadow: 0 3px 15px rgb(0 0 0 / 0.5);
+}
+
+.scms-li-span.quantity {
+	margin-left: 3vw;
 }
 
 #scms-lower-section > p {
