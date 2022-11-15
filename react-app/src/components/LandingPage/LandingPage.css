@@ -3,7 +3,7 @@
 #landing-page-section {
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: 100vh 300vh 100vh;
+	grid-template-rows: 100vh 320vh 100vh;
 	grid-auto-rows: max-content;
 	grid-template-areas:
 		'top-landing'

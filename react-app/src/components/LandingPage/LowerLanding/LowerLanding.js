@@ -23,7 +23,7 @@ const LowerLanding = () => {
       <LLUpperLow />
 
       {/* Lower Landing: Lower Low Section */}
-      <LLLowerLow />
+      {/* <LLLowerLow /> */}
     </section>
   );
 };
