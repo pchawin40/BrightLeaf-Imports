@@ -7,6 +7,9 @@ import NavHeader from './components/NavHeader';
 import NavRight from './components/NavRight';
 import NavFooter from './components/NavFooter';
 
+// import context
+import { useNavRight } from './context/NavRightContext';
+
 // import react
 import React, { useState, useEffect } from 'react';
 
@@ -21,6 +24,8 @@ import * as sessionActions from './store/session';
 import * as shoppingCartActions from './store/shoppingCarts';
 import * as imageActions from './store/images';
 import * as productActions from './store/products';
+import NavModal from './components/NavRight/NavModal';
+
 
 function App() {
   /**
@@ -32,6 +37,7 @@ function App() {
    * Controlled inputs
    */
   const [loaded, setLoaded] = useState(false);
+  const { showNavModal, setShowNavModal } = useNavRight();
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -74,8 +80,18 @@ function App() {
       {/* NavFooter */}
       <NavFooter />
 
-      <Switch>
+      {/* NavRight */}
+      <NavRight />
 
+      {/* NavModal */}
+      {
+        showNavModal &&
+        (
+          <NavModal />
+        )
+      }
+
+      <Switch>
         <Route path='/' exact={true} >
           <LandingPage />
         </Route>

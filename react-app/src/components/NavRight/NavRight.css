@@ -5,21 +5,26 @@
 	margin-top: 5rem;
 	width: 5rem;
 
-	position: absolute;
+	position: fixed;
 	top: 40vh;
-	right: -1.8rem;
+	right: 0;
+
+	user-select: none;
+	z-index: 100;
+	/* z-index: 0; */
 }
 
 #nav-rn-figure {
-	position: sticky;
+	position: inherit;
+	/* z-index: inherit; */
+
 	top: 50%;
 	margin: 0;
 	padding: 0;
 	height: 80px;
 	width: 80px;
-	background-color: #6fa04e;
 
-	z-index: 5;
+	background-color: #6fa04e;
 }
 
 #nav-rn-figure:hover {

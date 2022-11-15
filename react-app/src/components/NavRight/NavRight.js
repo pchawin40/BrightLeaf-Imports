@@ -23,17 +23,25 @@ const NavRight = () => {
     >
       <figure
         id="nav-rn-figure"
-        onClick={_ => setShowNavModal(true)}
+        onClick={_ => setShowNavModal(!showNavModal)}
       >
-        <ul>
-          <span className="line-span nav-rn" />
-          <span className="line-span nav-rn" />
-          <span className="line-span nav-rn" />
-        </ul>
+        {
+          showNavModal
+            ?
+            <ul>
+
+            </ul>
+            :
+            <ul>
+              <span className="line-span nav-rn" />
+              <span className="line-span nav-rn" />
+              <span className="line-span nav-rn" />
+            </ul>
+        }
       </figure>
 
       {/* User Modal */}
-      {showNavModal && (
+      {/* {showNavModal && (
         <Modal
           onClose={(_) => {
             setShowNavModal(false);
@@ -42,7 +50,7 @@ const NavRight = () => {
         >
           <NavModal />
         </Modal>
-      )}
+      )} */}
     </section>
   );
 };

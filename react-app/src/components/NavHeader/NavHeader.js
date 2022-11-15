@@ -25,6 +25,8 @@ import * as shoppingCartActions from '../../store/shoppingCarts';
 // import libraries
 import { Animate, AnimateKeyframes, AnimateGroup } from "react-simple-animate";
 import NavRight from '../NavRight';
+import { useNavRight } from '../../context/NavRightContext';
+import NavModal from '../NavRight/NavModal';
 
 //? NavHeader component
 const NavHeader = () => {
@@ -35,6 +37,7 @@ const NavHeader = () => {
   const { showUserModal, setShowUserModal } = useNavHeader();
   // const [showCartModal, setShowCartModal] = useState(false);
   const { loadCartModal, setLoadCartModal } = useNavHeader();
+  const { showNavModal, setShowNavModal } = useNavRight();
 
   /**
   * Selector functions
@@ -102,8 +105,6 @@ const NavHeader = () => {
             }
           </span>
         </figure>
-
-        <NavRight />
       </section>
       {/* Shopping Cart Modal */}
       <section

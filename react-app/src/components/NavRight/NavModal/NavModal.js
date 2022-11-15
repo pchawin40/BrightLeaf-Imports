@@ -13,7 +13,7 @@ import NavModalRight from "./NavModalRight";
 const NavModal = () => {
   const { showNavModal, setShowNavModal } = useNavRight();
 
-  document.body.style.overflowY = "hidden";
+  // document.body.style.overflowY = "hidden";
 
   return (
     <section id="nav-modal-section">
@@ -22,17 +22,6 @@ const NavModal = () => {
 
       {/* Nav Modal: Right */}
       <NavModalRight />
-
-      <figure
-        id="nav-rn-figure-exit"
-        onClick={_ => setShowNavModal(false)}
-      >
-        <ul>
-          <span className="line-span nav-rn" />
-          <span className="line-span nav-rn" />
-          <span className="line-span nav-rn" />
-        </ul>
-      </figure>
     </section>
   );
 };
