@@ -86,10 +86,12 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
   const handleCartQuantity = (cartItem, newQuantity) => {
     // if quantity is less than 1, delete it from shopping cart
     if (newQuantity === 0) {
+      // TODO: To fix glitch when deleting last item of last cart
       dispatch(shoppingCartActions.thunkDeleteCart(cartItem.id))
-        .then(() => dispatch(shoppingCartActions.thunkGetSessionUserCarts()));
-
-      setCartLoaded(false);
+        .then(() => {
+          dispatch(shoppingCartActions.thunkGetSessionUserCarts())
+          setCartLoaded(false);
+        });
     } else {
       // else, update current cart item from user
       cartItem.quantity = newQuantity;
