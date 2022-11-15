@@ -180,21 +180,21 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
                           />
 
                           {/* Quantity */}
-                          <span>
+                          <span className="scms-li-span quantity">
                             {
                               cartItem.quantity + "x"
                             }
                           </span>
 
                           {/* Name */}
-                          <span>
+                          <span className="scms-li-span">
                             {
                               cartItem.name
                             }
                           </span>
 
                           {/* Price */}
-                          <span>
+                          <span className="scms-li-span">
                             {
                               "$"
                               +
