@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from './store/session';
 import * as shoppingCartActions from './store/shoppingCarts';
 import * as imageActions from './store/images';
+import * as productActions from './store/products';
 
 function App() {
   /**
@@ -51,10 +52,18 @@ function App() {
 
     // load images
     dispatch(imageActions.thunkGetImages("None"));
+
+    // load products
+    dispatch(productActions.thunkGetProducts());
   }, [currentUserInfo]);
 
   if (!loaded) {
     return null;
+  }
+
+  // on page refresh, go to top of page
+  window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
   }
 
   return (
@@ -66,6 +75,7 @@ function App() {
       <NavFooter />
 
       <Switch>
+
         <Route path='/' exact={true} >
           <LandingPage />
         </Route>

@@ -10,7 +10,6 @@ class ShoppingCart(db.Model):
   product_id = db.Column(db.Integer, db.ForeignKey('products.id', ondelete='CASCADE'), nullable=False)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'), nullable=False)
   quantity = db.Column(db.Integer, nullable=False)
-  price = db.Column(db.Numeric(5, 2), nullable=False)
   
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
@@ -28,7 +27,6 @@ class ShoppingCart(db.Model):
       'product_id': self.product_id,
       'user_id': self.user_id,
       'quantity': self.quantity,
-      'price': float(self.price),
       'created_at': self.created_at,
       'updated_at': self.updated_at
     }

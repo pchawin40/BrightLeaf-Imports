@@ -7,4 +7,3 @@ class ShoppingCartForm(FlaskForm):
   product_id = IntegerField('product_id', validators=[DataRequired()])
   user_id = IntegerField('user_id', validators=[DataRequired()])
   quantity = IntegerField('quantity', validators=[DataRequired()])
-  price = DecimalField('price', validators=[DataRequired()])

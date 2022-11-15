@@ -10,8 +10,7 @@ def seed_shopping_carts():
       current_shopping_cart = ShoppingCart(
         user_id = user.id,
         product_id = product.id,
-        quantity = product.quantity,
-        price = product.price * product.quantity
+        quantity = product.quantity
       )
       
       db.session.add(current_shopping_cart)
