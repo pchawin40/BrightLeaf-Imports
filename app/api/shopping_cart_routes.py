@@ -36,8 +36,7 @@ def secure_shopping_carts():
     new_shopping_cart = ShoppingCart(
       user_id=form.data['user_id'],
       product_id=form.data['product_id'],
-      quantity=form.data['quantity'],
-      price=form.data['price']
+      quantity=form.data['quantity']
     )
 
     # add and commit change

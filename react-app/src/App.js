@@ -61,6 +61,11 @@ function App() {
     return null;
   }
 
+  // on page refresh, go to top of page
+  window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+  }
+
   return (
     <BrowserRouter>
       {/* NavHeader */}
@@ -70,6 +75,7 @@ function App() {
       <NavFooter />
 
       <Switch>
+
         <Route path='/' exact={true} >
           <LandingPage />
         </Route>

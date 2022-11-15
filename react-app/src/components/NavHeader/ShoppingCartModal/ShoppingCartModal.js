@@ -10,7 +10,7 @@ import './ShoppingCartModal.css';
 import { useState, createRef, useEffect } from 'react';
 
 //import react-redux
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import store
 import * as sessionActions from '../../../store/session';
@@ -29,7 +29,6 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
   const { loadCartModal, setLoadCartModal } = useNavHeader();
   const [cartLoaded, setCartLoaded] = useState(false);
   const [cartDisplay, setCartDisplay] = useState([]);
-  const [cartItemTotal, setCartItemTotal] = useState(0);
 
   /**
    * Selector functions
@@ -57,35 +56,24 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
       // set to loaded
       setCartLoaded(true);
 
-      // initialize new cart display
-      const newCartDisplay = [];
       // initialize new cart total
       let newCartSum = 0;
 
       // set current products
       Object.values(currentUserCarts).map(cartItem => {
-        // set cart items
-        const currentCartItem = {
-          quantity: cartItem.quantity,
-          price: cartItem.price,
-          name: Object.values(currentProducts).find(product => product.id == cartItem.product_id).name
-        };
-
-        newCartDisplay.push(currentCartItem);
-
         // set cart total
         newCartSum += cartItem.price;
       });
 
       // set cart display
-      setCartDisplay(newCartDisplay);
-
-      // set cart total 
-      setCartItemTotal(Math.ceil(newCartSum * 100) / 100);
+      setCartDisplay(Object.values(currentUserCarts));
     }
-  }, [loadCartModal]);
+  }, [loadCartModal, cartLoaded, currentUserCarts]);
 
   const box = createRef();
+
+  // invoke dispatch
+  const dispatch = useDispatch();
 
   // function to detect if click outside of custom modal
   const handleOutsideClick = e => {
@@ -94,8 +82,46 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
     }
   }
 
-  // turn body overflow off on opening
-  // document.body.style.overflowY = !currentUserInfo ? "hidden" : "scroll"
+  // function to handle quantity click
+  const handleCartQuantity = (cartItem, newQuantity) => {
+    // if quantity is less than 1, delete it from shopping cart
+    if (newQuantity === 0) {
+      dispatch(shoppingCartActions.thunkDeleteCart(cartItem.id))
+        .then(() => dispatch(shoppingCartActions.thunkGetSessionUserCarts()));
+
+      setCartLoaded(false);
+    } else {
+      // else, update current cart item from user
+      cartItem.quantity = newQuantity;
+      dispatch(shoppingCartActions.thunkUpdateCart(cartItem, cartItem.id));
+    }
+  };
+
+  // function to get price of cart item
+  const getCartItemPrice = (cartItem) => {
+    // given cart item, get the quantity
+    const cartItemQuantity = cartItem.quantity;
+    // find product's price
+    const cartItemPrice = Object.values(currentProducts).find(product => product.id === cartItem.product_id).price;
+
+    return Math.ceil(((cartItemQuantity * cartItemPrice) * 100) / 100);
+  }
+
+  // function to get price of cart total
+  const getCartTotal = () => {
+
+    // set cart total 
+    // setCartItemTotal(Math.ceil(newCartSum * 100) / 100);
+
+    // for every cart item, invoke getCartItemPrice to find the cart item price
+    let total = 0;
+
+    Object.values(currentUserCarts).map(cart => {
+      total += Math.ceil((getCartItemPrice(cart) * 100) / 100);
+    });
+
+    return total;
+  }
 
   return (
     <section
@@ -138,12 +164,18 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
                   {
                     cartDisplay.map(cartItem => {
                       return (
-                        <li className="scms-li">
+                        <li key={"cart item: " + cartItem.id} className="scms-li">
                           {/* Add more */}
-                          <i className="fa-solid fa-square-plus scms-li-add-quantity" />
+                          <i
+                            onClick={_ => handleCartQuantity(cartItem, cartItem.quantity + 1)}
+                            className="fa-solid fa-square-plus scms-li-add-quantity"
+                          />
 
                           {/* Delete */}
-                          <i className="fa-solid fa-square-minus scms-li-delete-quantity" />
+                          <i
+                            onClick={_ => handleCartQuantity(cartItem, cartItem.quantity - 1)}
+                            className="fa-solid fa-square-minus scms-li-delete-quantity"
+                          />
 
                           {/* Quantity */}
                           <span>
@@ -162,7 +194,11 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
                           {/* Price */}
                           <span>
                             {
-                              "$" + cartItem.price + " USD"
+                              "$"
+                              +
+                              getCartItemPrice(cartItem)
+                              +
+                              " USD"
                             }
                           </span>
                         </li>
@@ -175,7 +211,7 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
                       Total
                     </span>
                     <span>
-                      {`$${cartItemTotal} USD`}
+                      {`$${getCartTotal()} USD`}
                     </span>
                   </section>
 

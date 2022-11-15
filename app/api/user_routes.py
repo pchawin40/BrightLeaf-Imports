@@ -2,7 +2,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.forms import LoginForm, EditUserForm
-from app.models import User, db, Review, ShoppingCart
+from app.models import User, db, Review, ShoppingCart, Product
 from .auth_routes import validation_errors_to_error_messages
 
 user_routes = Blueprint('users', __name__)
@@ -127,4 +127,17 @@ def user_reviews():
 def user_carts():
     current_user_carts = ShoppingCart.query.filter(ShoppingCart.user_id == current_user.get_id()).all()
     
-    return {'shopping_carts': {current_user_cart.id: current_user_cart.to_dict() for current_user_cart in current_user_carts}}
+    current_user_cart_displays = {}
+    
+    # add product name to current_user_carts
+    for current_user_cart in current_user_carts:
+        name = Product.query.get(current_user_cart.product_id).to_dict()['name']
+        
+        current_user_cart_display = {
+            **current_user_cart.to_dict(),
+            "name": name
+        }
+        
+        current_user_cart_displays = {**current_user_cart_displays, current_user_cart.id: current_user_cart_display}
+    
+    return {'shopping_carts': current_user_cart_displays}
