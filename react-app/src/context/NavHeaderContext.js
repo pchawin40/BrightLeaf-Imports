@@ -28,7 +28,7 @@ export default function NavHeaderProvider({ children }) {
     if (currentPage === "landing") {
       newColor = "white";
     } else if (currentPage === "portfolio") {
-      newColor = "#3E424B";
+      newColor = "white";
     }
 
     // set color condition
@@ -63,7 +63,7 @@ export default function NavHeaderProvider({ children }) {
     if (currentPage === "landing") {
       headerColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (4 * (window.innerHeight * 1.05));
     } else if (currentPage === "portfolio") {
-      headerColorCondition = false;
+      headerColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (4 * (window.innerHeight * .985));
     }
 
     // if mid, change to black
@@ -87,7 +87,7 @@ export default function NavHeaderProvider({ children }) {
     if (currentPage === "landing") {
       footerColorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05)) && window.scrollY < (4 * (window.innerHeight / 1.25))
     } else if (currentPage === "portfolio") {
-      footerColorCondition = false;
+      footerColorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05)) && window.scrollY < (4 * (window.innerHeight / 1.3));
     }
 
     // if mid, change to black
