@@ -35,10 +35,16 @@
 	margin-bottom: 0.5rem;
 }
 
-#mfr-section li:hover {
+#mfr-section li:hover,
+#mfr-section li > a:hover {
 	cursor: pointer;
 
 	color: #80ab63;
+}
+
+#mfr-section li > a {
+	color: white;
+	text-decoration: none;
 }
 
 #mfr-section h4 {

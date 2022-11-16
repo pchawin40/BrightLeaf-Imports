@@ -6,6 +6,13 @@ import LandingPage from './components/LandingPage/LandingPage';
 import NavHeader from './components/NavHeader';
 import NavRight from './components/NavRight';
 import NavFooter from './components/NavFooter';
+import NavModal from './components/NavRight/NavModal';
+import ShopAll from './components/ShopAll';
+import Portfolio from './components/Portfolio';
+import About from './components/About';
+import Contact from './components/Contact';
+import ShippingReturns from './components/ShippingReturns';
+import StorePolicy from './components/StorePolicy';
 
 // import context
 import { useNavRight } from './context/NavRightContext';
@@ -24,7 +31,6 @@ import * as sessionActions from './store/session';
 import * as shoppingCartActions from './store/shoppingCarts';
 import * as imageActions from './store/images';
 import * as productActions from './store/products';
-import NavModal from './components/NavRight/NavModal';
 
 
 function App() {
@@ -92,8 +98,39 @@ function App() {
       }
 
       <Switch>
+        {/* Home */}
         <Route path='/' exact={true} >
           <LandingPage />
+        </Route>
+
+        {/* Shop All */}
+        <Route path='/shop-all'>
+          <ShopAll />
+        </Route>
+
+        {/* Portfolio */}
+        <Route to="/for-home">
+          <Portfolio />
+        </Route>
+
+        {/* About */}
+        <Route to="/about">
+          <About />
+        </Route>
+
+        {/* Contact */}
+        <Route to="/contact">
+          <Contact />
+        </Route>
+
+        {/* Shipping & Return */}
+        <Route to="/shipping-returns">
+          <ShippingReturns />
+        </Route>
+
+        {/* Store Policy | Payment Methods */}
+        <Route to="/store-policy">
+          <StorePolicy />
         </Route>
 
         {/* //? 404 Route */}

@@ -3,6 +3,9 @@
 // import css
 import './MidFooterRight.css';
 
+// import react-router-dom
+import { NavLink } from 'react-router-dom';
+
 //? MidFooterRight component
 const MidFooterRight = () => {
   return (
@@ -14,13 +17,19 @@ const MidFooterRight = () => {
         </h4>
         <ul>
           <li>
-            Shipping & Return
+            <NavLink to="/shipping-returns">
+              Shipping & Return
+            </NavLink>
           </li>
           <li>
-            Store Policy
+            <NavLink to="/store-policy">
+              Store Policy
+            </NavLink>
           </li>
           <li>
-            Payment Methods
+            <NavLink to="/store-policy">
+              Payment Methods
+            </NavLink>
           </li>
         </ul>
       </section>
@@ -32,19 +41,29 @@ const MidFooterRight = () => {
         </h4>
         <ul>
           <li>
-            Home
+            <NavLink to="/">
+              Home
+            </NavLink>
           </li>
           <li>
-            Shop All
+            <NavLink to="/shop-all">
+              Shop All
+            </NavLink>
           </li>
           <li>
-            Portfolio
+            <NavLink to="/for-home">
+              Portfolio
+            </NavLink>
           </li>
           <li>
-            About
+            <NavLink to="/about">
+              About
+            </NavLink>
           </li>
           <li>
-            Contact
+            <NavLink to="/contact">
+              Contact
+            </NavLink>
           </li>
         </ul>
       </section>
