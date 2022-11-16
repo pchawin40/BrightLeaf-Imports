@@ -54,7 +54,7 @@ const LowerPortfolio = () => {
       if (displayImages.length <= 0) {
         // if image is loaded but no images, show content: no image, add more
         return (
-          <ul>
+          <ul className="lps-ul">
             <figure>
               No images available. Add more here
 
@@ -68,7 +68,7 @@ const LowerPortfolio = () => {
       } else {
         // otherwise show normal image
         return (
-          <ul>
+          <ul className="lps-ul">
             {
               displayImages.map(image =>
                 <figure>
@@ -86,7 +86,7 @@ const LowerPortfolio = () => {
       // if image is not yet loaded, do a progress bar
       return (
 
-        <ul>
+        <ul className="lps-ul">
           <figure>
             <img
               src="https://thumbs.gfycat.com/GlaringBossyCrustacean-size_restricted.gif"

@@ -7,4 +7,26 @@
 	width: 100%;
 
 	background-color: #404040;
+
+	overflow: auto;
+}
+
+.lps-ul {
+	display: flex;
+	flex-wrap: wrap;
+
+	margin-left: 5vw;
+	margin-right: 5vw;
+}
+
+.lps-ul > figure {
+	flex: 1 0 25%;
+	margin: 5px;
+	height: 35vh;
+}
+
+.lps-ul img {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
 }
