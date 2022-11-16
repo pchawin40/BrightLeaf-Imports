@@ -74,7 +74,7 @@ const Carousel = () => {
         imageLoaded ?
           Object.values(currentImages)[currentImageIndex].url
           :
-          "https://media.tenor.com/nVJfVh4oAgUAAAAM/trippy-art.gif"
+          "https://thumbs.gfycat.com/GlaringBossyCrustacean-size_restricted.gif"
       } />
 
       {/* Right Arrow */}

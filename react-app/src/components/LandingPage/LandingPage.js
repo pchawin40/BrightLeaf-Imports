@@ -18,32 +18,30 @@ import { useEffect, useRef, useState } from 'react';
 // import react-redux
 import { useDispatch, useSelector } from 'react-redux';
 
+// import store
+import * as imageActions from '../../store/images';
+
 //? LandingPage component
 const LandingPage = () => {
 
+  /**
+   * Controlled inputs
+   */
   const { backgroundColor, setBackgroundColor } = useNavHeader();
+  const { currentPage, setCurrentPage } = useNavHeader();
 
-  const prevScrollY = useRef(0);
-
-  // function to handle changing of background based on y scroll position
-  const changeBackground = () => {
-
-    const currentScrollY = window.scrollY;
-
-    // set background color
-    if (window.scrollY >= window.innerHeight - (window.innerHeight / 1.25)) {
-      setBackgroundColor('white');
-    } else {
-      setBackgroundColor('#484644');
-    }
-
-    prevScrollY.current = currentScrollY;
-  }
+  // invoke dispatch
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    window.addEventListener('scroll', changeBackground);
-    return () => window.removeEventListener('scroll', changeBackground);
-  }, [backgroundColor]);
+    if (currentPage !== "landing") {
+      setCurrentPage("landing");
+    }
+
+    if (currentPage === "landing") {
+      dispatch(imageActions.thunkGetImages("None=True"));
+    }
+  }, [currentPage]);
 
   return (
     <section

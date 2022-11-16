@@ -25,7 +25,7 @@ const NavRight = () => {
    */
   const { showNavModal, setShowNavModal } = useNavRight();
   const { loadCartModal, setLoadCartModal } = useNavHeader();
-  const { color, setColor } = useNavHeader();
+  // const { color, setColor } = useNavHeader();
   const { prevColor, setPrevColor } = useNavHeader();
 
   return (
@@ -47,7 +47,7 @@ const NavRight = () => {
           id="nav-rn-figure"
           onClick={_ => {
             setShowNavModal(!showNavModal);
-            if (!showNavModal) setColor("white");
+            // if (!showNavModal) setColor("white");
             // TODO: To fix color when icon is set to black
             document.body.style.overflowY = "scroll";
           }}

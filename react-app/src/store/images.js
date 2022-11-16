@@ -13,9 +13,9 @@ export const loadImages = (images) => {
 }
 
 /* --------- THUNKS -------- */
-export const thunkGetImages = (search = "") => async (dispatch) => {
+export const thunkGetImages = (searchParam = "") => async (dispatch) => {
   // fetch all images
-  const res = await fetch(`/api/images/?search=${search}`);
+  const res = await fetch(`/api/images/?${searchParam}`);
 
   if (res.ok) {
     // parse res to image data
@@ -42,6 +42,8 @@ export default function imageReducer(state = initialState, action) {
   const newImages = { ...state };
 
   switch (action.type) {
+    case LOAD_IMAGES:
+      return Object.assign({}, action.images);
     default:
       return Object.assign({}, newImages, action.images);
   }

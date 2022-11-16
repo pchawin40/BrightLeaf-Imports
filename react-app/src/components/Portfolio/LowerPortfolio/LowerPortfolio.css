@@ -1,0 +1,86 @@
+/* src/components/Portfolio/LowerPortfolio/LowerPortfolio.css */
+
+#lp-section {
+	grid-area: lower-portfolio;
+
+	height: 100%;
+	width: 100%;
+
+	overflow: auto;
+
+	color: black;
+
+	text-align: center;
+
+	margin: 0;
+	padding: 0;
+}
+
+#lp-section h1,
+#lp-section h2,
+#lp-section h3,
+#lp-section p {
+	margin: 0;
+	padding: 0;
+
+	margin-bottom: 20px;
+}
+
+#lp-section > h1 {
+	font-size: 3vw;
+}
+
+#lp-section > h3 {
+	font-size: 1.5vw;
+}
+
+#lp-section > h1,
+#lp-section > h3 {
+	color: #6fa04e;
+	text-transform: uppercase;
+}
+
+#lp-section > h2 {
+	font-weight: normal;
+}
+
+#lp-section > p {
+	margin-left: 30vw;
+	margin-right: 30vw;
+
+	font-size: 1vw;
+}
+
+/* Images */
+
+.lps-ul {
+	display: flex;
+	flex-wrap: wrap;
+
+	margin-left: 5vw;
+	margin-right: 5vw;
+}
+
+.lps-ul > figure {
+	flex: 1 0 25%;
+	margin: 5px;
+	height: 35vh;
+}
+
+.lps-ul img {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+}
+
+.lps-ul img:hover {
+	transform: scale(1.0075);
+	/* cursor: pointer; */
+}
+
+/* Add More Pic Button */
+.amp-button {
+	margin-bottom: 25px;
+
+	font-size: 1vw;
+}

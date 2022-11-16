@@ -1,5 +1,8 @@
 // src/components/NavFooter/NavFooter.js
 
+// import context
+import { useNavHeader } from '../../context/NavHeaderContext';
+
 // import css
 import './NavFooter.css';
 
@@ -11,29 +14,11 @@ import { NavLink } from 'react-router-dom';
 
 //? NavFooter component
 const NavFooter = () => {
-  const [color, setColor] = useState('white');
-
-  const prevScrollY = useRef(0);
-
-  // function to handle changing of background based on y scroll position
-  const changeBackground = () => {
-
-    const currentScrollY = window.scrollY;
-
-    // if mid, change to black
-    if (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05) && window.scrollY < (4 * (window.innerHeight / 1.25))) {
-      setColor('black');
-    } else {
-      setColor('white');
-    }
-
-    prevScrollY.current = currentScrollY;
-  }
-
-  useEffect(() => {
-    window.addEventListener('scroll', changeBackground);
-    return () => window.removeEventListener('scroll', changeBackground);
-  }, [color]);
+  /**
+   * Controlled inputs
+   */
+  const { footerColor, setFooterColor } = useNavHeader();
+  const { currentPage, setCurrentPage } = useNavHeader();
 
   return (
     <section id="nav-footer-section">
@@ -44,9 +29,9 @@ const NavFooter = () => {
         }}
       >
         <i
-          className="fa-brands fa-github nfs-icon"
+          className="fa-brands fa-github nfs-icon nav-footer-icons"
           style={{
-            color,
+            color: footerColor,
             transition: "color 1s ease"
           }}
         />
@@ -58,9 +43,10 @@ const NavFooter = () => {
         }}
       >
         <i
+          id="nav-footer-icon"
           className="fa-brands fa-linkedin-in"
           style={{
-            color,
+            color: footerColor,
             transition: "color 1s ease"
           }}
         />

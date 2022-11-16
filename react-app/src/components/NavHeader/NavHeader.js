@@ -33,40 +33,17 @@ const NavHeader = () => {
   /**
    * Controlled inputs
    */
-  const { color, setColor } = useNavHeader();
+  const { headerColor, setHeaderColor } = useNavHeader();
   const { showUserModal, setShowUserModal } = useNavHeader();
-  // const [showCartModal, setShowCartModal] = useState(false);
   const { loadCartModal, setLoadCartModal } = useNavHeader();
   const { showNavModal, setShowNavModal } = useNavRight();
+  const { currentPage, setCurrentPage } = useNavHeader();
 
   /**
   * Selector functions
   */
   // grab shopping carts data
   const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
-  
-  // ref
-  const prevScrollY = useRef(0);
-
-  // function to handle changing of background based on y scroll position
-  const changeBackground = () => {
-
-    const currentScrollY = window.scrollY;
-
-    // if mid, change to black
-    if (window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (4 * (window.innerHeight * 1.05))) {
-      setColor('black');
-    } else {
-      setColor('white');
-    }
-
-    prevScrollY.current = currentScrollY;
-  }
-
-  useEffect(() => {
-    window.addEventListener('scroll', changeBackground);
-    return () => window.removeEventListener('scroll', changeBackground);
-  }, [color]);
 
   return (
     <section
@@ -82,7 +59,7 @@ const NavHeader = () => {
           onClick={_ => setShowUserModal(true)}
           className="nh-figure user-modal"
           style={{
-            color,
+            color: headerColor,
             transition: "color 1s ease"
           }}
         >
@@ -96,12 +73,12 @@ const NavHeader = () => {
           }}
           className="nh-figure"
           style={{
-            color,
+            color: headerColor,
             transition: "color 1s ease"
           }}
         >
           <i className="fa-solid fa-cart-shopping fa-xl" />
-          <span id="nhs-cart-span" className={`${color === 'black' ? 'white' : 'black'}`}>
+          <span id="nhs-cart-span" className={`${headerColor === 'black' ? 'white' : 'black'}`}>
             {/* //TODO: TBD: To count how many items are in shopping cart for current user */}
             {
               Object.values(currentUserCarts).length

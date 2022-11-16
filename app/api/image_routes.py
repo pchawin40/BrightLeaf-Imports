@@ -4,20 +4,33 @@ from flask_login import login_required, current_user
 from app.forms import ImageForm
 from app.models import User, db, Image
 from .auth_routes import validation_errors_to_error_messages
+from sqlalchemy import or_
 
 image_routes = Blueprint('images', __name__)
 
 #* GET /api/images
 #* GET /api/images/search
+#* GET /api/images/?Product=True&None=True
 # Example of search request args: api/images/?search=Product
 @image_routes.route('/')
-@image_routes.route('/search')
 def images():
   """
   GET: Get all availables images | by search arguments
   """
-  # otherwise, method is get
-  images = Image.query.all() if request.args.get('search') is None else Image.query.filter(Image.imageable_type.ilike(f"%{request.args.get('search')}%")).all()
+  # create filter list of the wanted filtered if they are given
+  filter_list = []
+
+  if(request.args.get('Product')):
+    filter_list.append('Product')
+
+  if(request.args.get('None')):
+    filter_list.append('None')
+    
+  if(request.args.get('Review')):
+    filter_list.append('Review')
+
+  # search image by filter_list
+  images = Image.query.filter(or_(*[Image.imageable_type.ilike(prefix + "%") for prefix in filter_list])).all()
   
   # return succesful response
   return {'images': {image.id: image.to_dict() for image in images}}
