@@ -1,23 +1,23 @@
-// src/components/LandingPage/TopLanding/Carousel/Carousel.js
+// src/components/Portfolio/LowerPortfolio/DispalyGalleryModal/GalleryCarousel/GalleryCarousel.js
 
 // import css
-import './Carousel.css';
+import './GalleryCarousel.css';
 
 // import component
-import Arrow from "./Arrow";
-import ImageSlide from "./ImageSlide";
+import Arrow from '../../../../LandingPage/TopLanding/Carousel/Arrow';
+import ImageSlide from '../../../../LandingPage/TopLanding/Carousel/ImageSlide';
 
 // import react
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 // import react-redux
 import { useSelector } from 'react-redux';
 
 // import store
-import * as imageActions from '../../../../store/images';
+import * as imageActions from '../../../../../store/images';
 
-//? Carousel Component
-const Carousel = () => {
+//? GalleryCarousel component
+const GalleryCarousel = () => {
   /**
    * Controlled inputs
    */
@@ -27,13 +27,12 @@ const Carousel = () => {
   /**
    * Selector functions
    */
-  // grab "None" type images
+  // grab current images
   const currentImages = useSelector(imageActions.getCurrentImages);
 
   /**
-   * useEffect
+   * UseEffect
    */
-  // per currentImages
   useEffect(() => {
     // set image to loaded if there are current images
     if (Object.values(currentImages) && Object.values(currentImages).length > 0) {
@@ -60,8 +59,8 @@ const Carousel = () => {
   }
 
   return (
-    <section className="carousel">
-      {/* left Arrow */}
+    <section className="carousel gc-section" >
+      {/* Left GalleryArrow */}
       {
         imageLoaded &&
         <Arrow
@@ -71,7 +70,7 @@ const Carousel = () => {
         />
       }
 
-      {/* ImageSlide component */}
+      {/* GalleryImageSlide */}
       <ImageSlide url={
         imageLoaded ?
           Object.values(currentImages)[currentImageIndex].url
@@ -79,7 +78,7 @@ const Carousel = () => {
           "https://thumbs.gfycat.com/GlaringBossyCrustacean-size_restricted.gif"
       } />
 
-      {/* Right Arrow */}
+      {/* Right GalleryArrow */}
       {
         imageLoaded &&
         <Arrow
@@ -88,10 +87,9 @@ const Carousel = () => {
           glyph={<i className="fa-solid fa-chevron-right fa-2xl" />}
         />
       }
-
-    </section>
+    </section >
   );
 };
 
 // export default component
-export default Carousel;
+export default GalleryCarousel;

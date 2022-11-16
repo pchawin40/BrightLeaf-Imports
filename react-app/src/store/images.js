@@ -121,6 +121,7 @@ export const thunkDeleteImage = imageId => async (dispatch) => {
 /* --------- SELECTOR FUNCTIONS -------- */
 export const getCurrentImages = state => state.images;
 export const getCurrentImagesByType = type => state => Object.values(state.images).filter(image => image.imageable_type === type)
+export const getCurrentImageById = imageId => state => Object.values(state.images).find(image => image.id === imageId);
 
 /* --------- REDUCERS -------- */
 const initialState = {}

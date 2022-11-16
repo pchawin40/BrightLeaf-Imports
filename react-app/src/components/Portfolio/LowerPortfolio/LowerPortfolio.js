@@ -19,6 +19,7 @@ import { useEffect, useState } from 'react';
 // import store
 import * as imageActions from '../../../store/images';
 import * as sessionActions from '../../../store/session';
+import DisplayGalleryModal from './DisplayGalleryModal';
 
 //? LowerPortfolio component
 const LowerPortfolio = () => {
@@ -28,6 +29,8 @@ const LowerPortfolio = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const { showAddImageModal, setShowAddImageModal } = useImage();
   const [imageType, setImageType] = useState("None");
+  const [showGalleryModal, setShowGalleryModal] = useState(false);
+  const [currentPictureId, setCurrentPictureId] = useState(1);
 
   /**
    * Selector functions
@@ -91,6 +94,11 @@ const LowerPortfolio = () => {
                 <figure
                   className="lps-ul-figure"
                   key={`image id ${image.id} | imageable_id ${image.imageable_id}`}
+                  onClick={_ => {
+                    setShowGalleryModal(true);
+                    setCurrentPictureId(image.id);
+                    setImageType(image.imageable_type);
+                  }}
                 >
                   <img
                     src={image.url}
@@ -237,6 +245,17 @@ const LowerPortfolio = () => {
           }}
         >
           <ImageModal imageType={imageType} />
+        </Modal>
+      )}
+
+      {/* Display Gallery Modal */}
+      {showGalleryModal && (
+        <Modal
+          onClose={(_) => {
+            setShowGalleryModal(false)
+          }}
+        >
+          <DisplayGalleryModal currentPictureId={currentPictureId} imageType={imageType} />
         </Modal>
       )}
     </section>
