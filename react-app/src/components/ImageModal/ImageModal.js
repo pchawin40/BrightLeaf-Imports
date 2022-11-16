@@ -28,6 +28,9 @@ const ImageModal = ({ imageType }) => {
   // add picture description
   const [imageDescription, setImageDescription] = useState("");
 
+  // description input length
+  const [descriptionInputLength, setDescriptionInputLength] = useState(0);
+
   // add picture url
   const [imageAdd, setImageAdd] = useState("");
 
@@ -50,12 +53,10 @@ const ImageModal = ({ imageType }) => {
     if (!formReady) {
       setFormReady(true);
     }
-  }, [imageDescription, imageAdd, formReady]);
+  }, [imageDescription, imageAdd, formReady, setDescriptionInputLength]);
 
   // per imageAdd
   useEffect(() => {
-    setImageLoading(false);
-
     // reset image sample after setting image loading to false
     //! TODO
     // document.querySelector('.im-image-input').value = '';
@@ -67,6 +68,7 @@ const ImageModal = ({ imageType }) => {
   // function to update picture description
   const updateImageDescription = e => {
     setImageDescription(e.target.value);
+    setDescriptionInputLength(e.target.value.length);
   }
 
   // add image
@@ -84,11 +86,7 @@ const ImageModal = ({ imageType }) => {
     // prevent page from refreshing
     e.preventDefault();
 
-    // imageable_id: get length of all images by imageType
-    // imageable_type
-    // url
-    // description
-
+    // create image object to add to database
     const imageToAdd = {
       imageable_id: currentImagesByType.length + 1,
       imageable_type: imageType,
@@ -99,8 +97,11 @@ const ImageModal = ({ imageType }) => {
     // call on thunk to add image after getting imageToAdd data
     dispatch(imageActions.thunkPostImages(imageToAdd))
       .then(() => {
-        // dispatch to get images
+        // dispatch to get images for portfolio page
         dispatch(imageActions.thunkGetImages("Product=True&None=True"));
+
+        // turn image modal off after finish
+        setShowAddImageModal(false);
       });
   }
 
@@ -124,11 +125,10 @@ const ImageModal = ({ imageType }) => {
       if (res.ok) {
         const currentPictureAdd = await res.json();
 
-        console.log('here');
-        console.log('currentPictureAdd', currentPictureAdd);
-
         setImageAdd(currentPictureAdd.image_sample);
       }
+
+      setImageLoading(false);
     }
   }
 
@@ -138,36 +138,100 @@ const ImageModal = ({ imageType }) => {
         id="im-form"
         onSubmit={onImageAdding}
       >
-        {/* Picture dropper */}
-        <figure>
-          <input
-            type='file'
-            accept='image/*'
-            className="im-image-input"
-            onChange={updateImage}
-          />
+        {/* Add Title */}
+        <h2>
+          {`${imageType === "None" ? "Gallery" : imageType} Portfolio Photo`}
+        </h2>
 
-          Upload image
+        {/* Image to display sample image to add */}
+        <figure
+          className="imm-sample-image-figure"
+          onClick={_ => document.querySelector('.im-image-input').click()}
+        >
+          {imageLoading ? (
+            <img
+              src='https://cdn.dribbble.com/users/2077073/screenshots/6005120/loadin_gif.gif'
+              alt='Loading'
+            />
+          ) : (
+            imageAdd ?
+              <img
+                src={imageAdd}
+                alt={"add display"}
+              />
+              :
+              // Picture dropper
+              <figure
+                className="imm-sample-image-figure-inner"
+              >
+                <input
+                  type='file'
+                  accept='image/*'
+                  className="im-image-input"
+                  onChange={updateImage}
+                />
+                <i className="fa-solid fa-image" />
+                <br />
+                <span>
+                  Click here to add image
+                </span>
+              </figure>
+          )}
+
         </figure>
 
-        {/* Image description input */}
-        <input
-          placeholder="Enter image description"
-          onChange={updateImageDescription}
-        />
+        {/* Image description textarea container */}
+        <section className="im-description-container">
+          {/* Image description textarea */}
+          <textarea
+            className="im-textarea-description"
+            placeholder="Enter image description"
+            onChange={updateImageDescription}
+          />
 
-        {/* Button to add image */}
-        <button
-          onClick={onImageAdding}
-          type="submit"
-        >
-          Add Pictures for {imageType === "None" ? "Gallery" : imageType}
-        </button>
+          {/* Input length */}
+          {
+            descriptionInputLength > 0
+            &&
+            <span
+              style={{
+                color: 255 - descriptionInputLength >= 0 ? "black" : "red"
+              }}
+            >
+              {255 - descriptionInputLength} characters left
+            </span>
+          }
+        </section>
+
+        <section className="im-button-containers">
+          {/* Button to add image */}
+          <button
+            className={`add-image button ${255 - descriptionInputLength >= 0}`}
+            onClick={onImageAdding}
+            type={255 - descriptionInputLength >= 0 ? "submit" : "button"}
+          >
+            Submit Pictures
+          </button>
+
+          {/* Button to reset image */}
+          <button
+            className={`reset-image button`}
+            onClick={_ => setImageAdd("")}
+            type="button"
+            style={{
+              backgroundColor: imageAdd.length > 0 ? "#80ab63" : "gray",
+              cursor: imageAdd.length > 0 ? "pointer" : "default"
+            }}
+          >
+            Reset Picture
+          </button>
+        </section>
+
       </form>
 
       {/* Exit Modal Icon */}
       <i
-        className="fa-solid fa-x fa-xl exit-modal"
+        className="fa-solid fa-x fa-lg exit-modal-icon"
         onClick={_ => setShowAddImageModal(false)}
       />
     </section>

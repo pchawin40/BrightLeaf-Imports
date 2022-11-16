@@ -54,13 +54,7 @@ export const thunkPostImages = (imageToAdd) => async (dispatch) => {
 
   // define form data
   const formData = new FormData();
-
-  console.log("inside thunk: ");
-  console.log('imageable_id', imageable_id);
-  console.log('imageable_type', imageable_type);
-  console.log('url', url);
-  console.log('description', description);;
-
+  
   // put imageToAdd into form data
   formData.append("imageable_id", imageable_id);
   formData.append("imageable_type", imageable_type);
