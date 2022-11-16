@@ -36,6 +36,8 @@ const Carousel = () => {
     // set image to loaded if there are current images
     if (Object.values(currentImages) && Object.values(currentImages).length > 0) {
       setImageLoaded(true);
+
+      console.log('Object.values(currentImages)[currentImageIndex].url', Object.values(currentImages)[currentImageIndex].url);
     }
   }, [currentImages]);
 

@@ -1,38 +1,21 @@
 from app.models import db, Product
-from random import randrange
+from random import randrange, uniform
 
 # seed products
-def seed_products():
-  product_1 = Product(
-    name = "Product 1",
-    description = "Description of Product 1",
-    price = 12.34,
-    quantity= randrange(9) + 1,
-    preview_image = "url"
-  )
+def seed_products():    
+  for index in range(13):
+    current_product = Product(
+      name = f"Product {index + 1}",
+      description = f"Description of Product {index + 1}",
+      price = round(uniform(0.00, 500.00), 2),
+      quantity= randrange(9) + 1,
+      preview_image = "url"
+    )
+    
+    db.session.add(current_product)
+    
+    db.session.commit()
   
-  product_2 = Product(
-    name = "Product 2",
-    description = "Description of Product 2",
-    price = 20.34,
-    quantity= randrange(9) + 1,
-    preview_image = "url"
-  )
-  
-  product_3 = Product(
-    name = "Product 3",
-    description = "Description of Product 3",
-    price = 23.45,
-    quantity= randrange(9) + 1,
-    preview_image = "url"
-  )
-  
-  db.session.add(product_1)
-  db.session.add(product_2)
-  db.session.add(product_3)
-  
-  db.session.commit()
-
 # undo products seeds
 def undo_products():
   db.session.execute("DELETE FROM products;")
