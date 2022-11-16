@@ -11,7 +11,7 @@ import { Modal } from '../../../context/Modal';
 import './LowerPortfolio.css';
 
 // import react-redux
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import react
 import { useEffect, useState } from 'react';
@@ -48,6 +48,10 @@ const LowerPortfolio = () => {
     }
   }, [currentImages]);
 
+  // invoke dispatch
+  const dispatch = useDispatch();
+
+  // function to return a button that add more pic
   const addMorePicButton = (type = "None") => {
     return (
       <button
@@ -71,12 +75,10 @@ const LowerPortfolio = () => {
         // if image is loaded but no images, show content: no image, add more
         return (
           <ul className="lps-ul">
-            <figure>
-              No images available. Add more here
-
-              {
-                addMorePicButton(type)
-              }
+            <figure id="lps-no-image-figure">
+              <h3>
+                No images currently available.
+              </h3>
             </figure>
           </ul>
         )
@@ -99,9 +101,9 @@ const LowerPortfolio = () => {
                     currentUserInfo.role === "administrator"
                     &&
                     <figure
-                        
-                        className="lps-ul-inner-figure"
-                      >
+                      onClick={_ => handleDeleteImage(image.id)}
+                      className="lps-ul-inner-figure"
+                    >
                       <i className="fa-solid fa-xmark fa-xl" />
                     </figure>
                   }
@@ -145,7 +147,12 @@ const LowerPortfolio = () => {
   }
 
   // function to delete image
-  
+  const handleDeleteImage = imageId => {
+    dispatch(imageActions.thunkDeleteImage(imageId))
+      .then(() =>
+        dispatch(imageActions.thunkGetImages("Product=True&None=True"))
+      )
+  }
 
   return (
     <section id="lp-section">

@@ -23,6 +23,17 @@ export const createImage = image => {
   }
 }
 
+//? Action: Delete image
+const DELETE_IMAGE = 'images/DELETE_IMAGE';
+
+// action creator: delete image
+export const deleteImage = imageId => {
+  return {
+    type: DELETE_IMAGE,
+    imageId
+  }
+}
+
 /* --------- THUNKS -------- */
 export const thunkGetImages = (searchParam = "") => async (dispatch) => {
   // fetch all images
@@ -54,7 +65,7 @@ export const thunkPostImages = (imageToAdd) => async (dispatch) => {
 
   // define form data
   const formData = new FormData();
-  
+
   // put imageToAdd into form data
   formData.append("imageable_id", imageable_id);
   formData.append("imageable_type", imageable_type);
@@ -90,6 +101,23 @@ export const thunkPostImages = (imageToAdd) => async (dispatch) => {
   return ['An error occurred. Please try again.']
 }
 
+// thunk to delete image
+export const thunkDeleteImage = imageId => async (dispatch) => {
+  // fetch route to delete image
+  const res = await fetch(`/api/images/${imageId}`, {
+    method: 'DELETE'
+  });
+
+  // if successful, return res
+  if (res.ok) {
+    // proceed to delete image in redux
+    dispatch(deleteImage(imageId));
+  }
+
+  // else, return nothing
+  return null;
+}
+
 /* --------- SELECTOR FUNCTIONS -------- */
 export const getCurrentImages = state => state.images;
 export const getCurrentImagesByType = type => state => Object.values(state.images).filter(image => image.imageable_type === type)
@@ -101,8 +129,14 @@ export default function imageReducer(state = initialState, action) {
   const newImages = { ...state };
 
   switch (action.type) {
+    // case to load images
     case LOAD_IMAGES:
       return Object.assign({}, action.images);
+    // case to delete cart
+    case DELETE_IMAGE:
+      delete newImages[action.imageId];
+
+      return newImages;
     default:
       return Object.assign({}, newImages, action.images);
   }
