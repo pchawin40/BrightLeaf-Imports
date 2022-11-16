@@ -139,3 +139,10 @@ def secure_image_by_id(image_id):
     # return successful response with delete image message
     return {'message': f"Successfully deleted image {image.id}"}
   
+#* POST /api/images/sample
+@image_routes.route('/images/sample')
+def fetch_sample_image():
+  """
+  Fetch sample image
+  """
+  pass

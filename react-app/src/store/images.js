@@ -34,6 +34,7 @@ export const thunkGetImages = (searchParam = "") => async (dispatch) => {
 
 /* --------- SELECTOR FUNCTIONS -------- */
 export const getCurrentImages = state => state.images;
+export const getCurrentImagesByType = type => state => Object.values(state.images).filter(image => image.imageable_type === type)
 
 /* --------- REDUCERS -------- */
 const initialState = {}

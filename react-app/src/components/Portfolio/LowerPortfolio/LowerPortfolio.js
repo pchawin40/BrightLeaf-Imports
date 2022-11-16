@@ -1,5 +1,12 @@
 // src/components/Portfolio/LowerPortfolio/LowerPortfolio.js
 
+// import component
+import ImageModal from '../../ImageModal';
+
+// import context
+import { useImage } from '../../../context/ImageContext';
+import { Modal } from '../../../context/Modal';
+
 // import css
 import './LowerPortfolio.css';
 
@@ -11,6 +18,7 @@ import { useEffect, useState } from 'react';
 
 // import store
 import * as imageActions from '../../../store/images';
+import * as sessionActions from '../../../store/session';
 
 //? LowerPortfolio component
 const LowerPortfolio = () => {
@@ -18,12 +26,15 @@ const LowerPortfolio = () => {
    * Controlled inputs
    */
   const [imageLoaded, setImageLoaded] = useState(false);
+  const { showAddImageModal, setShowAddImageModal } = useImage();
+  const [imageType, setImageType] = useState("None");
 
   /**
    * Selector functions
    */
   // grab all images
   const currentImages = useSelector(imageActions.getCurrentImages);
+  const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
 
   /**
   * useEffect
@@ -36,9 +47,13 @@ const LowerPortfolio = () => {
     }
   }, [currentImages]);
 
-  const addMorePicButton = () => {
+  const addMorePicButton = (type = "None") => {
     return (
-      <button className="amp-button">
+      <button
+        className="amp-button"
+        value={type}
+        onClick={_ => handleAddPicture(type)}
+      >
         <i className="fa-solid fa-plus" />
         Add pictures
       </button>
@@ -58,10 +73,9 @@ const LowerPortfolio = () => {
             <figure>
               No images available. Add more here
 
-              <button>
-                <i className="fa-solid fa-plus" />
-                Add pictures
-              </button>
+              {
+                addMorePicButton(type)
+              }
             </figure>
           </ul>
         )
@@ -71,7 +85,7 @@ const LowerPortfolio = () => {
           <ul className="lps-ul">
             {
               displayImages.map(image =>
-                <figure>
+                <figure key={`image id ${image.id} | imageable_id ${image.imageable_id}`}>
                   <img
                     src={image.url}
                     alt={image.description}
@@ -85,7 +99,6 @@ const LowerPortfolio = () => {
     } else {
       // if image is not yet loaded, do a progress bar
       return (
-
         <ul className="lps-ul">
           <figure>
             <img
@@ -96,8 +109,25 @@ const LowerPortfolio = () => {
         </ul>
       );
     }
-
   };
+
+  // function to check if session user is administrator
+  const checkSessionUserType = () => {
+    if (currentUserInfo && currentUserInfo.role) {
+      return currentUserInfo.role === "administrator";
+    } else {
+      return false;
+    }
+  }
+
+  // function to add more pictures based on type
+  const handleAddPicture = (type) => {
+    // set imageType from given type
+    setImageType(type);
+
+    // on click, set to show add image modal
+    setShowAddImageModal(true);
+  }
 
   return (
     <section id="lp-section">
@@ -128,6 +158,13 @@ const LowerPortfolio = () => {
         displayLoadedImages("None")
       }
 
+      {/* Add "None" type image if administrator */}
+      {
+        checkSessionUserType()
+        &&
+        addMorePicButton("None")
+      }
+
       {/* Product Title */}
       <h3>
         Uniquely crafted
@@ -145,8 +182,21 @@ const LowerPortfolio = () => {
 
       {/* Square to add more images (if administrator) */}
       {
-        addMorePicButton()
+        checkSessionUserType()
+        &&
+        addMorePicButton("Product")
       }
+
+      {/* Image Modal */}
+      {showAddImageModal && (
+        <Modal
+          onClose={(_) => {
+            setShowAddImageModal(false)
+          }}
+        >
+          <ImageModal imageType={imageType} />
+        </Modal>
+      )}
     </section>
   );
 };

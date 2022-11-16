@@ -1,0 +1,21 @@
+/* src/components/ImageModal/ImageModal.css */
+
+#image-modal {
+	background-color: white;
+	height: 50vh;
+	width: 50vw;
+
+	margin: 0;
+	padding: 0;
+
+	box-shadow: 0 0 5px 5px black;
+}
+
+#im-inner-section {
+	height: 100%;
+	width: 100%;
+}
+
+.exit-modal:hover {
+	cursor: pointer;
+}

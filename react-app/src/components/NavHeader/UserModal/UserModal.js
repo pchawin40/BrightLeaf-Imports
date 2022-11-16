@@ -148,6 +148,8 @@ const UserModal = () => {
 
           {/* //! TODO: To implement sign up with facebook and google */}
         </section>
+
+        {/* Exit Modal Icon */}
         <i
           className="fa-solid fa-x fa-xl"
           onClick={_ => {
