@@ -18,6 +18,9 @@ import { useEffect, useRef, useState } from 'react';
 // import react-redux
 import { useDispatch, useSelector } from 'react-redux';
 
+// import store
+import * as imageActions from '../../store/images';
+
 //? LandingPage component
 const LandingPage = () => {
 
@@ -27,8 +30,17 @@ const LandingPage = () => {
   const { backgroundColor, setBackgroundColor } = useNavHeader();
   const { currentPage, setCurrentPage } = useNavHeader();
 
+  // invoke dispatch
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    if (currentPage !== "landing") setCurrentPage("landing");
+    if (currentPage !== "landing") {
+      setCurrentPage("landing");
+    }
+
+    if (currentPage === "landing") {
+      dispatch(imageActions.thunkGetImages("None"));
+    }
   }, [currentPage]);
 
   return (

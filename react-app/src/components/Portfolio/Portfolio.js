@@ -14,6 +14,10 @@ import { useNavHeader } from '../../context/NavHeaderContext';
 // import react
 import { useEffect, useRef } from 'react';
 
+// import store
+import * as imageActions from '../../store/images';
+import { useDispatch } from 'react-redux';
+
 //? Portfolio component
 const Portfolio = () => {
 
@@ -24,10 +28,19 @@ const Portfolio = () => {
   const { backgroundColor, setBackgroundColor } = useNavHeader();
   const { currentPage, setCurrentPage } = useNavHeader();
 
+  // invoke dispatch
+  const dispatch = useDispatch();
+
   const prevScrollY = useRef(0);
 
   useEffect(() => {
-    if (currentPage !== "portfolio") setCurrentPage("portfolio");
+    if (currentPage !== "portfolio") {
+      setCurrentPage("portfolio");
+    }
+
+    if (currentPage === "portfolio") {
+      dispatch(imageActions.thunkGetImages(""));
+    }
   }, [currentPage]);
 
   // function to handle changing of background based on y scroll position

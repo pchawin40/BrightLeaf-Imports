@@ -42,6 +42,8 @@ export default function imageReducer(state = initialState, action) {
   const newImages = { ...state };
 
   switch (action.type) {
+    case LOAD_IMAGES:
+      return Object.assign({}, action.images);
     default:
       return Object.assign({}, newImages, action.images);
   }

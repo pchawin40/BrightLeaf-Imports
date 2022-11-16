@@ -63,7 +63,7 @@ function App() {
     }
 
     // load images
-    dispatch(imageActions.thunkGetImages(""));
+    // dispatch(imageActions.thunkGetImages(""));
 
     // load products
     dispatch(productActions.thunkGetProducts());
