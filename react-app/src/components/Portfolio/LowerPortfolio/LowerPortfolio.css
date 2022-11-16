@@ -81,6 +81,25 @@
 /* Add More Pic Button */
 .amp-button {
 	margin-bottom: 25px;
+	padding: 24px 50px;
 
 	font-size: 1vw;
+
+	color: white;
+	background-color: #6fa04e;
+	border: none;
+	border-radius: 0.25rem;
+}
+
+.amp-button:hover {
+	cursor: pointer;
+	transform: scale(1.0075);
+}
+
+.amp-button:active {
+	box-shadow: 0 0 10px #ccc;
+}
+
+.amp-button > i {
+	margin-right: 12px;
 }
