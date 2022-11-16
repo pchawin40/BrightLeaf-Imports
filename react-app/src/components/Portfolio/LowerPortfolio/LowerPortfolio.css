@@ -1,0 +1,8 @@
+/* src/components/Portfolio/LowerPortfolio/LowerPortfolio.css */
+
+#lp-section {
+	grid-area: lower-portfolio;
+
+	height: 100%;
+	width: 100%;
+}
