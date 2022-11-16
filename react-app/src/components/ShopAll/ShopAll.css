@@ -1,1 +1,9 @@
 /* src/components/ShopAll/ShopAll.css */
+
+#shop-all-section {
+	display: grid;
+	position: relative;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding-top: 1vh;
+}

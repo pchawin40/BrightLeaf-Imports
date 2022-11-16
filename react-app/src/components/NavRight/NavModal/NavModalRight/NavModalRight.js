@@ -19,7 +19,7 @@ const NavModalRight = () => {
       <ul id="nmr-menu-ul">
         <li>
           <NavLink
-            onClick={_ => setShowNavModal(false)}
+            onClick={_ => setShowNavModal(!showNavModal)}
             to="/"
           >
             Home
