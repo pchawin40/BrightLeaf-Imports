@@ -19,14 +19,22 @@ const NavModalRight = () => {
       <ul id="nmr-menu-ul">
         <li>
           <NavLink
-            onClick={_ => setShowNavModal(!showNavModal)}
+            onClick={_ => {
+              document.querySelector("#nav-rn-figure").click();
+            }}
             to="/"
           >
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink to="/shop-all">
+          {/* //TODO: To work on Shop All */}
+          <NavLink
+            onClick={_ => {
+              document.querySelector("#nav-rn-figure").click();
+            }}
+            to="/shop-all"
+          >
             Shop All
           </NavLink>
         </li>
