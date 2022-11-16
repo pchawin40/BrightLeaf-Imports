@@ -27,32 +27,9 @@ const LandingPage = () => {
   const { backgroundColor, setBackgroundColor } = useNavHeader();
   const { currentPage, setCurrentPage } = useNavHeader();
 
-  const prevScrollY = useRef(0);
-
   useEffect(() => {
     if (currentPage !== "landing") setCurrentPage("landing");
-    console.log('landing', currentPage);
   }, [currentPage]);
-
-  // function to handle changing of background based on y scroll position
-  const changeBackground = () => {
-
-    const currentScrollY = window.scrollY;
-
-    // set background color
-    if (window.scrollY >= window.innerHeight - (window.innerHeight / 1.25)) {
-      setBackgroundColor('white');
-    } else {
-      setBackgroundColor('#484644');
-    }
-
-    prevScrollY.current = currentScrollY;
-  }
-
-  useEffect(() => {
-    window.addEventListener('scroll', changeBackground);
-    return () => window.removeEventListener('scroll', changeBackground);
-  }, [backgroundColor]);
 
   return (
     <section

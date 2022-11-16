@@ -28,7 +28,6 @@ const Portfolio = () => {
 
   useEffect(() => {
     if (currentPage !== "portfolio") setCurrentPage("portfolio");
-    console.log('currentPage', currentPage);
   }, [currentPage]);
 
   // function to handle changing of background based on y scroll position
