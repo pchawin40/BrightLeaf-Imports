@@ -63,7 +63,7 @@ export default function NavHeaderProvider({ children }) {
     if (currentPage === "landing") {
       headerColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (4 * (window.innerHeight * 1.05));
     } else if (currentPage === "portfolio") {
-      headerColorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 10)) && window.scrollY < (2 * (window.innerHeight * 1.08))
+      headerColorCondition = false;
     }
 
     // if mid, change to black
