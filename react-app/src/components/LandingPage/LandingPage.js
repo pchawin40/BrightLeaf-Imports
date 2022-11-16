@@ -21,9 +21,18 @@ import { useDispatch, useSelector } from 'react-redux';
 //? LandingPage component
 const LandingPage = () => {
 
+  /**
+   * Controlled inputs
+   */
   const { backgroundColor, setBackgroundColor } = useNavHeader();
+  const { currentPage, setCurrentPage } = useNavHeader();
 
   const prevScrollY = useRef(0);
+
+  useEffect(() => {
+    if (currentPage !== "landing") setCurrentPage("landing");
+    console.log('landing', currentPage);
+  }, [currentPage]);
 
   // function to handle changing of background based on y scroll position
   const changeBackground = () => {

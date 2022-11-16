@@ -13,6 +13,7 @@ export default function NavHeaderProvider({ children }) {
   const [loadCartModal, setLoadCartModal] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState('#484644');
   const [color, setColor] = useState('white');
+  const [currentPage, setCurrentPage] = useState("landing");
 
   // Landing Provider
   return (
@@ -23,7 +24,8 @@ export default function NavHeaderProvider({ children }) {
           showUserModal, setShowUserModal,
           loadCartModal, setLoadCartModal,
           backgroundColor, setBackgroundColor,
-          color, setColor
+          color, setColor,
+          currentPage, setCurrentPage
         }}
       >
         {children}

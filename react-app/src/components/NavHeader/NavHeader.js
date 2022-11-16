@@ -35,16 +35,16 @@ const NavHeader = () => {
    */
   const { color, setColor } = useNavHeader();
   const { showUserModal, setShowUserModal } = useNavHeader();
-  // const [showCartModal, setShowCartModal] = useState(false);
   const { loadCartModal, setLoadCartModal } = useNavHeader();
   const { showNavModal, setShowNavModal } = useNavRight();
+  const { currentPage, setCurrentPage } = useNavHeader();
 
   /**
   * Selector functions
   */
   // grab shopping carts data
   const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
-  
+
   // ref
   const prevScrollY = useRef(0);
 
@@ -53,8 +53,18 @@ const NavHeader = () => {
 
     const currentScrollY = window.scrollY;
 
+
+    // if currentPage is landing, use these variables
+    let colorCondition;
+
+    if (currentPage === "landing") {
+      colorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (4 * (window.innerHeight * 1.05));
+    } else if (currentPage === "portfolio") {
+      colorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 10)) && window.scrollY < (2 * (window.innerHeight * 1.08))
+    }
+
     // if mid, change to black
-    if (window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (4 * (window.innerHeight * 1.05))) {
+    if (colorCondition) {
       setColor('black');
     } else {
       setColor('white');

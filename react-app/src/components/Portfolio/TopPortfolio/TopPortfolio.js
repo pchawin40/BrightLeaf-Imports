@@ -23,7 +23,7 @@ const TopPortfolio = () => {
         className="image-background-container"
         style={{
           backgroundSize: 'cover',
-          backgroundImage: 'url("https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668397930/Brightleaf%20Imports/55ccf4_8fea206650d84f819bf656450d4cce3b_mv2_g8nxt3.webp")'
+          backgroundImage: 'url("https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668572167/Brightleaf%20Imports/tinted-portfolio_qyxhl5.png")'
         }}
       >
         {/* //? Left */}
@@ -53,6 +53,10 @@ const TopPortfolio = () => {
             alt="our-portfolio"
           />
         </figure>
+
+        <span className="top-figure-title">
+          3 | PORTFOLIO
+        </span>
       </figure>
 
     </section>

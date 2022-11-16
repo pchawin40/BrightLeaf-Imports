@@ -9,11 +9,11 @@
 }
 
 .image-background-container {
-	height: 80%;
+	height: 99%;
 	width: 100%;
 	margin: 0;
 
-	background-color: rgb(72, 70, 68, 0.85);
+	/* background-color: rgb(36, 36, 36, 0.85); */
 	background-blend-mode: multiply;
 	background-position: top -20vh center;
 	background-size: 100% auto;
@@ -50,7 +50,7 @@
 /* Right */
 .top-figure {
 	position: absolute;
-	top: 10vh;
+	top: 12vh;
 	right: 20vw;
 
 	width: 30vw;
@@ -61,4 +61,24 @@
 	object-fit: cover;
 	height: 100%;
 	width: 100%;
+}
+
+.top-figure-title {
+	color: white;
+
+	position: absolute;
+
+	font-size: 0.75vw;
+	top: 19vh;
+	right: 18.25vw;
+
+	transform: rotate(90deg);
+
+	opacity: 0.85;
+
+	word-spacing: 0.25vw;
+	letter-spacing: 1px;
+
+	padding: 0;
+	margin: 0;
 }

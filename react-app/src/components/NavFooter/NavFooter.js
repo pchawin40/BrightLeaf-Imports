@@ -1,5 +1,8 @@
 // src/components/NavFooter/NavFooter.js
 
+// import context
+import { useNavHeader } from '../../context/NavHeaderContext';
+
 // import css
 import './NavFooter.css';
 
@@ -11,7 +14,11 @@ import { NavLink } from 'react-router-dom';
 
 //? NavFooter component
 const NavFooter = () => {
+  /**
+   * Controlled inputs
+   */
   const [color, setColor] = useState('white');
+  const { currentPage, setCurrentPage } = useNavHeader();
 
   const prevScrollY = useRef(0);
 
@@ -20,8 +27,17 @@ const NavFooter = () => {
 
     const currentScrollY = window.scrollY;
 
+    // if currentPage is landing, use these variables
+    let colorCondition;
+
+    if (currentPage === "landing") {
+      colorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05)) && window.scrollY < (4 * (window.innerHeight / 1.25))
+    } else if (currentPage === "portfolio") {
+      colorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05)) && window.scrollY < (2 * (window.innerHeight / 1.7))
+    }
+
     // if mid, change to black
-    if (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05) && window.scrollY < (4 * (window.innerHeight / 1.25))) {
+    if (colorCondition) {
       setColor('black');
     } else {
       setColor('white');
