@@ -119,6 +119,27 @@
 	cursor: pointer;
 }
 
+/* To make this on hover of image */
+.lps-ul-aside {
+	position: absolute;
+	background-color: #484644;
+	color: white;
+	font-weight: normal;
+	bottom: 0;
+
+	width: 100%;
+
+	font-family: questrial, sans-serif;
+
+	opacity: 0;
+
+	transition: opacity 0.3s ease;
+}
+
+.lps-ul-figure:hover .lps-ul-aside {
+	opacity: 1;
+}
+
 /* Add More Pic Button */
 .amp-button {
 	margin-bottom: 25px;

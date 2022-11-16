@@ -89,6 +89,7 @@ const LowerPortfolio = () => {
             {
               displayImages.map(image =>
                 <figure
+                  className="lps-ul-figure"
                   key={`image id ${image.id} | imageable_id ${image.imageable_id}`}
                 >
                   <img
@@ -107,6 +108,22 @@ const LowerPortfolio = () => {
                       <i className="fa-solid fa-xmark fa-xl" />
                     </figure>
                   }
+
+                  {/* display quick preview of image description */}
+                  <aside
+                    className="lps-ul-aside"
+                  >
+                    {/* Show only first 20 letters */}
+                    <h4>
+                      {
+                        image.description.length > 55
+                          ?
+                          image.description.slice(0, 55) + "..."
+                          :
+                          image.description
+                      }
+                    </h4>
+                  </aside>
                 </figure>
               )
             }
