@@ -82,12 +82,12 @@ export default function NavHeaderProvider({ children }) {
     const currentScrollY = window.scrollY;
 
     // check currentPage and their variables conditions
-    let footerColorCondition;
+    let footerColorCondition = false;
 
     if (currentPage === "landing") {
       footerColorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05)) && window.scrollY < (4 * (window.innerHeight / 1.25))
     } else if (currentPage === "portfolio") {
-      footerColorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05)) && window.scrollY < (2 * (window.innerHeight / 1.7))
+      footerColorCondition = false;
     }
 
     // if mid, change to black
@@ -105,19 +105,19 @@ export default function NavHeaderProvider({ children }) {
     // background color
     window.addEventListener('scroll', changeBackground);
     return () => window.removeEventListener('scroll', changeBackground);
-  }, [backgroundColor]);
+  }, [backgroundColor, currentPage]);
 
   // per header color
   useEffect(() => {
     window.addEventListener('scroll', changeHeaderColor);
     return () => window.removeEventListener('scroll', changeHeaderColor);
-  }, [headerColor]);
+  }, [headerColor, currentPage]);
 
   // per footer color
   useEffect(() => {
     window.addEventListener('scroll', changeFooterColor);
     return () => window.removeEventListener('scroll', changeFooterColor);
-  }, [footerColor]);
+  }, [footerColor, currentPage]);
 
   // Landing Provider
   return (
