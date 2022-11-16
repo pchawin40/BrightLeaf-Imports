@@ -19,13 +19,14 @@
 	padding-left: 5vw;
 }
 
-#nmr-menu-ul > li {
+#nmr-menu-ul > li > a {
 	font-size: 4vw;
 	color: white;
 	font-family: 'Merriweather', serif;
+	text-decoration: none;
 }
 
-#nmr-menu-ul > li:hover {
+#nmr-menu-ul > li > a:hover {
 	color: #80ab63;
 	cursor: pointer;
 }
