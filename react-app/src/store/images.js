@@ -12,6 +12,17 @@ export const loadImages = (images) => {
   }
 }
 
+//? Action: Create image
+const CREATE_IMAGE = 'images/CREATE_IMAGE';
+
+// action creator: add image
+export const createImage = image => {
+  return {
+    type: CREATE_IMAGE,
+    image
+  }
+}
+
 /* --------- THUNKS -------- */
 export const thunkGetImages = (searchParam = "") => async (dispatch) => {
   // fetch all images
@@ -30,6 +41,59 @@ export const thunkGetImages = (searchParam = "") => async (dispatch) => {
 
   // return res if unsucessful
   return res;
+}
+
+export const thunkPostImages = (imageToAdd) => async (dispatch) => {
+  // destructure imageToAdd to place into formData
+  const {
+    imageable_id,
+    imageable_type,
+    url,
+    description
+  } = imageToAdd;
+
+  // define form data
+  const formData = new FormData();
+
+  console.log("inside thunk: ");
+  console.log('imageable_id', imageable_id);
+  console.log('imageable_type', imageable_type);
+  console.log('url', url);
+  console.log('description', description);;
+
+  // put imageToAdd into form data
+  formData.append("imageable_id", imageable_id);
+  formData.append("imageable_type", imageable_type);
+  formData.append("url", url);
+  formData.append("description", description);
+
+  // fetch route to post image
+  const res = await fetch('/api/images/', {
+    method: 'POST',
+    body: formData
+  });
+
+  // if successful
+  if (res.ok) {
+    const imageData = await res.json();
+
+    // if there's any error from res, return null
+    if (imageData.errors) {
+      return null;
+    }
+
+    // dispatch setting image
+    dispatch(createImage(imageData));
+    // if unsucessful
+  } else if (res.status < 500) {
+    const data = await res.json();
+
+    if (data['errors']) {
+      return data;
+    }
+  }
+
+  return ['An error occurred. Please try again.']
 }
 
 /* --------- SELECTOR FUNCTIONS -------- */

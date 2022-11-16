@@ -58,7 +58,7 @@ const ImageModal = ({ imageType }) => {
 
     // reset image sample after setting image loading to false
     //! TODO
-    document.querySelector('.im-image-input').value = '';
+    // document.querySelector('.im-image-input').value = '';
   }, [imageAdd]);
 
   // invoke dispatch
@@ -75,7 +75,7 @@ const ImageModal = ({ imageType }) => {
 
     if (file) {
       setImageAdd(file);
-      // fetchImageAdd(file);
+      fetchImageAdd(file);
     }
   }
 
@@ -85,21 +85,23 @@ const ImageModal = ({ imageType }) => {
     e.preventDefault();
 
     // imageable_id: get length of all images by imageType
-    const newImageableId = currentImagesByType.length;
-
     // imageable_type
     // url
     // description
+
     const imageToAdd = {
-      imageable_id: currentImagesByType.length,
+      imageable_id: currentImagesByType.length + 1,
       imageable_type: imageType,
       url: imageAdd,
       description: imageDescription
     }
 
-    console.log('imageToAdd', imageToAdd);
-
     // call on thunk to add image after getting imageToAdd data
+    dispatch(imageActions.thunkPostImages(imageToAdd))
+      .then(() => {
+        // dispatch to get images
+        dispatch(imageActions.thunkGetImages("Product=True&None=True"));
+      });
   }
 
   // function to convert given image file to url
@@ -114,14 +116,18 @@ const ImageModal = ({ imageType }) => {
 
       // fetch image
       const res = await fetch('/api/images/sample', {
-        methods: 'POST',
-        body: formData
+        method: 'POST',
+        body: formData,
       });
 
       // if succesful response, set the picture
       if (res.ok) {
         const currentPictureAdd = await res.json();
-        setImageAdd(currentPictureAdd.image_url);
+
+        console.log('here');
+        console.log('currentPictureAdd', currentPictureAdd);
+
+        setImageAdd(currentPictureAdd.image_sample);
       }
     }
   }
