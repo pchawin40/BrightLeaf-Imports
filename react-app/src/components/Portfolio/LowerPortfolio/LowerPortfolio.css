@@ -65,6 +65,8 @@
 	flex: 1 0 25%;
 	margin: 5px;
 	height: 35vh;
+
+	position: relative;
 }
 
 .lps-ul img {
@@ -76,6 +78,34 @@
 .lps-ul img:hover {
 	transform: scale(1.0075);
 	/* cursor: pointer; */
+}
+
+.lps-ul-inner-figure {
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	margin: 0;
+	padding: 0;
+
+	height: 2rem;
+	width: 2rem;
+
+	background-color: white;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.lps-ul-inner-figure > i {
+	color: black;
+}
+
+.lps-ul-inner-figure > i:hover {
+	cursor: pointer;
 }
 
 /* Add More Pic Button */

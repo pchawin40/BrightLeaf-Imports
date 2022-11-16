@@ -34,6 +34,7 @@ const LowerPortfolio = () => {
    */
   // grab all images
   const currentImages = useSelector(imageActions.getCurrentImages);
+  // grab current user information
   const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
 
   /**
@@ -85,11 +86,25 @@ const LowerPortfolio = () => {
           <ul className="lps-ul">
             {
               displayImages.map(image =>
-                <figure key={`image id ${image.id} | imageable_id ${image.imageable_id}`}>
+                <figure
+                  key={`image id ${image.id} | imageable_id ${image.imageable_id}`}
+                >
                   <img
                     src={image.url}
                     alt={image.description}
                   />
+
+                  {/* Button to delete image */}
+                  {
+                    currentUserInfo.role === "administrator"
+                    &&
+                    <figure
+                        
+                        className="lps-ul-inner-figure"
+                      >
+                      <i className="fa-solid fa-xmark fa-xl" />
+                    </figure>
+                  }
                 </figure>
               )
             }
@@ -128,6 +143,9 @@ const LowerPortfolio = () => {
     // on click, set to show add image modal
     setShowAddImageModal(true);
   }
+
+  // function to delete image
+  
 
   return (
     <section id="lp-section">

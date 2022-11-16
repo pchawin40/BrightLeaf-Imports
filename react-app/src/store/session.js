@@ -60,7 +60,6 @@ export const login = (email, password) => async (dispatch) => {
 
 }
 
-
 export const thunkAPILogin = (response, role = "user") => async dispatch => {
   const apiUser = {
     ...response,
