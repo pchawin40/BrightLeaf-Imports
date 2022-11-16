@@ -4,7 +4,10 @@
 const Portfolio = () => {
   return (
     <section id="portfolio-section">
+      {/* Top Portfolio Section */}
 
+      {/* Lower Portfolio Section */}
+      
     </section>
   );
 };
