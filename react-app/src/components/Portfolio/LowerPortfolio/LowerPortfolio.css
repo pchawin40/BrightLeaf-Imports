@@ -77,3 +77,10 @@
 	transform: scale(1.0075);
 	/* cursor: pointer; */
 }
+
+/* Add More Pic Button */
+.amp-button {
+	margin-bottom: 25px;
+
+	font-size: 1vw;
+}

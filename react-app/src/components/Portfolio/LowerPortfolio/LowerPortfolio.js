@@ -38,7 +38,7 @@ const LowerPortfolio = () => {
 
   const addMorePicButton = () => {
     return (
-      <button>
+      <button className="amp-button">
         <i className="fa-solid fa-plus" />
         Add pictures
       </button>
