@@ -44,7 +44,7 @@ const NavFooter = () => {
         }}
       >
         <i
-          className="fa-brands fa-github nfs-icon"
+          className="fa-brands fa-github nfs-icon nav-footer-icons"
           style={{
             color,
             transition: "color 1s ease"
@@ -58,6 +58,7 @@ const NavFooter = () => {
         }}
       >
         <i
+          id="nav-footer-icon"
           className="fa-brands fa-linkedin-in"
           style={{
             color,

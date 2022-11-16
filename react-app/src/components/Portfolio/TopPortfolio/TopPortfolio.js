@@ -43,14 +43,13 @@ const TopPortfolio = () => {
           </h1>
         </section>
 
-
         {/* Text */}
 
         {/* //? Right */}
         {/* Image */}
         <figure className="top-figure">
           <img
-            src="https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668567167/Brightleaf%20Imports/55ccf4_8063e3bb2e184a14aef22e7929a97197_mv2_ds2rwl.webp"
+            src="https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668570439/Brightleaf%20Imports/customer_review_qz4hbz.webp"
             alt="our-portfolio"
           />
         </figure>
