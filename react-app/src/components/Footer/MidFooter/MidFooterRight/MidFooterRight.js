@@ -46,8 +46,8 @@ const MidFooterRight = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/shop-all">
-              Shop All
+            <NavLink to="/about">
+              About
             </NavLink>
           </li>
           <li>
@@ -56,8 +56,8 @@ const MidFooterRight = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/about">
-              About
+            <NavLink to="/shop-all">
+              Shop All
             </NavLink>
           </li>
           <li>

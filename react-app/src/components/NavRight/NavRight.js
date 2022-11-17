@@ -1,9 +1,5 @@
 // src/components/NavRight/NavRight.js
 
-// import component
-import NavModal from './NavModal';
-import AlwaysScrollToTop from '../AlwaysScrollToTop/AlwaysScrollToTop';
-
 // import context
 import { Modal } from '../../context/Modal';
 import { useNavRight } from '../../context/NavRightContext';
@@ -48,7 +44,6 @@ const NavRight = () => {
           id="nav-rn-figure"
           onClick={_ => {
             setShowNavModal(!showNavModal);
-            <AlwaysScrollToTop />
             // if (!showNavModal) setColor("white");
             // TODO: To fix color when icon is set to black
             document.body.style.overflowY = "scroll";

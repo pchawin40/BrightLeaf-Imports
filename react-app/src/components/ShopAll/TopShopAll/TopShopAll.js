@@ -1,13 +1,13 @@
-// src/components/Portfolio/TopPortfolio/TopPortfolio.js
+// src/components/ShopAll/TopShopAll/TopShopAll.js
+
+// import css
+import './TopShopAll.css';
 
 // import context
 import { useNavHeader } from '../../../context/NavHeaderContext';
 
-// import css
-import './TopPortfolio.css';
-
-//? TopPortfolio component
-const TopPortfolio = () => {
+//? TopShopAll component
+const TopShopAll = () => {
   const { backgroundColor, setBackgroundColor } = useNavHeader();
 
   return (
@@ -20,10 +20,10 @@ const TopPortfolio = () => {
     >
       {/* //* Image background */}
       <figure
-        className="image-background-container"
+        className="image-background-container shop-all"
         style={{
           backgroundSize: 'cover',
-          backgroundImage: 'url("https://brightleaf-imports.s3.amazonaws.com/7233e6ac0592496dbb37caf8bf3e2bda.webp")'
+          backgroundImage: 'url("https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668667180/TopPage/shop-all-pic-tinted_tmnpev.webp")'
         }}
       >
         {/* //? Left */}
@@ -60,8 +60,8 @@ const TopPortfolio = () => {
       </figure>
 
     </section>
-  );
+  )
 };
 
 // export default component
-export default TopPortfolio;
+export default TopShopAll;

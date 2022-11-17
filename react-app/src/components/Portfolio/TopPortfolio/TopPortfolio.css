@@ -1,6 +1,6 @@
 /* src/components/Portfolio/TopPortfolio/TopPortfolio.css */
-#tp-section {
-	grid-area: top-portfolio;
+.top-page-section {
+	grid-area: top-page;
 
 	position: relative;
 
@@ -36,7 +36,7 @@
 
 /* Left */
 
-#tp-header-section > h1 {
+.tps-header-section > h1 {
 	font-size: 3.5vw;
 	margin-top: 10vh;
 	margin-left: 20.45vw;

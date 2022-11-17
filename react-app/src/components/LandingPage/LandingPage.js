@@ -8,7 +8,6 @@ import Footer from "../Footer";
 import NavHeader from "../NavHeader";
 import LowerLanding from "./LowerLanding";
 import TopLanding from "./TopLanding";
-import AlwaysScrollToTop from '../AlwaysScrollToTop/AlwaysScrollToTop';
 
 // import context
 import { useNavHeader } from '../../context/NavHeaderContext';

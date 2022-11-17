@@ -17,6 +17,7 @@ const NavModalRight = () => {
     <section id="nmr-section">
       {/* Menu List */}
       <ul id="nmr-menu-ul">
+        {/* Home */}
         <li>
           <NavLink
             onClick={_ => {
@@ -27,6 +28,27 @@ const NavModalRight = () => {
             Home
           </NavLink>
         </li>
+
+        {/* About */}
+        <li>
+          <NavLink to="/about">
+            About
+          </NavLink>
+        </li>
+
+        {/* Portfolio */}
+        <li>
+          <NavLink
+            onClick={_ => {
+              document.querySelector("#nav-rn-figure").click();
+            }}
+            to="/for-home"
+          >
+            Portfolio
+          </NavLink>
+        </li>
+
+        {/* Shop All */}
         <li>
           {/* //TODO: To work on Shop All */}
           <NavLink
@@ -38,21 +60,8 @@ const NavModalRight = () => {
             Shop All
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            onClick={_ => {
-              document.querySelector("#nav-rn-figure").click();
-            }}
-            to="/for-home"
-          >
-            Portfolio
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/about">
-            About
-          </NavLink>
-        </li>
+
+        {/* Contact */}
         <li>
           <NavLink to="/contact">
             Contact

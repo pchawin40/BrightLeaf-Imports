@@ -7,7 +7,6 @@ import './Portfolio.css';
 import Footer from "../Footer";
 import LowerPortfolio from "./LowerPortfolio";
 import TopPortfolio from "./TopPortfolio";
-import AlwaysScrollToTop from '../AlwaysScrollToTop/AlwaysScrollToTop';
 
 // import context
 import { useNavHeader } from '../../context/NavHeaderContext';
@@ -32,45 +31,25 @@ const Portfolio = () => {
   // invoke dispatch
   const dispatch = useDispatch();
 
-  // on open, always scroll to top
-
+  
   const prevScrollY = useRef(0);
-
+  
   useEffect(() => {
     if (currentPage !== "portfolio") {
       setCurrentPage("portfolio");
     }
-
+    
     if (currentPage === "portfolio") {
       dispatch(imageActions.thunkGetImages("Product=True&Gallery=True"));
     }
-
+    
+    // on open, always scroll to top
     window.scrollTo(0, 0);
   }, [currentPage]);
 
-  // function to handle changing of background based on y scroll position
-  const changeBackground = () => {
-
-    const currentScrollY = window.scrollY;
-
-    // set background color
-    if (window.scrollY >= window.innerHeight - (window.innerHeight / 1.25)) {
-      setBackgroundColor('white');
-    } else {
-      setBackgroundColor('#242424');
-    }
-
-    prevScrollY.current = currentScrollY;
-  }
-
-  useEffect(() => {
-    window.addEventListener('scroll', changeBackground);
-    return () => window.removeEventListener('scroll', changeBackground);
-  }, [backgroundColor]);
-
   return (
     <section
-      id="portfolio-section"
+      className="page-section"
       style={{
         backgroundColor,
         transition: "background-color 1s ease"
