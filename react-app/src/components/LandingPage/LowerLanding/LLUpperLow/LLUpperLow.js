@@ -1,6 +1,7 @@
 // src/components/LandingPage/LowerLanding/LLUpperLow/LLUpperLow.js
 
 // import css
+import { NavLink } from 'react-router-dom';
 import './LLUpperLow.css';
 
 //? LLUpperLow component
@@ -30,9 +31,13 @@ const LLUpperLow = () => {
           <h3>
             To Where It Begins
           </h3>
-          <button>
-            View Portfolio
-          </button>
+          <NavLink
+            to="/for-home"
+          >
+            <button>
+              View Portfolio
+            </button>
+          </NavLink>
         </section>
       </section>
     </section>
