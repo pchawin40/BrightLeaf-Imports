@@ -28,6 +28,7 @@ const GalleryCarousel = ({ imageType }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const { currentPictureId, setCurrentPictureId } = useImage();
   const [startingImage, setStartingImage] = useState(false);
+  const { showGalleryModal, setShowGalleryModal } = useImage();
 
   /**
    * Selector functions
@@ -87,18 +88,28 @@ const GalleryCarousel = ({ imageType }) => {
   // function to load starting image
   const loadStartingImage = () => {
     // setStartingImage
-    if (startingImage) {
-      return Object.values(currentImages)[currentImageIndex].url
-    } else {
-      setStartingImage(true);
-
-      return Object.values(currentImages).find((image, index) => {
-        if (image.id === currentPictureId) {
-          setCurrentImageIndex(index);
-
-          return true;
+    if (Object.values(currentImages).length >= 1) {
+      if (startingImage) {
+        if (Object.values(currentImages)[currentImageIndex]) {
+          return Object.values(currentImages)[currentImageIndex].url
+        } else {
+          setCurrentImageIndex(0);
+          return Object.values(currentImages)[0].url
         }
-      });
+      } else {
+        setStartingImage(true);
+
+        return Object.values(currentImages).find((image, index) => {
+          if (image.id === currentPictureId) {
+            setCurrentImageIndex(index);
+
+            return true;
+          }
+        });
+      }
+    } else {
+      // if length is not greater than 1, turn modal off
+      setShowGalleryModal(false);
     }
   }
 

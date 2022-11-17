@@ -29,7 +29,7 @@ const LowerPortfolio = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const { showAddImageModal, setShowAddImageModal } = useImage();
   const [imageType, setImageType] = useState("Gallery");
-  const [showGalleryModal, setShowGalleryModal] = useState(false);
+  const { showGalleryModal, setShowGalleryModal } = useImage();
   const { currentPictureId, setCurrentPictureId } = useImage();
 
   /**
@@ -111,7 +111,11 @@ const LowerPortfolio = () => {
                     currentUserInfo.role === "administrator"
                     &&
                     <figure
-                      onClick={_ => handleDeleteImage(image.id)}
+                      onClick={e => {
+                        e.stopPropagation();
+
+                        handleDeleteImage(image.id)
+                      }}
                       className="lps-ul-inner-figure"
                     >
                       <i className="fa-solid fa-xmark fa-xl" />
@@ -175,9 +179,10 @@ const LowerPortfolio = () => {
   // function to delete image
   const handleDeleteImage = imageId => {
     dispatch(imageActions.thunkDeleteImage(imageId))
-      .then(() =>
-        dispatch(imageActions.thunkGetImages("Product=True&Gallery=True"))
-      )
+      .then(() => {
+        setShowGalleryModal(false);
+        dispatch(imageActions.thunkGetImages("Product=True&Gallery=True"));
+      })
   }
 
   return (
@@ -256,7 +261,7 @@ const LowerPortfolio = () => {
             setShowGalleryModal(false)
           }}
         >
-          <DisplayGalleryModal imageType={imageType} setShowGalleryModal={setShowGalleryModal} />
+          <DisplayGalleryModal imageType={imageType} />
         </Modal>
       )}
     </section>

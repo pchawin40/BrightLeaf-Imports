@@ -20,7 +20,7 @@ import * as imageActions from '../../../../store/images';
 import * as sessionActions from '../../../../store/session';
 
 //? DisplayGalleryModal
-const DisplayGalleryModal = ({ imageType, setShowGalleryModal }) => {
+const DisplayGalleryModal = ({ imageType }) => {
   const { currentPictureId, setCurrentPictureId } = useImage();
 
   /**
@@ -38,9 +38,10 @@ const DisplayGalleryModal = ({ imageType, setShowGalleryModal }) => {
    */
   const [formReady, setFormReady] = useState(true);
   const [imageDescription, setImageDescription] = useState(
-    currentImageById.description ? currentImageById.description : ""
+    currentImageById && currentImageById.description ? currentImageById.description : ""
   );
   const [descriptionInputLength, setDescriptionInputLength] = useState(0);
+  const { showGalleryModal, setShowGalleryModal } = useImage();
 
   /**
    * UseEffect
@@ -54,7 +55,9 @@ const DisplayGalleryModal = ({ imageType, setShowGalleryModal }) => {
 
   // per currentImageById
   useEffect(() => {
-    setImageDescription(currentImageById.description);
+    if (currentImageById) {
+      setImageDescription(currentImageById.description);
+    }
   }, [currentImageById]);
 
   // invoke dispatch
@@ -111,6 +114,7 @@ const DisplayGalleryModal = ({ imageType, setShowGalleryModal }) => {
           </h4>
           <h5>
             {
+              currentImageById &&
               currentImageById.description
             }
           </h5>

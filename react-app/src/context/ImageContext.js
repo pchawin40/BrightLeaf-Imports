@@ -10,6 +10,7 @@ export default function ImageProvider({ children }) {
   // state for context
   const [showAddImageModal, setShowAddImageModal] = useState(false);
   const [currentPictureId, setCurrentPictureId] = useState(1);
+  const [showGalleryModal, setShowGalleryModal] = useState(false);
 
   // Image Provider
   return (
@@ -17,7 +18,8 @@ export default function ImageProvider({ children }) {
       <ImageContext.Provider
         value={{
           showAddImageModal, setShowAddImageModal,
-          currentPictureId, setCurrentPictureId
+          currentPictureId, setCurrentPictureId,
+          showGalleryModal, setShowGalleryModal
         }}
       >
         {children}
