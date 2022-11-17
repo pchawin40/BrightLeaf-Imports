@@ -1,1 +1,5 @@
 /* src/components/ShopAll/LowerShopAll/LowerShopAll.css */
+
+.lower-page-section.shop-all {
+	height: 100vh;
+}

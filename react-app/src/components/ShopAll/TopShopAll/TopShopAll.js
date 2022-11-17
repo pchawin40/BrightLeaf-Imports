@@ -13,10 +13,6 @@ const TopShopAll = () => {
   return (
     <section
       className="top-page-section"
-      style={{
-        backgroundColor,
-        transition: "background-color 1s ease"
-      }}
     >
       {/* //* Image background */}
       <figure
@@ -39,7 +35,7 @@ const TopShopAll = () => {
         </figure>
         <section className="tps-header-section">
           <h1>
-            Shop All
+            All Products
           </h1>
         </section>
 

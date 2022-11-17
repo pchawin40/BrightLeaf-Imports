@@ -104,7 +104,7 @@ function App() {
         </Route>
 
         {/* Shop All */}
-        <Route path='/shop-all'>
+        <Route path='/product-page'>
           <ShopAll />
         </Route>
 

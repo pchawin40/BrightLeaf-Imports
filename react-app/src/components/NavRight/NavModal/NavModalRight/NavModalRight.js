@@ -55,7 +55,7 @@ const NavModalRight = () => {
             onClick={_ => {
               document.querySelector("#nav-rn-figure").click();
             }}
-            to="/shop-all"
+            to="/product-page"
           >
             Shop All
           </NavLink>

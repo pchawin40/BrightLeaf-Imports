@@ -56,7 +56,7 @@ const MidFooterRight = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/shop-all">
+            <NavLink to="/product-page">
               Shop All
             </NavLink>
           </li>
