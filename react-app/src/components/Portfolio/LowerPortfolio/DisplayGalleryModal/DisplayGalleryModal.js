@@ -54,7 +54,7 @@ const DisplayGalleryModal = ({ imageType, setShowGalleryModal }) => {
   const showGallery = () => {
     return (
       <section className="dgm-inner-section">
-        <GalleryCarousel />
+        <GalleryCarousel imageType={imageType} />
       </section>
     )
   };

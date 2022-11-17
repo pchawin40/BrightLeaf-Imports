@@ -20,7 +20,7 @@ import { useSelector } from 'react-redux';
 import * as imageActions from '../../../../../store/images';
 
 //? GalleryCarousel component
-const GalleryCarousel = () => {
+const GalleryCarousel = ({ imageType }) => {
   /**
    * Controlled inputs
    */
@@ -28,12 +28,13 @@ const GalleryCarousel = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const { currentPictureId, setCurrentPictureId } = useImage();
   const [startingImage, setStartingImage] = useState(false);
+  const [imageToDisplay, setImageToDisplay] = useState([]);
 
   /**
    * Selector functions
    */
   // grab current images
-  const currentImages = useSelector(imageActions.getCurrentImages);
+  const currentImages = useSelector(imageType ? imageActions.getCurrentImagesByType(imageType) : imageActions.getCurrentImages);
 
   /**
    * UseEffect
@@ -43,7 +44,14 @@ const GalleryCarousel = () => {
     if (Object.values(currentImages) && Object.values(currentImages).length > 0) {
       setImageLoaded(true);
     }
-  }, [currentImages]);
+
+    // if there is imageType, get image by type instead of general 'all'
+    // if (imageType) {
+    //   imageActions.getCurrentImagesByType(imageType);
+    // } else {
+    //   setImageToDisplay(currentImages);
+    // }
+  }, [currentImages, imageType]);
 
   // function to handle previous slide
   const previousSlide = () => {
