@@ -28,7 +28,6 @@ const GalleryCarousel = ({ imageType }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const { currentPictureId, setCurrentPictureId } = useImage();
   const [startingImage, setStartingImage] = useState(false);
-  const [imageToDisplay, setImageToDisplay] = useState([]);
 
   /**
    * Selector functions
@@ -60,6 +59,13 @@ const GalleryCarousel = ({ imageType }) => {
       const shouldResetIndex = currentImageIndex === 0;
       const index = shouldResetIndex ? lastIndex : currentImageIndex - 1;
       setCurrentImageIndex(index);
+
+      // with index, find the image id
+      Object.values(currentImages).find((image, currIndex) => {
+        if (currIndex === index) {
+          setCurrentPictureId(image.id);
+        }
+      })
     }
   }
 
@@ -69,6 +75,13 @@ const GalleryCarousel = ({ imageType }) => {
     const shouldResetIndex = currentImageIndex === lastIndex;
     const index = shouldResetIndex ? 0 : currentImageIndex + 1;
     setCurrentImageIndex(index);
+
+    // with index, find the image id
+    Object.values(currentImages).find((image, currIndex) => {
+      if (currIndex === index) {
+        setCurrentPictureId(image.id);
+      }
+    })
   }
 
   // function to load starting image
@@ -94,6 +107,8 @@ const GalleryCarousel = ({ imageType }) => {
       {/* Left GalleryArrow */}
       {
         imageLoaded &&
+        currentImageIndex !== 0
+        &&
         <Arrow
           direction="left"
           clickFunction={previousSlide}
@@ -112,6 +127,8 @@ const GalleryCarousel = ({ imageType }) => {
       {/* Right GalleryArrow */}
       {
         imageLoaded &&
+        currentImageIndex !== currentImages.length - 1
+        &&
         <Arrow
           direction="right"
           clickFunction={nextSlide}

@@ -5,6 +5,7 @@ import './Arrow.css';
 
 //? Arrow component
 const Arrow = ({ direction, clickFunction, glyph }) => {
+  
   return (
     <figure
       className={`slide-arrow ${direction}`}
