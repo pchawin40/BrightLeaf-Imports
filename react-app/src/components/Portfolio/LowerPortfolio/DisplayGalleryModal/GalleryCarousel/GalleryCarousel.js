@@ -7,6 +7,9 @@ import './GalleryCarousel.css';
 import Arrow from '../../../../LandingPage/TopLanding/Carousel/Arrow';
 import ImageSlide from '../../../../LandingPage/TopLanding/Carousel/ImageSlide';
 
+// import context
+import { useImage } from '../../../../../context/ImageContext';
+
 // import react
 import { useEffect, useState } from 'react';
 
@@ -23,6 +26,8 @@ const GalleryCarousel = () => {
    */
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const { currentPictureId, setCurrentPictureId } = useImage();
+  const [startingImage, setStartingImage] = useState(false);
 
   /**
    * Selector functions
@@ -58,6 +63,24 @@ const GalleryCarousel = () => {
     setCurrentImageIndex(index);
   }
 
+  // function to load starting image
+  const loadStartingImage = () => {
+    // setStartingImage
+    if (startingImage) {
+      return Object.values(currentImages)[currentImageIndex].url
+    } else {
+      setStartingImage(true);
+
+      return Object.values(currentImages).find((image, index) => {
+        if (image.id === currentPictureId) {
+          setCurrentImageIndex(index);
+
+          return true;
+        }
+      });
+    }
+  }
+
   return (
     <section className="carousel gc-section" >
       {/* Left GalleryArrow */}
@@ -73,7 +96,7 @@ const GalleryCarousel = () => {
       {/* GalleryImageSlide */}
       <ImageSlide url={
         imageLoaded ?
-          Object.values(currentImages)[currentImageIndex].url
+          loadStartingImage()
           :
           "https://thumbs.gfycat.com/GlaringBossyCrustacean-size_restricted.gif"
       } />

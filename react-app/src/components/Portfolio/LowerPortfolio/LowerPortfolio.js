@@ -30,7 +30,7 @@ const LowerPortfolio = () => {
   const { showAddImageModal, setShowAddImageModal } = useImage();
   const [imageType, setImageType] = useState("Gallery");
   const [showGalleryModal, setShowGalleryModal] = useState(false);
-  const [currentPictureId, setCurrentPictureId] = useState(1);
+  const { currentPictureId, setCurrentPictureId } = useImage();
 
   /**
    * Selector functions
@@ -72,8 +72,6 @@ const LowerPortfolio = () => {
   const displayLoadedImages = (type = "Gallery") => {
     // get images to display
     const displayImages = Object.values(currentImages).filter(image => image.imageable_type === type);
-
-    console.log('displayImages', displayImages);
 
     if (imageLoaded) {
       if (displayImages.length <= 0) {
@@ -257,7 +255,7 @@ const LowerPortfolio = () => {
             setShowGalleryModal(false)
           }}
         >
-          <DisplayGalleryModal currentPictureId={currentPictureId} imageType={imageType} setShowGalleryModal={setShowGalleryModal} />
+          <DisplayGalleryModal imageType={imageType} setShowGalleryModal={setShowGalleryModal} />
         </Modal>
       )}
     </section>

@@ -3,6 +3,12 @@
 // import css
 import './DisplayGalleryModal.css';
 
+// import component
+import GalleryCarousel from './GalleryCarousel';
+
+// import context
+import { useImage } from '../../../../context/ImageContext';
+
 // import react
 import { useEffect, useState } from 'react';
 
@@ -11,10 +17,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // import store
 import * as imageActions from '../../../../store/images';
-import GalleryCarousel from './GalleryCarousel';
 
 //? DisplayGalleryModal
-const DisplayGalleryModal = ({ currentPictureId, imageType, setShowGalleryModal }) => {
+const DisplayGalleryModal = ({ imageType, setShowGalleryModal }) => {
+  const { currentPictureId, setCurrentPictureId } = useImage();
+
   /**
    * Selector functions
    */
