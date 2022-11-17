@@ -36,10 +36,14 @@
 }
 
 .dgm-description-box-description {
-	/* background-color: red; */
-
 	margin-top: 5rem;
 	overflow: auto;
+
+	height: 250px;
+
+	border-radius: 0.25rem;
+
+	margin-right: 2vw;
 }
 
 .dgm-description-box-description > h4 {
@@ -51,23 +55,59 @@
 
 .dgm-description-box-description > h5 {
 	font-size: 14px;
+
+	white-space: pre-line;
+
+	margin-right: 12px;
 }
 
 .dgm-db-text-form {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
+
+	margin-top: 50px;
+
+	position: absolute;
+
+	top: 25rem;
+}
+
+.dgm-db-text-form > label {
+	text-align: left;
+	font-size: 18px;
+	margin-bottom: 18px;
+	width: 100%;
 }
 
 .dgm-db-textarea {
 	background-color: white;
 
 	height: 20vh;
-	width: 25vw;
+	width: 29.5vw;
 
 	resize: none;
 
 	font-size: 18px;
+
+	border-radius: 0.25rem;
+}
+
+.dgm-db-textarea::-webkit-scrollbar,
+.dgm-description-box-description::-webkit-scrollbar {
+	width: 0.5em;
+}
+
+.dgm-db-textarea::-webkit-scrollbar-track,
+.dgm-description-box-description::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.dgm-db-textarea::-webkit-scrollbar-thumb,
+.dgm-description-box-description::-webkit-scrollbar-thumb {
+	background-color: #80ab63;
+	outline: 1px solid #92b77a;
+	border-radius: 1rem;
 }
 
 .dgm-db-submit-btn {

@@ -123,11 +123,15 @@ const DisplayGalleryModal = ({ imageType }) => {
           currentUserInfo &&
           currentUserInfo.role === "administrator" &&
           <form className="dgm-db-text-form" onSubmit={updateImage}>
+            <label htmlFor='dgm-textarea'>
+              Enter new description
+            </label>
             <textarea
+              name="dgm-textarea"
               className="dgm-db-textarea"
               value={imageDescription}
               onChange={updateImageDescription}
-              placeholder={`Enter description for ${currentImageById}`}
+              placeholder={`Enter description ${currentImageById ? `for ${currentImageById.imageable_type} ${currentImageById.imageable_id}` : ""}`}
             />
             {/* Button to submit if administraotr */}
             <button
