@@ -91,11 +91,20 @@ const DisplayGalleryModal = ({ imageType, setShowGalleryModal }) => {
 
       {/* Description Box */}
       <section className="dgm-description-box">
-        <h4>
-          {
-            currentImageById.description
-          }
-        </h4>
+        <section className="dgm-description-box-description">
+          <h4>
+            {
+              imageType
+              &&
+              imageType + " Portfolio"
+            }
+          </h4>
+          <h5>
+            {
+              currentImageById.description
+            }
+          </h5>
+        </section>
         <form className="dgm-db-text-form" onSubmit={updateImage}>
           <textarea
             className="dgm-db-textarea"
