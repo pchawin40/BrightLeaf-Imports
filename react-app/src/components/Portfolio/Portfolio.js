@@ -7,6 +7,7 @@ import './Portfolio.css';
 import Footer from "../Footer";
 import LowerPortfolio from "./LowerPortfolio";
 import TopPortfolio from "./TopPortfolio";
+import AlwaysScrollToTop from '../AlwaysScrollToTop/AlwaysScrollToTop';
 
 // import context
 import { useNavHeader } from '../../context/NavHeaderContext';
@@ -31,6 +32,8 @@ const Portfolio = () => {
   // invoke dispatch
   const dispatch = useDispatch();
 
+  // on open, always scroll to top
+
   const prevScrollY = useRef(0);
 
   useEffect(() => {
@@ -41,6 +44,8 @@ const Portfolio = () => {
     if (currentPage === "portfolio") {
       dispatch(imageActions.thunkGetImages("Product=True&Gallery=True"));
     }
+
+    window.scrollTo(0, 0);
   }, [currentPage]);
 
   // function to handle changing of background based on y scroll position
