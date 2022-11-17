@@ -87,7 +87,8 @@ const LoginForm = () => {
 
   // function to handle demo login
   const handleDemoLogin = async () => {
-    const data = await dispatch(sessionActions.login('marnie@aa.io', 'password'));
+    const data = await dispatch(sessionActions.login('marnie@aa.io', 'password'))
+      .then(() => setShowUserModal(false));
 
     // if data is return, there is an error. set the errors
     // turn modal off on successful log in

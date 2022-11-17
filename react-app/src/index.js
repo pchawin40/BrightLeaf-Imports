@@ -8,6 +8,7 @@ import { ModalProvider } from './context/Modal';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import NavHeaderProvider from './context/NavHeaderContext';
 import NavRightProvider from './context/NavRightContext';
+import ImageProvider from './context/ImageContext';
 
 const store = configureStore();
 
@@ -18,7 +19,9 @@ ReactDOM.render(
         <GoogleOAuthProvider clientId="1082422331077-c0eugbsvcaj0tbv9v500qorljk16ucl3.apps.googleusercontent.com">
           <NavHeaderProvider>
             <NavRightProvider>
-              <App />
+              <ImageProvider>
+                <App />
+              </ImageProvider>
             </NavRightProvider>
           </NavHeaderProvider>
         </GoogleOAuthProvider>

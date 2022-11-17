@@ -1,0 +1,89 @@
+/* src/components/Portfolio/LowerPortfolio/DisplayGalleryModal/DisplayGalleryModal.css */
+#display-gallery-modal {
+	height: 80vh;
+	width: 80vw;
+
+	display: grid;
+	grid-template-columns: 60% auto;
+	grid-auto-columns: max-content;
+	justify-items: start;
+	align-items: start;
+
+	background-color: white;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.dgm-inner-section {
+	height: 80vh;
+	width: fit-content;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	position: relative;
+
+	margin-left: 5rem;
+}
+
+/* Description Box */
+.dgm-description-box {
+	display: grid;
+	height: 100%;
+	grid-auto-rows: max-content;
+
+	overflow: auto;
+}
+
+.dgm-description-box-description {
+	/* background-color: red; */
+
+	margin-top: 5rem;
+	overflow: auto;
+}
+
+.dgm-description-box-description > h4 {
+	font-size: 36px;
+
+	margin: 0;
+	padding: 0;
+}
+
+.dgm-description-box-description > h5 {
+	font-size: 14px;
+}
+
+.dgm-db-text-form {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+.dgm-db-textarea {
+	background-color: white;
+
+	height: 20vh;
+	width: 25vw;
+
+	resize: none;
+
+	font-size: 18px;
+}
+
+.dgm-db-submit-btn {
+	height: 2rem;
+	width: fit-content;
+	background-color: #80ab63;
+	border: 3px solid #80ab63;
+	color: white;
+
+	margin-top: 1vh;
+}
+
+.dgm-db-submit-btn:hover {
+	cursor: pointer;
+}
+
+.dgm-db-submit-btn:active {
+	box-shadow: 0 1px 5px rgb(0 0 0 / 0.5);
+}

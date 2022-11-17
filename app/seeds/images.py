@@ -32,18 +32,6 @@ def seed_images():
     db.session.add(current_review_image)
     db.session.commit()
   
-  # seed from all products
-  # for product in products:
-  #   current_product_image = Image(
-  #     imageable_id=product.id,
-  #     imageable_type="Product",
-  #     url="https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668326915/image-gallery_dyqr4i.webp",
-  #     description="Product Image URL's description"
-  #   )
-    
-  #   db.session.add(current_product_image)
-  #   db.session.commit()
-  
   # seed from all reviews
   for review in reviews:
     current_review_image = Image(
@@ -69,10 +57,10 @@ def seed_images():
   for index in range(len(img_urls)):
     current_review_image = Image(
       imageable_id=index + 1,
-      imageable_type="None",
+      imageable_type="Gallery",
       url=img_urls[index],
-      # url="None Image URL",
-      description=f"None Image {index + 1} URL's description"
+      # url="Gallery Image URL",
+      description=f"Gallery Image {index + 1} URL's description"
     )
 
     db.session.add(current_review_image)

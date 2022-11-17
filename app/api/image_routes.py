@@ -5,6 +5,8 @@ from app.forms import ImageForm
 from app.models import User, db, Image
 from .auth_routes import validation_errors_to_error_messages
 from sqlalchemy import or_
+from app.s3_helpers import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
 
 image_routes = Blueprint('images', __name__)
 
@@ -23,8 +25,8 @@ def images():
   if(request.args.get('Product')):
     filter_list.append('Product')
 
-  if(request.args.get('None')):
-    filter_list.append('None')
+  if(request.args.get('Gallery')):
+    filter_list.append('Gallery')
     
   if(request.args.get('Review')):
     filter_list.append('Review')
@@ -139,3 +141,38 @@ def secure_image_by_id(image_id):
     # return successful response with delete image message
     return {'message': f"Successfully deleted image {image.id}"}
   
+#* POST /api/images/sample
+@image_routes.route('/sample', methods=['POST'])
+# @login_required
+def fetch_sample_image():
+  """
+  Fetch sample image
+  """
+  # get image data from form
+  form = ImageForm()
+  
+  #? Check if there are image file uploaded
+  if "image_sample" not in request.files:
+      return {"errors": "image required"}, 400
+      
+  # get image_sample url
+  image = request.files["image_sample"]
+  
+  # check if file type is ok
+  if not allowed_file(image.filename):
+      return {"errors": "file type not permitted"}, 400
+  
+  image.filename = get_unique_filename(image.filename)
+  
+  upload = upload_file_to_s3(image)
+  
+  if "url" not in upload:
+    # if the dictionary doesn't have a url key
+    # it means that there was an error when we tried to upload
+    # so we send back that error message
+    return upload, 400
+
+  url = upload["url"]
+
+  # return current user
+  return {"image_sample": url}

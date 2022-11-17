@@ -1,0 +1,10 @@
+/* src/components/Portfolio/LowerPortfolio/DispalyGalleryModal/GalleryCarousel/index.css */
+
+.carousel.gc-section {
+	display: flex;
+	height: 90%;
+	width: 40vw;
+
+	position: absolute;
+	left: 5%;
+}

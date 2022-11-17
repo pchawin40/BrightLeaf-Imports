@@ -2,10 +2,12 @@
 
 #shopping-cart-modal-outer-section {
 	height: 100%;
+	width: 0;
 }
 
 #shopping-cart-modal-outer-section > div {
 	height: inherit;
+	width: inherit;
 }
 
 #shopping-cart-modal-section {

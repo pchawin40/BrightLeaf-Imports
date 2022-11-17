@@ -1,0 +1,168 @@
+/* src/components/ImageModal/ImageModal.css */
+
+#image-modal {
+	background-color: white;
+	height: 500px;
+	width: 350px;
+
+	margin: 0;
+	padding: 0;
+
+	box-shadow: 0 0 5px 5px black;
+
+	position: relative;
+}
+
+#im-inner-section {
+	height: 100%;
+	width: 100%;
+}
+
+/** Image Modal Form  */
+#im-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	height: 100%;
+	width: 100%;
+}
+
+/* Add Title */
+#im-form > h2 {
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Image to display sample image to add */
+.imm-sample-image-figure {
+	height: 15rem;
+	width: 80%;
+}
+
+.imm-sample-image-figure > img {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+}
+
+.imm-sample-image-figure-inner {
+	height: 100%;
+	width: 100%;
+	border: 1px solid black;
+	margin: 0;
+	padding: 0;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.imm-sample-image-figure-inner {
+	cursor: pointer;
+}
+
+/* Picture dropper */
+.im-pic-dropper {
+	width: 150px;
+}
+
+.im-pic-dropper,
+.im-button-containers > button {
+	margin: 0;
+	padding: 0.5rem 1.5rem;
+
+	background-color: #6fa04e;
+	color: white;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	border: none;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.im-pic-dropper:hover {
+	cursor: pointer;
+}
+
+.im-image-input {
+	display: none;
+}
+
+/* Image description textarea */
+.im-description-container {
+	height: 5rem;
+	width: 80%;
+
+	position: relative;
+
+	padding-bottom: 24px;
+}
+
+.im-textarea-description {
+	resize: none;
+	height: 100%;
+	width: 100%;
+}
+
+.im-textarea-description::-webkit-scrollbar {
+	width: 0.5em;
+}
+
+.im-textarea-description::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.im-textarea-description::-webkit-scrollbar-thumb {
+	background-color: #80ab63;
+	outline: 1px solid #92b77a;
+	border-radius: 1rem;
+}
+
+.im-description-container > span {
+	position: absolute;
+
+	right: 0;
+	bottom: 0;
+}
+
+/** Container for Image Modal Buttons */
+.im-button-containers {
+	width: 100%;
+
+	margin-top: 5px;
+
+	display: flex;
+	justify-content: space-evenly;
+}
+
+/* Button to reset image */
+.im-button-containers > button:hover {
+	cursor: pointer;
+}
+
+.button.add-image.false {
+	background-color: gray;
+}
+
+.button.add-image.false {
+	cursor: default;
+}
+
+/* Exit Modal Icon */
+.exit-modal-icon {
+	position: absolute;
+	top: 1.5rem;
+	right: 1.5rem;
+}
+
+.exit-modal-icon:hover {
+	cursor: pointer;
+}

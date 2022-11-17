@@ -1,16 +1,25 @@
 // src/components/Portfolio/LowerPortfolio/LowerPortfolio.js
 
+// import component
+import ImageModal from '../../ImageModal';
+
+// import context
+import { useImage } from '../../../context/ImageContext';
+import { Modal } from '../../../context/Modal';
+
 // import css
 import './LowerPortfolio.css';
 
 // import react-redux
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import react
 import { useEffect, useState } from 'react';
 
 // import store
 import * as imageActions from '../../../store/images';
+import * as sessionActions from '../../../store/session';
+import DisplayGalleryModal from './DisplayGalleryModal';
 
 //? LowerPortfolio component
 const LowerPortfolio = () => {
@@ -18,12 +27,18 @@ const LowerPortfolio = () => {
    * Controlled inputs
    */
   const [imageLoaded, setImageLoaded] = useState(false);
+  const { showAddImageModal, setShowAddImageModal } = useImage();
+  const [imageType, setImageType] = useState("Gallery");
+  const { showGalleryModal, setShowGalleryModal } = useImage();
+  const { currentPictureId, setCurrentPictureId } = useImage();
 
   /**
    * Selector functions
    */
   // grab all images
   const currentImages = useSelector(imageActions.getCurrentImages);
+  // grab current user information
+  const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
 
   /**
   * useEffect
@@ -36,9 +51,17 @@ const LowerPortfolio = () => {
     }
   }, [currentImages]);
 
-  const addMorePicButton = () => {
+  // invoke dispatch
+  const dispatch = useDispatch();
+
+  // function to return a button that add more pic
+  const addMorePicButton = (type = "Gallery") => {
     return (
-      <button className="amp-button">
+      <button
+        className="amp-button"
+        value={type}
+        onClick={_ => handleAddPicture(type)}
+      >
         <i className="fa-solid fa-plus" />
         Add pictures
       </button>
@@ -46,7 +69,7 @@ const LowerPortfolio = () => {
   };
 
   // function to display images
-  const displayLoadedImages = (type = "None") => {
+  const displayLoadedImages = (type = "Gallery") => {
     // get images to display
     const displayImages = Object.values(currentImages).filter(image => image.imageable_type === type);
 
@@ -55,13 +78,10 @@ const LowerPortfolio = () => {
         // if image is loaded but no images, show content: no image, add more
         return (
           <ul className="lps-ul">
-            <figure>
-              No images available. Add more here
-
-              <button>
-                <i className="fa-solid fa-plus" />
-                Add pictures
-              </button>
+            <figure id="lps-no-image-figure">
+              <h3>
+                No images currently available.
+              </h3>
             </figure>
           </ul>
         )
@@ -71,11 +91,52 @@ const LowerPortfolio = () => {
           <ul className="lps-ul">
             {
               displayImages.map(image =>
-                <figure>
+                <figure
+                  className="lps-ul-figure"
+                  key={`image id ${image.id} | imageable_id ${image.imageable_id}`}
+                  onClick={_ => {
+                    setShowGalleryModal(true);
+                    setCurrentPictureId(image.id);
+                    setImageType(image.imageable_type);
+                  }}
+                >
                   <img
                     src={image.url}
                     alt={image.description}
                   />
+
+                  {/* Button to delete image */}
+                  {
+                    currentUserInfo &&
+                    currentUserInfo.role === "administrator"
+                    &&
+                    <figure
+                      onClick={e => {
+                        e.stopPropagation();
+
+                        handleDeleteImage(image.id)
+                      }}
+                      className="lps-ul-inner-figure"
+                    >
+                      <i className="fa-solid fa-xmark fa-xl" />
+                    </figure>
+                  }
+
+                  {/* display quick preview of image description */}
+                  <aside
+                    className="lps-ul-aside"
+                  >
+                    {/* Show only first 20 letters */}
+                    <h4>
+                      {
+                        image.description.length > 55
+                          ?
+                          image.description.slice(0, 55) + "..."
+                          :
+                          image.description
+                      }
+                    </h4>
+                  </aside>
                 </figure>
               )
             }
@@ -85,7 +146,6 @@ const LowerPortfolio = () => {
     } else {
       // if image is not yet loaded, do a progress bar
       return (
-
         <ul className="lps-ul">
           <figure>
             <img
@@ -96,8 +156,34 @@ const LowerPortfolio = () => {
         </ul>
       );
     }
-
   };
+
+  // function to check if session user is administrator
+  const checkSessionUserType = () => {
+    if (currentUserInfo && currentUserInfo.role) {
+      return currentUserInfo.role === "administrator";
+    } else {
+      return false;
+    }
+  }
+
+  // function to add more pictures based on type
+  const handleAddPicture = (type) => {
+    // set imageType from given type
+    setImageType(type);
+
+    // on click, set to show add image modal
+    setShowAddImageModal(true);
+  }
+
+  // function to delete image
+  const handleDeleteImage = imageId => {
+    dispatch(imageActions.thunkDeleteImage(imageId))
+      .then(() => {
+        setShowGalleryModal(false);
+        dispatch(imageActions.thunkGetImages("Product=True&Gallery=True"));
+      })
+  }
 
   return (
     <section id="lp-section">
@@ -113,19 +199,26 @@ const LowerPortfolio = () => {
         A closer look into the journey behind the craftsmanship
       </h2>
 
-      {/* None Title */}
+      {/* Gallery Title */}
       <h3>
         wHERE IT bEGINS
       </h3>
 
-      {/* None Text */}
+      {/* Gallery Text */}
       <p>
         Take a glance at the process behind our products. Brightleaf Imports is family owned, ethically sourced company that strives for perfection. Each piece is uniquely designed and hand-crafted to perfection.
       </p>
 
-      {/* None Images */}
+      {/* Gallery Images */}
       {
-        displayLoadedImages("None")
+        displayLoadedImages("Gallery")
+      }
+
+      {/* Add "Gallery" type image if administrator */}
+      {
+        checkSessionUserType()
+        &&
+        addMorePicButton("Gallery")
       }
 
       {/* Product Title */}
@@ -145,8 +238,32 @@ const LowerPortfolio = () => {
 
       {/* Square to add more images (if administrator) */}
       {
-        addMorePicButton()
+        checkSessionUserType()
+        &&
+        addMorePicButton("Product")
       }
+
+      {/* Image Modal */}
+      {showAddImageModal && (
+        <Modal
+          onClose={(_) => {
+            setShowAddImageModal(false)
+          }}
+        >
+          <ImageModal imageType={imageType} />
+        </Modal>
+      )}
+
+      {/* Display Gallery Modal */}
+      {showGalleryModal && (
+        <Modal
+          onClose={(_) => {
+            setShowGalleryModal(false)
+          }}
+        >
+          <DisplayGalleryModal imageType={imageType} />
+        </Modal>
+      )}
     </section>
   );
 };

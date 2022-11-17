@@ -59,7 +59,7 @@ def review_by_id(review_id):
   review = Review.query.get(review_id)
   
   # check if review is found, if not, throw appropriate error
-  if review == None:
+  if review == Gallery:
     return {'errors': [f"Review {review_id} does not exist"]}, 404
   
   # return successful response if found
@@ -78,7 +78,7 @@ def secure_review_by_id(review_id):
   review = Review.query.get(review_id)
   
   # check if review is found
-  if review == None:
+  if review == Gallery:
     return {'errors': [f"Review {review_id} does not exist"]}, 404
   
   # [PUT]

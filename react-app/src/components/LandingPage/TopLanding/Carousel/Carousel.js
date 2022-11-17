@@ -9,6 +9,8 @@ import ImageSlide from "./ImageSlide";
 
 // import react
 import { useEffect, useState } from "react";
+
+// import react-redux
 import { useSelector } from 'react-redux';
 
 // import store
@@ -25,7 +27,7 @@ const Carousel = () => {
   /**
    * Selector functions
    */
-  // grab "None" type images
+  // grab "Gallery" type images
   const currentImages = useSelector(imageActions.getCurrentImages);
 
   /**

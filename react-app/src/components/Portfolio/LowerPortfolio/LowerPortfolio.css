@@ -57,14 +57,26 @@
 	display: flex;
 	flex-wrap: wrap;
 
+	justify-content: center;
 	margin-left: 5vw;
 	margin-right: 5vw;
+}
+
+#lps-no-image-figure {
+	margin: 0;
+	padding: 0;
+	height: 2rem;
+	width: 2rem;
+
+	text-align: center;
 }
 
 .lps-ul > figure {
 	flex: 1 0 25%;
 	margin: 5px;
 	height: 35vh;
+
+	position: relative;
 }
 
 .lps-ul img {
@@ -78,9 +90,80 @@
 	/* cursor: pointer; */
 }
 
+.lps-ul-inner-figure {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	margin: 0;
+	padding: 0;
+
+	height: 2rem;
+	width: 2rem;
+
+	background-color: white;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.lps-ul-inner-figure > i {
+	color: black;
+}
+
+.lps-ul-inner-figure:hover,
+.lps-ul-inner-figure > i:hover {
+	cursor: pointer;
+}
+
+/* To make this on hover of image */
+.lps-ul-aside {
+	position: absolute;
+	background-color: #484644;
+	color: white;
+	font-weight: normal;
+	bottom: 0;
+
+	width: 100%;
+
+	font-family: questrial, sans-serif;
+
+	opacity: 0;
+
+	transition: opacity 0.3s ease;
+}
+
+.lps-ul-figure:hover .lps-ul-aside {
+	opacity: 1;
+}
+
 /* Add More Pic Button */
 .amp-button {
 	margin-bottom: 25px;
+	padding: 24px 50px;
 
 	font-size: 1vw;
+
+	color: white;
+	background-color: #6fa04e;
+	border: none;
+	border-radius: 0.25rem;
+
+	margin-left: 2vw;
+}
+
+.amp-button:hover {
+	cursor: pointer;
+	transform: scale(1.0075);
+}
+
+.amp-button:active {
+	box-shadow: 0 0 10px #ccc;
+}
+
+.amp-button > i {
+	margin-right: 12px;
 }

@@ -8,6 +8,7 @@ import Footer from "../Footer";
 import NavHeader from "../NavHeader";
 import LowerLanding from "./LowerLanding";
 import TopLanding from "./TopLanding";
+import AlwaysScrollToTop from '../AlwaysScrollToTop/AlwaysScrollToTop';
 
 // import context
 import { useNavHeader } from '../../context/NavHeaderContext';
@@ -33,14 +34,18 @@ const LandingPage = () => {
   // invoke dispatch
   const dispatch = useDispatch();
 
+  // on open, always scroll to top
+
   useEffect(() => {
     if (currentPage !== "landing") {
       setCurrentPage("landing");
     }
 
     if (currentPage === "landing") {
-      dispatch(imageActions.thunkGetImages("None=True"));
+      dispatch(imageActions.thunkGetImages("Gallery=True"));
     }
+
+    window.scrollTo(0, 0);
   }, [currentPage]);
 
   return (
