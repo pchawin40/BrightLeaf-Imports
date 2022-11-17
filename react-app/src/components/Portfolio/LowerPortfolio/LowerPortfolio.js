@@ -123,20 +123,23 @@ const LowerPortfolio = () => {
                   }
 
                   {/* display quick preview of image description */}
-                  <aside
-                    className="lps-ul-aside"
-                  >
-                    {/* Show only first 20 letters */}
-                    <h4>
-                      {
-                        image.description.length > 55
-                          ?
-                          image.description.slice(0, 55) + "..."
-                          :
-                          image.description
-                      }
-                    </h4>
-                  </aside>
+                  {
+                    image.description.length > 0 &&
+                    <aside
+                      className="lps-ul-aside"
+                    >
+                      {/* Show only first 20 letters */}
+                      <h4>
+                        {
+                          image.description.length > 55
+                            ?
+                            image.description.slice(0, 55) + "..."
+                            :
+                            image.description
+                        }
+                      </h4>
+                    </aside>
+                  }
                 </figure>
               )
             }
