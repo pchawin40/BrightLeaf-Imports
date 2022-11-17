@@ -6,7 +6,7 @@ import './LowerShopAll.css';
 //? LowerShopAll component
 const LowerShopAll = () => {
   return (
-    <section id="lsa-section">
+    <section className="lower-page-section">
 
     </section>
   );

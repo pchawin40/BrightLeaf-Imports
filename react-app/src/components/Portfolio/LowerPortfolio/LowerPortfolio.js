@@ -189,7 +189,7 @@ const LowerPortfolio = () => {
   }
 
   return (
-    <section id="lp-section">
+    <section className="lower-page-section">
       {/* // TODO: Implement both user interface AND administrator interface */}
 
       {/* Title */}

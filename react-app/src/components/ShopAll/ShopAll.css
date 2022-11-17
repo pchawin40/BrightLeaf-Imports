@@ -1,6 +1,6 @@
 /* src/components/ShopAll/ShopAll.css */
 
-#shop-all-section {
+.page-section {
 	display: grid;
 	position: relative;
 	overflow-y: auto;

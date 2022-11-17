@@ -51,7 +51,7 @@ const ShopAll = () => {
 
   return (
     <section
-      className="page-section"
+      className="page-section shop-all"
       style={{
         backgroundColor,
         transition: "background-color 1s ease"

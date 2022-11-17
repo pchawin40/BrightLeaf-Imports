@@ -1,4 +1,6 @@
 /* src/components/ShopAll/TopShopAll/TopShopAll.css */
 .image-background-container.shop-all {
 	transform: scale(1.3);
+
+	height: 80vh;
 }

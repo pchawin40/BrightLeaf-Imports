@@ -1,6 +1,6 @@
 /* src/components/Portfolio/LowerPortfolio/LowerPortfolio.css */
 
-#lp-section {
+.lower-page-section {
 	grid-area: lower-page;
 
 	height: 100%;
@@ -16,35 +16,35 @@
 	padding: 0;
 }
 
-#lp-section h1,
-#lp-section h2,
-#lp-section h3,
-#lp-section p {
+.lower-page-section h1,
+.lower-page-section h2,
+.lower-page-section h3,
+.lower-page-section p {
 	margin: 0;
 	padding: 0;
 
 	margin-bottom: 20px;
 }
 
-#lp-section > h1 {
+.lower-page-section > h1 {
 	font-size: 3vw;
 }
 
-#lp-section > h3 {
+.lower-page-section > h3 {
 	font-size: 1.5vw;
 }
 
-#lp-section > h1,
-#lp-section > h3 {
+.lower-page-section > h1,
+.lower-page-section > h3 {
 	color: #6fa04e;
 	text-transform: uppercase;
 }
 
-#lp-section > h2 {
+.lower-page-section > h2 {
 	font-weight: normal;
 }
 
-#lp-section > p {
+.lower-page-section > p {
 	margin-left: 30vw;
 	margin-right: 30vw;
 

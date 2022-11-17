@@ -39,7 +39,7 @@ const TopShopAll = () => {
         </figure>
         <section className="tps-header-section">
           <h1>
-            Our Portfolio
+            Shop All
           </h1>
         </section>
 
@@ -47,15 +47,15 @@ const TopShopAll = () => {
 
         {/* //? Right */}
         {/* Image */}
-        <figure className="top-figure">
+        <figure className="top-figure shop-all">
           <img
-            src="https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668570439/Brightleaf%20Imports/customer_review_qz4hbz.webp"
+            src="https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668450314/Brightleaf%20Imports/102720045_614676142740747_20774271708246_nz7c6v.webp"
             alt="our-portfolio"
           />
         </figure>
 
         <span className="top-figure-title">
-          3 | PORTFOLIO
+          4 | SHOP ALL
         </span>
       </figure>
 
