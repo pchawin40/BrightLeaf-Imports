@@ -94,6 +94,7 @@ const ImageModal = ({ imageType }) => {
       description: imageDescription
     }
 
+    console.log('imageToAdd', imageToAdd);
     // call on thunk to add image after getting imageToAdd data
     dispatch(imageActions.thunkPostImages(imageToAdd))
       .then(() => {

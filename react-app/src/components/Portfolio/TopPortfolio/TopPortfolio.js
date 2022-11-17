@@ -23,7 +23,7 @@ const TopPortfolio = () => {
         className="image-background-container"
         style={{
           backgroundSize: 'cover',
-          backgroundImage: 'url("https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668572167/Brightleaf%20Imports/tinted-portfolio_qyxhl5.png")'
+          backgroundImage: 'url("https://brightleaf-imports.s3.amazonaws.com/7233e6ac0592496dbb37caf8bf3e2bda.webp")'
         }}
       >
         {/* //? Left */}
