@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // import store
 import * as imageActions from '../../../../store/images';
+import * as sessionActions from '../../../../store/session';
 
 //? DisplayGalleryModal
 const DisplayGalleryModal = ({ imageType, setShowGalleryModal }) => {
@@ -25,8 +26,12 @@ const DisplayGalleryModal = ({ imageType, setShowGalleryModal }) => {
   /**
    * Selector functions
    */
+  // grab images
   const currentImagesByType = useSelector(imageActions.getCurrentImagesByType(imageType));
   const currentImageById = useSelector(imageActions.getCurrentImageById(currentPictureId));
+
+  // grab current user information
+  const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
 
   /**
    * Controlled inputs
@@ -110,22 +115,26 @@ const DisplayGalleryModal = ({ imageType, setShowGalleryModal }) => {
             }
           </h5>
         </section>
-        <form className="dgm-db-text-form" onSubmit={updateImage}>
-          <textarea
-            className="dgm-db-textarea"
-            value={imageDescription}
-            onChange={updateImageDescription}
-            placeholder={`Enter description for ${currentImageById}`}
-          />
-          {/* Button to submit if administraotr */}
-          <button
-            className="dgm-db-submit-btn"
-            type='submit'
-            onClick={updateImage}
-          >
-            Edit Description
-          </button>
-        </form>
+        {
+          currentUserInfo &&
+          currentUserInfo.role === "administrator" &&
+          <form className="dgm-db-text-form" onSubmit={updateImage}>
+            <textarea
+              className="dgm-db-textarea"
+              value={imageDescription}
+              onChange={updateImageDescription}
+              placeholder={`Enter description for ${currentImageById}`}
+            />
+            {/* Button to submit if administraotr */}
+            <button
+              className="dgm-db-submit-btn"
+              type='submit'
+              onClick={updateImage}
+            >
+              Edit Description
+            </button>
+          </form>
+        }
       </section>
 
     </section>

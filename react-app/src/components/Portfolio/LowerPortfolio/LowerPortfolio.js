@@ -107,6 +107,7 @@ const LowerPortfolio = () => {
 
                   {/* Button to delete image */}
                   {
+                    currentUserInfo &&
                     currentUserInfo.role === "administrator"
                     &&
                     <figure
