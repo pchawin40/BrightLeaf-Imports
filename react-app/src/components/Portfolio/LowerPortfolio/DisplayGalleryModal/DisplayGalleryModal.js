@@ -47,6 +47,11 @@ const DisplayGalleryModal = ({ imageType, setShowGalleryModal }) => {
     }
   }, [imageDescription, descriptionInputLength, formReady]);
 
+  // per currentImageById
+  useEffect(() => {
+    setImageDescription(currentImageById.description);
+  }, [currentImageById]);
+
   // invoke dispatch
   const dispatch = useDispatch();
 
