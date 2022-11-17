@@ -6,6 +6,7 @@ def seed_images():
   reviews = Review.query.all()
   
   product_img_urls = [
+    "https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668669305/BrightleafImports-ShopAll/55ccf4_be69b17336114091846ffc3be845d8a6_mv2_lfwzlw.webp",
     "https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668579300/BrightleafImports-Product/55ccf4_a2fde1e3392f4172aae2d60f8210897e_mv2_nraa4q.webp",
     "https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668579298/BrightleafImports-Product/55ccf4_e3210146c7ed49ed9530ee309539c3f3_mv2_iptxen.webp",
     "https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668579298/BrightleafImports-Product/55ccf4_90c3600b4b324f4987ae39983b245941_mv2_besuek.webp",
@@ -16,9 +17,7 @@ def seed_images():
     "https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668579291/BrightleafImports-Product/55ccf4_06525651f6f34da498e1af1c2db131da_mv2_dnlepk.webp",
     "https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668579290/BrightleafImports-Product/55ccf4_6ade8de87a5b4468b6cd4d631f0e77c8_mv2_vrwxyp.webp",
     "https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668579289/BrightleafImports-Product/55ccf4_4544a9eb13fb40b69cf2bf25453905bd_mv2_zobjog.webp",
-    "https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668579288/BrightleafImports-Product/55ccf4_1b34b92cc0f44d2db0bb83d22fd3be7c_mv2_bailvn.webp",
-    "https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668579285/BrightleafImports-Product/55ccf4_8063e3bb2e184a14aef22e7929a97197_mv2_b129ks.webp",
-    "https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668579285/BrightleafImports-Product/55ccf4_02e30e2e8f32449c80d78b4160d9019d_mv2_ywa9zk.webp"
+    "https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668579288/BrightleafImports-Product/55ccf4_1b34b92cc0f44d2db0bb83d22fd3be7c_mv2_bailvn.webp"
   ]
   
   for index in range(len(product_img_urls)):
