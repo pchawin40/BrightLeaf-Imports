@@ -33,7 +33,7 @@ def get_or_modify_user(user_id):
     session_user = User.query.get(current_user.get_id())
     
     # if no user found, throw error
-    if(user == None):
+    if(user == Gallery):
         return {'errors': [f"User {user_id} does not exist"]}, 404
             
     # [PUT] update user information

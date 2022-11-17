@@ -39,7 +39,7 @@ const Portfolio = () => {
     }
 
     if (currentPage === "portfolio") {
-      dispatch(imageActions.thunkGetImages("Product=True&None=True"));
+      dispatch(imageActions.thunkGetImages("Product=True&Gallery=True"));
     }
   }, [currentPage]);
 

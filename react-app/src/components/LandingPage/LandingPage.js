@@ -39,7 +39,7 @@ const LandingPage = () => {
     }
 
     if (currentPage === "landing") {
-      dispatch(imageActions.thunkGetImages("None=True"));
+      dispatch(imageActions.thunkGetImages("Gallery=True"));
     }
   }, [currentPage]);
 

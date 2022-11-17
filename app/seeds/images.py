@@ -57,10 +57,10 @@ def seed_images():
   for index in range(len(img_urls)):
     current_review_image = Image(
       imageable_id=index + 1,
-      imageable_type="None",
+      imageable_type="Gallery",
       url=img_urls[index],
-      # url="None Image URL",
-      description=f"None Image {index + 1} URL's description"
+      # url="Gallery Image URL",
+      description=f"Gallery Image {index + 1} URL's description"
     )
 
     db.session.add(current_review_image)

@@ -26,20 +26,33 @@ const DisplayGalleryModal = ({ currentPictureId, imageType }) => {
 
   // function to display image based on type
   const showGallery = () => {
-    console.log('currentImagesByType', currentImagesByType);
-    console.log('currentImageById', currentImageById);
+    // console.log('currentImagesByType', currentImagesByType);
+    // console.log('currentImageById', currentImageById);
 
-    return <GalleryCarousel />
+    return (
+      <section className="dgm-inner-section">
+        <GalleryCarousel />
+      </section>
+    )
   };
 
   return (
     <section id="display-gallery-modal">
-      <h1>
-        Testing
-      </h1>
       {
         showGallery()
       }
+
+      {/* Description Box */}
+      <h4>
+        {
+          currentImageById.description
+        }
+      </h4>
+      <textarea
+        className="dgm-textarea"
+      />
+
+      {/* Button to submit if administraotr */}
     </section>
   );
 };

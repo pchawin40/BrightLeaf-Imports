@@ -12,7 +12,7 @@ image_routes = Blueprint('images', __name__)
 
 #* GET /api/images
 #* GET /api/images/search
-#* GET /api/images/?Product=True&None=True
+#* GET /api/images/?Product=True&Gallery=True
 # Example of search request args: api/images/?search=Product
 @image_routes.route('/')
 def images():
@@ -25,8 +25,8 @@ def images():
   if(request.args.get('Product')):
     filter_list.append('Product')
 
-  if(request.args.get('None')):
-    filter_list.append('None')
+  if(request.args.get('Gallery')):
+    filter_list.append('Gallery')
     
   if(request.args.get('Review')):
     filter_list.append('Review')
@@ -81,7 +81,7 @@ def image_by_id(image_id):
   image = Image.query.get(image_id)
   
   # check if image is found
-  if image == None:
+  if image == Gallery:
     return {'errors': [f"Image {image_id} does not exist"]}, 404
   
   return image.to_dict()
@@ -99,7 +99,7 @@ def secure_image_by_id(image_id):
   image = Image.query.get(image_id)
     
   # check if image is found
-  if image == None:
+  if image == Gallery:
     return {'errors': [f"Image {image_id} does not exist"]}, 404
 
   # [PUT] 

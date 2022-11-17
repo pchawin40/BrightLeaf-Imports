@@ -27,7 +27,7 @@ const Carousel = () => {
   /**
    * Selector functions
    */
-  // grab "None" type images
+  // grab "Gallery" type images
   const currentImages = useSelector(imageActions.getCurrentImages);
 
   /**

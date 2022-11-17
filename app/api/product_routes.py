@@ -60,7 +60,7 @@ def product_by_id(product_id):
   product = Product.query.get(product_id)
   
   # if product not found, throw appropriate error
-  if product == None:
+  if product == Gallery:
     return {'errors': [f"Product {product_id} does not exist"]}, 404
   
   # otherwise, return successful response
@@ -79,7 +79,7 @@ def secure_product_by_id(product_id):
   product = Product.query.get(product_id)
   
   # check if product is found
-  if product == None:
+  if product == Gallery:
     return {'errors': [f"Product {product_id} does not exist"]}, 404
   
   # [PUT]

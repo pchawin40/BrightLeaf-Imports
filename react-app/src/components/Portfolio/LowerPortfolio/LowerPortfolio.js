@@ -28,7 +28,7 @@ const LowerPortfolio = () => {
    */
   const [imageLoaded, setImageLoaded] = useState(false);
   const { showAddImageModal, setShowAddImageModal } = useImage();
-  const [imageType, setImageType] = useState("None");
+  const [imageType, setImageType] = useState("Gallery");
   const [showGalleryModal, setShowGalleryModal] = useState(false);
   const [currentPictureId, setCurrentPictureId] = useState(1);
 
@@ -55,7 +55,7 @@ const LowerPortfolio = () => {
   const dispatch = useDispatch();
 
   // function to return a button that add more pic
-  const addMorePicButton = (type = "None") => {
+  const addMorePicButton = (type = "Gallery") => {
     return (
       <button
         className="amp-button"
@@ -69,7 +69,7 @@ const LowerPortfolio = () => {
   };
 
   // function to display images
-  const displayLoadedImages = (type = "None") => {
+  const displayLoadedImages = (type = "Gallery") => {
     // get images to display
     const displayImages = Object.values(currentImages).filter(image => image.imageable_type === type);
 
@@ -175,7 +175,7 @@ const LowerPortfolio = () => {
   const handleDeleteImage = imageId => {
     dispatch(imageActions.thunkDeleteImage(imageId))
       .then(() =>
-        dispatch(imageActions.thunkGetImages("Product=True&None=True"))
+        dispatch(imageActions.thunkGetImages("Product=True&Gallery=True"))
       )
   }
 
@@ -193,26 +193,26 @@ const LowerPortfolio = () => {
         A closer look into the journey behind the craftsmanship
       </h2>
 
-      {/* None Title */}
+      {/* Gallery Title */}
       <h3>
         wHERE IT bEGINS
       </h3>
 
-      {/* None Text */}
+      {/* Gallery Text */}
       <p>
         Take a glance at the process behind our products. Brightleaf Imports is family owned, ethically sourced company that strives for perfection. Each piece is uniquely designed and hand-crafted to perfection.
       </p>
 
-      {/* None Images */}
+      {/* Gallery Images */}
       {
-        displayLoadedImages("None")
+        displayLoadedImages("Gallery")
       }
 
-      {/* Add "None" type image if administrator */}
+      {/* Add "Gallery" type image if administrator */}
       {
         checkSessionUserType()
         &&
-        addMorePicButton("None")
+        addMorePicButton("Gallery")
       }
 
       {/* Product Title */}

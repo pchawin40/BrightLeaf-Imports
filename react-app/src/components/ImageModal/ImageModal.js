@@ -98,7 +98,7 @@ const ImageModal = ({ imageType }) => {
     dispatch(imageActions.thunkPostImages(imageToAdd))
       .then(() => {
         // dispatch to get images for portfolio page
-        dispatch(imageActions.thunkGetImages("Product=True&None=True"));
+        dispatch(imageActions.thunkGetImages("Product=True&Gallery=True"));
 
         // turn image modal off after finish
         setShowAddImageModal(false);
@@ -140,7 +140,7 @@ const ImageModal = ({ imageType }) => {
       >
         {/* Add Title */}
         <h2>
-          {`${imageType === "None" ? "Gallery" : imageType} Portfolio Photo`}
+          {`${imageType === "Gallery" ? "Gallery" : imageType} Portfolio Photo`}
         </h2>
 
         {/* Image to display sample image to add */}

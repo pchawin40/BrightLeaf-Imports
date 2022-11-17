@@ -1,1 +1,37 @@
 /* src/components/Portfolio/LowerPortfolio/DisplayGalleryModal/DisplayGalleryModal.css */
+#display-gallery-modal {
+	height: 80vh;
+	width: 80vw;
+
+	display: grid;
+	grid-template-columns: 60% auto;
+	justify-items: start;
+	align-items: start;
+
+	background-color: white;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.dgm-inner-section {
+	height: 80vh;
+	width: 80vw;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	position: relative;
+}
+
+/* Description Box */
+.dgm-textarea {
+	background-color: white;
+
+	height: 20vh;
+	width: 20vw;
+}
+
+#display-gallery-modal > h4 {
+	margin-top: 25%;
+	color: black;
+}
