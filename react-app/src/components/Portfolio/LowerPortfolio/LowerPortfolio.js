@@ -73,6 +73,8 @@ const LowerPortfolio = () => {
     // get images to display
     const displayImages = Object.values(currentImages).filter(image => image.imageable_type === type);
 
+    console.log('displayImages', displayImages);
+
     if (imageLoaded) {
       if (displayImages.length <= 0) {
         // if image is loaded but no images, show content: no image, add more

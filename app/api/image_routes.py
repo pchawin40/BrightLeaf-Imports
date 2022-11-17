@@ -25,8 +25,8 @@ def images():
   if(request.args.get('Product')):
     filter_list.append('Product')
 
-  if(request.args.get('None')):
-    filter_list.append('None')
+  if(request.args.get('Gallery')):
+    filter_list.append('Gallery')
     
   if(request.args.get('Review')):
     filter_list.append('Review')
