@@ -6,7 +6,9 @@ import './TopFooterHeader.css';
 //? TopFooterHeader component
 const TopFooterHeader = () => {
   return (
-    <section id="tfh-section">
+    <section
+      id="tfh-section"
+    >
       <h2>
         Brightleaf Imports
       </h2>

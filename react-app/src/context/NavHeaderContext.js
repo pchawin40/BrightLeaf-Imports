@@ -15,6 +15,7 @@ export default function NavHeaderProvider({ children }) {
   const [headerColor, setHeaderColor] = useState('white');
   const [currentPage, setCurrentPage] = useState("landing");
   const [footerColor, setFooterColor] = useState('white');
+  const [footerRect, setFooterRect] = useState(0);
 
   const prevScrollY = useRef(0);
   // function to handle changing of background based on y scroll position
@@ -81,14 +82,12 @@ export default function NavHeaderProvider({ children }) {
 
     const currentScrollY = window.scrollY;
 
-    // check currentPage and their variables conditions
-    let footerColorCondition = false;
+    // body height (4700) - rect (700)
 
-    if (currentPage === "landing") {
-      footerColorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05)) && window.scrollY < (4 * (window.innerHeight / 1.25))
-    } else if (currentPage === "portfolio") {
-      footerColorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05)) && window.scrollY < (4 * (window.innerHeight / 1.3));
-    }
+    const bodyHeight = document.querySelector("body").getBoundingClientRect().height;
+
+    // check currentPage and their variables conditions
+    let footerColorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05)) && window.scrollY < (bodyHeight - (1.95 * footerRect));
 
     // if mid, change to black
     if (footerColorCondition) {
@@ -130,7 +129,8 @@ export default function NavHeaderProvider({ children }) {
           backgroundColor, setBackgroundColor,
           headerColor, setHeaderColor,
           currentPage, setCurrentPage,
-          footerColor, setFooterColor
+          footerColor, setFooterColor,
+          footerRect, setFooterRect
         }}
       >
         {children}

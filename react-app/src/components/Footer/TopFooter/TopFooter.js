@@ -8,8 +8,11 @@ import './TopFooter.css';
 
 //? TopFooter component
 const TopFooter = () => {
+
   return (
-    <section id="top-footer-section">
+    <section
+      id="top-footer-section"
+    >
       {/* Top Footer: Header */}
       <TopFooterHeader />
     </section>
