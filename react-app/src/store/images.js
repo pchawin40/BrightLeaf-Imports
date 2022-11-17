@@ -23,6 +23,17 @@ export const createImage = image => {
   }
 }
 
+//? Action: Edit Image
+const EDIT_IMAGE = 'images/EDIT_IMAGE';
+
+// action creator: edit image
+export const editImage = image => {
+  return {
+    type: EDIT_IMAGE,
+    image
+  }
+}
+
 //? Action: Delete image
 const DELETE_IMAGE = 'images/DELETE_IMAGE';
 
@@ -33,6 +44,7 @@ export const deleteImage = imageId => {
     imageId
   }
 }
+
 
 /* --------- THUNKS -------- */
 export const thunkGetImages = (searchParam = "") => async (dispatch) => {
@@ -99,6 +111,33 @@ export const thunkPostImages = (imageToAdd) => async (dispatch) => {
   }
 
   return ['An error occurred. Please try again.']
+}
+
+// thunk to edit image
+export const thunkEditImage = image => async (dispatch) => {
+  // fetch route to edit image
+  const res = await fetch(`/api/images/${image.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(image)
+  });
+
+  // if succesful,
+  if (res.ok) {
+    // parse res to json
+    const editedImage = await res.json();
+
+    // dispatch setting image
+    dispatch(editImage(editedImage));
+
+    // return edited image
+    return editedImage;
+  }
+
+  // return nothing, if there are error
+  return null;
 }
 
 // thunk to delete image

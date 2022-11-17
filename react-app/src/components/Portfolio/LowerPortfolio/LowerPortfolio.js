@@ -255,7 +255,7 @@ const LowerPortfolio = () => {
             setShowGalleryModal(false)
           }}
         >
-          <DisplayGalleryModal currentPictureId={currentPictureId} imageType={imageType} />
+          <DisplayGalleryModal currentPictureId={currentPictureId} imageType={imageType} setShowGalleryModal={setShowGalleryModal} />
         </Modal>
       )}
     </section>
