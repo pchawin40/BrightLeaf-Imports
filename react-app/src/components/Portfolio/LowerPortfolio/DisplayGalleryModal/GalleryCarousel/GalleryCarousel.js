@@ -132,7 +132,7 @@ const GalleryCarousel = ({ imageType }) => {
         imageLoaded ?
           loadStartingImage()
           :
-          "https://thumbs.gfycat.com/GlaringBossyCrustacean-size_restricted.gif"
+          "https://cdn.dribbble.com/users/2077073/screenshots/6005120/loadin_gif.gif"
       } />
 
       {/* Right GalleryArrow */}
