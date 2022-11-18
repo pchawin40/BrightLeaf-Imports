@@ -34,6 +34,7 @@ export const thunkGetProducts = () => async (dispatch) => {
 
 /* --------- SELECTOR FUNCTIONS -------- */
 export const getCurrentProducts = state => state.products;
+export const getCurrentProductById = productId => state => Object.values(state.products).find(product => product.id === productId);
 
 /* --------- REDUCERS -------- */
 const initialState = {}

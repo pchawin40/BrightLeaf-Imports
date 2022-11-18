@@ -37,10 +37,9 @@ def seed_products():
   monkey_pod_image_2 = Image(
     imageable_id = 1,
     imageable_type = "ShopAll",
-    url="https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668669305/BrightleafImports-ShopAll/55ccf4_be69b17336114091846ffc3be845d8a6_mv2_lfwzlw.webp",
+    url="https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668711225/BrightleafImports-ShopAll/Product_1_Image_2_rnm071.webp",
     description="Authentic, hand-crafted Monkey Pod coffee table with black, flat bar metal legs."
   )
-  
   
   #* monkey-pod coffee table 2
   monkey_pod_2 = Product(

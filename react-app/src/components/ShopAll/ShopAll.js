@@ -17,6 +17,7 @@ import { useEffect } from 'react';
 
 // import store
 import * as imageActions from '../../store/images';
+import ProductProvider from '../../context/ProductContext';
 
 //? ShopAll component
 const ShopAll = () => {
@@ -41,7 +42,7 @@ const ShopAll = () => {
     }
 
     if (currentPage === "shopall") {
-      dispatch(imageActions.thunkGetImages("Product=True"));
+      dispatch(imageActions.thunkGetImages("ShopAll=True"));
     }
 
     // on open, always scroll to top
@@ -61,7 +62,9 @@ const ShopAll = () => {
       <TopShopAll />
 
       {/* Lower ShopAll */}
-      <LowerShopAll />
+      <ProductProvider>
+        <LowerShopAll />
+      </ProductProvider>
 
       {/* Footer */}
       <Footer />

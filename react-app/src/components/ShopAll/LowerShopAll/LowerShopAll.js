@@ -1,5 +1,12 @@
 // src/components/ShopAll/LowerShopAll/LowerShopAll.js
 
+// import component
+import ProductModal from './ProductModal';
+
+// import context
+import { useProduct } from '../../../context/ProductContext';
+import { Modal } from '../../../context/Modal';
+
 // import css
 import './LowerShopAll.css';
 
@@ -9,9 +16,11 @@ import { useEffect, useState } from 'react';
 // import react-redux
 import { useSelector } from 'react-redux';
 
+// import react-router-dom
+import { NavLink } from 'react-router-dom';
+
 // import store
 import * as productActions from '../../../store/products';
-import { NavLink } from 'react-router-dom';
 
 //? LowerShopAll component
 const LowerShopAll = () => {
@@ -19,6 +28,8 @@ const LowerShopAll = () => {
    * Controlled inputs
    */
   const [productLoaded, setProductLoaded] = useState(false);
+  const [showProductModal, setShowProductModal] = useState(false);
+  const { currentProductId, setCurrentProductId } = useProduct();
 
   /**
    * Selector functions
@@ -37,7 +48,6 @@ const LowerShopAll = () => {
   // load products
   const loadProducts = () => {
     const displayProducts = Object.values(currentProducts).map(product => {
-      // console.log("product.quantity", produc)
       return (
         <figure
           key={`Product ${product.id}`}
@@ -49,7 +59,13 @@ const LowerShopAll = () => {
               src={product.preview_image}
               alt={product.name}
             />
-            <span>
+            <span
+              onClick={_ => {
+                setCurrentProductId(product.id);
+                setShowProductModal(true)
+              }
+              }
+            >
               <span>
                 Quick Preview
               </span>
@@ -108,6 +124,18 @@ const LowerShopAll = () => {
           loadProducts()
         }
       </section>
+
+      {/* Product Modal */}
+      {showProductModal && (
+        <Modal
+          onClose={(_) => {
+            setShowProductModal(false)
+          }}
+          currentVisible={false}
+        >
+          <ProductModal setShowProductModal={setShowProductModal} />
+        </Modal>
+      )}
     </section>
   );
 };

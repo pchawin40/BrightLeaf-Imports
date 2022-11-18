@@ -1,9 +1,5 @@
 /* src/components/ShopAll/LowerShopAll/LowerShopAll.css */
 
-.lower-page-section.shop-all {
-	height: 100vh;
-}
-
 /* Title */
 
 /* Subtitle */
@@ -29,7 +25,7 @@
 
 	justify-items: center;
 
-	margin-top: 25px;
+	margin-top: 40px;
 	margin-bottom: 25px;
 }
 
@@ -122,9 +118,6 @@
 	background-color: #80ab63;
 
 	box-shadow: 0 3px 10px black;
-}
-
-.lp-product-button.available {
 }
 
 .lp-product-button.out-of-stock {
