@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 
 // import store
 import * as productActions from '../../../store/products';
+import { NavLink } from 'react-router-dom';
 
 //? LowerShopAll component
 const LowerShopAll = () => {
@@ -36,28 +37,45 @@ const LowerShopAll = () => {
   // load products
   const loadProducts = () => {
     const displayProducts = Object.values(currentProducts).map(product => {
-      console.log("product", product);
-      console.log("product.preview_image", product.preview_image);
+      // console.log("product.quantity", produc)
       return (
         <figure
           key={`Product ${product.id}`}
           className="lp-product-figure"
         >
-          {/* image */}
-          <img
-            src={product.preview_image}
-            alt={product.name}
-          />
+          <figure className="lp-product-img-figure">
+            {/* image */}
+            <img
+              src={product.preview_image}
+              alt={product.name}
+            />
+            <span>
+              <span>
+                Quick Preview
+              </span>
+            </span>
+          </figure>
 
           {/* product name */}
-          <span>
+          <span className="lp-product-span name">
             {product.name}
           </span>
 
           {/* product price */}
-          <span>
-            $ {product.price} USD
+          <span className='lp-product-span price'>
+            $ {parseFloat(product.price).toFixed(2)} USD
           </span>
+
+          {
+            product.quantity <= 0 ?
+              <button className='lp-product-button out-of-stock'>
+                Out of Stock
+              </button>
+              :
+              <button className='lp-product-button available'>
+                Buy Now ( {product.quantity} left )
+              </button>
+          }
         </figure>
       );
     });
@@ -78,14 +96,18 @@ const LowerShopAll = () => {
       </p>
 
       {/* Contact button */}
-      <button>
-        Contact
-      </button>
+      <NavLink to="/contact">
+        <button>
+          Contact
+        </button>
+      </NavLink>
 
       {/* Product Images */}
-      {
-        loadProducts()
-      }
+      <section className="products-container">
+        {
+          loadProducts()
+        }
+      </section>
     </section>
   );
 };

@@ -108,6 +108,12 @@ function App() {
           <ShopAll />
         </Route>
 
+        {/* Shop All specific page */}
+        <Route path='/product-page/:productName'>
+          {/* //TODO: For specific product */}
+          <ShopAll />
+        </Route>
+
         {/* Portfolio */}
         <Route to="/for-home">
           <Portfolio />
