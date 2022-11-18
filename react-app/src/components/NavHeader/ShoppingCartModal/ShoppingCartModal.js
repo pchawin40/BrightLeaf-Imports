@@ -170,42 +170,54 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
                     cartDisplay.map(cartItem => {
                       return (
                         <li key={"cart item: " + cartItem.id} className="scms-li">
-                          {/* Add more */}
-                          <i
-                            onClick={_ => handleCartQuantity(cartItem, cartItem.quantity + 1)}
-                            className="fa-solid fa-square-plus scms-li-add-quantity"
-                          />
+                          <section className="scms-buttons-containers">
+                            {/* Add more */}
+                            <i
+                              onClick={_ => handleCartQuantity(cartItem, cartItem.quantity + 1)}
+                              className="fa-solid fa-square-plus fa-lg scms-li-add-quantity"
+                            />
 
-                          {/* Delete */}
-                          <i
-                            onClick={_ => handleCartQuantity(cartItem, cartItem.quantity - 1)}
-                            className="fa-solid fa-square-minus scms-li-delete-quantity"
-                          />
+                            {/* Delete */}
+                            <i
+                              onClick={_ => handleCartQuantity(cartItem, cartItem.quantity - 1)}
+                              className="fa-solid fa-square-minus fa-lg scms-li-delete-quantity"
+                            />
+                          </section>
 
                           {/* Quantity */}
-                          <span className="scms-li-span quantity">
-                            {
-                              cartItem.quantity + "x"
-                            }
-                          </span>
+                          <section className="scms-li-span quantity">
+                            <p>
+                              {
+                                cartItem.quantity + "x"
+                              }
+                            </p>
+                          </section>
 
                           {/* Name */}
-                          <span className="scms-li-span">
-                            {
-                              cartItem.name
-                            }
-                          </span>
+                          <section className="scms-li-span name">
+                            <p>
+                              {
+                                cartItem.name.length > 15
+                                  ?
+                                  cartItem.name.slice(0, 15) + "..."
+                                  :
+                                  cartItem.name
+                              }
+                            </p>
+                          </section>
 
                           {/* Price */}
-                          <span className="scms-li-span">
-                            {
-                              "$"
-                              +
-                              getCartItemPrice(cartItem)
-                              +
-                              " USD"
-                            }
-                          </span>
+                          <section className="scms-li-span price">
+                            <p>
+                              {
+                                "$ "
+                                +
+                                getCartItemPrice(cartItem)
+                                +
+                                " USD"
+                              }
+                            </p>
+                          </section>
                         </li>
                       );
                     })
@@ -216,7 +228,7 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
                       Total
                     </span>
                     <span>
-                      {`$${getCartTotal()} USD`}
+                      {` $ ${getCartTotal()} USD`}
                     </span>
                   </section>
 
@@ -231,8 +243,8 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
             }
           </section>
         </section>
-      </Animate>
-    </section>
+      </Animate >
+    </section >
   );
 };
 

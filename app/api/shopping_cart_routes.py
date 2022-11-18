@@ -77,7 +77,7 @@ def secure_cart_by_id(cart_id):
   shopping_cart = ShoppingCart.query.get(cart_id)
   
   # check if cart is found
-  if shopping_cart == Gallery:
+  if shopping_cart == None:
     return {'errors': [f"Shopping Cart {cart_id} does not exist"]}, 404
   
   # [PUT]
