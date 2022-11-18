@@ -31,6 +31,7 @@ import * as sessionActions from './store/session';
 import * as shoppingCartActions from './store/shoppingCarts';
 import * as imageActions from './store/images';
 import * as productActions from './store/products';
+import SpecificProduct from './components/ShopAll/SpecificProduct';
 
 
 function App() {
@@ -104,14 +105,14 @@ function App() {
         </Route>
 
         {/* Shop All */}
-        <Route path='/product-page'>
+        <Route path='/product-page' exact={true}>
           <ShopAll />
         </Route>
 
         {/* Shop All specific page */}
         <Route path='/product-page/:productName'>
           {/* //TODO: For specific product */}
-          <ShopAll />
+          <SpecificProduct />
         </Route>
 
         {/* Portfolio */}

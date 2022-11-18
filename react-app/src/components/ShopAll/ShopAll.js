@@ -17,7 +17,6 @@ import { useEffect } from 'react';
 
 // import store
 import * as imageActions from '../../store/images';
-import ProductProvider from '../../context/ProductContext';
 
 //? ShopAll component
 const ShopAll = () => {
@@ -62,9 +61,7 @@ const ShopAll = () => {
       <TopShopAll />
 
       {/* Lower ShopAll */}
-      <ProductProvider>
         <LowerShopAll />
-      </ProductProvider>
 
       {/* Footer */}
       <Footer />

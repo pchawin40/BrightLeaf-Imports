@@ -9,6 +9,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import NavHeaderProvider from './context/NavHeaderContext';
 import NavRightProvider from './context/NavRightContext';
 import ImageProvider from './context/ImageContext';
+import ProductProvider from './context/ProductContext';
 
 const store = configureStore();
 
@@ -20,7 +21,9 @@ ReactDOM.render(
           <NavHeaderProvider>
             <NavRightProvider>
               <ImageProvider>
-                <App />
+                <ProductProvider>
+                  <App />
+                </ProductProvider>
               </ImageProvider>
             </NavRightProvider>
           </NavHeaderProvider>

@@ -88,9 +88,14 @@ const LowerShopAll = () => {
                 Out of Stock
               </button>
               :
-              <button className='lp-product-button available'>
-                Buy Now ( {product.quantity} left )
-              </button>
+              <NavLink
+                to={`/product-page/${product.name}`}
+                onClick={_ => setCurrentProductId(product.id)}
+              >
+                <button className='lp-product-button available'>
+                  Buy Now ( {product.quantity} left )
+                </button>
+              </NavLink>
           }
         </figure>
       );
