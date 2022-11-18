@@ -1,5 +1,6 @@
 // src/components/context/NavHeaderContext.js
 import { useState, useContext, createContext, useRef, useEffect } from 'react';
+import ShopProduct from '../components/ShopProduct';
 
 // set up context
 export const NavHeaderContext = createContext();
@@ -31,12 +32,16 @@ export default function NavHeaderProvider({ children }) {
     } else if (currentPage === "portfolio") {
       newColor = "white";
     }
-    
+
     // set background color
     if (window.scrollY >= window.innerHeight - (window.innerHeight / 1.25)) {
       setBackgroundColor(newColor);
     } else {
-      setBackgroundColor('#484644');
+      // change to default color...
+      // if not shopProduct
+      if (currentPage !== "shopproduct") {
+        setBackgroundColor('#484644');
+      }
     }
 
     prevScrollY.current = currentScrollY;
@@ -55,6 +60,8 @@ export default function NavHeaderProvider({ children }) {
 
     if (currentPage === "landing") {
       headerColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (4 * (window.innerHeight * 1.05));
+    } else if (currentPage === "shopproduct") {
+      headerColorCondition = window.scrollY < (bodyHeight - (1.1 * footerRect));
     } else {
       headerColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (bodyHeight - (1.1 * footerRect));
     }
@@ -77,7 +84,17 @@ export default function NavHeaderProvider({ children }) {
     const bodyHeight = document.querySelector("body").getBoundingClientRect().height;
 
     // check currentPage and their variables conditions
-    let footerColorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05)) && window.scrollY < (bodyHeight - (1.95 * footerRect));
+    let footerColorCondition;
+
+    // if current page is shop product, show 'black' on top
+    if (currentPage === "shopproduct") {
+      footerColorCondition = window.scrollY < (bodyHeight - (1.95 * footerRect));
+    }
+    else {
+      footerColorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05)) && window.scrollY < (bodyHeight - (1.95 * footerRect));
+    }
+
+
 
     // if mid, change to black
     if (footerColorCondition) {

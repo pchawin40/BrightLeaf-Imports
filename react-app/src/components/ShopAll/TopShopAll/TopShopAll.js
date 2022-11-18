@@ -8,8 +8,6 @@ import { useNavHeader } from '../../../context/NavHeaderContext';
 
 //? TopShopAll component
 const TopShopAll = () => {
-  const { backgroundColor, setBackgroundColor } = useNavHeader();
-
   return (
     <section
       className="top-page-section"

@@ -61,7 +61,7 @@ const ShopAll = () => {
       <TopShopAll />
 
       {/* Lower ShopAll */}
-        <LowerShopAll />
+      <LowerShopAll />
 
       {/* Footer */}
       <Footer />
