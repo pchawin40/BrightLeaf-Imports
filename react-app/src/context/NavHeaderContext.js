@@ -31,17 +31,7 @@ export default function NavHeaderProvider({ children }) {
     } else if (currentPage === "portfolio") {
       newColor = "white";
     }
-
-    // set color condition
-    let colorCondition;
-    if (currentPage === "landing") {
-      colorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (4 * (window.innerHeight * 1.05));
-    } else if (currentPage === "portfolio") {
-      colorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 10)) && window.scrollY < (2 * (window.innerHeight * 1.08))
-    }
-
-    // set footer color condition
-
+    
     // set background color
     if (window.scrollY >= window.innerHeight - (window.innerHeight / 1.25)) {
       setBackgroundColor(newColor);
@@ -57,14 +47,16 @@ export default function NavHeaderProvider({ children }) {
 
     const currentScrollY = window.scrollY;
 
+    // body height
+    const bodyHeight = document.querySelector("body").getBoundingClientRect().height;
 
     // if currentPage is landing, use these for color
     let headerColorCondition;
 
     if (currentPage === "landing") {
       headerColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (4 * (window.innerHeight * 1.05));
-    } else if (currentPage === "portfolio") {
-      headerColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (4 * (window.innerHeight * .985));
+    } else {
+      headerColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (bodyHeight - (1.1 * footerRect));
     }
 
     // if mid, change to black
@@ -81,8 +73,6 @@ export default function NavHeaderProvider({ children }) {
   const changeFooterColor = () => {
 
     const currentScrollY = window.scrollY;
-
-    // body height (4700) - rect (700)
 
     const bodyHeight = document.querySelector("body").getBoundingClientRect().height;
 
