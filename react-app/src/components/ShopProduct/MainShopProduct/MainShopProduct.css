@@ -1,1 +1,46 @@
 /* src/components/ShopProduct/LowerShopProduct/LowerShopProduct.css */
+
+.lower-page-section.shop-product {
+	margin-top: 50px;
+
+	display: grid;
+	grid-template-rows: 10% 90%;
+	grid-template-columns: 60% auto;
+
+	height: 100%;
+
+	position: relative;
+	z-index: 7;
+
+	background-color: green;
+}
+
+.lps.inner.product-path,
+.lps.inner.product-image {
+	margin-left: 9%;
+}
+
+.lps.inner.product-selector,
+.lps.inner.product-title {
+	margin-right: 9%;
+}
+
+/** Path */
+.lps.product-path {
+	background-color: cyan;
+	height: 100%;
+	width: auto;
+
+	margin: 0;
+	padding: 0;
+	text-align: left;
+}
+
+/** Product Selector (Top Right Nav) */
+
+/** Product Image */
+.lps.inner.product-image {
+	display: grid;
+}
+
+/** Product Titles */

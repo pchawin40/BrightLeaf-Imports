@@ -38,6 +38,7 @@ const ShopProduct = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // console.log("TO CHANGE BACK AFTER FINISH STYLING");
     if (!currentProductId) return history.push('/product-page');
   }, []);
 

@@ -4,7 +4,7 @@
 import { useProduct } from '../../../context/ProductContext.js';
 
 // import css
-import './MainShopProduct.js';
+import './MainShopProduct.css';
 
 // import react-redux
 import { useSelector } from 'react-redux';
@@ -64,7 +64,6 @@ const LowerShopProduct = () => {
       ||
       !currentImagesByProductId.find(image => image.id === currentImageId) && document.querySelector(".pm-is-figure")
     ) {
-      console.log('document.querySelector(".pm-cis-figure")', document.querySelector(".pm-is-figure"));
       if (document.querySelector(".pm-is-figure")) {
         document.querySelector(".pm-is-figure").click();
       }
@@ -103,6 +102,7 @@ const LowerShopProduct = () => {
     // if product is not last, return next with right arrow
     if (Object.values(currentProducts).length > 1 && currentProductId !== Object.values(currentProducts).length) {
       const currentNextProduct = Object.values(currentProducts).find(product => product.id === (currentProductId + 1));
+
       return (
         <>
           <NavLink
@@ -147,18 +147,10 @@ const LowerShopProduct = () => {
   const displayCurrentImageSelected = () => {
     if (productLoaded) {
       const newCurrentImage = currentImagesByProductId.find((image, index) => {
-        console.log(`index: ${index} |\n image.id: ${image.id} |\n currentImagesByProductId: ${currentImagesByProductId} |\n currentImageId: ${currentImageId} |\n currentImagesByProductId.length >= 0 && !currentImageId: ${currentImagesByProductId.length >= 0 && !currentImageId}`)
         if (currentImagesByProductId.length >= 0 && !currentImageId) {
-          console.log();
-          console.log('FIRST IF');
-          console.log();
           setCurrentImageId(currentImagesByProductId[0].id);
           return true;
         } else {
-          // if (image.id === currentImageId) {
-          //   console.log("\nimage.id\n", image.id);
-          //   setCurrentImageId(image.id);
-          // }
           return image.id === currentImageId
         }
       });
@@ -207,10 +199,10 @@ const LowerShopProduct = () => {
 
   return (
     productLoaded &&
-    <section className="lower-page-section">
+    <section className="lower-page-section shop-product">
       {/* //* Path */}
       {/* Example: Home / Shop All / Product Name */}
-      <p>
+      <p className="lps inner product-path">
         <NavLink to="/">
           Home
         </NavLink>
@@ -225,7 +217,7 @@ const LowerShopProduct = () => {
       </p>
 
       {/* //* Prev Next Product Selector */}
-      <p>
+      <p className="lps inner product-selector">
         {/* if there are prev and next, return vertical pipe */}
         {
           getPrevProduct()
@@ -239,17 +231,19 @@ const LowerShopProduct = () => {
       </p>
 
       {/* //* Product Image */}
-      {
-        displayCurrentImageSelected()
-      }
-      {
-        displayImageSelectors()
-      }
+      <section className="lps inner product-image">
+        {
+          displayCurrentImageSelected()
+        }
+        {
+          displayImageSelectors()
+        }
+      </section>
 
       {/*  */}
 
       {/* //* Product Titles */}
-      <section className="product-title">
+      <section className="lps inner product-title">
         {/* Name */}
         <span>
           {
