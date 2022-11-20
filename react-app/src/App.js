@@ -13,9 +13,14 @@ import About from './components/About';
 import Contact from './components/Contact';
 import ShippingReturns from './components/ShippingReturns';
 import StorePolicy from './components/StorePolicy';
+import ShopProduct from './components/ShopProduct';
+import ProductFormModal from './components/ProductFormModal';
 
 // import context
 import { useNavRight } from './context/NavRightContext';
+import { useProduct } from './context/ProductContext';
+import { useNavHeader } from './context/NavHeaderContext';
+import { Modal } from './context/Modal';
 
 // import react
 import React, { useState, useEffect } from 'react';
@@ -29,11 +34,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import store
 import * as sessionActions from './store/session';
 import * as shoppingCartActions from './store/shoppingCarts';
-import * as imageActions from './store/images';
 import * as productActions from './store/products';
-import ShopProduct from './components/ShopProduct';
-import { useNavHeader } from './context/NavHeaderContext';
-
 
 function App() {
   /**
@@ -46,6 +47,7 @@ function App() {
    */
   const [loaded, setLoaded] = useState(false);
   const { showNavModal, setShowNavModal } = useNavRight();
+  const { showProductFormModal, setShowProductFormModal } = useProduct();
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -98,6 +100,17 @@ function App() {
           <NavModal />
         )
       }
+
+      {/* ProductFormModal (placing in App for ShopAll and ShopProduct) */}
+      {showProductFormModal && (
+        <Modal
+          onClose={(_) => {
+            setShowProductFormModal(false)
+          }}
+        >
+          <ProductFormModal />
+        </Modal>
+      )}
 
       <Switch>
         {/* Home */}

@@ -19,7 +19,7 @@ import { useDispatch } from 'react-redux';
 
 // import store
 import * as imageActions from '../../store/images';
-import LowerShopProduct from './MainShopProduct';
+import MainShopProduct from './MainShopProduct';
 
 //? ShopProduct component
 const ShopProduct = () => {
@@ -68,7 +68,7 @@ const ShopProduct = () => {
       className="page-section shop-product"
     >
       {/* Lower ShopProduct */}
-      <LowerShopProduct />
+      <MainShopProduct />
 
       {/* Footer */}
       <Footer />

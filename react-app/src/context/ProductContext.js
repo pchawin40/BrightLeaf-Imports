@@ -10,6 +10,8 @@ export default function ProductProvider({ children }) {
   // state for context
   const [currentProductId, setCurrentProductId] = useState(null);
   const [currentProductImages, setCurrentProductImages] = useState([]);
+  const [showProductFormModal, setShowProductFormModal] = useState(false);
+  const [editProduct, setEditProduct] = useState(false);
 
   // Product Provider
   return (
@@ -17,7 +19,9 @@ export default function ProductProvider({ children }) {
       <ProductContext.Provider
         value={{
           currentProductId, setCurrentProductId,
-          currentProductImages, setCurrentProductImages
+          currentProductImages, setCurrentProductImages,
+          showProductFormModal, setShowProductFormModal,
+          editProduct, setEditProduct
         }}
       >
         {children}

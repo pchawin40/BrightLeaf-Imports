@@ -78,11 +78,14 @@
 
 .lf-submit-btn-true {
 	background-color: #839c80;
-	color: white;
 }
 
 .lf-submit-btn-true:hover {
 	cursor: pointer;
+}
+
+.lf-submit-btn-false {
+	background-color: rgb(199, 199, 199);
 }
 
 /* Forgot password */

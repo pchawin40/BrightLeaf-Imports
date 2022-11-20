@@ -232,7 +232,7 @@ const ProductModal = ({ setShowProductModal }) => {
                 onClick={_ => setShowUserModal(true)}
               >
                 <span>
-                  Sign In To Buy
+                  Sign In As User To Buy
                 </span>
               </button>
         }

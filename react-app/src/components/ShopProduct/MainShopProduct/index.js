@@ -1,6 +1,6 @@
-// src/components/ShopProduct/LowerShopProduct/index.js
+// src/components/ShopProduct/MainShopProduct/index.js
 
-import LowerShopProduct from "./MainShopProduct";
+import MainShopProduct from "./MainShopProduct";
 
 // export default component
-export default LowerShopProduct;
+export default MainShopProduct;

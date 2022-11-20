@@ -1,4 +1,4 @@
-/* src/components/ShopProduct/LowerShopProduct/LowerShopProduct.css */
+/* src/components/ShopProduct/MainShopProduct/MainShopProduct.css */
 
 .lower-page-section.shop-product {
 	display: grid;
@@ -144,10 +144,41 @@
 	align-items: flex-start;
 }
 
+.product-title.inner-section {
+	width: 100%;
+	height: fit-content;
+
+	margin: 0;
+	padding: 0;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 .pt-inner.name {
 	font-size: 26px;
 	line-height: 31.2px;
 	font-weight: 400;
+}
+
+.pt-inner.edit-button {
+	padding: 10px 35px;
+
+	font-size: 0.75vw;
+	text-transform: uppercase;
+
+	color: white;
+	background-color: #6fa04e;
+	border: none;
+
+	margin-right: 1px;
+
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.pt-inner.edit-button:hover {
+	cursor: pointer;
 }
 
 .pt-inner.id {

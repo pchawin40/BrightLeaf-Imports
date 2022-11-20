@@ -10,7 +10,7 @@ import FacebookLoginComponent from '../FacebookLoginComponent';
 import { useNavHeader } from '../../../../context/NavHeaderContext';
 
 // import react
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // import react-redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -34,6 +34,14 @@ const LoginForm = () => {
   const user = useSelector(state => state.session.user);
 
   const dispatch = useDispatch();
+
+  /**
+   * UseEffect
+   */
+  // per general
+  useEffect(() => {
+    // nothing for now
+  }, [email, password]);
 
   //* Google API: function to handle google login
   const handleGoogleLogin = useGoogleLogin({
@@ -64,8 +72,10 @@ const LoginForm = () => {
 
   // function to handle login
   const onLogin = async (e) => {
+    // TODO: To handle log in properly
     e.preventDefault();
-    const data = await dispatch(sessionActions.login(email, password));
+    const data = await dispatch(sessionActions.login(email, password))
+      .then(() => setShowUserModal(false));
     if (data) {
       setErrors(data);
     }
@@ -123,15 +133,30 @@ const LoginForm = () => {
         />
       </div>
 
-      <button
-        id="lf-submit-btn"
-        className="lf-submit-btn lf-submit-btn-true"
-        type='submit'
-      >
-        <span>
-          Log In
-        </span>
-      </button>
+      {/* Check if there are length in log in */}
+      {
+        email.length > 0 && password.length > 0
+          ?
+          <button
+            id="lf-submit-btn"
+            className="lf-submit-btn lf-submit-btn-true"
+            type='submit'
+          >
+            <span>
+              Log In
+            </span>
+          </button>
+          :
+          <button
+            id="lf-submit-btn"
+            className="lf-submit-btn lf-submit-btn-false"
+            type='button'
+          >
+            <span>
+              Log In
+            </span>
+          </button>
+      }
 
       <button
         id="lf-demo-btn"

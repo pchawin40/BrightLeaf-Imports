@@ -1,4 +1,4 @@
-// src/components/ShopProduct/LowerShopProduct/LowerShopProduct.js
+// src/components/ShopProduct/MainShopProduct/MainShopProduct.js
 
 // import context
 import { useProduct } from '../../../context/ProductContext.js';
@@ -22,8 +22,8 @@ import * as imageActions from '../../../store/images';
 import * as sessionActions from '../../../store/session';
 import * as shoppingCartActions from '../../../store/shoppingCarts';
 
-//? LowerShopProduct component
-const LowerShopProduct = () => {
+//? MainShopProduct component
+const MainShopProduct = () => {
   /**
    * Controlled inputs
    */
@@ -35,6 +35,8 @@ const LowerShopProduct = () => {
   const currentUserId = useSelector(sessionActions.getCurrentUserId);
   const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
   const { showUserModal, setShowUserModal } = useNavHeader();
+  const { showProductFormModal, setShowProductFormModal } = useProduct();
+  const { editProduct, setEditProduct } = useProduct();
 
   /**
    * Selector functions
@@ -306,11 +308,28 @@ const LowerShopProduct = () => {
       {/* //* Product Titles */}
       <section className="lps inner product-title">
         {/* Name */}
-        <span className="pt-inner name">
+        <section className="product-title inner-section">
+          <span className="pt-inner name">
+            {
+              currentProductById.name
+            }
+          </span>
           {
-            currentProductById.name
+            currentUserInfo &&
+            currentUserInfo.role === "administrator"
+            &&
+            <button
+              className="pt-inner edit-button"
+                  onClick={_ => {
+                    setShowProductFormModal(true);
+                    setEditProduct(true);
+                    
+                  }}
+            >
+              Edit
+            </button>
           }
-        </span>
+        </section>
 
         {/* Id */}
         <span className="pt-inner id">
@@ -336,7 +355,8 @@ const LowerShopProduct = () => {
                 Out of Stock
               </button>
               :
-              currentUserInfo.role === "user" ?
+              currentUserInfo &&
+                currentUserInfo.role === "user" ?
                 <button
                   className='pt-available'
                   type="button"
@@ -353,7 +373,7 @@ const LowerShopProduct = () => {
                   onClick={_ => setShowUserModal(true)}
                 >
                   <span>
-                    Sign In To Buy
+                    Sign In As User To Buy
                   </span>
                 </button>
           }
@@ -377,4 +397,4 @@ const LowerShopProduct = () => {
 };
 
 // export default component
-export default LowerShopProduct;
+export default MainShopProduct;
