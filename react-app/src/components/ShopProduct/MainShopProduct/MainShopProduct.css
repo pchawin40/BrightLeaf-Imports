@@ -4,6 +4,7 @@
 	display: grid;
 	grid-template-rows: 10% 90%;
 	grid-template-columns: 60% auto;
+	gap: 10px;
 	align-self: center;
 	justify-self: center;
 
@@ -11,9 +12,11 @@
 	height: 100%;
 
 	position: relative;
-	z-index: 7;
+	z-index: 4;
 
 	margin-bottom: 10vh;
+
+	overflow-y: hidden;
 }
 
 .lps.inner.product-image,
@@ -37,10 +40,13 @@
 .lps.inner.product-path > a {
 	text-decoration: none;
 	color: black;
+	margin: 0 10px;
 }
 
 .lps.inner.product-path > span {
 	opacity: 0.65;
+
+	margin: 0 10px;
 }
 
 /** Product Selector (Top Right Nav) */
@@ -157,6 +163,7 @@
 
 .pt-inner.buy-like {
 	width: 100%;
+	height: 45px;
 
 	display: flex;
 	align-items: center;
@@ -177,9 +184,10 @@
 	color: white;
 
 	margin: 0;
-	margin-top: 1rem;
-	margin-bottom: 1rem;
+	margin-top: 10px;
+	margin-bottom: 10px;
 	width: 100%;
+	height: 100%;
 	display: flex;
 	justify-content: center;
 	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
@@ -206,8 +214,8 @@
 
 .pt-like {
 	border: 1px solid black;
-	height: 35px;
-	width: 35px;
+	height: 99%;
+	width: 2.5vw;
 
 	display: flex;
 	justify-content: center;
@@ -229,7 +237,7 @@
 .pt-inner.description {
 	text-align: left;
 	font-size: 15px;
-	margin-top: 10px;
+	margin-top: 20px;
 
 	white-space: pre-line;
 }

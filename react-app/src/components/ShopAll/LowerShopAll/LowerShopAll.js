@@ -93,7 +93,7 @@ const LowerShopAll = () => {
                 onClick={_ => setCurrentProductId(product.id)}
               >
                 <button className='lp-product-button available'>
-                  Buy Now ( {product.quantity} left )
+                  Buy Now
                 </button>
               </NavLink>
           }

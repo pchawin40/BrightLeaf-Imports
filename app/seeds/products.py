@@ -38,14 +38,13 @@ def seed_products():
     imageable_id = 1,
     imageable_type = "ShopAll",
     url="https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668711225/BrightleafImports-ShopAll/Product_1_Image_2_rnm071.webp",
-    description="Authentic, hand-crafted Monkey Pod coffee table with black, flat bar metal legs."
+    description="Authentic, hand-crafted Monkey Pod coffee table with black, flat bar metal legs.\n"
   )
   
   #* monkey-pod coffee table 2
   monkey_pod_2 = Product(
     name = "Monkey Pod (Acacia) Coffee Table",
-    description="""
-    Authentic, hand-crafted Monkey Pod coffee table with black, authentic industrial pipe fitting legs.
+    description="""Authentic, hand-crafted Monkey Pod coffee table with black, authentic industrial pipe fitting legs.
     \n
     Dimensions:\n
     Width - 28.5 in.\n

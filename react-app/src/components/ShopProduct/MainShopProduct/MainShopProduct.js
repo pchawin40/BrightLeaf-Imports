@@ -293,7 +293,7 @@ const LowerShopProduct = () => {
                 type="button"
               >
                 <span>
-                  Buy Now ( {currentProductById.quantity} available )
+                  Add to Cart ( {currentProductById.quantity} left )
                 </span>
               </button>
           }

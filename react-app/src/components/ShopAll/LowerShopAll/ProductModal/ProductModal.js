@@ -160,7 +160,7 @@ const ProductModal = ({ setShowProductModal }) => {
               type="button"
             >
               <span>
-                Buy Now ( {currentProductById.quantity} left )
+                Add to Cart ( {currentProductById.quantity} left )
               </span>
             </button>
         }
