@@ -1,46 +1,130 @@
 /* src/components/ShopProduct/LowerShopProduct/LowerShopProduct.css */
 
 .lower-page-section.shop-product {
-	margin-top: 50px;
-
 	display: grid;
 	grid-template-rows: 10% 90%;
 	grid-template-columns: 60% auto;
+	align-self: center;
+	justify-self: center;
 
+	width: 91%;
 	height: 100%;
 
 	position: relative;
 	z-index: 7;
 
-	background-color: green;
+	margin-bottom: 10vh;
 }
 
-.lps.inner.product-path,
-.lps.inner.product-image {
-	margin-left: 9%;
-}
-
-.lps.inner.product-selector,
+.lps.inner.product-image,
 .lps.inner.product-title {
-	margin-right: 9%;
+	margin-top: 5;
 }
 
 /** Path */
 .lps.product-path {
-	background-color: cyan;
+	/* background-color: cyan; */
 	height: 100%;
 	width: auto;
 
 	margin: 0;
 	padding: 0;
 	text-align: left;
+
+	display: flex;
+	align-items: center;
+}
+
+.lps.inner.product-path > a {
+	text-decoration: none;
+	color: black;
+}
+
+.lps.inner.product-path > span {
+	opacity: 0.65;
 }
 
 /** Product Selector (Top Right Nav) */
+.lps.product-selector {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+
+	/* background-color: blue; */
+	width: 100%;
+
+	margin: 0;
+	padding: 0;
+}
+
+.lps.product-selector * {
+	display: flex;
+	align-items: center;
+}
+
+.lps.product-selector > span > a {
+	text-decoration: none;
+	color: black;
+}
+
+.lps.inner.product-selector .unavailable {
+	opacity: 0.65;
+}
+
+.vertical-line {
+	margin: 0 10px;
+}
+
+.span-selector {
+	margin: 0 5px;
+}
 
 /** Product Image */
 .lps.inner.product-image {
-	display: grid;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
 }
 
+.pm-cis-figure {
+	width: 90%;
+	height: 60%;
+}
+
+.pm-cis-figure > img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+
+.lps.inner.product-image > ul {
+	display: flex;
+
+	justify-content: flex-start;
+	width: 100%;
+
+	padding: 0;
+	padding-left: 10px;
+}
+
+.pm-is-figure.img {
+	height: 2rem;
+	width: auto;
+
+	margin: 0 5px;
+}
+
+.pm-is-figure.img:first-child {
+	margin-left: 0;
+}
+
+.pm-is-figure.img:hover {
+	cursor: pointer;
+	outline: 1px solid white;
+}
+
+.pm-is-figure.selected {
+	height: 3rem;
+}
 /** Product Titles */

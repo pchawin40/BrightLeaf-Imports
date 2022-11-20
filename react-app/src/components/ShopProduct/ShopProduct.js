@@ -61,10 +61,6 @@ const ShopProduct = () => {
   return (
     <section
       className="page-section shop-product"
-      style={{
-        backgroundColor,
-        transition: "background-color 1s ease"
-      }}
     >
       {/* Lower ShopProduct */}
       <LowerShopProduct />

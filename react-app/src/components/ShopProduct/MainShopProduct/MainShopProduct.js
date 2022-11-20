@@ -77,9 +77,10 @@ const LowerShopProduct = () => {
     if (Object.values(currentProducts).length >= 1 && currentProductId !== 1) {
       const currentPrevProduct = Object.values(currentProducts).find(product => product.id === (currentProductId - 1));
       return (
-        <>
+        <span>
           <i className="fa-solid fa-angle-left" />
           <NavLink
+            className="span-selector"
             onClick={_ => {
               setCurrentProductId(currentPrevProduct.id)
               setProductLoaded(false);
@@ -89,10 +90,19 @@ const LowerShopProduct = () => {
           >
             Prev
           </NavLink>
-        </>
+        </span>
       )
     } else {
       if (prevProduct) setPrevProduct(null);
+
+      return (
+        <>
+          <i className="fa-solid fa-angle-left unavailable" />
+          <span className="span-selector unavailable">
+            Prev
+          </span>
+        </>
+      );
     }
   }
 
@@ -104,8 +114,9 @@ const LowerShopProduct = () => {
       const currentNextProduct = Object.values(currentProducts).find(product => product.id === (currentProductId + 1));
 
       return (
-        <>
+        <span>
           <NavLink
+            className="span-selector"
             onClick={_ => {
               setCurrentProductId(currentNextProduct.id);
               setProductLoaded(false);
@@ -115,29 +126,18 @@ const LowerShopProduct = () => {
             Next
           </NavLink>
           <i className="fa-solid fa-angle-right" />
-        </>
+        </span>
       )
     } else {
       if (nextProduct) setNextProduct(null);
-    }
-  }
 
-  // function to display vertical line between previous and next
-  const displayVerticalLine = () => {
-    // if list is greater than 1 and current id is not the first or the last, then show vertical line
-    if (
-      Object.values(currentProducts).length > 1
-      &&
-      Object.values(currentProducts)[0] !== currentProductById
-      &&
-      currentProductId !== Object.values(currentProducts).length
-      &&
-      Object.values(currentProducts).length > 1
-    ) {
       return (
-        <span>
-          |
-        </span>
+        <>
+          <span className="unavailable span-selector">
+            Next
+          </span>
+          <i className="fa-solid fa-angle-right unavailable" />
+        </>
       )
     }
   }
@@ -184,10 +184,18 @@ const LowerShopProduct = () => {
                   currentImageId === image.id || !currentImageId && index === 0
                     ?
                     // If image is selected, use filled square
-                    <i className="fa-solid fa-square select-square" />
+                    <img
+                      className="pm-is-figure img selected"
+                      src={image.url}
+                      alt={`CurrentImage ${image.id}`}
+                    />
                     :
                     // Otherwise, use non-filled square
-                    <i className="fa-regular fa-square select-square" />
+                    <img
+                      className="pm-is-figure img un-selected"
+                      src={image.url}
+                      alt={`CurrentImage ${image.id}`}
+                    />
                 }
               </li>
             );
@@ -202,33 +210,37 @@ const LowerShopProduct = () => {
     <section className="lower-page-section shop-product">
       {/* //* Path */}
       {/* Example: Home / Shop All / Product Name */}
-      <p className="lps inner product-path">
+      <section className="lps inner product-path">
         <NavLink to="/">
           Home
         </NavLink>
         /
-        <NavLink to="product-page">
+        <NavLink to="/product-page">
           Shop All
         </NavLink>
         /
         {
-          currentProductById.name
+          <span>
+            {
+              currentProductById.name
+            }
+          </span>
         }
-      </p>
+      </section>
 
       {/* //* Prev Next Product Selector */}
-      <p className="lps inner product-selector">
+      <section className="lps inner product-selector">
         {/* if there are prev and next, return vertical pipe */}
         {
           getPrevProduct()
         }
-        {
-          displayVerticalLine()
-        }
+        <span className="vertical-line">
+          |
+        </span>
         {
           getNextProduct()
         }
-      </p>
+      </section>
 
       {/* //* Product Image */}
       <section className="lps inner product-image">
