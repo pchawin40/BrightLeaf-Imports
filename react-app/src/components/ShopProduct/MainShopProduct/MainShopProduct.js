@@ -18,6 +18,7 @@ import { useEffect, useState } from 'react';
 // import store
 import * as productActions from '../../../store/products';
 import * as imageActions from '../../../store/images';
+import { useNavHeader } from '../../../context/NavHeaderContext.js';
 
 //? LowerShopProduct component
 const LowerShopProduct = () => {
@@ -29,7 +30,6 @@ const LowerShopProduct = () => {
   const [nextProduct, setNextProduct] = useState(null);
   const [productLoaded, setProductLoaded] = useState(false);
   const [currentImageId, setCurrentImageId] = useState(null);
-  const [currentImage, setCurrentImage] = useState(null);
 
   /**
    * Selector functions
@@ -216,7 +216,9 @@ const LowerShopProduct = () => {
           Home
         </NavLink>
         /
-        <NavLink to="/product-page">
+        <NavLink
+          to="/product-page"
+        >
           Shop All
         </NavLink>
         /

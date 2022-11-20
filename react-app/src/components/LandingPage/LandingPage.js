@@ -29,6 +29,8 @@ const LandingPage = () => {
    */
   const { backgroundColor, setBackgroundColor } = useNavHeader();
   const { currentPage, setCurrentPage } = useNavHeader();
+  const { headerColor, setHeaderColor } = useNavHeader();
+  const { footerColor, setFooterColor } = useNavHeader();
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -45,6 +47,11 @@ const LandingPage = () => {
     }
 
     window.scrollTo(0, 0);
+
+    // to reset color upon clicking from shop product
+    setHeaderColor('white');
+    setFooterColor('white');
+    setBackgroundColor('#484644');
   }, [currentPage]);
 
   return (
