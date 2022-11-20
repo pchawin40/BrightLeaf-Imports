@@ -12,6 +12,17 @@ export const loadShoppingCarts = (shoppingCarts) => {
   }
 }
 
+//? Action: Create cart
+const CREATE_CART = "carts/CREATE_CART";
+
+// action creator: create cart
+export const createCart = cart => {
+  return {
+    type: CREATE_CART,
+    cart
+  }
+}
+
 //? Action: Update cart
 const UPDATE_CART = "carts/UPDATE_CART";
 
@@ -71,6 +82,40 @@ export const thunkGetSessionUserCarts = () => async (dispatch) => {
 
   // return res if unsuccesful
   return res;
+}
+
+// thunk to create cart
+export const thunkPostCart = (cart) => async (dispatch) => {
+  // fetch route to post cart
+  const res = await fetch("/api/shopping-carts", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(cart)
+  });
+
+  // if successful
+  if (res.ok) {
+    const cartData = await res.json();
+
+    // if there's any error from res, return null
+    if (cartData.errors) {
+      return null;
+    }
+
+    // dispatch setting cart
+    dispatch(createCart(cartData));
+    // if unsucessful
+  } else if (res.status < 500) {
+    const data = await res.json();
+
+    if (data['errors']) {
+      return data;
+    }
+  }
+
+  return ['An error occurred. Please try again.']
 }
 
 // thunk to update cart

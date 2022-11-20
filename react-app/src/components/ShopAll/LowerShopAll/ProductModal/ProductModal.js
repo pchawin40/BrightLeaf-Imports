@@ -6,14 +6,20 @@ import { useProduct } from '../../../../context/ProductContext';
 // import css
 import './ProductModal.css';
 
+// import react
+import { useEffect, useState } from 'react';
+
 // import react-redux
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+// import react-router-dom
+import { NavLink } from 'react-router-dom';
 
 // import store
 import * as productActions from '../../../../store/products';
 import * as imageActions from '../../../../store/images';
-import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import * as cartActions from '../../../../store/shoppingCarts';
+import * as sessionActions from '../../../../store/session';
 
 //? ProductModal component
 const ProductModal = ({ setShowProductModal }) => {
@@ -32,6 +38,7 @@ const ProductModal = ({ setShowProductModal }) => {
   const currentProductById = useSelector(productActions.getCurrentProductById(currentProductId));
   const currentImages = useSelector(imageActions.getCurrentImages);
   const currentImagesByProductId = useSelector(imageActions.getCurrentImagesByProductId(currentProductId));
+  const currentUserId = useSelector(sessionActions.getCurrentUserId);
 
   /**
    * UseEffect
@@ -42,6 +49,14 @@ const ProductModal = ({ setShowProductModal }) => {
       setImageLoaded(true);
     }
   }, [imageLoaded]);
+
+  // per general
+  useEffect(() => {
+    // nothing for now
+  }, [currentProductById]);
+
+  // invoke dispatch
+  const dispatch = useDispatch();
 
   // function to return current image selected
   const displayCurrentImageSelected = () => {
@@ -120,6 +135,30 @@ const ProductModal = ({ setShowProductModal }) => {
     )
   };
 
+  // function to handle buy button
+  const handleBuyButton = () => {
+    if (currentProductById.quantity !== 0) {
+      // TODO: To work on product update
+      // subtract quantity from product
+      currentProductById.quantity -= 1;
+      dispatch(productActions.thunkUpdateProduct(currentProductById, currentProductId))
+        // .then(() => {
+        // add to cart modal
+        // const newCart = {
+        //   "user_id": currentUserId,
+        //   "product_id": currentProductId,
+        //   "quantity": 1
+        // };
+
+        // dispatch(cartActions.thunkPostCart(newCart));
+        // })
+        .then(() => {
+          dispatch(productActions.thunkGetProducts());
+          // dispatch(cartActions.thunkGetSessionUserCarts());
+        })
+    }
+  }
+
   return (
     imageLoaded &&
     <section id="product-modal">
@@ -159,7 +198,9 @@ const ProductModal = ({ setShowProductModal }) => {
               className='pm-button available'
               type="button"
             >
-              <span>
+              <span
+                onClick={handleBuyButton}
+              >
                 Add to Cart ( {currentProductById.quantity} left )
               </span>
             </button>

@@ -294,7 +294,9 @@ const LowerShopProduct = () => {
                 className='pt-available'
                 type="button"
               >
-                <span>
+                  <span
+                    onClick={_ => {}}
+                  >
                   Add to Cart ( {currentProductById.quantity} left )
                 </span>
               </button>

@@ -28,8 +28,9 @@ const ShopProduct = () => {
    */
   const { currentProductId, setCurrentProductId } = useProduct();
   const { currentProductImages, setCurrentProductImages } = useProduct();
-  const { backgroundColor, setBackgroundColor } = useNavHeader();
   const { currentPage, setCurrentPage } = useNavHeader();
+  const { headerColor, setHeaderColor } = useNavHeader();
+  const { footerColor, setFooterColor } = useNavHeader();
 
   // invoke history
   const history = useHistory();
@@ -56,6 +57,10 @@ const ShopProduct = () => {
 
     // on open, always scroll to top
     window.scrollTo(0, 0);
+
+    // to reset color upon clicking from shop product
+    setHeaderColor('black');
+    setFooterColor('black');
   }, [currentPage]);
 
   return (

@@ -139,7 +139,7 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
         start={{
           transform: `translateX(400px)`
         }}
-        end={{ transform: `translateX(-191px)` }}
+        end={{ transform: `translateX(-255px)` }}
       >
         <section
           id="shopping-cart-modal-section"
