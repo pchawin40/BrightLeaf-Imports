@@ -23,5 +23,8 @@
 	margin: 0 1rem;
 
 	text-decoration: none;
-	font-size: 2vw;
+}
+
+#nav-footer-section i {
+	font-size: 32px;
 }

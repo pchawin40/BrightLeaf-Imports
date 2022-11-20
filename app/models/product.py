@@ -9,7 +9,7 @@ class Product(db.Model):
   name = db.Column(db.String(50), nullable=False)
   description = db.Column(db.String(255))
   price = db.Column(db.Numeric(5, 2), nullable=False)
-  quantity = db.Column(db.Integer, nullable=False)
+  quantity = db.Column(db.Integer)
   preview_image = db.Column(db.String(255))
   
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)

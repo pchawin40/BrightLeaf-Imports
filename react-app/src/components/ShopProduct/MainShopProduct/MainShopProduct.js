@@ -2,12 +2,13 @@
 
 // import context
 import { useProduct } from '../../../context/ProductContext.js';
+import { useNavHeader } from '../../../context/NavHeaderContext.js';
 
 // import css
 import './MainShopProduct.css';
 
 // import react-redux
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import react-router-dom
 import { NavLink } from 'react-router-dom';
@@ -18,7 +19,8 @@ import { useEffect, useState } from 'react';
 // import store
 import * as productActions from '../../../store/products';
 import * as imageActions from '../../../store/images';
-import { useNavHeader } from '../../../context/NavHeaderContext.js';
+import * as sessionActions from '../../../store/session';
+import * as shoppingCartActions from '../../../store/shoppingCarts';
 
 //? LowerShopProduct component
 const LowerShopProduct = () => {
@@ -30,6 +32,9 @@ const LowerShopProduct = () => {
   const [nextProduct, setNextProduct] = useState(null);
   const [productLoaded, setProductLoaded] = useState(false);
   const [currentImageId, setCurrentImageId] = useState(null);
+  const currentUserId = useSelector(sessionActions.getCurrentUserId);
+  const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
+  const { showUserModal, setShowUserModal } = useNavHeader();
 
   /**
    * Selector functions
@@ -37,6 +42,7 @@ const LowerShopProduct = () => {
   const currentProducts = useSelector(productActions.getCurrentProducts);
   const currentProductById = useSelector(productActions.getCurrentProductById(currentProductId));
   const currentImagesByProductId = useSelector(imageActions.getCurrentImagesByProductId(currentProductId));
+  const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
 
   /**
    * UseEffect
@@ -69,6 +75,9 @@ const LowerShopProduct = () => {
       }
     }
   }, [productLoaded, currentImageId]);
+
+  // invoke dispatch
+  const dispatch = useDispatch();
 
   // function to get previous product
   const getPrevProduct = () => {
@@ -206,6 +215,43 @@ const LowerShopProduct = () => {
     );
   }
 
+  // function to handle buy button
+  const handleBuyButton = () => {
+    if (currentProductById.quantity !== 0) {
+      // TODO: To work on product update
+      // subtract quantity from product
+      currentProductById.quantity -= 1;
+      dispatch(productActions.thunkUpdateProduct(currentProductById, currentProductId))
+        .then(() => {
+          //* only create new cart if there's no existing cart with existing item name and id
+          if (Object.values(currentUserCarts).length > 0) {
+            // check for existing cart
+            const cartExists = Object.values(currentUserCarts).find(cartItem => cartItem.product_id === currentProductId);
+
+            if (cartExists) {
+              // if cart exist, add to cart
+              cartExists.quantity += 1;
+
+              return dispatch(shoppingCartActions.thunkUpdateCart(cartExists, cartExists.id));
+            }
+          }
+
+          //* otherwise create new cart
+          // add to cart modal
+          const newCart = {
+            "user_id": currentUserId,
+            "product_id": currentProductId,
+            "quantity": 1
+          };
+
+          dispatch(shoppingCartActions.thunkPostCart(newCart));
+        })
+        .then(() => {
+          dispatch(shoppingCartActions.thunkGetSessionUserCarts());
+        })
+    }
+  }
+
   return (
     productLoaded &&
     <section className="lower-page-section shop-product">
@@ -290,16 +336,26 @@ const LowerShopProduct = () => {
                 Out of Stock
               </button>
               :
-              <button
-                className='pt-available'
-                type="button"
-              >
-                  <span
-                    onClick={_ => {}}
-                  >
-                  Add to Cart ( {currentProductById.quantity} left )
-                </span>
-              </button>
+              currentUserInfo.role === "user" ?
+                <button
+                  className='pt-available'
+                  type="button"
+                  onClick={handleBuyButton}
+                >
+                  <span>
+                    Add to Cart ( {currentProductById.quantity} left )
+                  </span>
+                </button>
+                :
+                <button
+                  className='pt-available'
+                  type="button"
+                  onClick={_ => setShowUserModal(true)}
+                >
+                  <span>
+                    Sign In To Buy
+                  </span>
+                </button>
           }
 
           {/* Like Toggle */}

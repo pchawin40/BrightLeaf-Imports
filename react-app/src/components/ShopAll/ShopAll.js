@@ -17,6 +17,8 @@ import { useEffect } from 'react';
 
 // import store
 import * as imageActions from '../../store/images';
+import { Modal } from '../../context/Modal';
+import UserModal from '../NavHeader/UserModal';
 
 //? ShopAll component
 const ShopAll = () => {
@@ -28,6 +30,7 @@ const ShopAll = () => {
   const { currentPage, setCurrentPage } = useNavHeader();
   const { headerColor, setHeaderColor } = useNavHeader();
   const { footerColor, setFooterColor } = useNavHeader();
+  const { showUserModal, setShowUserModal } = useNavHeader();
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -71,6 +74,19 @@ const ShopAll = () => {
 
       {/* Footer */}
       <Footer />
+
+
+      {/* User Modal */}
+      {showUserModal && (
+        <Modal
+          onClose={(_) => {
+            setShowUserModal(false)
+            document.body.style.overflowY = "scroll"
+          }}
+        >
+          <UserModal />
+        </Modal>
+      )}
     </section>
   );
 };

@@ -1,7 +1,12 @@
 // src/components/ShopAll/LowerShopAll/ProductModal/ProductModal.js
 
+// import component
+import UserModal from '../../../NavHeader/UserModal';
+
 // import context
 import { useProduct } from '../../../../context/ProductContext';
+import { useNavHeader } from '../../../../context/NavHeaderContext';
+import { Modal } from '../../../../context/Modal';
 
 // import css
 import './ProductModal.css';
@@ -18,7 +23,7 @@ import { NavLink } from 'react-router-dom';
 // import store
 import * as productActions from '../../../../store/products';
 import * as imageActions from '../../../../store/images';
-import * as cartActions from '../../../../store/shoppingCarts';
+import * as shoppingCartActions from '../../../../store/shoppingCarts';
 import * as sessionActions from '../../../../store/session';
 
 //? ProductModal component
@@ -31,14 +36,16 @@ const ProductModal = ({ setShowProductModal }) => {
   const [currentImageId, setCurrentImageId] = useState(null);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [currentImage, setCurrentImage] = useState({});
+  const { showUserModal, setShowUserModal } = useNavHeader();
 
   /**
    * Selector inputs
    */
   const currentProductById = useSelector(productActions.getCurrentProductById(currentProductId));
-  const currentImages = useSelector(imageActions.getCurrentImages);
   const currentImagesByProductId = useSelector(imageActions.getCurrentImagesByProductId(currentProductId));
   const currentUserId = useSelector(sessionActions.getCurrentUserId);
+  const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
+  const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
 
   /**
    * UseEffect
@@ -142,19 +149,32 @@ const ProductModal = ({ setShowProductModal }) => {
       // subtract quantity from product
       currentProductById.quantity -= 1;
       dispatch(productActions.thunkUpdateProduct(currentProductById, currentProductId))
-        // .then(() => {
-        // add to cart modal
-        // const newCart = {
-        //   "user_id": currentUserId,
-        //   "product_id": currentProductId,
-        //   "quantity": 1
-        // };
-
-        // dispatch(cartActions.thunkPostCart(newCart));
-        // })
         .then(() => {
-          dispatch(productActions.thunkGetProducts());
-          // dispatch(cartActions.thunkGetSessionUserCarts());
+          //* only create new cart if there's no existing cart with existing item name and id
+          if (Object.values(currentUserCarts).length > 0) {
+            // check for existing cart
+            const cartExists = Object.values(currentUserCarts).find(cartItem => cartItem.product_id === currentProductId);
+
+            if (cartExists) {
+              // if cart exist, add to cart
+              cartExists.quantity += 1;
+
+              return dispatch(shoppingCartActions.thunkUpdateCart(cartExists, cartExists.id));
+            }
+          }
+
+          //* otherwise create new cart
+          // add to cart modal
+          const newCart = {
+            "user_id": currentUserId,
+            "product_id": currentProductId,
+            "quantity": 1
+          };
+
+          dispatch(shoppingCartActions.thunkPostCart(newCart));
+        })
+        .then(() => {
+          dispatch(shoppingCartActions.thunkGetSessionUserCarts());
         })
     }
   }
@@ -194,16 +214,27 @@ const ProductModal = ({ setShowProductModal }) => {
               Out of Stock
             </button>
             :
-            <button
-              className='pm-button available'
-              type="button"
-            >
-              <span
+            currentUserInfo &&
+              currentUserInfo.role === "user" ?
+              <button
+                className='pm-button available'
+                type="button"
                 onClick={handleBuyButton}
               >
-                Add to Cart ( {currentProductById.quantity} left )
-              </span>
-            </button>
+                <span>
+                  Add to Cart ( {currentProductById.quantity} left )
+                </span>
+              </button>
+              :
+              <button
+                className='pm-button available'
+                type="button"
+                onClick={_ => setShowUserModal(true)}
+              >
+                <span>
+                  Sign In To Buy
+                </span>
+              </button>
         }
 
         {/* View More Details that open up to another page */}

@@ -87,7 +87,7 @@ export const thunkGetSessionUserCarts = () => async (dispatch) => {
 // thunk to create cart
 export const thunkPostCart = (cart) => async (dispatch) => {
   // fetch route to post cart
-  const res = await fetch("/api/shopping-carts", {
+  const res = await fetch("/api/shopping-carts/", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

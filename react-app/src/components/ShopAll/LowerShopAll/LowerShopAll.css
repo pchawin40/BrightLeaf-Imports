@@ -124,6 +124,8 @@
 	background-color: #c7c7c7;
 	border: none;
 	box-shadow: none;
+
+	padding: 1.5vh 0;
 }
 
 .lp-product-button.available:active {
