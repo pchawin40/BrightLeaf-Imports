@@ -23,7 +23,6 @@
 
 /** Path */
 .lps.product-path {
-	/* background-color: cyan; */
 	height: 100%;
 	width: auto;
 
@@ -50,7 +49,6 @@
 	align-items: center;
 	justify-content: flex-end;
 
-	/* background-color: blue; */
 	width: 100%;
 
 	margin: 0;
@@ -87,15 +85,17 @@
 	justify-content: flex-start;
 }
 
-.pm-cis-figure {
-	width: 90%;
-	height: 60%;
+.pt-cis-figure {
+	height: 60vh;
+	width: auto;
+	margin: 0;
+	padding: 0;
 }
 
-.pm-cis-figure > img {
+.pt-cis-figure > img {
+	object-fit: cover;
 	height: 100%;
 	width: 100%;
-	object-fit: cover;
 }
 
 .lps.inner.product-image > ul {
@@ -127,4 +127,109 @@
 .pm-is-figure.selected {
 	height: 3rem;
 }
+
 /** Product Titles */
+.lps.inner.product-title {
+	height: 100%;
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.pt-inner.name {
+	font-size: 26px;
+	line-height: 31.2px;
+	font-weight: 400;
+}
+
+.pt-inner.id {
+	font-size: 14px;
+	line-height: 16.8px;
+	margin-top: 6px;
+}
+
+.pt-inner.price {
+	font-size: 20px;
+	padding-top: 23px;
+}
+
+.pt-inner.buy-like {
+	width: 100%;
+
+	display: flex;
+	align-items: center;
+
+	margin: 0;
+	padding: 0;
+	margin-top: 1rem;
+}
+
+.pt-inner button {
+	font-size: 14px;
+	position: relative;
+	text-align: start;
+	box-sizing: border-box;
+	padding: 10px 16px;
+	line-height: 22.4px;
+	border: none;
+	color: white;
+
+	margin: 0;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+	text-transform: uppercase;
+
+	transition: box-shadow 0.1s ease;
+}
+
+.pt-available {
+	background-color: #80ab63;
+}
+
+.pt-available:hover {
+	cursor: pointer;
+}
+
+.pt-available:active {
+	box-shadow: 0 3px 15px rgb(0 0 0 / 0.2);
+}
+
+.pt-out-of-stock {
+	background-color: rgb(199, 199, 199);
+}
+
+.pt-like {
+	border: 1px solid black;
+	height: 35px;
+	width: 35px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	margin: 0;
+	margin-left: 20px;
+}
+
+.pt-like:hover {
+	cursor: pointer;
+}
+
+.pt-like > i {
+	opacity: 0.65;
+}
+
+/* Description */
+.pt-inner.description {
+	text-align: left;
+	font-size: 15px;
+	margin-top: 10px;
+
+	white-space: pre-line;
+}

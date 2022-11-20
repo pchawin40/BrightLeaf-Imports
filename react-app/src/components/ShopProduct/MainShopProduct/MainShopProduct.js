@@ -157,8 +157,9 @@ const LowerShopProduct = () => {
 
       if (newCurrentImage) {
         return (
-          <figure className="pm-cis-figure">
+          <figure className="pt-cis-figure">
             <img
+              className="pt-cis-figure-img"
               src={newCurrentImage.url}
               alt={`Shop All image ${newCurrentImage.id}`}
             />
@@ -257,38 +258,54 @@ const LowerShopProduct = () => {
       {/* //* Product Titles */}
       <section className="lps inner product-title">
         {/* Name */}
-        <span>
+        <span className="pt-inner name">
           {
             currentProductById.name
           }
         </span>
 
         {/* Id */}
-        <span>
+        <span className="pt-inner id">
           {
-            currentProductById.id
+            `SKU: ${currentProductById.id.toString().padStart(4, "0")}`
           }
         </span>
 
         {/* Price */}
-        <span>
-          {
-            currentProductById.price
-          }
+        <span className="pt-inner price">
+          $ {parseFloat(currentProductById.price).toFixed(2)} USD
         </span>
 
-        {/* Buy buttons */}
-        <button>
-          buy | out of stock
-        </button>
+        {/* Buy/Like Toggle */}
+        <section className="pt-inner buy-like">
+          {/* Buy Button | Out of Stock */}
+          {
+            currentProductById.quantity <= 0 ?
+              <button
+                className='pt-out-of-stock'
+                type="button"
+              >
+                Out of Stock
+              </button>
+              :
+              <button
+                className='pt-available'
+                type="button"
+              >
+                <span>
+                  Buy Now ( {currentProductById.quantity} available )
+                </span>
+              </button>
+          }
 
-        {/* Like Toggle */}
-        <figure>
-          <i className="fa-regular fa-heart" />
-        </figure>
+          {/* Like Toggle */}
+          <figure className="pt-like">
+            <i className="fa-regular fa-heart" />
+          </figure>
+        </section>
 
         {/* Description */}
-        <p>
+        <p className="pt-inner description">
           {
             currentProductById.description
           }
