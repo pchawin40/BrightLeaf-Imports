@@ -15,12 +15,12 @@ def seed_products():
   monkey_pod = Product(
     name = "Monkey Pod (Acacia) Coffee Table",
     description = """Authentic, hand-crafted Monkey Pod coffee table with black, flat bar metal legs.
-    
-    Dimensions:
-    Width - 28.5 in 
-    Length - 39.5 in.
-    Height - 26 in.
-    Depth - 1.75 in.
+    \n
+    Dimensions:\n
+    Width - 28.5 in\n
+    Length - 39.5 in.\n
+    Height - 26 in.\n
+    Depth - 1.75 in.\n
     """,
     price=450,
     quantity= randrange(9) + 1,
@@ -46,12 +46,12 @@ def seed_products():
     name = "Monkey Pod (Acacia) Coffee Table",
     description="""
     Authentic, hand-crafted Monkey Pod coffee table with black, authentic industrial pipe fitting legs.
-    
-    Dimensions:
-    Width - 28.5 in.
-    Length - 39.5 in.
-    Height - 19.5 in.
-    Depth - 1.75 in.
+    \n
+    Dimensions:\n
+    Width - 28.5 in.\n
+    Length - 39.5 in.\n
+    Height - 19.5 in.\n
+    Depth - 1.75 in.\n
     """,
     price=450,
     quantity=randrange(9) + 1,
@@ -85,12 +85,12 @@ def seed_products():
   monkey_pod_3 = Product(
     name="Monkey Pod (Acacia) Coffee Table",
     description="""Authentic, hand-crafted Monkey Pod coffee table with black, authentic industrial pipe fitting legs.
-    
-    Dimensions:
-    Width - 28.5 in.
-    Length - 39.5 in.
-    Height - 19.5 in.
-    Depth - 1.75 in.
+    \n
+    Dimensions:\n
+    Width - 28.5 in.\n
+    Length - 39.5 in.\n
+    Height - 19.5 in.\n
+    Depth - 1.75 in.\n
     """,
     price=450,
     quantity=randrange(9) + 1,
