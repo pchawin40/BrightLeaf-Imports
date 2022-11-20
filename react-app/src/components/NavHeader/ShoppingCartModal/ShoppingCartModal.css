@@ -107,7 +107,7 @@
 .scms-li-add-quantity,
 .scms-li-delete-quantity {
 	position: relative;
-	z-index: 5;
+	z-index: 7;
 }
 
 .scms-li-add-quantity:hover,

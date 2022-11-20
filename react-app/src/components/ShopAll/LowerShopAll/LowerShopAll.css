@@ -126,6 +126,8 @@
 	box-shadow: none;
 
 	padding: 1.5vh 0;
+
+	width: 42%;
 }
 
 .lp-product-button.available:active {
