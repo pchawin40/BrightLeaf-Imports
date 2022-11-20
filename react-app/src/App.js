@@ -32,6 +32,7 @@ import * as shoppingCartActions from './store/shoppingCarts';
 import * as imageActions from './store/images';
 import * as productActions from './store/products';
 import ShopProduct from './components/ShopProduct';
+import { useNavHeader } from './context/NavHeaderContext';
 
 
 function App() {

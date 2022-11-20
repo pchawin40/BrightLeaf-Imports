@@ -22,8 +22,10 @@ const NavRight = () => {
    */
   const { showNavModal, setShowNavModal } = useNavRight();
   const { loadCartModal, setLoadCartModal } = useNavHeader();
-  // const { color, setColor } = useNavHeader();
   const { prevColor, setPrevColor } = useNavHeader();
+  const { currentPage, setCurrentPage } = useNavHeader();
+  const { headerColor, setHeaderColor } = useNavHeader();
+  const { footerColor, setFooterColor } = useNavHeader();
 
   return (
     <section
@@ -44,7 +46,17 @@ const NavRight = () => {
           id="nav-rn-figure"
           onClick={_ => {
             setShowNavModal(!showNavModal);
-            // if (!showNavModal) setColor("white");
+
+            if (currentPage === "shopproduct") {
+              console.log('here');
+
+              window.scrollTo(0, 0);
+
+              // try changing color here
+              setHeaderColor('black');
+              setFooterColor('black');
+            }
+
             // TODO: To fix color when icon is set to black
             document.body.style.overflowY = "scroll";
           }}

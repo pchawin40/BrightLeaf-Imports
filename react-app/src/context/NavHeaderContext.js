@@ -110,19 +110,36 @@ export default function NavHeaderProvider({ children }) {
   useEffect(() => {
     // background color
     window.addEventListener('scroll', changeBackground);
-    return () => window.removeEventListener('scroll', changeBackground);
+    window.addEventListener('load', changeBackground);
+    return () => {
+      window.removeEventListener('scroll', changeBackground);
+      window.removeEventListener('load', changeBackground);
+    }
   }, [backgroundColor, currentPage]);
 
   // per header color
   useEffect(() => {
     window.addEventListener('scroll', changeHeaderColor);
-    return () => window.removeEventListener('scroll', changeHeaderColor);
+    window.addEventListener('load', changeHeaderColor);
+    const navRight = document.getElementById("nav-rn-figure");
+
+    if (navRight) navRight.addEventListener('click', changeHeaderColor);
+
+    return () => {
+      window.removeEventListener('scroll', changeHeaderColor);
+      window.removeEventListener('load', changeHeaderColor);
+      if (navRight) navRight.removeEventListener('click', changeHeaderColor);
+    }
   }, [headerColor, currentPage]);
 
   // per footer color
   useEffect(() => {
     window.addEventListener('scroll', changeFooterColor);
-    return () => window.removeEventListener('scroll', changeFooterColor);
+    window.addEventListener('load', changeFooterColor);
+    return () => {
+      window.removeEventListener('scroll', changeFooterColor);
+      window.removeEventListener('load', changeFooterColor);
+    }
   }, [footerColor, currentPage]);
 
   // Landing Provider
