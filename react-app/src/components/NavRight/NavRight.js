@@ -47,16 +47,6 @@ const NavRight = () => {
           onClick={_ => {
             setShowNavModal(!showNavModal);
 
-            if (currentPage === "shopproduct") {
-              console.log('here');
-
-              window.scrollTo(0, 0);
-
-              // try changing color here
-              setHeaderColor('black');
-              setFooterColor('black');
-            }
-
             // TODO: To fix color when icon is set to black
             document.body.style.overflowY = "scroll";
           }}

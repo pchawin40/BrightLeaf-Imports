@@ -25,11 +25,6 @@ const NavModal = () => {
   // try changing color here
   const nhFigure = document.querySelector(".nh-figure.user-modal");
 
-  if (nhFigure) {
-    setHeaderColor('white');
-    setFooterColor('white');
-  }
-
   return (
     <section id="nav-modal-section">
       {/* Nav Modal: Left */}
