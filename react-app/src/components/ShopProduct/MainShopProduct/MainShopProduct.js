@@ -244,7 +244,7 @@ const LowerShopProduct = () => {
             "quantity": 1
           };
 
-          dispatch(shoppingCartActions.thunkPostCart(newCart));
+          return dispatch(shoppingCartActions.thunkPostCart(newCart));
         })
         .then(() => {
           dispatch(shoppingCartActions.thunkGetSessionUserCarts());

@@ -86,19 +86,41 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
   }
 
   // function to handle quantity click
-  const handleCartQuantity = (cartItem, newQuantity) => {
+  const handleCartQuantity = (cartItem, newQuantity, addToCart = true) => {
+    const existingProduct = Object.values(currentProducts).find(product => product.id === cartItem.product_id);
     // if quantity is less than 1, delete it from shopping cart
     if (newQuantity === 0) {
       // TODO: To fix glitch when deleting last item of last cart
       dispatch(shoppingCartActions.thunkDeleteCart(cartItem.id))
         .then(() => {
+          // add quantity to product from removing from cart
+          // grab existing product
+
+          existingProduct.quantity += 1;
+          dispatch(productActions.thunkUpdateProduct(existingProduct, existingProduct.id));
+        })
+        .then(() => {
           dispatch(shoppingCartActions.thunkGetSessionUserCarts())
           setCartLoaded(false);
         });
     } else {
+      // nq < cq
+      // if newQuantity is less than current cart item quantity...
+      // set newProductQuantity as newQuantity + 1
+      if (addToCart) {
+        existingProduct.quantity -= 1;
+      } else {
+        // otherwise, set newProductQuantity as newQuantity - 1
+        // newProductQuantity += 1;
+        existingProduct.quantity += 1;
+      }
+
       // else, update current cart item from user
       cartItem.quantity = newQuantity;
-      dispatch(shoppingCartActions.thunkUpdateCart(cartItem, cartItem.id));
+      dispatch(shoppingCartActions.thunkUpdateCart(cartItem, cartItem.id))
+        .then(() => {
+          dispatch(productActions.thunkUpdateProduct(existingProduct, existingProduct.id));
+        })
     }
   };
 
@@ -126,6 +148,14 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
     });
 
     return total;
+  }
+
+  // function to check if there are enough product to add
+  const checkProductQuantity = (productId) => {
+    // check if product quantity is greater than 0
+    const existingProduct = Object.values(currentProducts).find(product => product.id === productId);
+
+    return existingProduct.quantity > 0;
   }
 
   return (
@@ -172,14 +202,25 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
                         <li key={"cart item: " + cartItem.id} className="scms-li">
                           <section className="scms-buttons-containers">
                             {/* Add more */}
-                            <i
-                              onClick={_ => handleCartQuantity(cartItem, cartItem.quantity + 1)}
-                              className="fa-solid fa-square-plus fa-lg scms-li-add-quantity"
-                            />
+                            {/* Check if there are enough product */}
+                            {
+                              checkProductQuantity(cartItem.product_id)
+                                ?
+                                // If there are still product, proceed to add to cart quantity
+                                <i
+                                  onClick={_ => handleCartQuantity(cartItem, cartItem.quantity + 1, true)}
+                                  className="fa-solid fa-square-plus fa-lg scms-li-add-quantity"
+                                />
+                                :
+                                // Otherwise disable handleCartQuantity
+                                <i
+                                  className="fa-solid fa-square-plus fa-lg scms-li-add-quantity unavailable"
+                                />
+                            }
 
                             {/* Delete */}
                             <i
-                              onClick={_ => handleCartQuantity(cartItem, cartItem.quantity - 1)}
+                              onClick={_ => handleCartQuantity(cartItem, cartItem.quantity - 1, false)}
                               className="fa-solid fa-square-minus fa-lg scms-li-delete-quantity"
                             />
                           </section>

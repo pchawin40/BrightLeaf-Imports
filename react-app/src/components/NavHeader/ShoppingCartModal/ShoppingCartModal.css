@@ -115,6 +115,11 @@
 	cursor: pointer;
 }
 
+.scms-li-add-quantity.unavailable {
+	color: rgb(199, 199, 199);
+	cursor: default;
+}
+
 .scms-li-span.quantity {
 	grid-area: quantity;
 

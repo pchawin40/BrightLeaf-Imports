@@ -63,9 +63,6 @@ export const thunkUpdateProduct = (editedProduct, productId) => async (dispatch)
     return productUpdate;
   }
 
-  console.log('res', await res.json());
-  // console.log('errors:', await res.json()['errors']);
-
   // return null if unsuccessful
   return null;
 }
