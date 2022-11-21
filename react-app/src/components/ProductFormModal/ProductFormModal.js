@@ -173,7 +173,12 @@ const ProductFormModal = () => {
         {/* //* Product Information */}
         <section className="dpf-section information">
           {/* Product Name */}
-          <label htmlFor='product_name'>Product Name</label>
+          <label
+            className="information product_name"
+            htmlFor='product_name'
+          >
+            Product Name
+          </label>
           <input
             name='product_name'
             type='text'
@@ -182,7 +187,12 @@ const ProductFormModal = () => {
           />
 
           {/* Product Price */}
-          <label htmlFor='product_price'>Product Price</label>
+          <label
+            className="information product_price"
+            htmlFor='product_price'
+          >
+            Product Price (in USD $)
+          </label>
           <input
             name='product_price'
             type='number'
@@ -192,7 +202,12 @@ const ProductFormModal = () => {
           />
 
           {/* Product Quantity */}
-          <label htmlFor='product_quantity'>Product Quantity</label>
+          <label
+            className="information product_quantity"
+            htmlFor='product_quantity'
+          >
+            Product Quantity
+          </label>
           <input
             name='product_quantity'
             type='number'
@@ -202,8 +217,14 @@ const ProductFormModal = () => {
           />
 
           {/* Product Description */}
-          <label htmlFor='product_description'>Enter new description</label>
+          <label
+            className="information product_description"
+            htmlFor='product_description'
+          >
+            Product Description
+          </label>
           <textarea
+            className="information product_description"
             name='product_description'
             type='text'
             value={productDescription}
@@ -213,9 +234,13 @@ const ProductFormModal = () => {
 
         {/* //* Product Image and Submit section */}
         <section className="dpf-section image-submit">
+          <label>
+            Preview Image
+          </label>
+
           {/* Image to display sample image to add */}
           <figure
-            className="imm-sample-image-figure"
+            className="imm-sample-image-figure pfm"
             onClick={_ => document.querySelector('.im-image-input').click()}
           >
             {previewImageLoading ? (
@@ -248,21 +273,18 @@ const ProductFormModal = () => {
                 </figure>
             )}
           </figure>
-
-          <section className="im-button-containers">
-            {/* Button to reset image */}
-            <button
-              className={`reset-image button`}
-              onClick={_ => setProductPreviewImage("")}
-              type="button"
-              style={{
-                backgroundColor: productPreviewImage.length > 0 ? "#80ab63" : "gray",
-                cursor: productPreviewImage.length > 0 ? "pointer" : "default"
-              }}
-            >
-              Reset Preview Picture
-            </button>
-          </section>
+          {/* Button to reset image */}
+          <button
+            className={`reset-image button`}
+            onClick={_ => setProductPreviewImage("")}
+            type="button"
+            style={{
+              backgroundColor: productPreviewImage.length > 0 ? "#80ab63" : "gray",
+              cursor: productPreviewImage.length > 0 ? "pointer" : "default"
+            }}
+          >
+            Reset Preview Picture
+          </button>
 
           {/* Submit Button */}
           <button
@@ -276,15 +298,34 @@ const ProductFormModal = () => {
 
         {/* //* Image Gallery Display */}
         <section className="dpf-section gallery">
+          <span>
+            Gallery Display
+          </span>
           <ul>
             {
               currentImagesByProductId && Object.values(currentImagesByProductId).map(image => {
                 return (
                   <li>
-                    <img
-                      src={image.url}
-                      alt={`Gallery Display: Image ${image.id}`}
-                    />
+                    <figure>
+                      <img
+                        src={image.url}
+                        alt={`Gallery Display: Image ${image.id}`}
+                      />
+                    </figure>
+                  </li>
+                );
+              })
+            }
+            {
+              currentImagesByProductId && Object.values(currentImagesByProductId).map(image => {
+                return (
+                  <li>
+                    <figure>
+                      <img
+                        src={image.url}
+                        alt={`Gallery Display: Image ${image.id}`}
+                      />
+                    </figure>
                   </li>
                 );
               })
@@ -292,7 +333,7 @@ const ProductFormModal = () => {
             {/* Add Image */}
             <li>
               <figure
-                className="imm-sample-image-figure-inner"
+                className="dpf-section add-image"
               >
                 <input
                   type='file'
@@ -309,6 +350,12 @@ const ProductFormModal = () => {
             </li>
           </ul>
         </section>
+
+        {/* Exit Modal Icon */}
+        <i
+          className="fa-solid fa-x fa-xl pfm-exit"
+          onClick={_ => setShowProductFormModal(false)}
+        />
       </form>
     );
   };
@@ -319,12 +366,6 @@ const ProductFormModal = () => {
       {
         displayProductForm()
       }
-
-      {/* Exit Modal Icon */}
-      <i
-        className="fa-solid fa-x fa-lg exit-modal-icon"
-        onClick={_ => setShowProductFormModal(false)}
-      />
     </section>
   );
 };
