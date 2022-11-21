@@ -28,7 +28,7 @@ class Product(db.Model):
   review = db.relationship('Review', back_populates='products', cascade='delete')
   
   # return product as object (dictionary)
-  def to_dict(self):
+  def to_dict(self):    
     return {
       'id': self.id,
       'name': self.name,

@@ -374,7 +374,7 @@ const MainShopProduct = () => {
                   onClick={_ => setShowUserModal(true)}
                 >
                   <span>
-                    Sign In As User To Buy
+                      Sign In As User To Buy ( {currentProductById.quantity} available )
                   </span>
                 </button>
           }

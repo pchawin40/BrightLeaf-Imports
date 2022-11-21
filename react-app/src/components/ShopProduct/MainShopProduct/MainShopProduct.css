@@ -160,6 +160,7 @@
 	font-size: 26px;
 	line-height: 31.2px;
 	font-weight: 400;
+	text-align: left;
 }
 
 .pt-inner.edit-button {
@@ -268,7 +269,24 @@
 .pt-inner.description {
 	text-align: left;
 	font-size: 15px;
+	white-space: pre-line;
 	margin-top: 20px;
 
-	white-space: pre-line;
+	width: 100%;
+
+	overflow-y: auto;
+}
+
+.pt-inner.description::-webkit-scrollbar {
+	width: 0.5em;
+}
+
+.pt-inner.description::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.pt-inner.description::-webkit-scrollbar-thumb {
+	background-color: #80ab63;
+	outline: 1px solid #92b77a;
+	border-radius: 1rem;
 }

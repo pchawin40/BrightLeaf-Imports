@@ -60,7 +60,7 @@ def product_by_id(product_id):
   product = Product.query.get(product_id)
   
   # if product not found, throw appropriate error
-  if product == Gallery:
+  if product == None:
     return {'errors': [f"Product {product_id} does not exist"]}, 404
   
   # otherwise, return successful response
@@ -104,9 +104,19 @@ def secure_product_by_id(product_id):
       if form.data['price']:
         product.price = form.data['price']
       
+      print()
+      print("||||||")
+      print("form quantity")
+      print("form.data['quantity']", form.data['quantity'])
+      print()
+        
       # if quantity exist
-      if form.data['quantity']:
+      if form.data['quantity'] or form.data['quantity'] == 0:
+        print("product.quantity (before)", product.quantity)
         product.quantity = form.data['quantity']
+        print()
+        print("product.quantity (after)", product.quantity)
+        print()
       
       # if preview_image exist
       if form.data['preview_image']:

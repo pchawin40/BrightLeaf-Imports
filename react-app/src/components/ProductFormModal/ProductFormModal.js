@@ -47,7 +47,9 @@ const ProductFormModal = () => {
   );
 
   // set product name length (to see if exists)
-  const [productNameLength, setProductNameLength] = useState(0);
+  const [productNameLength, setProductNameLength] = useState(
+    productName ? productName.length : 0
+  );
 
   // set product price (grab existing if exists)
   const [productPrice, setProductPrice] = useState(
@@ -60,7 +62,9 @@ const ProductFormModal = () => {
   );
 
   // set product price length (to see if exists)
-  const [productDescriptionLength, setProductDescriptionLength] = useState(0);
+  const [productDescriptionLength, setProductDescriptionLength] = useState(
+    productDescription ? productDescription.length : 0
+  );
 
   // set product quantity
   const [productQuantity, setProductQuantity] = useState(
@@ -243,19 +247,11 @@ const ProductFormModal = () => {
     )
       // either way, call on thunk to fetch product afterward
       .then(() => dispatch(productActions.thunkGetProducts()))
-      .then(() => setShowProductFormModal(false));
+    // .then(() => setShowProductFormModal(false));
   };
 
   // invoke dispatch
   const dispatch = useDispatch();
-
-  // function to check if input length are entered
-  const checkInputEntered = () => {
-    return (
-      productNameLength > 0 &&
-      productDescriptionLength > 0
-    );
-  };
 
   // function to delete image
   const handleDeleteImage = imageId => {
@@ -263,6 +259,17 @@ const ProductFormModal = () => {
       .then(() => {
         dispatch(imageActions.thunkGetImages("ShopAll=True"));
       })
+  }
+
+  // function to check if product is ready to be submit
+  const checkSubmitReady = () => {
+    return (
+      255 - productDescriptionLength >= 0
+      &&
+      productPrice > 0 && productPrice <= 99999
+      &&
+      productNameLength <= 50
+    )
   }
 
   // function to display product form
@@ -297,6 +304,9 @@ const ProductFormModal = () => {
             htmlFor='product_name'
           >
             Product Name
+            <span className={`valid-name ${50 - productNameLength >= 0}`}>
+              {` ( ${50 - productNameLength} characters left )`}
+            </span>
           </label>
           <input
             name='product_name'
@@ -311,6 +321,9 @@ const ProductFormModal = () => {
             htmlFor='product_price'
           >
             Product Price (in USD $)
+            <span className={`${productPrice > 0 && productPrice <= 99999}`}>
+              {` [value between 0 to 99,999]`}
+            </span>
           </label>
           <input
             name='product_price'
@@ -341,6 +354,9 @@ const ProductFormModal = () => {
             htmlFor='product_description'
           >
             Product Description
+            <span className={`valid-description ${255 - productDescriptionLength >= 0}`}>
+              {` ( ${255 - productDescriptionLength} characters left )`}
+            </span>
           </label>
           <textarea
             className="information product_description"
@@ -407,8 +423,8 @@ const ProductFormModal = () => {
 
           {/* Submit Button */}
           <button
-            className="dpf submit-button"
-            type='submit'
+            className={`dpf submit-button ${checkSubmitReady()}`}
+            type={`${checkSubmitReady() ? "submit" : "button"}`}
           >
             Submit Product
           </button>
