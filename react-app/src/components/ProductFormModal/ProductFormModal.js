@@ -150,79 +150,147 @@ const ProductFormModal = () => {
   const displayProductForm = () => {
     return (
       <form
+        className="dpf-form"
         onSubmit={handleProductSubmit}
       >
-        <h1>
-          {
-            editProduct
-              ?
-              <>
-                Edit Product
-              </>
-              :
-              <>
-                Add Product
-              </>
-          }
-        </h1>
+        {/* //* Product Title */}
+        <section className="dpf-section title">
+          <h1>
+            {
+              editProduct
+                ?
+                <>
+                  Edit Product
+                </>
+                :
+                <>
+                  Add Product
+                </>
+            }
+          </h1>
+        </section>
 
-        {/* Product Name */}
-        <label htmlFor='product_name'>Product Name</label>
-        <input
-          name='product_name'
-          type='text'
-          value={productName}
-          onChange={updateProductName}
-        />
+        {/* //* Product Information */}
+        <section className="dpf-section information">
+          {/* Product Name */}
+          <label htmlFor='product_name'>Product Name</label>
+          <input
+            name='product_name'
+            type='text'
+            value={productName}
+            onChange={updateProductName}
+          />
 
-        {/* Product Price */}
-        <label htmlFor='product_price'>Product Price</label>
-        <input
-          name='product_price'
-          type='number'
-          min="0"
-          value={productPrice}
-          onChange={updateProductPrice}
-        />
+          {/* Product Price */}
+          <label htmlFor='product_price'>Product Price</label>
+          <input
+            name='product_price'
+            type='number'
+            min="0"
+            value={productPrice}
+            onChange={updateProductPrice}
+          />
 
-        {/* Product Quantity */}
-        <label htmlFor='product_quantity'>Product Quantity</label>
-        <input
-          name='product_quantity'
-          type='number'
-          min="0"
-          value={productQuantity}
-          onChange={updateProductQuantity}
-        />
+          {/* Product Quantity */}
+          <label htmlFor='product_quantity'>Product Quantity</label>
+          <input
+            name='product_quantity'
+            type='number'
+            min="0"
+            value={productQuantity}
+            onChange={updateProductQuantity}
+          />
 
-        {/* Product Description */}
-        <label htmlFor='product_description'>Enter new description</label>
-        <textarea
-          name='product_description'
-          type='text'
-          value={productDescription}
-          onChange={updateProductDescription}
-        />
+          {/* Product Description */}
+          <label htmlFor='product_description'>Enter new description</label>
+          <textarea
+            name='product_description'
+            type='text'
+            value={productDescription}
+            onChange={updateProductDescription}
+          />
+        </section>
 
-        {/* Product Image */}
-        {/* Image to display sample image to add */}
-        <figure
-          className="imm-sample-image-figure"
-          onClick={_ => document.querySelector('.im-image-input').click()}
-        >
-          {previewImageLoading ? (
-            <img
-              src='https://cdn.dribbble.com/users/2077073/screenshots/6005120/loadin_gif.gif'
-              alt='Loading'
-            />
-          ) : (
-            productPreviewImage ?
+        {/* //* Product Image and Submit section */}
+        <section className="dpf-section image-submit">
+          {/* Image to display sample image to add */}
+          <figure
+            className="imm-sample-image-figure"
+            onClick={_ => document.querySelector('.im-image-input').click()}
+          >
+            {previewImageLoading ? (
               <img
-                src={productPreviewImage}
-                alt={"add display"}
+                src='https://cdn.dribbble.com/users/2077073/screenshots/6005120/loadin_gif.gif'
+                alt='Loading'
               />
-              :
-              // Picture dropper
+            ) : (
+              productPreviewImage ?
+                <img
+                  src={productPreviewImage}
+                  alt={"add display"}
+                />
+                :
+                // Picture dropper
+                <figure
+                  className="imm-sample-image-figure-inner"
+                >
+                  <input
+                    type='file'
+                    accept='image/*'
+                    className="im-image-input"
+                    onChange={updateProductPreviewImage}
+                  />
+                  <i className="fa-solid fa-image" />
+                  <br />
+                  <span>
+                    Click here to add image
+                  </span>
+                </figure>
+            )}
+          </figure>
+
+          <section className="im-button-containers">
+            {/* Button to reset image */}
+            <button
+              className={`reset-image button`}
+              onClick={_ => setProductPreviewImage("")}
+              type="button"
+              style={{
+                backgroundColor: productPreviewImage.length > 0 ? "#80ab63" : "gray",
+                cursor: productPreviewImage.length > 0 ? "pointer" : "default"
+              }}
+            >
+              Reset Preview Picture
+            </button>
+          </section>
+
+          {/* Submit Button */}
+          <button
+            type='submit'
+          // onClick={}
+          >
+            Submit Product
+          </button>
+        </section>
+
+
+        {/* //* Image Gallery Display */}
+        <section className="dpf-section gallery">
+          <ul>
+            {
+              currentImagesByProductId && Object.values(currentImagesByProductId).map(image => {
+                return (
+                  <li>
+                    <img
+                      src={image.url}
+                      alt={`Gallery Display: Image ${image.id}`}
+                    />
+                  </li>
+                );
+              })
+            }
+            {/* Add Image */}
+            <li>
               <figure
                 className="imm-sample-image-figure-inner"
               >
@@ -230,7 +298,7 @@ const ProductFormModal = () => {
                   type='file'
                   accept='image/*'
                   className="im-image-input"
-                  onChange={updateProductPreviewImage}
+                  onChange={updateProductGalleryImages}
                 />
                 <i className="fa-solid fa-image" />
                 <br />
@@ -238,67 +306,9 @@ const ProductFormModal = () => {
                   Click here to add image
                 </span>
               </figure>
-          )}
-        </figure>
-
-        <section className="im-button-containers">
-          {/* Button to reset image */}
-          <button
-            className={`reset-image button`}
-            onClick={_ => setProductPreviewImage("")}
-            type="button"
-            style={{
-              backgroundColor: productPreviewImage.length > 0 ? "#80ab63" : "gray",
-              cursor: productPreviewImage.length > 0 ? "pointer" : "default"
-            }}
-          >
-            Reset Preview Picture
-          </button>
+            </li>
+          </ul>
         </section>
-
-        {/* Image Gallery Display */}
-        <ul>
-          {
-            currentImagesByProductId && Object.values(currentImagesByProductId).map(image => {
-              return (
-                <li>
-                  <img
-                    src={image.url}
-                    alt={`Gallery Display: Image ${image.id}`}
-                  />
-                </li>
-              );
-            })
-          }
-          {/* Add Image */}
-          <li>
-            <figure
-              className="imm-sample-image-figure-inner"
-            >
-              <input
-                type='file'
-                accept='image/*'
-                className="im-image-input"
-                onChange={updateProductGalleryImages}
-              />
-              <i className="fa-solid fa-image" />
-              <br />
-              <span>
-                Click here to add image
-              </span>
-            </figure>
-          </li>
-        </ul>
-
-        {/* Submit Button */}
-        <button
-          type='submit'
-        // onClick={}
-        >
-          Submit Product
-        </button>
-
-        {/* Exit Modal Icon */}
       </form>
     );
   };
@@ -310,6 +320,7 @@ const ProductFormModal = () => {
         displayProductForm()
       }
 
+      {/* Exit Modal Icon */}
       <i
         className="fa-solid fa-x fa-lg exit-modal-icon"
         onClick={_ => setShowProductFormModal(false)}

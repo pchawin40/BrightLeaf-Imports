@@ -2,8 +2,8 @@
 
 .pfm-section {
 	background-color: white;
-	height: 50vh;
-	width: 50vw;
+	height: 80vh;
+	width: 80vw;
 
 	margin: 0;
 	padding: 0;
@@ -12,3 +12,34 @@
 
 	position: relative;
 }
+
+.dpf-form {
+	display: grid;
+	grid-template-areas:
+		'title . .'
+		'info image gallery';
+	grid-template-columns: 40% 40% auto;
+	grid-template-rows: 10% auto;
+}
+
+/** Product Title */
+.dpf-section.title {
+	grid-area: title;
+}
+
+/** Product Information */
+.dpf-section.information {
+	grid-area: info;
+}
+
+/** Product Image and Submit section */
+.dpf-section.image-submit {
+	grid-area: image;
+}
+
+/** Image Gallery Display */
+.dpf-section.gallery {
+	grid-area: gallery;
+}
+
+/** Exit Icon */
