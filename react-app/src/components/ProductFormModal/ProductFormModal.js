@@ -111,9 +111,42 @@ const ProductFormModal = () => {
 
   // function to update product preview image
   const updateProductPreviewImage = e => {
-    setProductPreviewImage(e.target.value);
+    const file = e.target.files[0];
+
+    if (file) {
+      // add image file
+      setProductPreviewImage(file);
+      // fetch preview image add
+      fetchPreviewImageAdd(file);
+    }
   }
 
+  // function to convert given image file to url
+  const fetchPreviewImageAdd = async file => {
+    // set image loading to true while fetching
+    setPreviewImageLoading(true);
+
+    // if received file, set current picture url
+    if (file) {
+      const formData = new FormData();
+      formData.append('image_sample', file);
+
+      // fetch image
+      const res = await fetch('/api/images/sample', {
+        method: 'POST',
+        body: formData,
+      });
+
+      // if succesful response, set the picture
+      if (res.ok) {
+        const currentPictureAdd = await res.json();
+
+        setProductPreviewImage(currentPictureAdd.image_sample);
+      }
+
+      setPreviewImageLoading(false);
+    }
+  }
   // function to submit an image for gallery
   const updateProductGalleryImages = e => {
 
@@ -127,12 +160,24 @@ const ProductFormModal = () => {
     // get product information
     const product = {
       ...currentProductById,
-      "name": productName,
-      "description": productDescription,
-      "price": productPrice,
-      "quantity": productQuantity,
-      "preview_image": productPreviewImage
+      name: productName,
+      description: productDescription,
+      price: productPrice,
+      quantity: productQuantity,
+      preview_image: productPreviewImage
     };
+
+    // call on thunk to edit product if editProduct is true
+    // otherwise post new product if editProduct is false
+    dispatch(
+      editProduct
+        ?
+        productActions.thunkUpdateProduct(product, product.id)
+        :
+        productActions.thunkPostProduct(product)
+    )
+      // either way, call on thunk to fetch product afterward
+      .then(() => dispatch(productActions.thunkGetProducts()));
   };
 
   // invoke dispatch
@@ -241,7 +286,7 @@ const ProductFormModal = () => {
           {/* Image to display sample image to add */}
           <figure
             className="imm-sample-image-figure pfm"
-            onClick={_ => document.querySelector('.im-image-input').click()}
+            onClick={_ => !productPreviewImage && document.querySelector('.im-image-input').click()}
           >
             {previewImageLoading ? (
               <img
@@ -288,8 +333,8 @@ const ProductFormModal = () => {
 
           {/* Submit Button */}
           <button
+            className="dpf submit-button"
             type='submit'
-          // onClick={}
           >
             Submit Product
           </button>
@@ -305,21 +350,7 @@ const ProductFormModal = () => {
             {
               currentImagesByProductId && Object.values(currentImagesByProductId).map(image => {
                 return (
-                  <li>
-                    <figure>
-                      <img
-                        src={image.url}
-                        alt={`Gallery Display: Image ${image.id}`}
-                      />
-                    </figure>
-                  </li>
-                );
-              })
-            }
-            {
-              currentImagesByProductId && Object.values(currentImagesByProductId).map(image => {
-                return (
-                  <li>
+                  <li key={`Image Gallery: ${image.id}`}>
                     <figure>
                       <img
                         src={image.url}

@@ -9,8 +9,19 @@ export const loadProducts = (products) => {
   return {
     type: LOAD_PRODUCTS,
     products
-  }
-}
+  };
+};
+
+//? Action: Create product
+const CREATE_PRODUCT = "products/CREATE_PRODUCT";
+
+// action creator: create product
+export const createProduct = (product) => {
+  return {
+    type: CREATE_PRODUCT,
+    product
+  };
+};
 
 //? Action: Update products
 const UPDATE_PRODUCT = "products/UPDATE_PRODUCT";
@@ -20,7 +31,18 @@ export const updateProduct = (product) => {
   return {
     type: UPDATE_PRODUCT,
     product
-  }
+  };
+};
+
+//? Action: Delete product
+const DELETE_PRODUCT = "products/DELETE_PRODUCT";
+
+// action creator: delete product
+export const deleteProduct = productId => {
+  return {
+    type: DELETE_PRODUCT,
+    productId
+  };
 };
 
 /* --------- THUNKS -------- */
@@ -41,6 +63,57 @@ export const thunkGetProducts = () => async (dispatch) => {
 
   // return res if unsuccesful
   return res;
+}
+
+// thunk to create product
+export const thunkPostProduct = (productToAdd) => async (dispatch) => {
+  // destructure product to place into form data
+  const {
+    name,
+    description,
+    price,
+    quantity,
+    preview_image
+  } = productToAdd;
+
+  // define form data
+  const formData = new FormData();
+
+  // put productToAdd into form data
+  formData.append("name", name);
+  formData.append("description", description);
+  formData.append("price", price);
+  formData.append("quantity", quantity);
+  formData.append("preview_image", preview_image);
+
+  // fetch route to post product
+  const res = await fetch('/api/products/', {
+    method: 'POST',
+    body: formData
+  });
+
+  // if succesful
+  if (res.ok) {
+    const productData = await res.json();
+
+    // if there's any error from res, return null
+    if (productData.errors) {
+      return null;
+    }
+
+    // dispatch setting product
+    dispatch(createProduct(productData));
+
+    // if unsuccesful
+  } else if (res.status < 500) {
+    const data = await res.json();
+
+    if (data['errors']) {
+      return data;
+    }
+  }
+
+  return ['An error occurred. Please try again.'];
 }
 
 // thunk to update product
@@ -81,6 +154,11 @@ export default function productReducer(state = initialState, action) {
   const newProducts = { ...state };
 
   switch (action.type) {
+    // case to delete product
+    case DELETE_PRODUCT:
+      delete newProducts[action.productId];
+
+      return newProducts;
     default:
       return Object.assign({}, newProducts, action.products);
   }
