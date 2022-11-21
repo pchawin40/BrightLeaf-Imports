@@ -157,7 +157,7 @@ const MainShopProduct = () => {
   // function to return current image selected
   const displayCurrentImageSelected = () => {
     if (productLoaded) {
-      const newCurrentImage = currentImagesByProductId.find((image, index) => {
+      let newCurrentImage = currentImagesByProductId.find((image, index) => {
         if (currentImagesByProductId.length >= 0 && !currentImageId) {
           setCurrentImageId(currentImagesByProductId[0].id);
           return true;
@@ -165,6 +165,7 @@ const MainShopProduct = () => {
           return image.id === currentImageId
         }
       });
+
 
       if (newCurrentImage) {
         return (
@@ -320,11 +321,11 @@ const MainShopProduct = () => {
             &&
             <button
               className="pt-inner edit-button"
-                  onClick={_ => {
-                    setShowProductFormModal(true);
-                    setEditProduct(true);
-                    
-                  }}
+              onClick={_ => {
+                setShowProductFormModal(true);
+                setEditProduct(true);
+
+              }}
             >
               Edit
             </button>

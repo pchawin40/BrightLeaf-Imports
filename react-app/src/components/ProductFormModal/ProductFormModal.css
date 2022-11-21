@@ -196,6 +196,8 @@
 
 	display: flex;
 	justify-content: center;
+
+	position: relative;
 }
 
 .dpf-section.gallery > ul > li > figure > img {

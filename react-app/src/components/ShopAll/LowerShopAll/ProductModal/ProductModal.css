@@ -3,7 +3,7 @@
 #product-modal {
 	background-color: white;
 
-	height: 50vh;
+	height: fit-content;
 	width: 50vw;
 
 	position: relative;
@@ -21,7 +21,10 @@
 .pm-image-aside {
 	display: grid;
 
-	grid-template-rows: auto 10%;
+	grid-template-rows: 90% auto;
+
+	height: 100%;
+	width: 100%;
 }
 
 .pm-cis-figure {
@@ -74,6 +77,10 @@
 }
 
 /** Text Quick Details Section  */
+.pm-text-section {
+	height: 100%;
+}
+
 /* Product Text Details */
 .pm-dpt.name {
 	font-size: 26px;

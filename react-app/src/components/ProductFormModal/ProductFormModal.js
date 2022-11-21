@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import store
 import * as productActions from '../../store/products';
 import * as imageActions from '../../store/images';
+import * as sessionActions from '../../store/session';
 
 //? ProductFormModal component
 const ProductFormModal = () => {
@@ -24,8 +25,12 @@ const ProductFormModal = () => {
   /**
    * Selector functions
    */
+  // grab current product
   const currentProductById = useSelector(productActions.getCurrentProductById(currentProductId ? currentProductId : null));
+  // grab current images
   const currentImagesByProductId = useSelector(imageActions.getCurrentImagesByProductId(currentProductId));
+  // grab current user information
+  const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
 
   /**
    * Controlled inputs
@@ -252,6 +257,14 @@ const ProductFormModal = () => {
     );
   };
 
+  // function to delete image
+  const handleDeleteImage = imageId => {
+    dispatch(imageActions.thunkDeleteImage(imageId))
+      .then(() => {
+        dispatch(imageActions.thunkGetImages("ShopAll=True"));
+      })
+  }
+
   // function to display product form
   const displayProductForm = () => {
     return (
@@ -418,6 +431,21 @@ const ProductFormModal = () => {
                         alt={`Gallery Display: Image ${image.id}`}
                       />
                       {/* // TODO: To insert delete image */}
+                      {
+                        currentUserInfo &&
+                        currentUserInfo.role === "administrator"
+                        &&
+                        <figure
+                          onClick={e => {
+                            e.stopPropagation();
+
+                            handleDeleteImage(image.id)
+                          }}
+                          className="lps-ul-inner-figure"
+                        >
+                          <i className="fa-solid fa-xmark fa-xl" />
+                        </figure>
+                      }
                     </figure>
                   </li>
                 );
