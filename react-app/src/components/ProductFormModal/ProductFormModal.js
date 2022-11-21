@@ -67,11 +67,11 @@ const ProductFormModal = () => {
     currentProductById && currentProductById.preview_image ? currentProductById.preview_image : ""
   );
 
-  // set product shopall images (grab existing if exists)
-  const [productGalleryImages, setProductGalleryImages] = useState(null);
-
   // set preview image loading
   const [previewImageLoading, setPreviewImageLoading] = useState(false);
+
+  // set product shopall images (grab existing if exists)
+  const [productGalleryImage, setProductGalleryImage] = useState(null);
 
   // set product gallery image
   const [galleryImageLoading, setGalleryImageLoading] = useState(false);
@@ -85,7 +85,22 @@ const ProductFormModal = () => {
       setFormReady(true);
     }
 
-  }, [formReady, productName, productPrice, productDescription]);
+  },
+    [
+      formReady,
+      productName,
+      productNameLength,
+      productPrice,
+      productDescription,
+      productDescriptionLength,
+      productQuantity,
+      productPreviewImage,
+      previewImageLoading,
+      productGalleryImage,
+      galleryImageLoading,
+      currentImagesByProductId
+    ]
+  );
 
   // function to update product name
   const updateProductName = e => {
@@ -148,8 +163,53 @@ const ProductFormModal = () => {
     }
   }
   // function to submit an image for gallery
-  const updateProductGalleryImages = e => {
+  const postProductGalleryImage = e => {
+    const file = e.target.files[0];
 
+    if (file) {
+      // add image file
+      setProductGalleryImage(file);
+      // fetch preview image add
+      fetchGalleryImageAdd(file);
+    }
+  }
+
+  // function to convert given image file to url
+  const fetchGalleryImageAdd = async file => {
+    // set image loading to true while fetching
+    setGalleryImageLoading(true);
+
+    // if received file, set current picture url
+    if (file) {
+      const formData = new FormData();
+      formData.append('image_sample', file);
+
+      // fetch image
+      const res = await fetch('/api/images/sample', {
+        method: 'POST',
+        body: formData,
+      });
+
+      // if succesful response, set the picture
+      if (res.ok) {
+        const currentPictureAdd = await res.json();
+
+        const imageToAdd = {
+          imageable_id: currentProductId,
+          imageable_type: "ShopAll",
+          url: currentPictureAdd.image_sample
+        }
+
+        // call on thunk to post image immediately after fetching url
+        dispatch(imageActions.thunkPostImages(imageToAdd))
+          .then(() => dispatch(imageActions.thunkGetImages("ShopAll=True")))
+          .then(() => {
+            setProductGalleryImage("")
+          });
+      }
+
+      return setGalleryImageLoading(false);
+    }
   }
 
   // function to post/put product
@@ -177,7 +237,8 @@ const ProductFormModal = () => {
         productActions.thunkPostProduct(product)
     )
       // either way, call on thunk to fetch product afterward
-      .then(() => dispatch(productActions.thunkGetProducts()));
+      .then(() => dispatch(productActions.thunkGetProducts()))
+      .then(() => setShowProductFormModal(false));
   };
 
   // invoke dispatch
@@ -356,6 +417,7 @@ const ProductFormModal = () => {
                         src={image.url}
                         alt={`Gallery Display: Image ${image.id}`}
                       />
+                      {/* // TODO: To insert delete image */}
                     </figure>
                   </li>
                 );
@@ -363,20 +425,40 @@ const ProductFormModal = () => {
             }
             {/* Add Image */}
             <li>
+              {/* Image to display sample image to add */}
               <figure
                 className="dpf-section add-image"
+                onClick={_ => !productGalleryImage && document.querySelector('.dpf-image-input').click()}
               >
-                <input
-                  type='file'
-                  accept='image/*'
-                  className="im-image-input"
-                  onChange={updateProductGalleryImages}
-                />
-                <i className="fa-solid fa-image" />
-                <br />
-                <span>
-                  Click here to add image
-                </span>
+                {galleryImageLoading ? (
+                  <img
+                    src='https://cdn.dribbble.com/users/2077073/screenshots/6005120/loadin_gif.gif'
+                    alt='Loading'
+                  />
+                ) : (
+                  productGalleryImage ?
+                    <img
+                      src={productGalleryImage}
+                      alt={"add display"}
+                    />
+                    :
+                    // Picture dropper
+                    <figure
+                      className="dpf-sample-image-figure-inner"
+                    >
+                      <input
+                        type='file'
+                        accept='image/*'
+                        className="dpf-image-input"
+                        onChange={postProductGalleryImage}
+                      />
+                      <i className="fa-solid fa-image" />
+                      <br />
+                      <span>
+                        Click here to add image
+                      </span>
+                    </figure>
+                )}
               </figure>
             </li>
           </ul>

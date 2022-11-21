@@ -228,6 +228,22 @@
 	padding-bottom: 50px;
 }
 
+.dpf-sample-image-figure-inner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 5vh;
+	padding-bottom: 5vh;
+}
+
+.dpf-sample-image-figure-inner * {
+	text-align: center;
+}
+
+.dpf-image-input {
+	display: none;
+}
+
 .dpf.submit-button:hover {
 	cursor: pointer;
 }
@@ -240,4 +256,8 @@
 
 	align-items: center;
 	justify-content: flex-end;
+}
+
+.pfm-exit:hover {
+	cursor: pointer;
 }
