@@ -2,9 +2,11 @@
 
 // import component
 import StarSystem from './StarSystem';
+import EditReviewModal from './EditReviewModal';
 
 // import context
 import { useReview } from '../../../../context/ReviewContext';
+import { Modal } from '../../../../context/Modal';
 
 // import css
 import './ReviewSection.css';
@@ -19,8 +21,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as reviewActions from '../../../../store/reviews';
 import * as userActions from '../../../../store/users';
 import * as sessionActions from '../../../../store/session';
-import { Modal } from '../../../../context/Modal';
-import EditReviewModal from './EditReviewModal';
 
 //? ReviewSection component
 const ReviewSection = () => {
@@ -30,6 +30,7 @@ const ReviewSection = () => {
   const currentReviews = useSelector(reviewActions.getCurrentReviews);
   const currentUsers = useSelector(userActions.getCurrentUsers);
   const currentUserId = useSelector(sessionActions.getCurrentUserId);
+  const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
 
   /**
    * Controlled inputs
@@ -105,26 +106,31 @@ const ReviewSection = () => {
 
 
 
-            <section className="review-icons-container">
-              {/* Edit review figure */}
-              <figure
-                className="edit-review-figure"
-                onClick={_ => {
-                  setShowReviewModal(true);
-                  setCurrentReviewId(review.id);
-                  setEditReview(true);
-                }}
-              >
-                <i className="fa-solid fa-pencil" />
-              </figure>
-              {/* Delete review figure */}
-              <figure
-                onClick={_ => handleReviewDelete(review.id)}
-                className="delete-review-figure"
-              >
-                <i className="fa-solid fa-trash-can" />
-              </figure>
-            </section>
+            {
+              currentUserInfo
+              &&
+              currentUserInfo.id === review.user_id &&
+              <section className="review-icons-container">
+                {/* Edit review figure */}
+                <figure
+                  className="edit-review-figure"
+                  onClick={_ => {
+                    setShowReviewModal(true);
+                    setCurrentReviewId(review.id);
+                    setEditReview(true);
+                  }}
+                >
+                  <i className="fa-solid fa-pencil" />
+                </figure>
+                {/* Delete review figure */}
+                <figure
+                  onClick={_ => handleReviewDelete(review.id)}
+                  className="delete-review-figure"
+                >
+                  <i className="fa-solid fa-trash-can" />
+                </figure>
+              </section>
+            }
           </li>
         )
       }
@@ -169,42 +175,46 @@ const ReviewSection = () => {
       }
 
       {/* Textarea to insert reviews */}
-      <form className="insert-review-section form" onSubmit={handleReviewSubmit}>
-        {/* StarSystem */}
-        {
-          !editReview
-            ?
-            <StarSystem />
-            :
-            <div className="star-rating">
-              {[...Array(5)].map((star, index) => {
-                index += 1;
-                return (
-                  <button
-                    type="button"
-                    key={index}
-                    className={"off star-button"}
-                  >
-                    <span className="star-span">&#9733;</span>
-                  </button>
-                );
-              })}
-            </div>
-        }
+      {
+        currentUserInfo &&
+        currentUserInfo.role !== "administrator" &&
+        <form className="insert-review-section form" onSubmit={handleReviewSubmit}>
+          {/* StarSystem */}
+          {
+            !editReview
+              ?
+              <StarSystem />
+              :
+              <div className="star-rating">
+                {[...Array(5)].map((star, index) => {
+                  index += 1;
+                  return (
+                    <button
+                      type="button"
+                      key={index}
+                      className={"off star-button"}
+                    >
+                      <span className="star-span">&#9733;</span>
+                    </button>
+                  );
+                })}
+              </div>
+          }
 
-        {/* Textarea */}
-        <textarea
-          value={!editReview ? review : ""}
-          onChange={updateReview}
-          placeholder='Join the conversation'
-        />
+          {/* Textarea */}
+          <textarea
+            value={!editReview ? review : ""}
+            onChange={updateReview}
+            placeholder='Join the conversation'
+          />
 
-        <button
-          type="submit"
-        >
-          Post Review
-        </button>
-      </form>
+          <button
+            type="submit"
+          >
+            Post Review
+          </button>
+        </form>
+      }
 
       {showReviewModal && (
         <Modal
