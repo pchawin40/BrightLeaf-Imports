@@ -177,6 +177,15 @@ const MainShopProduct = () => {
             />
           </figure>
         );
+      } else {
+        return (
+          <figure className="pt-cis-figure no-img">
+            <img
+              src="https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668399516/Picture1_ycz0re.png"
+              alt="No Image"
+            />
+          </figure>
+        );
       }
     }
   }
@@ -374,7 +383,7 @@ const MainShopProduct = () => {
                   onClick={_ => setShowUserModal(true)}
                 >
                   <span>
-                      Sign In As User To Buy ( {currentProductById.quantity} available )
+                    Sign In As User To Buy ( {currentProductById.quantity} available )
                   </span>
                 </button>
           }

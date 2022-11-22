@@ -77,14 +77,25 @@ const ProductModal = ({ setShowProductModal }) => {
       }
     });
 
-    return (
-      <figure className="pm-cis-figure">
-        <img
-          src={newCurrentImage.url}
-          alt={`Shop All image ${newCurrentImage.id}`}
-        />
-      </figure>
-    );
+    if (newCurrentImage) {
+      return (
+        <figure className="pm-cis-figure">
+          <img
+            src={newCurrentImage.url}
+            alt={`Shop All image ${newCurrentImage.id}`}
+          />
+        </figure>
+      );
+    } else {
+      return (
+        <figure className="pm-cis-figure no-img">
+          <img
+            src="https://res.cloudinary.com/dfz7bzhoi/image/upload/v1668399516/Picture1_ycz0re.png"
+            alt="No Image"
+          />
+        </figure>
+      );
+    }
   }
 
   // function to return image selectors

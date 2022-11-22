@@ -6,12 +6,14 @@
 
 /* Contact button */
 
-.lower-page-section > a > button {
+.lower-page-section > a > button,
+.section-add-product > button {
 	color: #80ab63;
 	background-color: white;
 }
 
-.lower-page-section > a > button:hover {
+.lower-page-section > a > button:hover,
+.section-add-product > button:hover {
 	color: white;
 	background-color: #80ab63;
 }
@@ -135,7 +137,8 @@
 }
 
 .lower-page-section > a > button,
-.lp-product-button {
+.lp-product-button,
+.section-add-product > button {
 	padding: 0.5vw 2vw;
 	font-size: 1.5vw;
 	font-family: questrial, sans-serif;
@@ -149,6 +152,12 @@
 }
 
 .lower-page-section > a > button:hover,
-.lp-product-button.available:hover {
+.lp-product-button.available:hover,
+.section-add-product > button:hover {
 	cursor: pointer;
+}
+
+.section-add-product > button {
+	margin-top: 70px;
+	margin-bottom: 70px;
 }

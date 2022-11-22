@@ -236,6 +236,13 @@ const ProductFormModal = () => {
       preview_image: productPreviewImage
     };
 
+    // reset form data
+    setProductName("");
+    setProductDescription("");
+    setProductPrice(0);
+    setProductQuantity(0);
+    setProductPreviewImage("");
+
     // call on thunk to edit product if editProduct is true
     // otherwise post new product if editProduct is false
     dispatch(
@@ -247,7 +254,7 @@ const ProductFormModal = () => {
     )
       // either way, call on thunk to fetch product afterward
       .then(() => dispatch(productActions.thunkGetProducts()))
-    // .then(() => setShowProductFormModal(false));
+      .then(() => setShowProductFormModal(false));
   };
 
   // invoke dispatch
@@ -313,6 +320,7 @@ const ProductFormModal = () => {
             type='text'
             value={productName}
             onChange={updateProductName}
+            placeholder="Enter Product Name"
           />
 
           {/* Product Price */}
@@ -321,7 +329,7 @@ const ProductFormModal = () => {
             htmlFor='product_price'
           >
             Product Price (in USD $)
-            <span className={`${productPrice > 0 && productPrice <= 99999}`}>
+            <span className={`${productPrice <= 99999}`}>
               {` [value between 0 to 99,999]`}
             </span>
           </label>
@@ -331,6 +339,7 @@ const ProductFormModal = () => {
             min="0"
             value={productPrice}
             onChange={updateProductPrice}
+            placeholder="Enter Product Price"
           />
 
           {/* Product Quantity */}
@@ -346,6 +355,7 @@ const ProductFormModal = () => {
             min="0"
             value={productQuantity}
             onChange={updateProductQuantity}
+            placeholder="Enter Product Quantity"
           />
 
           {/* Product Description */}
@@ -364,6 +374,7 @@ const ProductFormModal = () => {
             type='text'
             value={productDescription}
             onChange={updateProductDescription}
+            placeholder="Enter Product Description"
           />
         </section>
 

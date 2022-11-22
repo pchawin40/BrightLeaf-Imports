@@ -21,6 +21,7 @@ import { NavLink } from 'react-router-dom';
 
 // import store
 import * as productActions from '../../../store/products';
+import * as sessionActions from '../../../store/session';
 
 //? LowerShopAll component
 const LowerShopAll = () => {
@@ -30,11 +31,15 @@ const LowerShopAll = () => {
   const [productLoaded, setProductLoaded] = useState(false);
   const [showProductModal, setShowProductModal] = useState(false);
   const { currentProductId, setCurrentProductId } = useProduct();
+  const { showProductFormModal, setShowProductFormModal } = useProduct();
 
   /**
    * Selector functions
    */
+  // grab current products
   const currentProducts = useSelector(productActions.getCurrentProducts);
+  // grab current user information
+  const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
 
   /**
    * UseEffect
@@ -130,18 +135,33 @@ const LowerShopAll = () => {
         }
       </section>
 
+      {/* Add product section (if administrator) */}
+      <section className="section-add-product">
+        {
+          currentUserInfo &&
+          currentUserInfo.role === "administrator" &&
+          <button
+            onClick={_ => setShowProductFormModal(true)}
+          >
+            Add Product
+          </button>
+        }
+      </section>
+
       {/* Product Modal */}
-      {showProductModal && (
-        <Modal
-          onClose={(_) => {
-            setShowProductModal(false)
-          }}
-          currentVisible={false}
-        >
-          <ProductModal setShowProductModal={setShowProductModal} />
-        </Modal>
-      )}
-    </section>
+      {
+        showProductModal && (
+          <Modal
+            onClose={(_) => {
+              setShowProductModal(false)
+            }}
+            currentVisible={false}
+          >
+            <ProductModal setShowProductModal={setShowProductModal} />
+          </Modal>
+        )
+      }
+    </section >
   );
 };
 

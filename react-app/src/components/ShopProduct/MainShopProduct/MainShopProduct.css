@@ -104,6 +104,25 @@
 	width: 100%;
 }
 
+.pt-cis-figure.no-img {
+	height: 90%;
+	width: 90%;
+	margin: 0;
+	padding: 0;
+
+	border: 1px solid black;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.pt-cis-figure.no-img > img {
+	object-fit: cover;
+	height: 70%;
+	width: 70%;
+}
+
 .lps.inner.product-image > ul {
 	display: flex;
 
