@@ -100,7 +100,7 @@ const EditReviewModal = ({ currentReviewId }) => {
         <StarSystem />
         {/* Edit Review's submit button */}
         <button>
-          Submit
+          Post Review
         </button>
       </form>
     </section>

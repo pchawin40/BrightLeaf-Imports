@@ -202,7 +202,7 @@ const ReviewSection = () => {
         <button
           type="submit"
         >
-          Submit Review
+          Post Review
         </button>
       </form>
 
