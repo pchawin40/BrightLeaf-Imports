@@ -4,15 +4,14 @@
 import { useContext } from 'react';
 
 // import context
-import { ReviewContext } from '../../../../../context/ReviewContext';
+import { useReview } from '../../../../../context/ReviewContext';
 
 // import css
 import './StarSystem.css';
 
 //? StarSystem component
-// const StarSystem = ({ rating, hover, setRating, setHover }) => {
 const StarSystem = () => {
-  const { rating, setRating, hover, setHover } = useContext(ReviewContext);
+  const { rating, setRating, hover, setHover, editReview, setEditReview } = useReview();
 
   return (
     <div className="star-rating">

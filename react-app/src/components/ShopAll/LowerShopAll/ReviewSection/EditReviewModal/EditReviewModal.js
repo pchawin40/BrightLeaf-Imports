@@ -68,6 +68,10 @@ const EditReviewModal = ({ currentReviewId }) => {
       stars: rating
     }
 
+    // reset review data
+    setReview("");
+    setRating("");
+
     // call on thunk to edit review
     // then get reviews afterward
     // then set modal as false

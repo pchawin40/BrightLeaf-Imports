@@ -10,7 +10,7 @@ import { useReview } from '../../../../context/ReviewContext';
 import './ReviewSection.css';
 
 // import react
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // import react-redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -38,14 +38,28 @@ const ReviewSection = () => {
   const [reviewLength, setReviewLength] = useState(0);
   const { rating, setRating } = useReview();
   const { showReviewModal, setShowReviewModal } = useReview();
+  const [currentReviewId, setCurrentReviewId] = useState(null);
+  const { editReview, setEditReview } = useReview();
+  const { hover, setHover } = useReview();
+
+  /**
+   * UseEffect
+   */
+  // per general
+  useEffect(() => {
+    // nothing for now
+  }, [editReview]);
 
   // invoke dispatch
   const dispatch = useDispatch();
 
   // function to update review
   const updateReview = e => {
-    setReview(e.target.value);
-    setReviewLength(e.target.value.length);
+    if (!editReview) {
+      console.log('review', review);
+      setReview(e.target.value);
+      setReviewLength(e.target.value.length);
+    }
   }
 
 
@@ -90,7 +104,11 @@ const ReviewSection = () => {
             {/* Edit review figure */}
             <figure
               className="edit-review-figure"
-              onClick={_ => setShowReviewModal(true)}
+              onClick={_ => {
+                setShowReviewModal(true);
+                setCurrentReviewId(review.id);
+                setEditReview(true);
+              }}
             >
               <i className="fa-solid fa-pencil" />
             </figure>
@@ -147,11 +165,30 @@ const ReviewSection = () => {
       {/* Textarea to insert reviews */}
       <form className="insert-review-section" onSubmit={handleReviewSubmit}>
         {/* StarSystem */}
-        <StarSystem />
+        {
+          !editReview
+            ?
+            <StarSystem />
+            :
+            <div className="star-rating">
+              {[...Array(5)].map((star, index) => {
+                index += 1;
+                return (
+                  <button
+                    type="button"
+                    key={index}
+                    className={"off star-button"}
+                  >
+                    <span className="star-span">&#9733;</span>
+                  </button>
+                );
+              })}
+            </div>
+        }
 
         {/* Textarea */}
         <textarea
-          value={review}
+          value={!editReview ? review : ""}
           onChange={updateReview}
           placeholder='Join the conversation'
         />
@@ -166,10 +203,13 @@ const ReviewSection = () => {
       {showReviewModal && (
         <Modal
           onClose={(_) => {
-            setShowReviewModal(false)
+            setEditReview(false);
+            setShowReviewModal(false);
+            setReview("");
+            setHover(0);
           }}
         >
-          <EditReviewModal />
+          <EditReviewModal currentReviewId={currentReviewId} />
         </Modal>
       )}
     </section>

@@ -12,6 +12,7 @@ export default function ReviewProvider({ children }) {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [showReviewModal, setShowReviewModal] = useState(false);
+  const [editReview, setEditReview] = useState(false);
 
   // Review Provider
   return (
@@ -21,7 +22,8 @@ export default function ReviewProvider({ children }) {
           review, setReview,
           rating, setRating,
           hover, setHover,
-          showReviewModal, setShowReviewModal
+          showReviewModal, setShowReviewModal,
+          editReview, setEditReview
         }}
       >
         {children}
