@@ -276,6 +276,15 @@
 	display: none;
 }
 
+.imm-sample-image-figure-inner.not-ready {
+	padding-top: 5vh;
+	padding-bottom: 5vh;
+}
+
+.imm-sample-image-figure-inner.not-ready > i {
+	margin-bottom: 10px;
+}
+
 .dpf.submit-button.false {
 	background-color: rgb(199, 199, 199);
 	color: white;
@@ -283,6 +292,10 @@
 
 .dpf.submit-button.true:hover {
 	cursor: pointer;
+}
+
+.imm-sample-image-figure-inner.not-ready:hover {
+	cursor: default;
 }
 
 /** Exit Icon */

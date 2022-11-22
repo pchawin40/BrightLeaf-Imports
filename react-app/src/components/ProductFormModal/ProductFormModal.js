@@ -498,21 +498,32 @@ const ProductFormModal = () => {
                     />
                     :
                     // Picture dropper
-                    <figure
-                      className="dpf-sample-image-figure-inner"
-                    >
-                      <input
-                        type='file'
-                        accept='image/*'
-                        className="dpf-image-input"
-                        onChange={postProductGalleryImage}
-                      />
-                      <i className="fa-solid fa-image" />
-                      <br />
-                      <span>
-                        Click here to add image
-                      </span>
-                    </figure>
+                    editProduct
+                      ?
+                      <figure
+                        className="dpf-sample-image-figure-inner"
+                      >
+                        <input
+                          type='file'
+                          accept='image/*'
+                          className="dpf-image-input"
+                          onChange={postProductGalleryImage}
+                        />
+                        <i className="fa-solid fa-image" />
+                        <br />
+                        <span>
+                          Click here to add image
+                        </span>
+                      </figure>
+                      :
+                      <figure
+                        className="imm-sample-image-figure-inner not-ready"
+                      >
+                        <i className="fa-solid fa-exclamation" />
+                        <span>
+                          To add gallery pictures, must submit product first
+                        </span>
+                      </figure>
                 )}
               </figure>
             </li>

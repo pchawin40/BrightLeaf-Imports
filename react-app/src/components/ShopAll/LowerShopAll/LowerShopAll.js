@@ -14,7 +14,7 @@ import './LowerShopAll.css';
 import { useEffect, useState } from 'react';
 
 // import react-redux
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import react-router-dom
 import { NavLink } from 'react-router-dom';
@@ -22,6 +22,7 @@ import { NavLink } from 'react-router-dom';
 // import store
 import * as productActions from '../../../store/products';
 import * as sessionActions from '../../../store/session';
+import * as imageActions from '../../../store/images';
 
 //? LowerShopAll component
 const LowerShopAll = () => {
@@ -50,6 +51,21 @@ const LowerShopAll = () => {
     }
   }, [currentProducts]);
 
+  // invoke dispatch
+  const dispatch = useDispatch();
+
+  // function to handle delete product
+  const handleDeleteProduct = productId => {
+    // delete image first
+    dispatch(imageActions.thunkDeleteImage())
+
+    // then delete product
+    dispatch(productActions.thunkDeleteProduct(productId))
+      .then(() => {
+        dispatch(productActions.thunkDeleteProduct(productId));
+      })
+  }
+
   // load products
   const loadProducts = () => {
     const displayProducts = Object.values(currentProducts).map(product => {
@@ -75,6 +91,17 @@ const LowerShopAll = () => {
                 Quick Preview
               </span>
             </span>
+
+            <figure
+              onClick={e => {
+                e.stopPropagation();
+
+                handleDeleteProduct(product.id)
+              }}
+              className="lps-ul-inner-figure"
+            >
+              <i className="fa-solid fa-xmark fa-xl" />
+            </figure>
           </figure>
 
           {/* product name */}
@@ -106,7 +133,21 @@ const LowerShopAll = () => {
       );
     });
 
-    return displayProducts;
+    if (displayProducts.length > 0) {
+      return (
+        <section className="products-container">
+          {displayProducts}
+        </section>
+      );
+    } else {
+      return (
+        <section className="no-product-section">
+          <span className="no-product-available">
+            No product currently available. <br /> Add a product by clicking on the button below.
+          </span>
+        </section>
+      )
+    }
   }
 
   return (
@@ -129,11 +170,11 @@ const LowerShopAll = () => {
       </NavLink>
 
       {/* Product Images */}
-      <section className="products-container">
-        {
-          loadProducts()
-        }
-      </section>
+
+      {
+        loadProducts()
+      }
+
 
       {/* Add product section (if administrator) */}
       <section className="section-add-product">

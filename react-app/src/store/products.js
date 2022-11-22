@@ -141,7 +141,21 @@ export const thunkUpdateProduct = (editedProduct, productId) => async (dispatch)
 }
 
 // thunk to delete product
+export const thunkDeleteProduct = productId => async (dispatch) => {
+  // fetch route to delete product
+  const res = await fetch(`/api/products/${productId}`, {
+    method: 'DELETE'
+  });
 
+  // if successful, return res
+  if (res.ok) {
+    // proceed to delete product in redux
+    dispatch(deleteProduct(productId));
+  }
+
+  // return nothing
+  return null;
+}
 
 /* --------- SELECTOR FUNCTIONS -------- */
 export const getCurrentProducts = state => state.products;

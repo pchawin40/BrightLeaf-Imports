@@ -103,20 +103,10 @@ def secure_product_by_id(product_id):
       # if price exist
       if form.data['price']:
         product.price = form.data['price']
-      
-      print()
-      print("||||||")
-      print("form quantity")
-      print("form.data['quantity']", form.data['quantity'])
-      print()
         
       # if quantity exist
       if form.data['quantity'] or form.data['quantity'] == 0:
-        print("product.quantity (before)", product.quantity)
         product.quantity = form.data['quantity']
-        print()
-        print("product.quantity (after)", product.quantity)
-        print()
       
       # if preview_image exist
       if form.data['preview_image']:
@@ -134,9 +124,9 @@ def secure_product_by_id(product_id):
   # [DELETE]
   if request.method == 'DELETE':
     # remove all images part of product 4
-    destroy_product_images = Image.query.filter(Image.imageable_id == product_id).filter(Image.imageable_type == "Product")
+    destroy_shopall_images = Image.query.filter(Image.imageable_id == product_id).filter(Image.imageable_type == "ShopAll")
 
-    destroy_product_images.delete(synchronize_session=False)
+    destroy_shopall_images.delete(synchronize_session=False)
 
     # remove itself from its own model
     # remove all reviews part of given product
