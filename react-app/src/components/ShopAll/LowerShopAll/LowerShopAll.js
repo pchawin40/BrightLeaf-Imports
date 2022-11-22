@@ -23,6 +23,7 @@ import { NavLink } from 'react-router-dom';
 import * as productActions from '../../../store/products';
 import * as sessionActions from '../../../store/session';
 import * as imageActions from '../../../store/images';
+import ReviewSection from './ReviewSection';
 
 //? LowerShopAll component
 const LowerShopAll = () => {
@@ -188,6 +189,9 @@ const LowerShopAll = () => {
           </button>
         }
       </section>
+
+      {/* Review Section */}
+      <ReviewSection />
 
       {/* Product Modal */}
       {

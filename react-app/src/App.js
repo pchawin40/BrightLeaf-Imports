@@ -35,6 +35,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from './store/session';
 import * as shoppingCartActions from './store/shoppingCarts';
 import * as productActions from './store/products';
+import * as reviewActions from './store/reviews';
 
 function App() {
   /**
@@ -66,11 +67,10 @@ function App() {
       dispatch(shoppingCartActions.thunkGetSessionUserCarts());
     }
 
-    // load images
-    // dispatch(imageActions.thunkGetImages(""));
-
     // load products
     dispatch(productActions.thunkGetProducts());
+    // load reviews
+    dispatch(reviewActions.thunkGetReviews());
   }, [currentUserInfo]);
 
   if (!loaded) {

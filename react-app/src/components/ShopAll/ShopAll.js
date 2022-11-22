@@ -4,9 +4,11 @@
 import Footer from '../Footer';
 import LowerShopAll from './LowerShopAll';
 import TopShopAll from './TopShopAll';
+import UserModal from '../NavHeader/UserModal';
 
 // import context
 import { useNavHeader } from '../../context/NavHeaderContext';
+import { Modal } from '../../context/Modal';
 
 // import css
 import './ShopAll.css';
@@ -17,8 +19,6 @@ import { useEffect } from 'react';
 
 // import store
 import * as imageActions from '../../store/images';
-import { Modal } from '../../context/Modal';
-import UserModal from '../NavHeader/UserModal';
 
 //? ShopAll component
 const ShopAll = () => {
