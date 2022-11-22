@@ -1,1 +1,27 @@
 /* src/components/ShopAll/LowerShopAll/ReviewSection/EditReviewModal/EditReviewModal.css */
+.edit-review-modal {
+	background-color: white;
+	height: fit-content;
+	width: fit-content;
+	padding: 1rem;
+}
+
+.edit-review-modal > form {
+	height: 100%;
+	width: 100%;
+}
+
+.edit-inner-section.review {
+	display: flex;
+	flex-direction: column;
+}
+
+.edit-inner-section.review > textarea {
+	resize: none;
+	height: 10vh;
+	width: 20vw;
+}
+
+.edit-review-modal > form > button:hover {
+	cursor: pointer;
+}

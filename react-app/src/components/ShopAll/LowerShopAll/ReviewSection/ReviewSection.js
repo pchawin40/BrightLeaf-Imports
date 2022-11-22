@@ -81,6 +81,7 @@ const ReviewSection = () => {
 
         return (
           <li
+            className="rs review-li"
             key={`Review ${review.id} | User ${review.user_id} | Product ${review.product_id}`}
           >
             <h3>
@@ -89,10 +90,6 @@ const ReviewSection = () => {
             <span>
               {review.updated_at}
             </span>
-            <p>
-              {/* Review */}
-              {review.review}
-            </p>
 
             <span>
               {/* Stars */}
@@ -101,24 +98,33 @@ const ReviewSection = () => {
               }
             </span>
 
-            {/* Edit review figure */}
-            <figure
-              className="edit-review-figure"
-              onClick={_ => {
-                setShowReviewModal(true);
-                setCurrentReviewId(review.id);
-                setEditReview(true);
-              }}
-            >
-              <i className="fa-solid fa-pencil" />
-            </figure>
-            {/* Delete review figure */}
-            <figure
-              onClick={_ => handleReviewDelete(review.id)}
-              className="delete-review-figure"
-            >
-              <i className="fa-solid fa-trash-can" />
-            </figure>
+            <p>
+              {/* Review */}
+              {review.review}
+            </p>
+
+
+
+            <section className="review-icons-container">
+              {/* Edit review figure */}
+              <figure
+                className="edit-review-figure"
+                onClick={_ => {
+                  setShowReviewModal(true);
+                  setCurrentReviewId(review.id);
+                  setEditReview(true);
+                }}
+              >
+                <i className="fa-solid fa-pencil" />
+              </figure>
+              {/* Delete review figure */}
+              <figure
+                onClick={_ => handleReviewDelete(review.id)}
+                className="delete-review-figure"
+              >
+                <i className="fa-solid fa-trash-can" />
+              </figure>
+            </section>
           </li>
         )
       }
@@ -163,7 +169,7 @@ const ReviewSection = () => {
       }
 
       {/* Textarea to insert reviews */}
-      <form className="insert-review-section" onSubmit={handleReviewSubmit}>
+      <form className="insert-review-section form" onSubmit={handleReviewSubmit}>
         {/* StarSystem */}
         {
           !editReview

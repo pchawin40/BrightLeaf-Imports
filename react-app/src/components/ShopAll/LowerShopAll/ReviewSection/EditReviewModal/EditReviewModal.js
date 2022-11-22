@@ -1,20 +1,22 @@
 // src/components/ShopAll/LowerShopAll/ReviewSection/EditReviewModal/EditReviewModal.js
 
 // import css
+import './EditReviewModal.css';
+
+// import component
+import StarSystem from '../StarSystem';
+
+// import context
+import { useReview } from '../../../../../context/ReviewContext';
+
+// import react
 import { useEffect, useState } from 'react';
 
 // import react-redux
 import { useDispatch, useSelector } from 'react-redux';
 
-// import context
-import { useReview } from '../../../../../context/ReviewContext';
-
-// import css
-import './EditReviewModal.css';
-
 // import store
 import * as reviewActions from '../../../../../store/reviews';
-import StarSystem from '../StarSystem';
 
 //? EditReviewModal component
 const EditReviewModal = ({ currentReviewId }) => {
@@ -85,13 +87,15 @@ const EditReviewModal = ({ currentReviewId }) => {
       {/* Edit Review Form */}
       <form onSubmit={handleEditReview}>
         {/* Edit Review's review */}
-        <label htmlFor="review">
-          Review
-        </label>
-        <input
-          value={review}
-          onChange={updateReview}
-        />
+        <section className="edit-inner-section review">
+          <label htmlFor="review">
+            Review
+          </label>
+          <textarea
+            value={review}
+            onChange={updateReview}
+          />
+        </section>
         {/* Edit Review's stars */}
         <StarSystem />
         {/* Edit Review's submit button */}
