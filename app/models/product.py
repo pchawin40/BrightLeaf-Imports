@@ -25,8 +25,6 @@ class Product(db.Model):
   # connect parent (1: shopping cart) to child (*: products)
   products = db.relationship('ShoppingCart', cascade='delete')
   
-  review = db.relationship('Review', back_populates='products', cascade='delete')
-  
   # return product as object (dictionary)
   def to_dict(self):    
     return {

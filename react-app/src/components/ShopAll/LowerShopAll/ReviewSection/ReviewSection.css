@@ -1,1 +1,9 @@
 /* src/components/ShopAll/LowerShopAll/ReviewSection/ReviewSection.css */
+
+.review-section {
+	background-color: red;
+}
+
+.review-ul {
+	list-style-type: none;
+}

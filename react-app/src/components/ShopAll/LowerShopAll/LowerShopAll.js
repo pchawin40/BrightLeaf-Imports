@@ -2,10 +2,12 @@
 
 // import component
 import ProductModal from './ProductModal';
+import ReviewSection from './ReviewSection';
 
 // import context
 import { useProduct } from '../../../context/ProductContext';
 import { Modal } from '../../../context/Modal';
+import ReviewProvider from '../../../context/ReviewContext';
 
 // import css
 import './LowerShopAll.css';
@@ -23,7 +25,6 @@ import { NavLink } from 'react-router-dom';
 import * as productActions from '../../../store/products';
 import * as sessionActions from '../../../store/session';
 import * as imageActions from '../../../store/images';
-import ReviewSection from './ReviewSection';
 
 //? LowerShopAll component
 const LowerShopAll = () => {
@@ -191,7 +192,9 @@ const LowerShopAll = () => {
       </section>
 
       {/* Review Section */}
-      <ReviewSection />
+      <ReviewProvider>
+        <ReviewSection />
+      </ReviewProvider>
 
       {/* Product Modal */}
       {

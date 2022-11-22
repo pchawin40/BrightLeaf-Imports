@@ -33,6 +33,8 @@ export const thunkGetUsers = () => async (dispatch) => {
 }
 
 /* --------- SELECTOR FUNCTIONS -------- */
+export const getCurrentUsers = state => Object.values(state.users);
+
 /* --------- REDUCERS -------- */
 const initialState = {}
 

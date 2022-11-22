@@ -24,7 +24,8 @@
     "react-simple-animate": "^3.5.2",
     "redux": "^4.1.0",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "vue-five-star-input": "^0.1.5"
   },
   "resolutions": {
     "react-error-overlay": "6.0.11"

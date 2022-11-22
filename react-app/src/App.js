@@ -36,6 +36,7 @@ import * as sessionActions from './store/session';
 import * as shoppingCartActions from './store/shoppingCarts';
 import * as productActions from './store/products';
 import * as reviewActions from './store/reviews';
+import * as userActions from './store/users';
 
 function App() {
   /**
@@ -71,6 +72,8 @@ function App() {
     dispatch(productActions.thunkGetProducts());
     // load reviews
     dispatch(reviewActions.thunkGetReviews());
+    // load users
+    dispatch(userActions.thunkGetUsers());
   }, [currentUserInfo]);
 
   if (!loaded) {

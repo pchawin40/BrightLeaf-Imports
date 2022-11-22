@@ -35,7 +35,6 @@ def secure_reviews():
     # create new review
     new_review = Review(
       user_id=form.data['user_id'],
-      product_id=form.data['product_id'],
       review=form.data['review'],
       stars=form.data['stars']
     )
@@ -78,7 +77,7 @@ def secure_review_by_id(review_id):
   review = Review.query.get(review_id)
   
   # check if review is found
-  if review == Gallery:
+  if review == None:
     return {'errors': [f"Review {review_id} does not exist"]}, 404
   
   # [PUT]

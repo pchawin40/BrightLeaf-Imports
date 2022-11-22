@@ -13,7 +13,6 @@ def seed_reviews():
     for product in products:
       current_review = Review(
         user_id = user.id,
-        product_id = product.id,
         review = f"A review of {product.name} by user {user.id}",
         stars = randrange(5)
       )

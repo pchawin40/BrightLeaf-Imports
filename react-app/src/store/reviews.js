@@ -146,7 +146,7 @@ export const thunkDeleteReview = reviewId => async (dispatch) => {
 }
 
 /* --------- SELECTOR FUNCTIONS -------- */
-export const getCurrentReviews = state => state.reviews;
+export const getCurrentReviews = state => Object.values(state.reviews);
 export const getCurrentReviewById = reviewId => state => Object.values(state.reviews).find(review => review.id === reviewId);
 
 /* --------- REDUCERS -------- */
