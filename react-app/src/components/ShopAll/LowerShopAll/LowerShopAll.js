@@ -94,16 +94,22 @@ const LowerShopAll = () => {
               </span>
             </span>
 
-            <figure
-              onClick={e => {
-                e.stopPropagation();
+            {/* Only shows if administrator */}
+            {
+              currentUserInfo
+              && currentUserInfo.role === "administrator"
+              &&
+              <figure
+                onClick={e => {
+                  e.stopPropagation();
 
-                handleDeleteProduct(product.id)
-              }}
-              className="lps-ul-inner-figure"
-            >
-              <i className="fa-solid fa-xmark fa-xl" />
-            </figure>
+                  handleDeleteProduct(product.id)
+                }}
+                className="lps-ul-inner-figure"
+              >
+                <i className="fa-solid fa-xmark fa-xl" />
+              </figure>
+            }
           </figure>
 
           {/* product name */}

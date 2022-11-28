@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as reviewActions from '../../../../store/reviews';
 import * as userActions from '../../../../store/users';
 import * as sessionActions from '../../../../store/session';
+import { useNavHeader } from '../../../../context/NavHeaderContext';
 
 //? ReviewSection component
 const ReviewSection = () => {
@@ -42,6 +43,7 @@ const ReviewSection = () => {
   const [currentReviewId, setCurrentReviewId] = useState(null);
   const { editReview, setEditReview } = useReview();
   const { hover, setHover } = useReview();
+  const { showUserModal, setShowUserModal } = useNavHeader();
 
   /**
    * UseEffect
@@ -94,9 +96,24 @@ const ReviewSection = () => {
 
             <span>
               {/* Stars */}
-              {
+              {/* {
                 `Rating: ${review.stars} of 5`
-              }
+              } */}
+
+              <div className="star-rating">
+                {[...Array(5)].map((star, index) => {
+                  index += 1;
+                  return (
+                    <button
+                      type="button"
+                      key={index}
+                      className={index <= (review.stars) ? "on star-button" : "off star-button"}
+                    >
+                      <span className="star-span">&#9733;</span>
+                    </button>
+                  );
+                })}
+              </div>
             </span>
 
             <p>
@@ -149,6 +166,18 @@ const ReviewSection = () => {
     // prevent page from refreshing
     e.preventDefault();
 
+    //* check if is user, if not, lead to sign in
+    if (!currentUserInfo) {
+      return setShowUserModal(true);
+    }
+
+    //* if administrator, say must be user only to submit
+    if (currentUserInfo && currentUserInfo.role !== "user") {
+      setReview("");
+      setRating(0);
+      return alert("Must be user and not administrator to submit");
+    }
+
     // get review
     const newReview = {
       ...currentReview,
@@ -176,8 +205,6 @@ const ReviewSection = () => {
 
       {/* Textarea to insert reviews */}
       {
-        currentUserInfo &&
-        currentUserInfo.role !== "administrator" &&
         <form className="insert-review-section form" onSubmit={handleReviewSubmit}>
           {/* StarSystem */}
           {
@@ -193,6 +220,7 @@ const ReviewSection = () => {
                       type="button"
                       key={index}
                       className={"off star-button"}
+                      onClick={_ => setEditReview(false)}
                     >
                       <span className="star-span">&#9733;</span>
                     </button>
@@ -206,6 +234,7 @@ const ReviewSection = () => {
             value={!editReview ? review : ""}
             onChange={updateReview}
             placeholder='Join the conversation'
+            onClick={_ => setEditReview(false)}
           />
 
           <button

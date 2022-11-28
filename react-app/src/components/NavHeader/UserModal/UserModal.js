@@ -15,10 +15,11 @@ import ForgotPasswordForm from './ForgotPasswordForm';
 import { useNavHeader } from '../../../context/NavHeaderContext';
 
 // import react
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // import store
 import * as sessionActions from '../../../store/session';
+import * as shoppingCartActions from '../../../store/shoppingCarts';
 
 // import libraries
 import { FacebookProvider } from 'react-facebook';
@@ -39,6 +40,14 @@ const UserModal = () => {
   const { forgotPassword, setForgotPassword } = useNavHeader();
   const { showUserModal, setShowUserModal } = useNavHeader();
 
+  /**
+   * UseEffect
+   */
+  // per general
+  useEffect(() => {
+    // nothing for now
+  }, [currentUserInfo]);
+
   // invoke dispatch
   const dispatch = useDispatch();
 
@@ -46,6 +55,7 @@ const UserModal = () => {
   const handleLogout = async (e) => {
     await dispatch(sessionActions.logout());
   };
+
 
   return (
     currentUserInfo
@@ -60,7 +70,9 @@ const UserModal = () => {
           <li>My Wishlist</li>
           <li>My Account</li>
           <span className="line-span" />
-          <li onClick={handleLogout}>Log Out</li>
+          <li onClick={handleLogout}>
+            Log Out
+          </li>
         </ul>
       </section>
       :
