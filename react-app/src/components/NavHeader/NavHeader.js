@@ -24,6 +24,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // import store
 import * as shoppingCartActions from '../../store/shoppingCarts';
+import * as sessionActions from '../../store/session';
 
 //? NavHeader component
 const NavHeader = () => {
@@ -41,6 +42,16 @@ const NavHeader = () => {
   */
   // grab shopping carts data
   const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
+  const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
+
+  /**
+   * UseEffect
+   */
+  useEffect(() => {
+    console.log('here');
+    console.log('currentUserInfo', currentUserInfo);
+    dispatch(shoppingCartActions.thunkGetSessionUserCarts());
+  }, [currentUserInfo])
 
   // invoke dispatch
   const dispatch = useDispatch();

@@ -168,10 +168,12 @@ export default function shoppingCartReducer(state = initialState, action) {
   const newCarts = { ...state };
 
   switch (action.type) {
+    // case to load cart
+    case LOAD_CARTS:
+      return Object.assign({}, action.shoppingCarts);
     // case to remove cart
     case DELETE_CART:
       delete newCarts[action.cartId];
-
       return newCarts;
     default:
       return Object.assign({}, newCarts, action.shoppingCarts);
