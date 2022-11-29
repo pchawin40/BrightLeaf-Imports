@@ -6,16 +6,35 @@
 	align-items: center;
 }
 
+.review-section > h2 {
+	font-size: 36px;
+	text-transform: uppercase;
+}
+
 .review-section * {
 	margin: 0;
 	padding: 0;
 }
 
+.review-section.inner-display {
+	/* background-color: red; */
+	width: fit-content;
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: flex-start;
+}
+
+.review-section.inner-display > * {
+	margin: 5vh 5vw;
+}
+
+/* Review List */
 .review-ul {
 	list-style-type: none;
 }
 
-/* Review List */
 .rs.review-li {
 	display: flex;
 	flex-direction: column;
@@ -49,7 +68,6 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	width: 20.5%;
 }
 
 .insert-review-section.form > textarea {
@@ -60,5 +78,32 @@
 
 .review-icons-container > figure:hover,
 .insert-review-section.form > button:hover {
+	cursor: pointer;
+}
+
+.star-button.display:hover,
+.star-span.display:hover {
+	cursor: default;
+}
+
+.submit-review-btn {
+	margin: 0;
+	padding: 0.5rem 1.5rem;
+	margin-top: 0.5rem;
+
+	background-color: #6fa04e;
+	color: white;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	border: none;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+/* More Reviews */
+.more-review-link:hover {
+	text-decoration: underline;
 	cursor: pointer;
 }

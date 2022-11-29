@@ -23,6 +23,9 @@ import * as userActions from '../../../../store/users';
 import * as sessionActions from '../../../../store/session';
 import { useNavHeader } from '../../../../context/NavHeaderContext';
 
+// import libraries
+import moment from 'moment';
+
 //? ReviewSection component
 const ReviewSection = () => {
   /**
@@ -51,7 +54,10 @@ const ReviewSection = () => {
   // per general
   useEffect(() => {
     // nothing for now
-  }, [editReview]);
+    // reset data upon page refreshing
+    setReview("");
+    setRating(0);
+  }, [editReview, showReviewModal]);
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -59,7 +65,6 @@ const ReviewSection = () => {
   // function to update review
   const updateReview = e => {
     if (!editReview) {
-      console.log('review', review);
       setReview(e.target.value);
       setReviewLength(e.target.value.length);
     }
@@ -74,89 +79,105 @@ const ReviewSection = () => {
       .then(() => dispatch(reviewActions.thunkGetReviews()));
   }
 
-  // function to load current reviews
+  // function to load current reviews (load up to 5)
   const loadReviews = () => {
     if (currentReviews.length > 0 && currentUsers.length > 0) {
-      const displayReviews = currentReviews.map(review => {
+      const displayReviews = currentReviews.map((review, index) => {
 
         // find user's name from review's user_id
         const reviewUserEmail = currentUsers.find(user => user.id === review.user_id).email;
 
-        return (
-          <li
-            className="rs review-li"
-            key={`Review ${review.id} | User ${review.user_id} | Product ${review.product_id}`}
-          >
-            <h3>
-              {reviewUserEmail}
-            </h3>
-            <span>
-              {review.updated_at}
-            </span>
+        if (index < 5) {
+          return (
+            <li
+              className="rs review-li"
+              key={`Review ${review.id} | User ${review.user_id} | Product ${review.product_id}`}
+            >
+              <h3>
+                {reviewUserEmail}
+              </h3>
+              {/* Date time for review updated at */}
+              <span>
+                {moment(new Date(review.updated_at)).fromNow()}
+              </span>
 
-            <span>
-              {/* Stars */}
-              {/* {
-                `Rating: ${review.stars} of 5`
-              } */}
+              <span>
+                {/* Stars */}
+                <div className="star-rating">
+                  {[...Array(5)].map((star, index) => {
+                    index += 1;
+                    return (
+                      <button
+                        type="button"
+                        key={index}
+                        className={index <= (review.stars) ? "on star-button display" : "off star-button display"}
+                      >
+                        <span className="star-span display">&#9733;</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </span>
 
-              <div className="star-rating">
-                {[...Array(5)].map((star, index) => {
-                  index += 1;
-                  return (
-                    <button
-                      type="button"
-                      key={index}
-                      className={index <= (review.stars) ? "on star-button" : "off star-button"}
-                    >
-                      <span className="star-span">&#9733;</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </span>
+              <p>
+                {/* Review */}
+                {review.review}
+              </p>
 
-            <p>
-              {/* Review */}
-              {review.review}
-            </p>
-
-
-
-            {
-              currentUserInfo
-              &&
-              currentUserInfo.id === review.user_id &&
-              <section className="review-icons-container">
-                {/* Edit review figure */}
-                <figure
-                  className="edit-review-figure"
-                  onClick={_ => {
-                    setShowReviewModal(true);
-                    setCurrentReviewId(review.id);
-                    setEditReview(true);
-                  }}
-                >
-                  <i className="fa-solid fa-pencil" />
-                </figure>
-                {/* Delete review figure */}
-                <figure
-                  onClick={_ => handleReviewDelete(review.id)}
-                  className="delete-review-figure"
-                >
-                  <i className="fa-solid fa-trash-can" />
-                </figure>
-              </section>
-            }
-          </li>
-        )
+              {
+                currentUserInfo
+                &&
+                currentUserInfo.id === review.user_id &&
+                <section className="review-icons-container">
+                  {/* Edit review figure */}
+                  <figure
+                    className="edit-review-figure"
+                    onClick={_ => {
+                      setShowReviewModal(true);
+                      setCurrentReviewId(review.id);
+                      setEditReview(true);
+                    }}
+                  >
+                    <i className="fa-solid fa-pencil" />
+                  </figure>
+                  {/* Delete review figure */}
+                  <figure
+                    onClick={_ => handleReviewDelete(review.id)}
+                    className="delete-review-figure"
+                  >
+                    <i className="fa-solid fa-trash-can" />
+                  </figure>
+                </section>
+              }
+            </li>
+          )
+        }
       }
       );
 
       return (
-        <ul className="review-ul">
-          {displayReviews}
-        </ul>
+        currentReviews.length === 0
+          ?
+          <ul className="review-ul">
+            No review to display. Post review by logging in as user.
+          </ul>
+          :
+          <ul className="review-ul">
+            {displayReviews}
+            {/* // if more than 5 reviews, show "see more reviews" */}
+            {
+              currentReviews.length > 5
+              &&
+              <p
+                className="more-review-link"
+                onClick={_ => null}
+              >
+                {
+                  `See ${currentReviews.length - 5} more reviews`
+                }
+              </p>
+            }
+          </ul>
       );
     }
   }
@@ -168,6 +189,7 @@ const ReviewSection = () => {
 
     //* check if is user, if not, lead to sign in
     if (!currentUserInfo) {
+      alert("Must be logged in as user to post review");
       return setShowUserModal(true);
     }
 
@@ -186,11 +208,59 @@ const ReviewSection = () => {
       stars: rating
     };
 
+    // reset form after grabbing data
+    setReview("");
+    setRating(0);
+
     // call on thunk to edit review
     // then do a dispatch to get all reviews
     dispatch(reviewActions.thunkPostReview(newReview))
       .then(() => dispatch(reviewActions.thunkGetReviews()))
   }
+
+  const displayReviewForm = () => {
+    return (
+      <form className="insert-review-section form" onSubmit={handleReviewSubmit}>
+        {/* StarSystem */}
+        {
+          !editReview
+            ?
+            <StarSystem />
+            :
+            <div className="star-rating">
+              {[...Array(5)].map((star, index) => {
+                index += 1;
+                return (
+                  <button
+                    type="button"
+                    key={index}
+                    className={"off star-button"}
+                    onClick={_ => setEditReview(false)}
+                  >
+                    <span className="star-span">&#9733;</span>
+                  </button>
+                );
+              })}
+            </div>
+        }
+
+        {/* Textarea */}
+        <textarea
+          value={!editReview ? review : ""}
+          onChange={updateReview}
+          placeholder='Join the conversation'
+          onClick={_ => setEditReview(false)}
+        />
+
+        <button
+          type="submit"
+          className="submit-review-btn"
+        >
+          Post Review
+        </button>
+      </form>
+    )
+  };
 
   // fetch all reviews
   return (
@@ -198,53 +268,20 @@ const ReviewSection = () => {
       {/* Title */}
       <h2>Customer Reviews</h2>
 
-      {/* List of reviews */}
-      {
-        loadReviews()
-      }
+      <section className="review-section inner-display">
+        {/* List of reviews */}
+        {
+          loadReviews()
+        }
+
+        {/* Display Review Form */}
+        {
+          displayReviewForm()
+        }
+      </section>
+
 
       {/* Textarea to insert reviews */}
-      {
-        <form className="insert-review-section form" onSubmit={handleReviewSubmit}>
-          {/* StarSystem */}
-          {
-            !editReview
-              ?
-              <StarSystem />
-              :
-              <div className="star-rating">
-                {[...Array(5)].map((star, index) => {
-                  index += 1;
-                  return (
-                    <button
-                      type="button"
-                      key={index}
-                      className={"off star-button"}
-                      onClick={_ => setEditReview(false)}
-                    >
-                      <span className="star-span">&#9733;</span>
-                    </button>
-                  );
-                })}
-              </div>
-          }
-
-          {/* Textarea */}
-          <textarea
-            value={!editReview ? review : ""}
-            onChange={updateReview}
-            placeholder='Join the conversation'
-            onClick={_ => setEditReview(false)}
-          />
-
-          <button
-            type="submit"
-          >
-            Post Review
-          </button>
-        </form>
-      }
-
       {showReviewModal && (
         <Modal
           onClose={(_) => {

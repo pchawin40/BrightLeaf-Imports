@@ -151,7 +151,15 @@ const LowerShopAll = () => {
       return (
         <section className="no-product-section">
           <span className="no-product-available">
-            No product currently available. <br /> Add a product by clicking on the button below.
+            No product currently available.
+            <br />
+            {
+              currentUserInfo
+                && currentUserInfo.role === "administrator"
+                ? "Add a product by clicking on the button below."
+                : "Log in as an administrator to add more products"
+            }
+
           </span>
         </section>
       )
