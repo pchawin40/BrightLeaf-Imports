@@ -7,7 +7,10 @@
 
 /* Header Section*/
 .tps-header-section.about > h1 {
-	font-size: 72px;
+	margin-top: 15vh;
+	font-size: 4vw;
+	position: relative;
+	z-index: 5;
 }
 
 /* Right Image */

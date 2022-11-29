@@ -1,1 +1,32 @@
 /* src/components/About/LowerAbout/BottomLower/TBL/TBL.css */
+.TBL-section {
+	display: grid;
+	grid-template-columns: repeat(2, 50%);
+	margin: 0 5rem;
+}
+
+/** Left */
+.BL.left > figure {
+	height: 60vh;
+	width: 35vw;
+}
+
+.BL.left video {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+
+/** Right */
+.BL-right.story > h3 {
+	line-height: 1.7em;
+	font-size: 1.5vw;
+	text-align: center;
+	text-transform: uppercase;
+	margin-top: 10rem;
+}
+
+.BL-right.story > p {
+	font-size: 1vw;
+	text-align: left;
+}

@@ -16,6 +16,7 @@ const BottomLower = () => {
     <section
       className="bottom-lower-section"
     >
+      <h1>Our Hand-Crafted Story</h1>
       {/* Top Bottom Lower */}
       <TBL />
 

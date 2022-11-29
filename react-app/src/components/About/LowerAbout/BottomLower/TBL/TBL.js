@@ -9,17 +9,19 @@ const TBL = () => {
     <section className="TBL-section">
       {/* Left */}
       <section className="BL left">
-        {/* Video */}
-        <video
-          preload="auto"
-          autoPlay
-          muted
-          loop
-          controls
-          controlsList="nofullscreen nodownload noremoteplayback noplaybackrate foobar"
-          alt=""
-          src="https://video.wixstatic.com/video/55ccf4_3781d7a19f3e45f6af8724ab52bb8fa3/480p/mp4/file.mp4"
-        />
+        <figure>
+          {/* Video */}
+          <video
+            preload="auto"
+            autoPlay
+            muted
+            loop
+            controls
+            controlsList="nofullscreen nodownload noremoteplayback noplaybackrate foobar"
+            alt=""
+            src="https://video.wixstatic.com/video/55ccf4_3781d7a19f3e45f6af8724ab52bb8fa3/480p/mp4/file.mp4"
+          />
+        </figure>
       </section>
 
       {/* Right */}
