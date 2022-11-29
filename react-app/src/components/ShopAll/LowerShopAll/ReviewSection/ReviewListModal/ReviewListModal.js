@@ -131,20 +131,23 @@ const ReviewListModal = ({ setShowReviewListModal }) => {
 
   return (
     <section className="review-list-modal">
-      <h2>
-        Customer Reviews
-      </h2>
+
+      <section className="rlm inner-title-container">
+        <h2>
+          Customer Reviews
+        </h2>
+        {/* Exit Modal Icon */}
+        <i
+          className="fa-solid fa-x fa-lg review-list-exit"
+          onClick={_ => setShowReviewListModal(false)}
+        />
+      </section>
 
       {/* load reviews */}
       {
         loadReviews()
       }
 
-      {/* Exit Modal Icon */}
-      <i
-        className="fa-solid fa-x fa-lg exit-modal-icon review-list"
-        onClick={_ => setShowReviewListModal(false)}
-      />
     </section>
   );
 };

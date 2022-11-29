@@ -2,8 +2,6 @@
 .review-list-modal {
 	background-color: white;
 
-	position: relative;
-
 	padding: 2vw;
 	margin-right: -1rem;
 	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
@@ -29,7 +27,16 @@
 	border-radius: 1rem;
 }
 
-.exit-modal-icon.review-list {
-	top: 7vh;
-	right: 2vw;
+.rlm.inner-title-container {
+	position: relative;
+}
+
+.review-list-exit {
+	position: absolute;
+	top: 0.75rem;
+	right: 0;
+}
+
+.review-list-exit:hover {
+	cursor: pointer;
 }
