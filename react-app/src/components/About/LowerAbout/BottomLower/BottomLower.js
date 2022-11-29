@@ -3,17 +3,23 @@
 // import css
 import './BottomLower.css';
 
+// import component
+import LBL from './LBL';
+import MBL from './MBL';
+import TBL from './TBL';
+
 //? BottomLower component
 const BottomLower = () => {
   return (
     <section className="bottom-lower-section">
-      {/* Top */}
-      {/* Our Story */}
+      {/* Top Bottom Lower */}
+      <TBL />
 
-      {/* Mid */}
-      {/* Goal */}
+      {/* Mid Bottom Lower */}
+      <MBL />
 
-      {/* What We Offer */}
+      {/* Lower Bottom Lower */}
+      <LBL />
     </section>
   );
 };

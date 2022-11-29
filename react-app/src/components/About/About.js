@@ -8,6 +8,7 @@ import { useNavHeader } from "../../context/NavHeaderContext";
 
 // import react
 import { useEffect } from "react";
+import LowerAbout from "./LowerAbout";
 
 //? About component
 const About = () => {
@@ -50,6 +51,7 @@ const About = () => {
       <TopAbout />
 
       {/* Lower About */}
+      <LowerAbout />
 
       {/* Footer */}
       <Footer />
