@@ -30,7 +30,7 @@
 	text-transform: uppercase;
 }
 
-.BL.left.L a:hover,
+.BL.left.L > a:hover,
 .BL.left.L button:hover {
 	color: white;
 	background-color: #80ab63;

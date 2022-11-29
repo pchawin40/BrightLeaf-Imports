@@ -73,6 +73,8 @@ export default function NavHeaderProvider({ children }) {
       headerColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (4 * (window.innerHeight * 1.05));
     } else if (currentPage === "shopproduct") {
       headerColorCondition = window.scrollY < (bodyHeight - (1.1 * footerRect));
+    } else if (currentPage === "about") {
+      headerColorCondition = window.scrollY >= window.innerHeight * 1.5 && window.scrollY < (bodyHeight - (1.1 * footerRect));
     } else {
       headerColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (bodyHeight - (1.1 * footerRect));
     }
@@ -100,8 +102,9 @@ export default function NavHeaderProvider({ children }) {
     // if current page is shop product, show 'black' on top
     if (currentPage === "shopproduct") {
       footerColorCondition = window.scrollY < (bodyHeight - (1.95 * footerRect));
-    }
-    else {
+    } else if (currentPage === "about") {
+      footerColorCondition = window.scrollY >= window.innerHeight * 1.5 && window.scrollY < (bodyHeight - (1.95 * footerRect));;
+    } else {
       footerColorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05)) && window.scrollY < (bodyHeight - (1.95 * footerRect));
     }
 
