@@ -1,6 +1,8 @@
 // src/components/About/LowerAbout/BottomLower/BottomLower.js
 
 // import css
+import { createRef, useEffect } from 'react';
+import { useNavHeader } from '../../../../context/NavHeaderContext';
 import './BottomLower.css';
 
 // import component
@@ -11,7 +13,9 @@ import TBL from './TBL';
 //? BottomLower component
 const BottomLower = () => {
   return (
-    <section className="bottom-lower-section">
+    <section
+      className="bottom-lower-section"
+    >
       {/* Top Bottom Lower */}
       <TBL />
 

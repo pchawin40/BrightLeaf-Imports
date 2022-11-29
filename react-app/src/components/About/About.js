@@ -35,7 +35,7 @@ const About = () => {
     // to reset color upon clicking from shop product
     setHeaderColor('white');
     setFooterColor('white');
-    setBackgroundColor('#484644');
+    setBackgroundColor('#242424');
   }, [currentPage]);
 
   return (

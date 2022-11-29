@@ -1,1 +1,48 @@
 /* src/components/About/LowerAbout/TopLower/TopLower.css */
+
+.top-lower-section {
+	color: white;
+	padding: 5rem;
+
+	display: flex;
+	flex-direction: column;
+}
+
+/* Subtitle */
+.top-lower-square {
+	color: #80ab63;
+	margin-right: 12px;
+}
+
+.top-lower-section > span:first-child {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+/* Header */
+.top-lower-section > h2 {
+	margin-top: 5rem;
+	font-size: 48px;
+}
+
+/** Lower Inner */
+.tls.lower-inner {
+	width: 80%;
+	height: 100%;
+	display: grid;
+	margin-top: 2rem;
+	grid-template-columns: 64px 10vw auto;
+	grid-template-rows: 1fr;
+}
+
+/* Line Span */
+.line-span.top-lower {
+	background-color: white;
+	opacity: 0.45;
+	margin-top: 5px;
+}
+
+.tls.lower-inner > p {
+	margin: 0;
+	font-size: 22px;
+}

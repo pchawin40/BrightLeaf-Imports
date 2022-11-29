@@ -1,12 +1,15 @@
 // src/components/About/LowerAbout/LowerAbout.js
 
 // import css
-import BottomLower from './BottomLower/BottomLower';
 import './LowerAbout.css';
+
+// import component
+import BottomLower from './BottomLower';
 import TopLower from './TopLower';
 
 //? LowerAbout component
 const LowerAbout = () => {
+
   return (
     <section className="lower-about-section">
       {/* Top Lower */}

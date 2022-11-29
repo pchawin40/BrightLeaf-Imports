@@ -14,7 +14,7 @@ const TopAbout = () => {
         className="image-background-container about"
         style={{
           backgroundSize: 'cover',
-          backgroundImage: 'url("https://res.cloudinary.com/dfz7bzhoi/image/upload/v1669693749/BrightleafImports-About/About_2_inj4ly.webp")'
+          backgroundImage: 'url("https://res.cloudinary.com/dfz7bzhoi/image/upload/v1669755793/BrightleafImports-About/About_2_lpwgu6.webp")'
         }}
       >
         {/* //? Left */}

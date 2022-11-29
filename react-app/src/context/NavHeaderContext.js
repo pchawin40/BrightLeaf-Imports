@@ -27,19 +27,30 @@ export default function NavHeaderProvider({ children }) {
     // check currentPage and their variables conditions
     // set new color
     let newColor;
-    if (currentPage === "landing") {
-      newColor = "white";
-    } else if (currentPage === "portfolio") {
+    if (["landing", "portfolio", "about"].includes(currentPage)) {
       newColor = "white";
     }
 
+
+    // color condition
+    let backgroundColorCondition;
+    if (currentPage === "about") {
+      backgroundColorCondition = window.scrollY >= window.innerHeight * 1.5;
+    } else {
+      backgroundColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 1.25);
+    }
+
     // set background color
-    if (window.scrollY >= window.innerHeight - (window.innerHeight / 1.25)) {
+    if (backgroundColorCondition) {
       setBackgroundColor(newColor);
     } else {
       // change to default color...
+      // if about page, change to #242424
+      if (currentPage === "about") {
+        setBackgroundColor("#242424");
+      }
       // if not shopProduct
-      if (currentPage !== "shopproduct") {
+      else if (!["shopproduct"].includes(currentPage)) {
         setBackgroundColor('#484644');
       }
     }
