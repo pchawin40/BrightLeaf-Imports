@@ -49,7 +49,7 @@ const About = () => {
       {/* Top About */}
       <TopAbout />
 
-      {/* About Content */}
+      {/* Lower About */}
 
       {/* Footer */}
       <Footer />
