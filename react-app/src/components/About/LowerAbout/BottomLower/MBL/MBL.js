@@ -45,18 +45,20 @@ const MBL = () => {
       </section>
 
       {/* Right */}
-      <section className="BL right">
-        {/* Video */}
-        <video
-          preload="auto"
-          autoPlay
-          muted
-          loop
-          controls
-          controlsList="nofullscreen nodownload noremoteplayback noplaybackrate foobar"
-          alt=""
-          src="https://video.wixstatic.com/video/55ccf4_9a4d78a24e434293875310f019e0a649/480p/mp4/file.mp4"
-        />
+      <section className="BL right M">
+        <figure>
+          {/* Video */}
+          <video
+            preload="auto"
+            autoPlay
+            muted
+            loop
+            controls
+            controlsList="nofullscreen nodownload noremoteplayback noplaybackrate foobar"
+            alt=""
+            src="https://video.wixstatic.com/video/55ccf4_9a4d78a24e434293875310f019e0a649/480p/mp4/file.mp4"
+          />
+        </figure>
       </section>
     </section>
   );

@@ -1,1 +1,51 @@
 /* src/components/About/LowerAbout/BottomLower/LBL/LBL.css */
+.LBL-section {
+	display: grid;
+	grid-template-columns: repeat(2, 50%);
+	margin: 0 5rem;
+	margin-bottom: 5rem;
+}
+
+/* Left */
+.BL.left.L {
+	margin-top: 5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.BL.left.L > a > button {
+	color: #80ab63;
+	background-color: white;
+
+	padding: 0.5vw 2vw;
+	font-size: 1.5vw;
+	font-family: questrial, sans-serif;
+	font-weight: 900;
+	letter-spacing: 0.1vw;
+	border: 3px solid #80ab63;
+
+	transition: all 0.4s ease;
+
+	text-transform: uppercase;
+}
+
+.BL.left.L a:hover,
+.BL.left.L button:hover {
+	color: white;
+	background-color: #80ab63;
+	cursor: pointer;
+}
+
+/* Right */
+.BL-right.partnerships > h3 {
+	line-height: 1.7em;
+	font-size: 1.5vw;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.BL-right.partnerships > p {
+	font-size: 1vw;
+	text-align: left;
+}

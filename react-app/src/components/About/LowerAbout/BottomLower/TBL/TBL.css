@@ -6,9 +6,15 @@
 }
 
 /** Left */
-.BL.left > figure {
+.BL.left.T {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.BL.left.T > figure {
 	height: 60vh;
-	width: 35vw;
+	width: 40vw;
+	margin: 0;
 }
 
 .BL.left video {

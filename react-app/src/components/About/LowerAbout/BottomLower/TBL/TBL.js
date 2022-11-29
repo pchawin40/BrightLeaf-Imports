@@ -8,7 +8,7 @@ const TBL = () => {
   return (
     <section className="TBL-section">
       {/* Left */}
-      <section className="BL left">
+      <section className="BL left T">
         <figure>
           {/* Video */}
           <video
