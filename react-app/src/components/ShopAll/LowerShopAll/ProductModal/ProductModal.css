@@ -79,6 +79,7 @@
 /** Text Quick Details Section  */
 .pm-text-section {
 	height: 100%;
+	padding-bottom: 2vh;
 }
 
 /* Product Text Details */
