@@ -3,6 +3,7 @@
 // import component
 import StarSystem from './StarSystem';
 import EditReviewModal from './EditReviewModal';
+import ReviewListModal from './ReviewListModal';
 
 // import context
 import { useReview } from '../../../../context/ReviewContext';
@@ -47,6 +48,7 @@ const ReviewSection = () => {
   const { editReview, setEditReview } = useReview();
   const { hover, setHover } = useReview();
   const { showUserModal, setShowUserModal } = useNavHeader();
+  const [showReviewListModal, setShowReviewListModal] = useState(false);
 
   /**
    * UseEffect
@@ -170,7 +172,7 @@ const ReviewSection = () => {
               &&
               <p
                 className="more-review-link"
-                onClick={_ => null}
+                onClick={_ => setShowReviewListModal(true)}
               >
                 {
                   `See ${currentReviews.length - 5} more reviews`
@@ -292,6 +294,17 @@ const ReviewSection = () => {
           }}
         >
           <EditReviewModal currentReviewId={currentReviewId} />
+        </Modal>
+      )}
+
+      {/* Textarea to view review list */}
+      {showReviewListModal && (
+        <Modal
+          onClose={(_) => {
+            setShowReviewListModal(false);
+          }}
+        >
+          <ReviewListModal setShowReviewListModal={setShowReviewListModal} />
         </Modal>
       )}
     </section>

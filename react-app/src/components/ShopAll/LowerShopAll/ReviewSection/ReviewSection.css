@@ -33,6 +33,7 @@
 /* Review List */
 .review-ul {
 	list-style-type: none;
+	width: 25vw;
 }
 
 .rs.review-li {
