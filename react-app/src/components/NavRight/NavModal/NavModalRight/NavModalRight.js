@@ -31,7 +31,12 @@ const NavModalRight = () => {
 
         {/* About */}
         <li>
-          <NavLink to="/about">
+          <NavLink
+            onClick={_ => {
+              document.querySelector("#nav-rn-figure").click();
+            }}
+            to="/about"
+          >
             About
           </NavLink>
         </li>

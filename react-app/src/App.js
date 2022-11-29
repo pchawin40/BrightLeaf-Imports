@@ -133,27 +133,27 @@ function App() {
         </Route>
 
         {/* Portfolio */}
-        <Route to="/for-home">
+        <Route path="/for-home">
           <Portfolio />
         </Route>
 
         {/* About */}
-        <Route to="/about">
+        <Route path="/about">
           <About />
         </Route>
 
         {/* Contact */}
-        <Route to="/contact">
+        <Route path="/contact">
           <Contact />
         </Route>
 
         {/* Shipping & Return */}
-        <Route to="/shipping-returns">
+        <Route path="/shipping-returns">
           <ShippingReturns />
         </Route>
 
         {/* Store Policy | Payment Methods */}
-        <Route to="/store-policy">
+        <Route path="/store-policy">
           <StorePolicy />
         </Route>
 
