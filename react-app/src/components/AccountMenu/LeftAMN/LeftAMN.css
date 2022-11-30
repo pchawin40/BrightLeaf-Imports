@@ -3,7 +3,7 @@
 	display: grid;
 	grid-template-rows: 45% auto;
 
-	grid-gap: 30px;
+	grid-gap: 50px;
 
 	padding: 5rem 0;
 
@@ -13,11 +13,8 @@
 .left-amn-section {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 	padding: 0rem 5rem;
-
-	/* background-color: cyan; */
 
 	height: 70%;
 	width: 100%;
@@ -28,6 +25,7 @@
 
 /* Top: User */
 .left-amn-section.user-menu {
+	justify-content: flex-end;
 }
 
 .left-amn-section.user-menu > figure {
@@ -51,10 +49,10 @@
 }
 
 .left-amn-section.user-menu > figure > figure {
-	border-radius: 64px;
+	border-radius: 128px;
 	background-color: #80ab63;
-	height: 40%;
-	width: auto;
+	height: 90px;
+	width: 94px;
 
 	display: flex;
 	justify-content: center;
@@ -71,10 +69,43 @@
 }
 
 /* Bottom: Account Nav */
-.left-amn-section.account-nav {
-	background-color: pink;
+.user-menu.left-amn-ul.account-nav {
+	background-color: cyan;
+
+	height: 75%;
+	width: 75%;
+
+	margin: 0;
+	padding: 0;
+
+	list-style-type: none;
+	border: 2px solid black;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
 }
 
-.nav-link.AM.selected {
-	color: red;
+.nav-link.AM {
+	background-color: orange;
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background-color: white;
+	color: black;
+
+	text-decoration: none;
+
+	transition: 0.1s all ease-in;
+}
+
+.nav-link.AM.selected,
+.nav-link.AM:hover {
+	background-color: #80ab63;
+	color: white;
 }

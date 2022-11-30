@@ -76,6 +76,7 @@ const LeftAMN = () => {
           {/* My Orders */}
           <NavLink
             to="/account/my-orders"
+            className="nav-link AM"
             activeClassName="nav-link AM selected"
           >
             <li>
@@ -86,6 +87,7 @@ const LeftAMN = () => {
           {/* My Addresses */}
           <NavLink
             to="/account/my-addresses"
+            className="nav-link AM"
             activeClassName="nav-link AM selected"
           >
             <li>
@@ -96,6 +98,7 @@ const LeftAMN = () => {
           {/* My Wallet */}
           <NavLink
             to="/account/my-wallet"
+            className="nav-link AM"
             activeClassName="nav-link AM selected"
           >
             <li>
@@ -106,6 +109,7 @@ const LeftAMN = () => {
           {/* My Wishlist */}
           <NavLink
             to="/account/my-wishlist"
+            className="nav-link AM"
             activeClassName="nav-link AM selected"
           >
             <li>
@@ -116,6 +120,7 @@ const LeftAMN = () => {
           {/* My Account */}
           <NavLink
             to="/account/my-account"
+            className="nav-link AM"
             activeClassName="nav-link AM selected"
           >
             <li>
