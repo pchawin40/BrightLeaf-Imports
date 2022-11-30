@@ -22,12 +22,22 @@ const MidFooterRight = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/store-policy">
+            <NavLink
+              to="/store-policy"
+              onClick={_ => {
+                window.scrollTo(0, 0);
+              }}
+            >
               Store Policy
             </NavLink>
           </li>
           <li>
-            <NavLink to="/store-policy">
+            <NavLink
+              to="/store-policy"
+              onClick={_ => {
+                window.scrollTo(0, 0);
+              }}
+            >
               Payment Methods
             </NavLink>
           </li>
