@@ -1,1 +1,4 @@
 /* src/components/AccountMenu/MyOrders/MyOrders.css */
+.page-section.AM {
+	grid-template-rows: 120px 100vh 100vh;
+}

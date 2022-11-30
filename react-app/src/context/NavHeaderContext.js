@@ -49,7 +49,7 @@ export default function NavHeaderProvider({ children }) {
         setBackgroundColor("#242424");
       }
       // if not shopProduct
-      else if (!["shopproduct", "store-policy", "shipping-returns"].includes(currentPage)) {
+      else if (!["shopproduct", "store-policy", "shipping-returns", "account-menu"].includes(currentPage)) {
         setBackgroundColor('#484644');
       }
     }
@@ -73,7 +73,7 @@ export default function NavHeaderProvider({ children }) {
 
     if (currentPage === "landing") {
       headerColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (4 * (window.innerHeight * 1.05));
-    } else if (["store-policy", "shopproduct", "shipping-returns"].includes(currentPage)) {
+    } else if (["store-policy", "shopproduct", "shipping-returns", "account-menu"].includes(currentPage)) {
       headerColorCondition = window.scrollY < (bodyHeight - (1.1 * vh));
     } else if (currentPage === "about") {
       headerColorCondition = window.scrollY >= window.innerHeight * 1.5 && window.scrollY < (bodyHeight - (1.1 * footerRect));
@@ -105,7 +105,7 @@ export default function NavHeaderProvider({ children }) {
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
     // if current page is shop product, show 'black' on top
-    if (["store-policy", "shopproduct", "shipping-returns"].includes(currentPage)) {
+    if (["store-policy", "shopproduct", "shipping-returns", "account-menu"].includes(currentPage)) {
       footerColorCondition = window.scrollY < (bodyHeight - (1.95 * vh));
     } else if (currentPage === "about") {
       footerColorCondition = window.scrollY >= window.innerHeight * 1.5 && window.scrollY < (bodyHeight - (1.95 * footerRect));;
