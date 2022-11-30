@@ -64,6 +64,10 @@ def get_or_modify_user(user_id):
             if(form.data['username']):
                 user.username = form.data['username']
 
+            # if profile picture exists
+            if(form.data['profile_picture']):
+                user.profile_picture = form.data['profile_picture']
+                
             # if email exist
             if(form.data['email']):
                 user.email = form.data['email']

@@ -20,10 +20,8 @@ def user_exists(form, field):
       raise ValidationError('Email address is already in use.')
 
 class EditUserForm(FlaskForm):
-    first_name = StringField(
-        'first_name')
-    last_name = StringField(
-        'last_name')
+    username = StringField('user_name', default="User")
+    profile_picture = StringField("profile_picture")
     email = StringField('email', validators=[user_exists, check_valid_email])
     password = StringField('password')
     role = StringField('role')

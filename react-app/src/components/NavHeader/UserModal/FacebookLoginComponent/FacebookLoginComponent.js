@@ -46,7 +46,7 @@ const FacebookLoginComponent = () => {
 
       const userData = {
         ...facebookUserResponse,
-        "url": facebookUserProfilePicture.data.url
+        url: facebookUserProfilePicture.data.url
       }
 
       dispatch(sessionActions.thunkAPILogin(userData));

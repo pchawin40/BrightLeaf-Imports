@@ -55,12 +55,6 @@ const LoginForm = () => {
         }
       });
 
-      // if (apiKey) {
-      // https://www.googleapis.com/plus/v1/people/115950284...320?fields=image&key={YOUR_API_KEY}
-      const profilePictureUrl = `https://www.googleapis.com/plus/v1/people/115950284...320?fields=image&key=${key}`;
-
-      console.log("profilePictureUrl", profilePictureUrl);
-      // }
 
       if (res.status >= 200 && res.status < 300) {
         const googleUserData = await res.json();
@@ -68,7 +62,8 @@ const LoginForm = () => {
         const googleUserResponse = {
           name: googleUserData.name,
           email: googleUserData.email,
-          id: googleUserData.sub
+          id: googleUserData.sub,
+          url: googleUserData.picture
         }
 
         dispatch(sessionActions.thunkAPILogin(googleUserResponse));
