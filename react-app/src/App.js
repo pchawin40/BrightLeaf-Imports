@@ -15,6 +15,7 @@ import ShippingReturns from './components/ShippingReturns';
 import StorePolicy from './components/StorePolicy';
 import ShopProduct from './components/ShopProduct';
 import ProductFormModal from './components/ProductFormModal';
+import AccountMenu from './components/AccountMenu';
 
 // import context
 import { useNavRight } from './context/NavRightContext';
@@ -156,6 +157,32 @@ function App() {
         <Route path="/store-policy">
           <StorePolicy />
         </Route>
+
+        {/* //? Account Menu */}
+        {/* My Orders */}
+        <ProtectedRoute path="/account/my-orders">
+          <AccountMenu />
+        </ProtectedRoute>
+
+        {/* My Addreses */}
+        <ProtectedRoute path="/account/my-addresses">
+          <AccountMenu />
+        </ProtectedRoute>
+
+        {/* My Wallet */}
+        <ProtectedRoute path="/account/my-wallet">
+          <AccountMenu />
+        </ProtectedRoute>
+
+        {/* My Wishlist */}
+        <ProtectedRoute path="/account/my-wishlist">
+          <AccountMenu />
+        </ProtectedRoute>
+
+        {/* My Account */}
+        <ProtectedRoute path="/account/my-account">
+          <AccountMenu />
+        </ProtectedRoute>
 
         {/* //? 404 Route */}
         <Route>404 Page Not Found</Route>
