@@ -6,8 +6,10 @@ import './MWslContent.css';
 //? MWslContent component
 const MWslContent = () => {
   return (
-    <section className="MWslContent AM content-inner-section">
+    <section className="MWslContent AM content-outer-section">
+      <section className="MWslContent AM content-inner-section">
 
+      </section>
     </section>
   )
 };

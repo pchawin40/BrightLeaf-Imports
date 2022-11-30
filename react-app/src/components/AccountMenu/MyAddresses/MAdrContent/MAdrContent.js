@@ -6,8 +6,10 @@ import './MAdrContent.css';
 //? MAdrContent component
 const MAdrContent = () => {
   return (
-    <section className="MAdrContent AM content-inner-section">
+    <section className="MAdrContent AM content-outer-section">
+      <section className="MAdrContent AM content-inner-section">
 
+      </section>
     </section>
   );
 };

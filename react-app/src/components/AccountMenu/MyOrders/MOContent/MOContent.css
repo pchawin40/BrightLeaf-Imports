@@ -1,10 +1,84 @@
 /* src/components/AccountMenu/MyOrders/MOContent/MOContent.css */
-.AM.content-inner-section {
-	background-color: orange;
-
+.AM.content-outer-section {
 	height: 100%;
 	width: 100%;
 
 	margin: 0;
 	padding: 0;
+
+	border: 2px solid black;
+}
+
+.AM.content-inner-section {
+	height: 100%;
+	width: 100%;
+
+	margin: 0;
+	padding: 0;
+
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 15% 1px auto 1px 36px;
+}
+
+/* Top: Orders */
+.cis.top {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	height: 100%;
+}
+
+.cis.top * {
+	padding: 0;
+	margin: 16px;
+}
+
+.cis.top > h1 {
+	color: #80ab63;
+
+	font-size: 2vw;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: bold;
+
+	margin-bottom: 0;
+}
+
+.cis.top > p {
+}
+
+/* Line Span */
+.line-span-container.AM {
+	display: flex;
+	justify-content: center;
+}
+
+.line-span-container.AM,
+.AM.line-span {
+	width: 100%;
+	height: 100%;
+}
+
+.AM.line-span {
+	background-color: #dadada;
+	margin: 12px 16px;
+}
+
+/* Lower: Orders */
+
+.cis.lower {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.cis.lower > h2 {
+	font-weight: normal;
+}
+
+.cis.lower > a {
+	color: black;
 }

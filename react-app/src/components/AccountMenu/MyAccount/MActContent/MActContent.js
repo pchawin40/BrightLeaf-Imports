@@ -6,8 +6,10 @@ import './MActContent.css';
 //? MActContent component
 const MActContent = () => {
   return (
-    <section className="MActContent AM content-inner-section">
+    <section className="MActContent AM content-outer-section">
+      <section className="MActContent AM content-inner-section">
 
+      </section>
     </section>
   )
 };
