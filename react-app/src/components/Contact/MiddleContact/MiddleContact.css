@@ -4,7 +4,7 @@
 	grid-template-columns: 30% auto;
 	margin: 5rem;
 
-	height: 93vh;
+	height: 92.5vh;
 }
 
 /** Left */
@@ -47,6 +47,7 @@
 	padding-left: 6px;
 	border-bottom: 1.75px solid black;
 	font-size: 18px;
+	background-color: rgba(0, 0, 0, 0);
 }
 
 .mcs.input::placeholder {
