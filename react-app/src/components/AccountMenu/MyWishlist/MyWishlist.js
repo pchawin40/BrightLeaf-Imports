@@ -40,6 +40,9 @@ const MyWishlist = () => {
 
   return (
     <section className="page-section AM MWsl">
+      {/* empty section */}
+      <section />
+
       <section className="AM MO inner-section">
         {/* Left Account Menu Nav */}
         <LeftAMN />

@@ -40,7 +40,10 @@ const MyWallet = () => {
 
   return (
     <section className="page-section AM MWlt">
-      <section className="AM MO inner-section">
+      {/* empty section */}
+      <section />
+
+      <section className="AM MWlt inner-section">
         {/* Left Account Menu Nav */}
         <LeftAMN />
 

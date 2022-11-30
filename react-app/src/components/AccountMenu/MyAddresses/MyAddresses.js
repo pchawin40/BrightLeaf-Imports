@@ -3,6 +3,7 @@
 // import component
 import Footer from '../../Footer';
 import LeftAMN from '../LeftAMN';
+import MAdrContent from './MAdrContent';
 
 // import css
 import './MyAddresses.css';
@@ -40,11 +41,15 @@ const MyAddresses = () => {
 
   return (
     <section className="page-section AM MAdr">
-      <section className="AM MO inner-section">
+      {/* empty section */}
+      <section />
+
+      <section className="AM MAdr inner-section">
         {/* Left Account Menu Nav */}
         <LeftAMN />
 
         {/* MAdr content */}
+        <MAdrContent />
       </section>
 
       {/* Footer */}

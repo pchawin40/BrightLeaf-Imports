@@ -3,6 +3,7 @@
 // import component
 import Footer from '../../Footer';
 import LeftAMN from '../LeftAMN';
+import MActContent from './MActContent';
 
 // import context
 import { useNavHeader } from '../../../context/NavHeaderContext';
@@ -40,11 +41,15 @@ const MyAccount = () => {
 
   return (
     <section className="page-section AM MAct">
-      <section className="AM MO inner-section">
+      {/* empty section */}
+      <section />
+
+      <section className="AM MAct inner-section">
         {/* Left Account Menu Nav */}
         <LeftAMN />
 
         {/* MAct content */}
+        <MActContent />
       </section>
 
       {/* Footer */}

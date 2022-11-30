@@ -6,7 +6,7 @@ import './MOContent.css';
 //? MOContent component
 const MOContent = () => {
   return (
-    <section className="MOContent AM inner-section">
+    <section className="MOContent AM content-inner-section">
 
     </section>
   );
