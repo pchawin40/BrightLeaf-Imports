@@ -1,0 +1,8 @@
+/* src/components/Contact/MiddleContact/MiddleLowerContact/Maps/Maps.css */
+.infoBox {
+	width: 10rem !important;
+}
+
+.infoBox > img {
+	display: none;
+}

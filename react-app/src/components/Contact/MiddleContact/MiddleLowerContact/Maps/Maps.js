@@ -4,7 +4,10 @@
 import React from 'react';
 
 // import api
-import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, Marker, useJsApiLoader, InfoBox } from '@react-google-maps/api';
+
+// import css
+import './Maps.css';
 
 // style for map container
 const containerStyle = {
@@ -21,6 +24,11 @@ const containerStyle = {
 const center = {
   lat: 47.8759458,
   lng: -121.9021823
+}
+
+const labelLocation = {
+  lat: 47.87594,
+  lng: -121.90315
 }
 
 //? Maps component
@@ -43,9 +51,20 @@ const Maps = ({ apiKey }) => {
               center={center}
               zoom={16}
             >
+              {/* Marker */}
               <Marker
                 position={center}
               />
+
+              {/* Info Window */}
+              <InfoBox
+                position={labelLocation}
+              >
+                <div
+                >
+                  <h1>Brightleaf Imports LLC</h1>
+                </div>
+              </InfoBox>
             </GoogleMap>
           </>
         )
