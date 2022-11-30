@@ -1,15 +1,33 @@
-// src/components/Contact/LowerContact/LowerContact.js
+// frontend/src/components/Contact/LowerContact/LowerContact.js
 
-// import css
+// import react
+import { useEffect } from 'react';
 
-//? LowerContact component
+// import react-redux
+import { useDispatch, useSelector } from 'react-redux';
+
+// import store
+import * as mapActions from '../../../store/maps';
+
+// import component
+import Maps from "./Maps";
+
+//? MapContainer component: index for Maps
 const LowerContact = () => {
-  return (
-    <section className="lower-contact-section">
+  // get map key using selector
+  const key = useSelector(mapActions.getMapKey);
 
-    </section>
-  );
+  // invoke dispatch
+  const dispatch = useDispatch();
+
+  // useEffect: get key for google map
+  useEffect(() => {
+    if (!key) dispatch(mapActions.getKey());
+  }, [dispatch, key]);
+
+  // if there's no key, return null. else, return the Maps component using api key
+  return !key ? null : <Maps apiKey={key} />
 };
 
-// export default component
+// export MapContainer
 export default LowerContact;
