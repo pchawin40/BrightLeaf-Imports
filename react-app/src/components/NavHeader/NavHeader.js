@@ -48,8 +48,6 @@ const NavHeader = () => {
    * UseEffect
    */
   useEffect(() => {
-    console.log('here');
-    console.log('currentUserInfo', currentUserInfo);
     dispatch(shoppingCartActions.thunkGetSessionUserCarts());
   }, [currentUserInfo])
 

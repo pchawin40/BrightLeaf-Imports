@@ -55,7 +55,6 @@ const NavModalRight = () => {
 
         {/* Shop All */}
         <li>
-          {/* //TODO: To work on Shop All */}
           <NavLink
             onClick={_ => {
               document.querySelector("#nav-rn-figure").click();
@@ -68,7 +67,12 @@ const NavModalRight = () => {
 
         {/* Contact */}
         <li>
-          <NavLink to="/contact">
+          <NavLink
+            onClick={_ => {
+              document.querySelector("#nav-rn-figure").click();
+            }}
+            to="/contact"
+          >
             Contact
           </NavLink>
         </li>

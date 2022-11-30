@@ -35,8 +35,6 @@ const ShopAll = () => {
   // invoke dispatch
   const dispatch = useDispatch();
 
-  // on open, always scroll to top
-
   /**
    * useEffect
    */

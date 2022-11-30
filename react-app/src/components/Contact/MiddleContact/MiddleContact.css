@@ -1,0 +1,121 @@
+/* src/components/Contact/MiddleContact/MiddleContact.css */
+.middle-contact-section {
+	display: grid;
+	grid-template-columns: 30% auto;
+	margin: 5rem;
+
+	height: 50vh;
+}
+
+/** Left */
+.mcs.left {
+	display: flex;
+	flex-direction: column;
+}
+
+.mcs.left > h2 {
+	color: #80ab63;
+	font-size: 48px;
+	margin: 0;
+	margin-bottom: 1rem;
+}
+
+.mcs.left > span {
+	margin: 5px 0;
+	letter-spacing: 2px;
+	font-size: 18px;
+}
+
+.mcs.left > p {
+	font-size: 18px;
+}
+
+/** Right */
+.mcs.right {
+	display: flex;
+	flex-direction: column;
+	font-size: 18px;
+}
+
+.mcs.right label {
+	font-weight: bold;
+}
+
+.mcs.input {
+	border: none;
+	margin-top: 18px;
+	padding-left: 6px;
+	border-bottom: 1.75px solid black;
+	font-size: 18px;
+}
+
+.mcs.input::placeholder {
+	color: gray;
+}
+
+.mcs.input:focus {
+	outline: none;
+}
+
+/* inner Contact Section */
+.inner-contact-section {
+	display: flex;
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+
+.inner-contact-section > figure {
+	display: flex;
+	flex-direction: column;
+	margin-left: 0;
+	margin-right: 16px;
+	width: 50%;
+}
+
+.inner-contact-section > figure:last-child {
+	margin-right: 0;
+}
+
+/* Message */
+.mcs.input.message {
+	height: 72px;
+	resize: none;
+}
+
+/* Submit Button */
+.mcs.label.submit-figure {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	margin: 0;
+	padding: 24px 0;
+}
+
+.mcs.input.submit-button {
+	padding: 0;
+	margin: 0;
+
+	padding: 0.5vw 2vw;
+	font-size: 1.5vw;
+	font-family: questrial, sans-serif;
+	font-weight: 900;
+	letter-spacing: 0.1vw;
+	border: 3px solid #80ab63;
+
+	transition: all 0.4s ease;
+
+	text-transform: uppercase;
+
+	color: white;
+	background-color: #80ab63;
+}
+
+.mcs.input.submit-button:hover {
+	cursor: pointer;
+}
+
+.mcs.input.submit-button:active {
+	box-shadow: 0 3px 15px rgb(0 0 0 / 0.2);
+}

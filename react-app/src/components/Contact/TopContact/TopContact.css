@@ -1,0 +1,9 @@
+/* src/components/Contact/TopContact/TopContact.css */
+.image-background-container.contact {
+	height: 80vh;
+}
+
+.top-figure-title.contact {
+	right: 25em;
+	top: 18.5vh;
+}
