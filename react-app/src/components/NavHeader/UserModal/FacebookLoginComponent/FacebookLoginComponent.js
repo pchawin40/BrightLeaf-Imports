@@ -36,9 +36,20 @@ const FacebookLoginComponent = () => {
       });
 
 
+      // grab name and id
       const facebookUserResponse = await (await fetch(`https://graph.facebook.com/me?access_token=${res.authResponse.accessToken}`)).json();
 
-      dispatch(sessionActions.thunkAPILogin(facebookUserResponse));
+      // grab picture
+      const facebookUserProfilePicture = await (
+        await fetch(`https://graph.facebook.com/v15.0/${facebookUserResponse.id}/picture?redirect=false&access_token=${res.authResponse.accessToken}`)
+      ).json();
+
+      const userData = {
+        ...facebookUserResponse,
+        "url": facebookUserProfilePicture.data.url
+      }
+
+      dispatch(sessionActions.thunkAPILogin(userData));
       setShowUserModal(false);
     } catch (error) {
       console.log("Error from logging in with Facebook: ", error.message);
@@ -60,11 +71,6 @@ const FacebookLoginComponent = () => {
           id="fb-login-img"
         />
       </figure>
-      {/* {
-        !isLoading
-        &&
-        <FacebookProfile />
-      } */}
     </div>
   );
 }

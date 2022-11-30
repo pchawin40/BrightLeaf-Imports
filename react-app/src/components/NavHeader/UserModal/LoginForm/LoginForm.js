@@ -20,6 +20,7 @@ import { Redirect } from 'react-router-dom';
 
 // import store
 import * as sessionActions from '../../../../store/session';
+import * as mapActions from '../../../../store/maps';
 
 // import libraries
 import { useGoogleLogin } from '@react-oauth/google';
@@ -30,6 +31,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const { forgotPassword, setForgotPassword } = useNavHeader();
   const { showUserModal, setShowUserModal } = useNavHeader();
+  const key = useSelector(mapActions.getMapKey);
 
   const user = useSelector(state => state.session.user);
 
@@ -41,7 +43,8 @@ const LoginForm = () => {
   // per general
   useEffect(() => {
     // nothing for now
-  }, [email, password]);
+    if (!key) dispatch(mapActions.getKey());
+  }, [email, password, key]);
 
   //* Google API: function to handle google login
   const handleGoogleLogin = useGoogleLogin({
@@ -51,6 +54,13 @@ const LoginForm = () => {
           'Authorization': `Bearer ${tokenResponse.access_token}`
         }
       });
+
+      // if (apiKey) {
+      // https://www.googleapis.com/plus/v1/people/115950284...320?fields=image&key={YOUR_API_KEY}
+      const profilePictureUrl = `https://www.googleapis.com/plus/v1/people/115950284...320?fields=image&key=${key}`;
+
+      console.log("profilePictureUrl", profilePictureUrl);
+      // }
 
       if (res.status >= 200 && res.status < 300) {
         const googleUserData = await res.json();
