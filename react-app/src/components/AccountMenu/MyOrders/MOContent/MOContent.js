@@ -107,60 +107,62 @@ const MOContent = () => {
   // function to load carts
   const loadCarts = () => {
     return (
-      <section className="cis order-carts">
+      <ul className="cis order-carts ul">
         {/* Cart List */}
         {
           currentUserCarts.map(cartItem => {
-            return (<li key={"cart item: " + cartItem.id} className="scms-li">
-              <section className="scms-buttons-containers">
-                {/* Add more */}
-                {/* Check if there are enough product */}
-                {
-                  checkProductQuantity(cartItem.product_id)
-                    ?
-                    // If there are still product, proceed to add to cart quantity
-                    <i
-                      onClick={_ => handleCartQuantity(cartItem, cartItem.quantity + 1, true)}
-                      className="fa-solid fa-square-plus fa-lg scms-li-add-quantity"
-                    />
-                    :
-                    // Otherwise disable handleCartQuantity
-                    <i
-                      className="fa-solid fa-square-plus fa-lg scms-li-add-quantity unavailable"
-                    />
-                }
-
-                {/* Delete */}
-                <i
-                  onClick={_ => handleCartQuantity(cartItem, cartItem.quantity - 1, false)}
-                  className="fa-solid fa-square-minus fa-lg scms-li-delete-quantity"
-                />
-              </section>
-
-              {/* Quantity */}
-              <section className="scms-li-span quantity">
-                <p>
+            return (<li key={"cart item: " + cartItem.id} className="coc li orders">
+              <section className="clo left-containers">
+                <section className="clo buttons-containers">
+                  {/* Add more */}
+                  {/* Check if there are enough product */}
                   {
-                    cartItem.quantity + "x"
-                  }
-                </p>
-              </section>
-
-              {/* Name */}
-              <section className="scms-li-span name">
-                <p>
-                  {
-                    cartItem.name.length > 15
+                    checkProductQuantity(cartItem.product_id)
                       ?
-                      cartItem.name.slice(0, 15) + "..."
+                      // If there are still product, proceed to add to cart quantity
+                      <i
+                        onClick={_ => handleCartQuantity(cartItem, cartItem.quantity + 1, true)}
+                        className="fa-solid fa-square-plus fa-lg clo li-add-quantity"
+                      />
                       :
-                      cartItem.name
+                      // Otherwise disable handleCartQuantity
+                      <i
+                        className="fa-solid fa-square-plus fa-lg clo li-add-quantity unavailable"
+                      />
                   }
-                </p>
+
+                  {/* Delete */}
+                  <i
+                    onClick={_ => handleCartQuantity(cartItem, cartItem.quantity - 1, false)}
+                    className="fa-solid fa-square-minus fa-lg clo li-delete-quantity"
+                  />
+                </section>
+
+                {/* Quantity */}
+                <section className="clo li-span quantity-container">
+                  <p>
+                    {
+                      cartItem.quantity + "x"
+                    }
+                  </p>
+                </section>
+
+                {/* Name */}
+                <section className="clo li-span name">
+                  <p>
+                    {
+                      cartItem.name.length > 100
+                        ?
+                        cartItem.name.slice(0, 100) + "..."
+                        :
+                        cartItem.name
+                    }
+                  </p>
+                </section>
               </section>
 
               {/* Price */}
-              <section className="scms-li-span price">
+              <section className="clo li-span price">
                 <p>
                   {
                     "$ "
@@ -175,10 +177,21 @@ const MOContent = () => {
           })
         }
 
-        {/* Cart Total */}
+        {/* Cart Items total */}
+        <section className="cis cart-total-section">
+          <span>
+            Total
+          </span>
+          <span>
+            {` $ ${getCartTotal()} USD`}
+          </span>
+        </section>
 
         {/* Checkout */}
-      </section>
+        <button className="cis ul-checkout-button">
+          Check Out
+        </button>
+      </ul>
     );
   };
 
