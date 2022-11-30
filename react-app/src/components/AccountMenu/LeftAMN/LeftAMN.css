@@ -1,1 +1,34 @@
 /* src/components/AccountMenu/LeftAMN/LeftAMN.css */
+.left-amn-section {
+	background-color: blue;
+
+	display: grid;
+	grid-template-rows: 45% auto;
+
+	grid-gap: 30px;
+
+	padding: 5rem 0;
+}
+
+/* Top: User */
+.left-amn-section.user-menu {
+	background-color: cyan;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5rem;
+}
+
+.left-amn-section.user-menu > figure {
+	background-color: yellow;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+
+/* Bottom: Account Nav */
+.left-amn-section.account-nav {
+	background-color: pink;
+}

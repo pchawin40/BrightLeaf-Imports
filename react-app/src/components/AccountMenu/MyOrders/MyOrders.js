@@ -9,6 +9,7 @@ import { useNavHeader } from '../../../context/NavHeaderContext';
 // import component
 import Footer from '../../Footer';
 import LeftAMN from '../LeftAMN';
+import MOContent from './MOContent';
 
 // import css
 import './MyOrders.css';
@@ -40,11 +41,15 @@ const MyOrders = () => {
 
   return (
     <section className="page-section AM MO">
-      <section>
+      {/* empty section */}
+      <section />
+
+      <section className="AM MO inner-section">
         {/* Left Account Menu Nav */}
         <LeftAMN />
 
         {/* MO content */}
+        <MOContent />
       </section>
 
       {/* Footer */}

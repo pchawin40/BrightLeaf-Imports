@@ -40,10 +40,12 @@ const MyAddresses = () => {
 
   return (
     <section className="page-section AM MAdr">
-      {/* Left Account Menu Nav */}
-      <LeftAMN />
+      <section className="AM MO inner-section">
+        {/* Left Account Menu Nav */}
+        <LeftAMN />
 
-      {/* MAdr content */}
+        {/* MAdr content */}
+      </section>
 
       {/* Footer */}
       <Footer />

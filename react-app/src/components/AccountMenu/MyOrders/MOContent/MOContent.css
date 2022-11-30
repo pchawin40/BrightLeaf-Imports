@@ -1,0 +1,10 @@
+/* src/components/AccountMenu/MyOrders/MOContent/MOContent.css */
+.MOContent.AM.inner-section {
+	background-color: orange;
+
+	height: 100%;
+	width: 100%;
+
+	margin: 0;
+	padding: 0;
+}

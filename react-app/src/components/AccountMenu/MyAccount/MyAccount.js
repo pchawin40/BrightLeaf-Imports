@@ -40,10 +40,12 @@ const MyAccount = () => {
 
   return (
     <section className="page-section AM MAct">
-      {/* Left Account Menu Nav */}
-      <LeftAMN />
+      <section className="AM MO inner-section">
+        {/* Left Account Menu Nav */}
+        <LeftAMN />
 
-      {/* MAct content */}
+        {/* MAct content */}
+      </section>
 
       {/* Footer */}
       <Footer />

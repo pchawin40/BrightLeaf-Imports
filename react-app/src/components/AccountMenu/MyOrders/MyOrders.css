@@ -1,4 +1,15 @@
 /* src/components/AccountMenu/MyOrders/MyOrders.css */
 .page-section.AM {
-	grid-template-rows: 120px 100vh 100vh;
+	grid-template-rows: 0px 100vh 100vh;
+}
+
+.AM.inner-section {
+	background-color: red;
+	height: 100%;
+	width: calc(100% - 10rem);
+
+	display: grid;
+	grid-template-columns: 30% auto;
+	grid-gap: 30px;
+	padding: 0 5rem;
 }
