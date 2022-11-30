@@ -15,7 +15,6 @@ import ShippingReturns from './components/ShippingReturns';
 import StorePolicy from './components/StorePolicy';
 import ShopProduct from './components/ShopProduct';
 import ProductFormModal from './components/ProductFormModal';
-import AccountMenu from './components/AccountMenu';
 
 // import context
 import { useNavRight } from './context/NavRightContext';
@@ -38,6 +37,11 @@ import * as shoppingCartActions from './store/shoppingCarts';
 import * as productActions from './store/products';
 import * as reviewActions from './store/reviews';
 import * as userActions from './store/users';
+import MyOrders from './components/AccountMenu/MyOrders';
+import MyAddresses from './components/AccountMenu/MyAddresses';
+import MyWallet from './components/AccountMenu/MyWallet';
+import MyWishlist from './components/AccountMenu/MyWishlist';
+import MyAccount from './components/AccountMenu/MyAccount';
 
 function App() {
   /**
@@ -161,27 +165,27 @@ function App() {
         {/* //? Account Menu */}
         {/* My Orders */}
         <ProtectedRoute path="/account/my-orders">
-          <AccountMenu />
+          <MyOrders />
         </ProtectedRoute>
 
         {/* My Addreses */}
         <ProtectedRoute path="/account/my-addresses">
-          <AccountMenu />
+          <MyAddresses />
         </ProtectedRoute>
 
         {/* My Wallet */}
         <ProtectedRoute path="/account/my-wallet">
-          <AccountMenu />
+          <MyWallet />
         </ProtectedRoute>
 
         {/* My Wishlist */}
         <ProtectedRoute path="/account/my-wishlist">
-          <AccountMenu />
+          <MyWishlist />
         </ProtectedRoute>
 
         {/* My Account */}
         <ProtectedRoute path="/account/my-account">
-          <AccountMenu />
+          <MyAccount />
         </ProtectedRoute>
 
         {/* //? 404 Route */}
