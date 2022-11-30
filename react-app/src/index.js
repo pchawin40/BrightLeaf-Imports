@@ -1,15 +1,31 @@
+// import react
 import React from 'react';
+
+// import react-dom
 import ReactDOM from 'react-dom';
+
+// import react-redux
 import { Provider } from 'react-redux';
+
+// import css
 import './index.css';
+
+// import component
 import App from './App';
+
+// import store
 import configureStore from './store';
+
+// import context
 import { ModalProvider } from './context/Modal';
-import { GoogleOAuthProvider } from '@react-oauth/google';
 import NavHeaderProvider from './context/NavHeaderContext';
 import NavRightProvider from './context/NavRightContext';
 import ImageProvider from './context/ImageContext';
 import ProductProvider from './context/ProductContext';
+import ShoppingCartProvider from './context/ShoppingCartContext';
+
+// import libraries
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const store = configureStore();
 
@@ -22,7 +38,9 @@ ReactDOM.render(
             <NavRightProvider>
               <ImageProvider>
                 <ProductProvider>
-                  <App />
+                  <ShoppingCartProvider>
+                    <App />
+                  </ShoppingCartProvider>
                 </ProductProvider>
               </ImageProvider>
             </NavRightProvider>

@@ -19,6 +19,7 @@ import * as productActions from '../../../store/products';
 
 // import libraries
 import { Animate, AnimateKeyframes, AnimateGroup } from "react-simple-animate";
+import { useShoppingCart } from '../../../context/ShoppingCartContext';
 
 
 //? ShoppingCartModal component
@@ -27,8 +28,8 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
    * Controlled inputs
    */
   const { loadCartModal, setLoadCartModal } = useNavHeader();
-  const [cartLoaded, setCartLoaded] = useState(false);
-  const [cartDisplay, setCartDisplay] = useState([]);
+  const { cartLoaded, setCartLoaded } = useShoppingCart();
+  const { cartDisplay, setCartDisplay } = useShoppingCart();
 
   /**
    * Selector functions
@@ -59,17 +60,8 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
       // set to loaded
       setCartLoaded(true);
 
-      // initialize new cart total
-      let newCartSum = 0;
-
-      // set current products
-      Object.values(currentUserCarts).map(cartItem => {
-        // set cart total
-        newCartSum += cartItem.price;
-      });
-
       // set cart display
-      setCartDisplay(Object.values(currentUserCarts));
+      setCartDisplay(currentUserCarts);
     }
   }, [cartLoaded, currentUserCarts]);
 

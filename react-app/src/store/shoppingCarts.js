@@ -159,7 +159,7 @@ export const thunkDeleteCart = (cartId) => async (dispatch) => {
 }
 
 /* --------- SELECTOR FUNCTIONS -------- */
-export const getCurrentUserCarts = state => state.shoppingCarts;
+export const getCurrentUserCarts = state => Object.values(state.shoppingCarts);
 
 /* --------- REDUCERS -------- */
 const initialState = {}
