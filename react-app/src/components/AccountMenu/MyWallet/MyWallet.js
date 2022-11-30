@@ -3,6 +3,7 @@
 // import component
 import Footer from '../../Footer';
 import LeftAMN from '../LeftAMN';
+import MWltContent from './MWltContent';
 
 // import context
 import { useNavHeader } from '../../../context/NavHeaderContext';
@@ -48,6 +49,7 @@ const MyWallet = () => {
         <LeftAMN />
 
         {/* MWlt content */}
+        <MWltContent />
       </section>
 
       {/* Footer */}

@@ -6,6 +6,7 @@ import { useNavHeader } from '../../../context/NavHeaderContext';
 // import component
 import Footer from '../../Footer';
 import LeftAMN from '../LeftAMN';
+import MWslContent from './MWslContent';
 
 // import css
 import './MyWishlist.css';
@@ -48,6 +49,7 @@ const MyWishlist = () => {
         <LeftAMN />
 
         {/* MWsl content */}
+        <MWslContent />
       </section>
 
       {/* Footer */}
