@@ -48,9 +48,22 @@ const LeftAMN = () => {
         <figure>
           {/* User Profile */}
           {/* // TODO: To insert user profile picture */}
+          {
+            currentUserInfo.profile_picture
+              ?
+              <img
+                src={currentUserInfo.profile_picture}
+                alt="user-profile"
+              />
+              :
+              <i className="fa-regular fa-user fa-xl nh-user-icon" />
+          }
+
 
           {/* User Profile Name */}
-          {displayName}
+          <span>
+            {displayName}
+          </span>
         </figure>
       </section>
 

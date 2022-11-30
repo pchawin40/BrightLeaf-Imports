@@ -26,6 +26,21 @@
 	padding: 0;
 	height: 100%;
 	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.left-amn-section.user-menu > figure > img {
+	height: 50%;
+	width: auto;
+	border-radius: 3rem;
+}
+
+.left-amn-section.user-menu > figure > span {
+	margin-top: 12px;
 }
 
 /* Bottom: Account Nav */

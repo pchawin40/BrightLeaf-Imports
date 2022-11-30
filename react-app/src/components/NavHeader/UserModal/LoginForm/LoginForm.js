@@ -63,7 +63,7 @@ const LoginForm = () => {
           name: googleUserData.name,
           email: googleUserData.email,
           id: googleUserData.sub,
-          url: googleUserData.picture
+          profile_picture: googleUserData.picture
         }
 
         dispatch(sessionActions.thunkAPILogin(googleUserResponse));
