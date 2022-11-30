@@ -42,6 +42,7 @@ import MyAddresses from './components/AccountMenu/MyAddresses';
 import MyWallet from './components/AccountMenu/MyWallet';
 import MyWishlist from './components/AccountMenu/MyWishlist';
 import MyAccount from './components/AccountMenu/MyAccount';
+import AccountProvider from './context/AccountMenuContext';
 
 function App() {
   /**
@@ -163,30 +164,32 @@ function App() {
         </Route>
 
         {/* //? Account Menu */}
-        {/* My Orders */}
-        <ProtectedRoute path="/account/my-orders">
-          <MyOrders />
-        </ProtectedRoute>
+        <AccountProvider>
+          {/* My Orders */}
+          <ProtectedRoute path="/account/my-orders">
+            <MyOrders />
+          </ProtectedRoute>
 
-        {/* My Addreses */}
-        <ProtectedRoute path="/account/my-addresses">
-          <MyAddresses />
-        </ProtectedRoute>
+          {/* My Addreses */}
+          <ProtectedRoute path="/account/my-addresses">
+            <MyAddresses />
+          </ProtectedRoute>
 
-        {/* My Wallet */}
-        <ProtectedRoute path="/account/my-wallet">
-          <MyWallet />
-        </ProtectedRoute>
+          {/* My Wallet */}
+          <ProtectedRoute path="/account/my-wallet">
+            <MyWallet />
+          </ProtectedRoute>
 
-        {/* My Wishlist */}
-        <ProtectedRoute path="/account/my-wishlist">
-          <MyWishlist />
-        </ProtectedRoute>
+          {/* My Wishlist */}
+          <ProtectedRoute path="/account/my-wishlist">
+            <MyWishlist />
+          </ProtectedRoute>
 
-        {/* My Account */}
-        <ProtectedRoute path="/account/my-account">
-          <MyAccount />
-        </ProtectedRoute>
+          {/* My Account */}
+          <ProtectedRoute path="/account/my-account">
+            <MyAccount />
+          </ProtectedRoute>
+        </AccountProvider>
 
         {/* //? 404 Route */}
         <Route>404 Page Not Found</Route>
