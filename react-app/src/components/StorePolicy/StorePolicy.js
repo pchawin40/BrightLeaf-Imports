@@ -1,5 +1,8 @@
 // src/components/StorePolicy/StorePolicy.js
 
+// import css
+import './StorePolicy.css';
+
 // import react
 import { useEffect } from "react";
 

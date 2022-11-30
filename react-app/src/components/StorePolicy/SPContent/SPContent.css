@@ -3,6 +3,8 @@
 	margin: 5rem;
 	width: 80%;
 	font-size: 18px;
+
+	height: 60vh;
 }
 
 /* Header */
@@ -24,10 +26,17 @@
 	flex-direction: column;
 }
 
-.sub-section.customer-care > a{
-  
+.sub-section.customer-care > a {
+	text-decoration: underline;
+	color: black;
+	opacity: 0.95;
 }
 
-/* Subsection: Payment Methods */
-.sub-section.payment-methods {
+.sub-section.customer-care > a:hover {
+	opacity: 1;
+}
+
+.sub-section.customer-care > a,
+.sub-section.payment-methods li {
+	margin: 6px 0;
 }
