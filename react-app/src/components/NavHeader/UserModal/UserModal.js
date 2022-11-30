@@ -17,13 +17,15 @@ import { useNavHeader } from '../../../context/NavHeaderContext';
 // import react
 import { useEffect, useState } from 'react';
 
+// import react-router-dom
+import { useHistory } from 'react-router-dom';
+
 // import store
 import * as sessionActions from '../../../store/session';
 import * as shoppingCartActions from '../../../store/shoppingCarts';
 
 // import libraries
 import { FacebookProvider } from 'react-facebook';
-
 
 //? UserModal component
 const UserModal = () => {
@@ -51,11 +53,13 @@ const UserModal = () => {
   // invoke dispatch
   const dispatch = useDispatch();
 
+  // invoke history
+  const history = useHistory();
+
   // function to handle log out
   const handleLogout = async (e) => {
     await dispatch(sessionActions.logout());
   };
-
 
   return (
     currentUserInfo
@@ -64,11 +68,55 @@ const UserModal = () => {
         id="logged-user-modal-section"
       >
         <ul id="logged-ums-ul">
-          <li>My Orders</li>
-          <li>My Addresses</li>
-          <li>My Wallet</li>
-          <li>My Wishlist</li>
-          <li>My Account</li>
+          {/* My Orders */}
+          <li
+            onClick={_ => {
+              setShowUserModal(false);
+              return history.push('/account/my-orders')
+            }}
+          >
+            My Orders
+          </li>
+
+          {/* My Addresses */}
+          <li
+            onClick={_ => {
+              setShowUserModal(false);
+              return history.push('/account/my-addresses')
+            }}
+          >
+            My Addresses
+          </li>
+
+          {/* My Wallet */}
+          <li
+            onClick={_ => {
+              setShowUserModal(false);
+              return history.push('/account/my-wallet')
+            }}
+          >
+            My Wallet
+          </li>
+
+          {/* My Wishlist */}
+          <li
+            onClick={_ => {
+              setShowUserModal(false);
+              return history.push('/account/my-wishlist')
+            }}
+          >
+            My Wishlist
+          </li>
+
+          {/* My Account */}
+          <li
+            onClick={_ => {
+              setShowUserModal(false);
+              return history.push('/account/my-account')
+            }}
+          >
+            My Account
+          </li>
           <span className="line-span" />
           <li onClick={handleLogout}>
             Log Out

@@ -1,5 +1,8 @@
 // src/components/AccountMenu/MyAddresses/MyAddresses.js
 
+// import component
+import Footer from '../../Footer';
+
 // import css
 import './MyAddresses.css';
 
@@ -7,7 +10,10 @@ import './MyAddresses.css';
 const MyAddresses = () => {
   return (
     <section className="AM MAdr section">
+      {/* MAdr content */}
 
+      {/* Footer */}
+      <Footer />
     </section>
   );
 };

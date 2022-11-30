@@ -1,5 +1,8 @@
 // src/components/AccountMenu/MyOrders/MyOrders.js
 
+// import component
+import Footer from '../../Footer';
+
 // import css
 import './MyOrders.css';
 
@@ -7,7 +10,10 @@ import './MyOrders.css';
 const MyOrders = () => {
   return (
     <section className="AM MO section">
+      {/* MO content */}
 
+      {/* Footer */}
+      <Footer />
     </section>
   );
 };

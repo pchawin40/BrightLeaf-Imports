@@ -1,5 +1,8 @@
 // src/components/AccountMenu/MyWishlist/MyWishlist.js
 
+// import component
+import Footer from '../../Footer';
+
 // import css
 import './MyWishlist.css';
 
@@ -7,7 +10,10 @@ import './MyWishlist.css';
 const MyWishlist = () => {
   return (
     <section className="AM MWsl section">
+      {/* MWsl content */}
 
+      {/* Footer */}
+      <Footer />
     </section>
   );
 };
