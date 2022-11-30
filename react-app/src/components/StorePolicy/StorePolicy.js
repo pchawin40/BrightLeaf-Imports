@@ -17,8 +17,8 @@ import SPContent from "./SPContent";
 //? StorePolicy component
 const StorePolicy = () => {
   /**
- * Controlled inputs
- */
+  * Controlled inputs
+  */
   const { currentPage, setCurrentPage } = useNavHeader();
   const { headerColor, setHeaderColor } = useNavHeader();
   const { footerColor, setFooterColor } = useNavHeader();

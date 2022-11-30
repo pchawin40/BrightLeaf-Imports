@@ -2,9 +2,13 @@
 .SPContent.section {
 	margin: 5rem;
 	width: 80%;
-	font-size: 18px;
+	font-size: 24px;
 
 	height: 60vh;
+}
+
+.SPContent.section > section {
+	margin-bottom: 5rem;
 }
 
 /* Header */
