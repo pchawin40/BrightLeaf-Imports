@@ -1,2 +1,5 @@
 /* src/components/Contact/Contact.css */
 
+.page-secttion.contact {
+	display: grid;
+}

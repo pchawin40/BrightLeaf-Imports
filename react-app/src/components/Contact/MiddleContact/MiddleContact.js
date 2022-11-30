@@ -2,6 +2,7 @@
 
 // import css
 import './MiddleContact.css';
+import MiddleLowerContact from './MiddleLowerContact/MiddleLowerContact';
 
 //? MiddleContact component
 const MiddleContact = () => {
@@ -88,6 +89,9 @@ const MiddleContact = () => {
           </button>
         </figure>
       </form>
+
+      {/* Middle Lower Contact */}
+      <MiddleLowerContact />
     </section>
   );
 };

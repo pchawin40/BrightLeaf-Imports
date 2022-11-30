@@ -1,4 +1,4 @@
-// frontend/src/components/Contact/LowerContact/LowerContact.js
+// frontend/src/components/Contact/MiddleContact/MiddleLowerContact.js
 
 // import react
 import { useEffect } from 'react';
@@ -7,13 +7,16 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // import store
-import * as mapActions from '../../../store/maps';
+import * as mapActions from '../../../../store/maps';
 
 // import component
 import Maps from "./Maps";
 
+// import css
+import './MiddleLowerContact.css';
+
 //? MapContainer component: index for Maps
-const LowerContact = () => {
+const MiddleLowerContact = () => {
   // get map key using selector
   const key = useSelector(mapActions.getMapKey);
 
@@ -26,8 +29,14 @@ const LowerContact = () => {
   }, [dispatch, key]);
 
   // if there's no key, return null. else, return the Maps component using api key
-  return !key ? null : <Maps apiKey={key} />
+  return !key
+    ?
+    null
+    :
+    <section className="ml-contact-section">
+      <Maps apiKey={key} />
+    </section>
 };
 
 // export MapContainer
-export default LowerContact;
+export default MiddleLowerContact;

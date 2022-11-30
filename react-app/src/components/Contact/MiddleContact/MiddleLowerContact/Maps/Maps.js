@@ -4,22 +4,25 @@
 import React from 'react';
 
 // import api
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-
-// import css
-import './Maps.css';
+import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 
 // style for map container
 const containerStyle = {
-  width: '80vw',
-  height: '80vh'
+  width: '100vw',
+  height: '50vh',
+  margin: '0',
+  padding: '0',
+  left: '0',
+  top: '160vh',
+  position: 'absolute'
 }
 
 // where to pinpoint map at center location
 const center = {
-  lat: 37.799102,
-  lng: -122.401256
+  lat: 47.8759458,
+  lng: -121.9021823
 }
+
 //? Maps component
 const Maps = ({ apiKey }) => {
 
@@ -38,8 +41,12 @@ const Maps = ({ apiKey }) => {
             <GoogleMap
               mapContainerStyle={containerStyle}
               center={center}
-              zoom={20}
-            />
+              zoom={16}
+            >
+              <Marker
+                position={center}
+              />
+            </GoogleMap>
           </>
         )
       }

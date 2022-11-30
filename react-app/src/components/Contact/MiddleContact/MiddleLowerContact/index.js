@@ -1,6 +1,6 @@
 // src/components/Contact/LowerContact/index.js
 
-import LowerContact from "./LowerContact";
+import LowerContact from "./MiddleLowerContact";
 
 // export default component
 export default LowerContact;

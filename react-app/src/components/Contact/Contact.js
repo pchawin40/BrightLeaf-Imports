@@ -15,7 +15,6 @@ import { useNavHeader } from "../../context/NavHeaderContext";
 // import component
 import Footer from "../Footer";
 import MiddleContact from "./MiddleContact";
-import LowerContact from "./LowerContact";
 import TopContact from "./TopContact";
 
 const Contact = () => {
@@ -58,9 +57,6 @@ const Contact = () => {
 
       {/* Middle Contact */}
       <MiddleContact />
-
-      {/* Lower Contact */}
-      <LowerContact />
 
       {/* Footer */}
       <Footer />
