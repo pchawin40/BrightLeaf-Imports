@@ -31,7 +31,6 @@ export default function NavHeaderProvider({ children }) {
       newColor = "white";
     }
 
-
     // color condition
     let backgroundColorCondition;
     if (currentPage === "about") {
@@ -50,7 +49,7 @@ export default function NavHeaderProvider({ children }) {
         setBackgroundColor("#242424");
       }
       // if not shopProduct
-      else if (!["shopproduct"].includes(currentPage)) {
+      else if (!["shopproduct", "store-policy"].includes(currentPage)) {
         setBackgroundColor('#484644');
       }
     }
@@ -69,10 +68,13 @@ export default function NavHeaderProvider({ children }) {
     // if currentPage is landing, use these for color
     let headerColorCondition;
 
+    // view height for store-policy
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+
     if (currentPage === "landing") {
       headerColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (4 * (window.innerHeight * 1.05));
-    } else if (currentPage === "shopproduct") {
-      headerColorCondition = window.scrollY < (bodyHeight - (1.1 * footerRect));
+    } else if (["store-policy", "shopproduct"].includes(currentPage)) {
+      headerColorCondition = window.scrollY < (bodyHeight - (1.1 * vh));
     } else if (currentPage === "about") {
       headerColorCondition = window.scrollY >= window.innerHeight * 1.5 && window.scrollY < (bodyHeight - (1.1 * footerRect));
     } else {
@@ -99,9 +101,12 @@ export default function NavHeaderProvider({ children }) {
     // check currentPage and their variables conditions
     let footerColorCondition;
 
+    // view height for store-policy
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+
     // if current page is shop product, show 'black' on top
-    if (currentPage === "shopproduct") {
-      footerColorCondition = window.scrollY < (bodyHeight - (1.95 * footerRect));
+    if (["store-policy", "shopproduct"].includes(currentPage)) {
+      footerColorCondition = window.scrollY < (bodyHeight - (1.95 * vh));
     } else if (currentPage === "about") {
       footerColorCondition = window.scrollY >= window.innerHeight * 1.5 && window.scrollY < (bodyHeight - (1.95 * footerRect));;
     } else {
