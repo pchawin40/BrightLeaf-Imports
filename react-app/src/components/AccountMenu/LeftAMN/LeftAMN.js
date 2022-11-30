@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 // import store
 import * as sessionActions from '../../../store/session';
 import { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
 //? LeftAMN component
 const LeftAMN = () => {
@@ -56,20 +57,72 @@ const LeftAMN = () => {
                 alt="user-profile"
               />
               :
-              <i className="fa-regular fa-user fa-xl nh-user-icon" />
+              <figure>
+                <i className="fa-regular fa-user fa-2xl lamn-user-icon" />
+              </figure>
           }
 
 
           {/* User Profile Name */}
           <span>
-            {displayName}
+            {displayName.length < 25 ? displayName : displayName.slice(0, 25) + "..."}
           </span>
         </figure>
       </section>
 
       {/* Bottom: Account Nav */}
       <section className="account-nav left-amn-section">
+        <ul className="user-menu left-amn-ul account-nav">
+          {/* My Orders */}
+          <NavLink
+            to="/account/my-orders"
+            activeClassName="nav-link AM selected"
+          >
+            <li>
+              My Orders
+            </li>
+          </NavLink>
 
+          {/* My Addresses */}
+          <NavLink
+            to="/account/my-addresses"
+            activeClassName="nav-link AM selected"
+          >
+            <li>
+              My Addresses
+            </li>
+          </NavLink>
+
+          {/* My Wallet */}
+          <NavLink
+            to="/account/my-wallet"
+            activeClassName="nav-link AM selected"
+          >
+            <li>
+              My Wallet
+            </li>
+          </NavLink>
+
+          {/* My Wishlist */}
+          <NavLink
+            to="/account/my-wishlist"
+            activeClassName="nav-link AM selected"
+          >
+            <li>
+              My Wishlist
+            </li>
+          </NavLink>
+
+          {/* My Account */}
+          <NavLink
+            to="/account/my-account"
+            activeClassName="nav-link AM selected"
+          >
+            <li>
+              My Account
+            </li>
+          </NavLink>
+        </ul>
       </section>
     </section>
   );
