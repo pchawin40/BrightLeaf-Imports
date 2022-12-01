@@ -32,34 +32,23 @@ def get_or_modify_user(user_id):
     session_user = User.query.get(current_user.get_id())
     
     # if no user found, throw error
-    if(user == Gallery):
+    if(user == None):
         return {'errors': [f"User {user_id} does not exist"]}, 404
-            
+    
     # [PUT] update user information
     if request.method == 'PUT':
         # if current session user is not administrator, throw error saying need permission
         session_role = session_user.role 
 
-        if session_role != 'administrator':
-            return {'errors': [f"User {session_user.id} does not have permission to modify user {user.id}"]}, 400
-    
         # get user data from form
         form = EditUserForm()
         
         # validate csrf token
         form['csrf_token'].data = request.cookies['csrf_token']
-        
+    
         #* update user
         if form.validate_on_submit():
             # check for any form errors
-            # if first name exist
-            if(form.data['first_name']):
-                user.first_name = form.data['first_name']
-
-            # if last name exist
-            if(form.data['last_name']):
-                user.last_name = form.data['last_name']
-
             # if user name exist
             if(form.data['username']):
                 user.username = form.data['username']
@@ -86,6 +75,17 @@ def get_or_modify_user(user_id):
             # return current user
             return user.to_dict()
         
+        # print()
+        # print()
+        # print()
+        # print()
+        # print("HERE")
+        # print(validation_errors_to_error_messages(form.errors))
+        # print()
+        # print()
+        # print()
+        # print()
+    
         # return error if any
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

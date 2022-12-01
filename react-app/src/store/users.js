@@ -12,7 +12,19 @@ export const loadUsers = (users) => {
   }
 }
 
+//? Action: Edit User
+const EDIT_USER = "users/EDIT_USER";
+
+// action creator: edit user
+export const editUser = user => {
+  return {
+    type: EDIT_USER,
+    user
+  };
+};
+
 /* --------- THUNKS -------- */
+// thunk to get users
 export const thunkGetUsers = () => async (dispatch) => {
   // fetch all users
   const res = await fetch('/api/users/');
@@ -30,6 +42,30 @@ export const thunkGetUsers = () => async (dispatch) => {
 
   // return res if unsuccesful
   return res;
+}
+
+// thunk to edit user
+export const thunkEditUser = (userInfo, userId) => async (dispatch) => {
+  // fetch route to edit user
+  const res = await fetch(`/api/users/${userId}`, {
+    method: 'PUT',
+    body: userInfo
+  });
+
+  // if successful
+  if (res.ok) {
+    // parse res to json
+    const editedUser = await res.json();
+
+    // dispatch setting user
+    dispatch(editUser(editedUser));
+
+    // return edited user
+    return editedUser;
+  }
+
+  // return nothing, if there are error
+  return null;
 }
 
 /* --------- SELECTOR FUNCTIONS -------- */

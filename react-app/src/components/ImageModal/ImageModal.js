@@ -57,9 +57,7 @@ const ImageModal = ({ imageType }) => {
 
   // per imageAdd
   useEffect(() => {
-    // reset image sample after setting image loading to false
-    //! TODO
-    // document.querySelector('.im-image-input').value = '';
+    // nothing for now
   }, [imageAdd]);
 
   // invoke dispatch

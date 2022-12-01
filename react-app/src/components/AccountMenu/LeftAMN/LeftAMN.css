@@ -129,6 +129,63 @@
 	padding: 0;
 }
 
+.image-input {
+	display: none;
+}
+
+.lamn.custom.outer-figure {
+	margin: 0;
+	padding: 0;
+
+	border: 2px solid black;
+	background-color: rgb(0, 0, 0, 0);
+}
+
+.lamn.custom-user-pic {
+	height: 90px;
+	width: 94px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	color: white;
+
+	margin: 0;
+
+	position: relative;
+
+	margin: 0;
+	padding: 0;
+
+	background-color: black;
+	border-radius: 128px;
+}
+
+.lamn.custom-user-pic > img {
+	object-fit: contain;
+	height: 90%;
+	width: 94%;
+
+	margin: 0;
+	padding: 0;
+
+	transform: scale(1.1);
+
+	border-radius: 128px;
+}
+
+#lamn-reset-photo {
+	font-size: 14px;
+	text-decoration: underline;
+	opacity: 0.85;
+}
+
+#lamn-reset-photo:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+
 /* Bottom: Account Nav */
 .user-menu.left-amn-ul.account-nav {
 	height: 75%;
