@@ -1,7 +1,7 @@
 // src/components/AccountMenu/MyAccount/MWslContent/MWslContent.js
 
 // import react
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // import react-router-dom
 import { NavLink } from 'react-router-dom';
@@ -56,6 +56,29 @@ const MWslContent = () => {
 
   // invoke dispatch
   const dispatch = useDispatch();
+
+  // function to use horizontal scroll
+  const useHorizontalScroll = () => {
+    const elRef = useRef();
+    useEffect(() => {
+      const el = elRef.current;
+      if (el) {
+        const onWheel = e => {
+          if (e.deltaY == 0) return;
+          e.preventDefault();
+          el.scrollTo({
+            left: el.scrollLeft + e.deltaY,
+            behavior: "smooth"
+          });
+        };
+        el.addEventListener("wheel", onWheel);
+        return () => el.removeEventListener("wheel", onWheel);
+      }
+    }, []);
+    return elRef;
+  }
+
+  const scrollRef = useHorizontalScroll();
 
   // function to handle buy button
   const handleBuyButton = (currentProduct) => {
@@ -112,41 +135,42 @@ const MWslContent = () => {
   // function to load all wishlists products by current user
   const loadCurrentWishlists = () => {
     return (
-      <ul className="wishlist ul">
+      <ul
+        ref={scrollRef}
+        className="wishlist ul"
+      >
         {
           currentProductLikes.map(currentProduct => {
             return (
               <li
+                className="wishlist li"
                 key={`Product ${currentProduct.id} | name: ${currentProduct.name}`}
               >
                 {/* Figure to hold image and remove from wishlist */}
-                <figure>
-                  {/* //* Product Preview Image */}
-                  {
-                    <figure
-                      className="wl preview-image-container"
-                    >
-                      <img
-                        src={currentProduct.preview_image}
-                        alt="wishlist product preview"
-                      />
-                    </figure>
-                  }
-
+                {/* //* Product Preview Image */}
+                <figure
+                  className="wl preview-image-container"
+                >
+                  <img
+                    src={currentProduct.preview_image}
+                    alt="wishlist product preview-image"
+                  />
                   {/* Figure for removing from wishlist */}
                   <figure
+                    className="wl li un-wishlist"
                     onClick={e => {
                       e.stopPropagation();
-                      console.log("currentProduct inside figure", currentProduct);
                       handleLikeClick(currentProduct);
                     }}
                   >
-                    <i className="fa-solid fa-xmark fa-xl" />
+                    <i className="fa-solid fa-xmark fa-sm" />
                   </figure>
                 </figure>
 
                 {/* //* Product Name */}
-                <span>
+                <span
+                  className="wl li name"
+                >
                   {
                     currentProduct.name
                   }
@@ -154,7 +178,9 @@ const MWslContent = () => {
 
                 {/* //* Product Price */}
                 {
-                  <span>
+                  <span
+                    className="wl li price"
+                  >
                     $ {parseFloat(currentProduct.price).toFixed(2)} USD
                   </span>
                 }
@@ -165,7 +191,7 @@ const MWslContent = () => {
                   // otherwise, show available
                   currentProduct.quantity <= 0 ?
                     <button
-                      className='pt-out-of-stock wishlist'
+                      className='pt-out-of-stock wl'
                       type="button"
                     >
                       Out of Stock
@@ -174,7 +200,7 @@ const MWslContent = () => {
                     currentUserInfo &&
                       currentUserInfo.role === "user" ?
                       <button
-                        className='pt-available wishlist'
+                        className='pt-available wl'
                         type="button"
                         onClick={_ => handleBuyButton(currentProduct)}
                       >
@@ -184,7 +210,7 @@ const MWslContent = () => {
                       </button>
                       :
                       <button
-                        className='pt-available wishlist'
+                        className='pt-available wl'
                         type="button"
                         onClick={_ => setShowUserModal(true)}
                       >

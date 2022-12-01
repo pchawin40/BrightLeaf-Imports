@@ -163,7 +163,7 @@
 }
 
 .lamn.custom-user-pic > img {
-	object-fit: contain;
+	object-fit: cover;
 	height: 90%;
 	width: 94%;
 
