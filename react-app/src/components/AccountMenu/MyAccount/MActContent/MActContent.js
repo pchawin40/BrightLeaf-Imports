@@ -5,7 +5,13 @@ import './MActContent.css';
 
 // import store
 import * as sessionActions from '../../../../store/session';
-import { useSelector } from 'react-redux';
+import * as userActions from '../../../../store/users';
+
+// import react-redux
+import { useDispatch, useSelector } from 'react-redux';
+
+// import react
+import { useEffect, useState } from 'react';
 
 //? MActContent component
 const MActContent = () => {
@@ -13,6 +19,93 @@ const MActContent = () => {
    * Selector functions
    */
   const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
+
+  /**
+   * Controlled inputs
+   */
+  const [username, setUsername] = useState(
+    currentUserInfo && currentUserInfo.username ? currentUserInfo.username : ""
+  );
+
+  const [usernameLength, setUsernameLength] = useState(
+    username ? username.length : 0
+  );
+
+  const [email, setEmail] = useState(
+    currentUserInfo && currentUserInfo.email ? currentUserInfo.email : ""
+  );
+
+  const [emailLength, setEmailLength] = useState(
+    email ? email.length : 0
+  );
+
+  /**
+   * UseEffect
+   */
+  // per general
+  useEffect(() => {
+    // nothing for now
+  },
+    [
+      username,
+      usernameLength,
+      email,
+      emailLength
+    ]
+  );
+
+  // invoke dispatch
+  const dispatch = useDispatch();
+
+  // function to update username
+  const updateUsername = e => {
+    setUsername(e.target.value);
+    setUsernameLength(e.target.value.length);
+  }
+
+  // function to update email
+  const updateUserEmail = e => {
+    setEmail(e.target.value);
+    setEmailLength(e.target.value.length);
+  }
+
+  // function to update user information
+  const handleUserEdit = e => {
+    // prevent page from refreshing
+    e.preventDefault();
+
+    const formData = new FormData();
+
+    formData.append("username", username);
+    formData.append("email", email);
+
+    // call on thunk to edit user information
+    dispatch(userActions.thunkEditUser(formData, currentUserInfo.id))
+      .then(async res => dispatch(sessionActions.thunkAPILogin(res)));
+  }
+
+  // function to load button containers
+  const loadButtonContainers = () => {
+    return (
+      <>
+        {/* Discard */}
+        <button
+          type="button"
+          className="cis button discard"
+        >
+          Discard
+        </button>
+
+        {/* Update Info */}
+        <button
+          type="submit"
+          className="cis button update"
+        >
+          Update Info
+        </button>
+      </>
+    )
+  }
 
   return (
     <section className="MActContent AM content-outer-section">
@@ -32,15 +125,9 @@ const MActContent = () => {
 
             {/* Buttons Container */}
             <section className="buttons-container">
-              {/* Discard */}
-              <button className="cis button discard">
-                Discard
-              </button>
-
-              {/* Update Info */}
-              <button className="cis button update">
-                Update Info
-              </button>
+              {
+                loadButtonContainers()
+              }
             </section>
           </section>
         </section>
@@ -67,45 +154,52 @@ const MActContent = () => {
           <p className="cis la user-email">
             {currentUserInfo.email}
           </p>
-          <p>
-            Your Login email can't be changed
-          </p>
 
           {/* Form */}
-          <form>
+          <form
+            onSubmit={handleUserEdit}
+          >
             {
               !currentUserInfo.login_by
               &&
               <>
                 {/* User Name */}
                 <figure>
-                  <label>
+                  <label
+                    htmlFor="username"
+                  >
                     User Name
                   </label>
-                  <input />
+                  <input
+                    name="username"
+                    type="text"
+                    value={username}
+                    onChange={updateUsername}
+                  />
                 </figure>
 
                 {/* Phone */}
                 <figure>
-                  <label>
-                    Phone
+                  <label
+                    htmlFor='email'
+                  >
+                    Email
                   </label>
-                  <input />
+                  <input
+                    name="email"
+                    type="text"
+                    value={email}
+                    onChange={updateUserEmail}
+                  />
                 </figure>
               </>
             }
 
             {/* Buttons Container */}
             <section className="buttons-container form">
-              {/* Discard */}
-              <button className="cis button discard">
-                Discard
-              </button>
-
-              {/* Update Info */}
-              <button className="cis button update">
-                Update Info
-              </button>
+              {
+                loadButtonContainers()
+              }
             </section>
           </form>
         </section>

@@ -50,15 +50,10 @@
 
 .cis.la.user-email {
 	margin-top: 0;
-	margin-bottom: 0;
+	margin-bottom: 36px;
 }
 
-.cis.la.user-email + p {
-	opacity: 0.65;
-}
-
-.cis.la.user-email,
-.cis.la.user-email + p {
+.cis.la.user-email {
 	margin-top: 6px;
 }
 
