@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 6ccaea546a2a
+Revision ID: 5523a7a4026f
 Revises: 
-Create Date: 2022-11-30 21:56:59.324269
+Create Date: 2022-12-01 15:46:17.887117
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6ccaea546a2a'
+revision = '5523a7a4026f'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -51,6 +51,23 @@ def upgrade():
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
+    )
+    op.create_table('addresses',
+    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('company_name', sa.String(length=50), nullable=True),
+    sa.Column('address', sa.String(length=100), nullable=True),
+    sa.Column('address_2', sa.String(length=100), nullable=True),
+    sa.Column('city', sa.String(length=50), nullable=True),
+    sa.Column('country', sa.String(length=50), nullable=True),
+    sa.Column('state', sa.String(length=50), nullable=True),
+    sa.Column('zipcode', sa.String(length=20), nullable=True),
+    sa.Column('phone', sa.String(length=10), nullable=True),
+    sa.Column('default', sa.Boolean(), nullable=True),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('products',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
@@ -94,6 +111,7 @@ def downgrade():
     op.drop_table('shopping_carts')
     op.drop_table('product_users')
     op.drop_table('products')
+    op.drop_table('addresses')
     op.drop_table('users')
     op.drop_table('reviews')
     op.drop_table('images')
