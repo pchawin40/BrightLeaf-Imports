@@ -44,17 +44,13 @@ const MWslContent = () => {
   useEffect(() => {
     // if wishlist is available, set it to true
     if (
-      currentUserId
-      &&
-      currentProductsUserLikes
-      &&
-      currentProductsIdsUserLikes
-      &&
       currentProductLikes
       &&
       currentProductLikes.length > 0
     ) {
       setWishlistLoaded(true);
+    } else {
+      setWishlistLoaded(false);
     }
   }, [currentUserId, currentProductsUserLikes, currentProductsIdsUserLikes, currentProductLikes]);
 
@@ -98,6 +94,21 @@ const MWslContent = () => {
     }
   }
 
+  // function to handle like click
+  const handleLikeClick = (currentProduct) => {
+    const currentLikeProductById = currentProductsUserLikes.find(product => product.id === currentProduct.id);
+
+    // toggled product user
+    const toggledProductUser = {
+      ...currentLikeProductById,
+      likeToggle: !currentLikeProductById.likeToggle
+    };
+
+    // call dispatch to edit then grab the information
+    return dispatch(productUserActions.thunkEditProductUser(toggledProductUser))
+      .then(() => dispatch(productUserActions.thunkGetProductUsers()));
+  };
+
   // function to load all wishlists products by current user
   const loadCurrentWishlists = () => {
     return (
@@ -105,10 +116,12 @@ const MWslContent = () => {
         {
           currentProductLikes.map(currentProduct => {
             return (
-              <li>
+              <li
+                key={`Product ${currentProduct.id} | name: ${currentProduct.name}`}
+              >
                 {/* Figure to hold image and remove from wishlist */}
                 <figure>
-                  {/* Product Preview Image */}
+                  {/* //* Product Preview Image */}
                   {
                     <figure
                       className="wl preview-image-container"
@@ -121,31 +134,38 @@ const MWslContent = () => {
                   }
 
                   {/* Figure for removing from wishlist */}
-
+                  <figure
+                    onClick={e => {
+                      e.stopPropagation();
+                      console.log("currentProduct inside figure", currentProduct);
+                      handleLikeClick(currentProduct);
+                    }}
+                  >
+                    <i className="fa-solid fa-xmark fa-xl" />
+                  </figure>
                 </figure>
 
-                {/* Product Name */}
+                {/* //* Product Name */}
                 <span>
                   {
                     currentProduct.name
                   }
                 </span>
 
-                {/* Product Price */}
+                {/* //* Product Price */}
                 {
                   <span>
                     $ {parseFloat(currentProduct.price).toFixed(2)} USD
                   </span>
                 }
 
-                {/* Button to add to cart */}
+                {/* //* Button to add to cart */}
                 {
                   // if quantity is not 0, show out of stock
-
                   // otherwise, show available
                   currentProduct.quantity <= 0 ?
                     <button
-                      className='pt-out-of-stock'
+                      className='pt-out-of-stock wishlist'
                       type="button"
                     >
                       Out of Stock
@@ -154,7 +174,7 @@ const MWslContent = () => {
                     currentUserInfo &&
                       currentUserInfo.role === "user" ?
                       <button
-                        className='pt-available'
+                        className='pt-available wishlist'
                         type="button"
                         onClick={_ => handleBuyButton(currentProduct)}
                       >
@@ -164,7 +184,7 @@ const MWslContent = () => {
                       </button>
                       :
                       <button
-                        className='pt-available'
+                        className='pt-available wishlist'
                         type="button"
                         onClick={_ => setShowUserModal(true)}
                       >

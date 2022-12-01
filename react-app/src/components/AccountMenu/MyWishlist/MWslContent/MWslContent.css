@@ -1,1 +1,4 @@
 /* src/components/AccountMenu/MyWishlist/MWslContent/MWslContent.css */
+.wishlist.ul {
+	list-style-type: none;
+}
