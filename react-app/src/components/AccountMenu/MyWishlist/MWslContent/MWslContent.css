@@ -92,6 +92,10 @@
 	position: relative;
 }
 
+.wl.preview-image-container > img:hover {
+	cursor: pointer;
+}
+
 .wl.li.un-wishlist {
 	background-color: white;
 	height: 2vh;
@@ -108,6 +112,14 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
+	opacity: 0;
+
+	transition: 0.1s opacity ease-in;
+}
+
+.wl.preview-image-container:hover .wl.li.un-wishlist {
+	opacity: 1;
 }
 
 .wl.li.un-wishlist:hover {
@@ -152,4 +164,20 @@ button.pt-out-of-stock.wl {
 	transition: box-shadow 0.1s ease;
 
 	text-transform: uppercase;
+}
+
+/* No Loaded Wishlists */
+.cis.lower.wishlist.false {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.no-loaded-wishlists {
+	text-align: center;
+}
+
+.no-loaded-wishlists a {
+	color: black;
 }

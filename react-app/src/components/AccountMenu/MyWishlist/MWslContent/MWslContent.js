@@ -58,10 +58,7 @@ const MWslContent = () => {
 
   // per wishlistLoaded
   useEffect(() => {
-    if (wishlistLoaded) {
-      window.addEventListener('scroll', useHorizontalScroll);
-      return () => window.removeEventListener('scroll', useHorizontalScroll);
-    }
+    window.addEventListener('scroll', useHorizontalScroll);
   }, [wishlistLoaded]);
 
   // invoke dispatch
@@ -147,6 +144,9 @@ const MWslContent = () => {
     return (
       <ul
         ref={scrollRef}
+        onClick={_ => {
+          window.addEventListener('scroll', useHorizontalScroll);
+        }}
         className="wishlist ul"
       >
         {
@@ -256,7 +256,7 @@ const MWslContent = () => {
         </section>
 
         {/* Lower */}
-        <section className="cis lower wishlist">
+        <section className={`cis lower wishlist ${wishlistLoaded}`}>
           {
             wishlistLoaded
               ?
@@ -266,7 +266,7 @@ const MWslContent = () => {
                 }
               </>
               :
-              <>
+              <section className="no-loaded-wishlists">
                 <h2>
                   You haven't added any products yet.
                 </h2>
@@ -275,7 +275,7 @@ const MWslContent = () => {
                 >
                   Start adding products
                 </NavLink>
-              </>
+              </section>
           }
 
         </section>
