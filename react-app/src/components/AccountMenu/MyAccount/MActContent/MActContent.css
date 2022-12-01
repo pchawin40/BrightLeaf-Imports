@@ -1,1 +1,86 @@
 /* src/components/AccountMenu/MyAccount/MActContent/MActContent.css */
+/** Top */
+.cis.top-inner.account {
+	margin: 0;
+	padding: 0;
+
+	width: 100%;
+	height: 100%;
+
+	display: grid;
+	grid-template-columns: repeat(2, auto);
+	align-items: center;
+}
+
+/* Buttons Container */
+.buttons-container {
+	margin: 0;
+	padding: 0;
+
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+/** Lower */
+.cis.lower.account {
+	align-items: flex-start;
+	justify-content: flex-start;
+	margin: 16px;
+}
+
+/* Account */
+.cis.lower.account h2 {
+	margin: 0;
+}
+
+.cis.lower.account h2:first-child {
+	margin-top: 16px;
+}
+
+/* Login Email */
+.cis.la.email-subheader {
+	margin-bottom: 0;
+}
+
+.cis.la.user-email {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.cis.la.user-email + p {
+	opacity: 0.65;
+}
+
+.cis.la.user-email,
+.cis.la.user-email + p {
+	margin-top: 6px;
+}
+
+/* Form */
+.cis.lower.account > form {
+	height: 100%;
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.cis.lower.account > form > figure {
+	width: 50%;
+	margin: 0;
+	margin-bottom: 12px;
+	padding: 0;
+}
+
+.cis.lower.account > form > figure * {
+	width: 100%;
+}
+
+.cis.lower.account > form input {
+	height: 24px;
+}
+
+.cis.lower.account > form .buttons-container > button {
+	margin: 16px;
+}

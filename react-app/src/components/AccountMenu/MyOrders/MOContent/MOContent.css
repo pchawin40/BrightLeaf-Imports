@@ -35,10 +35,10 @@
 	margin: 16px;
 }
 
-.cis.top > h1 {
+.cis.top h1 {
 	color: #80ab63;
 
-	font-size: 2vw;
+	font-size: 36px;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	font-weight: bold;
