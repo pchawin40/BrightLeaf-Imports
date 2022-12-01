@@ -84,6 +84,7 @@
 
 .cis.lower.account > form input {
 	height: 24px;
+	padding-left: 6px;
 }
 
 .cis.lower.account > form .buttons-container > button {

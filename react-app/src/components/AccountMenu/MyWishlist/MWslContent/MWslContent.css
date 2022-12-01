@@ -24,9 +24,7 @@
 .wishlist.ul {
 	list-style-type: none;
 
-	background-color: red;
-
-	height: 60vh;
+	height: 40vh;
 	width: calc(60vw - 2rem);
 
 	overflow-x: auto;
@@ -36,7 +34,11 @@
 	justify-content: flex-start;
 
 	margin: 0;
+	margin-top: 2rem;
 	padding: 0;
+	padding-bottom: 5vh;
+
+	box-shadow: 0 0 50px #ccc;
 }
 
 .wishlist.ul::-webkit-scrollbar {
@@ -57,11 +59,14 @@
 .wishlist.li {
 	margin: 0;
 	margin-right: 1rem;
-	padding: 0;
-	background-color: cyan;
+	padding: 16px;
 
 	width: 300px;
-	height: fit-content;
+	height: 100%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .wishlist.li:last-child {
@@ -70,8 +75,8 @@
 
 /* Wishlist: Product Preview Image */
 .wl.preview-image-container {
-	height: 300px;
-	width: 300px;
+	height: 30vh;
+	width: 15vw;
 
 	margin: 0;
 	padding: 0;
@@ -89,8 +94,8 @@
 
 .wl.li.un-wishlist {
 	background-color: white;
-	height: 24px;
-	width: 24px;
+	height: 2vh;
+	width: 1vw;
 
 	position: absolute;
 	top: 4px;
@@ -110,19 +115,41 @@
 }
 
 /* Wishlist: Product Name */
-
-/* Wishlist: Product Price */
-
-/* Wishlist: Button to add to cart */
-
-/* Line Span: Wishlist */
-/* .line-span-container.AM.wl.first {
-	height: 1px;
-	margin-top: 0;
-	margin-bottom: 16px;
+span.wl.li.name {
+	font-size: 1.5vh;
 }
 
-.line-span-container.AM.wl > span {
+/* Wishlist: Product Price */
+span.wl.li.price {
+	font-size: 1.5vh;
+}
+
+span.wl.li {
+	margin: 0;
+	margin-top: 1vh;
+	padding: 0;
+}
+
+/* Wishlist: Button to add to cart */
+button.pt-available.wl,
+button.pt-out-of-stock.wl {
+	font-size: 1.5vh;
+	position: relative;
+	text-align: start;
+	box-sizing: border-box;
+	padding: 10px 16px;
+	line-height: 22.4px;
+	border: none;
+	color: white;
+
+	margin: 0;
+	margin-top: 2rem;
 	width: 100%;
-	height: 1px;
-} */
+	display: flex;
+	justify-content: center;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+
+	transition: box-shadow 0.1s ease;
+
+	text-transform: uppercase;
+}
