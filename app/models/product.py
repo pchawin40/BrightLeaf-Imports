@@ -15,6 +15,9 @@ class Product(db.Model):
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   
+  # connect product (*) to users (*)
+  products_users = db.relationship("ProductUser", backref="product", cascade="all, delete")
+  
   # connect polymorphic relationship
   __mapper_args__ = {
     'polymorphic_identity': 'product',

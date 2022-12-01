@@ -32,6 +32,9 @@ class User(db.Model, UserMixin):
     # connect parent (1: user) user to child (*: shopping carts)
     carts = db.relationship('ShoppingCart')
     reviews = db.relationship('Review')
+    
+    # connect users (*) to product (*) 
+    users_products = db.relationship("ProductUser", backref="user", cascade="all, delete")
 
     # turn user to object (dictionary)
     def to_dict(self):
