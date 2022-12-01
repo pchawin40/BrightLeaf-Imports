@@ -84,6 +84,13 @@ const MActContent = () => {
       .then(async res => dispatch(sessionActions.thunkAPILogin(res)));
   }
 
+  // function to discard inputted user information
+  const handleDiscardUserInfo = () => {
+    // reset username and email
+    setUsername(currentUserInfo.username);
+    setEmail(currentUserInfo.email);
+  }
+
   // function to load button containers
   const loadButtonContainers = () => {
     return (
@@ -91,21 +98,32 @@ const MActContent = () => {
         {/* Discard */}
         <button
           type="button"
-          className="cis button discard"
+          className={`cis button discard ${checkButtonsReady()}`}
+          onClick={handleDiscardUserInfo}
         >
           Discard
         </button>
 
         {/* Update Info */}
         <button
-          type="submit"
-          className="cis button update"
+          type={`${checkButtonsReady() ? "submit" : "button"}`}
+          className={`cis button update ${checkButtonsReady()}`}
         >
           Update Info
         </button>
       </>
     )
   }
+
+  // function to check if button is available or not
+  const checkButtonsReady = () => {
+    return (
+      usernameLength > 0 &&
+      emailLength > 0 &&
+      (username.trim() !== currentUserInfo.username.trim() ||
+        email.trim() !== currentUserInfo.email.trim())
+    );
+  };
 
   return (
     <section className="MActContent AM content-outer-section">
@@ -124,11 +142,15 @@ const MActContent = () => {
             </section>
 
             {/* Buttons Container */}
-            <section className="buttons-container">
-              {
-                loadButtonContainers()
-              }
-            </section>
+            <form
+              onSubmit={handleUserEdit}
+            >
+              <section className="buttons-container">
+                {
+                  loadButtonContainers()
+                }
+              </section>
+            </form>
           </section>
         </section>
 
