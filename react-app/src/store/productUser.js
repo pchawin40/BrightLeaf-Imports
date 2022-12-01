@@ -149,6 +149,12 @@ export const thunkDeleteProductUser = productUserId => async (dispatch) => {
 /* --------- SELECTOR FUNCTIONS -------- */
 export const getCurrentProductUsers = state => Object.values(state.productUsers);
 export const getCurrentLikeByProductId = productId => state => Object.values(state.productUsers).find(productUser => productUser.product_id === productId);
+export const getCurrentProductsUserLikes = userId => state => Object.values(state.productUsers).filter(productUser => productUser.user_id === userId && productUser.likeToggle);
+export const getCurrentProductsIdsUserLikes = userId => state => Object.values(state.productUsers).map(productUser => {
+  if (productUser.user_id === userId && productUser.likeToggle) {
+    return productUser.id;
+  }
+}).filter(id => id);
 
 /* --------- REDUCERS -------- */
 const initialState = {}

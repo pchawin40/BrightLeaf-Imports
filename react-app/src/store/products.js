@@ -160,6 +160,7 @@ export const thunkDeleteProduct = productId => async (dispatch) => {
 /* --------- SELECTOR FUNCTIONS -------- */
 export const getCurrentProducts = state => state.products;
 export const getCurrentProductById = productId => state => Object.values(state.products).find(product => product.id === productId);
+export const getCurrentProductLikes = productIds => state => Object.values(state.products).filter(product => productIds.includes(product.id));
 
 /* --------- REDUCERS -------- */
 const initialState = {}

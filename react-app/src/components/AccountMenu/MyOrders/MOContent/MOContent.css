@@ -1,7 +1,7 @@
 /* src/components/AccountMenu/MyOrders/MOContent/MOContent.css */
 .AM.content-outer-section {
 	height: 100%;
-	width: 100%;
+	width: calc(100% - 5rem);
 
 	margin: 0;
 	padding: 0;

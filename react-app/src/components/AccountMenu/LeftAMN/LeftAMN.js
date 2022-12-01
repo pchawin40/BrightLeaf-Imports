@@ -108,7 +108,6 @@ const LeftAMN = () => {
 
     dispatch(userActions.thunkEditUser(formData, currentUserInfo.id))
       .then(async res => {
-        console.log("res", res);
         return dispatch(sessionActions.thunkAPILogin(res))
       });
   }
