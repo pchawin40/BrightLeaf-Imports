@@ -55,6 +55,7 @@ def get_or_modify_product_users():
     
     return {'product_users': [product_user.to_dict() for product_user in product_users]}
 
+#* PUT /api/product_users/:productUserId
 #* DELETE /api/product_users/:productUserId
 @product_users_routes.route('/<int:product_user_id>', methods=['PUT', 'DELETE'])
 @login_required
@@ -82,9 +83,7 @@ def delete_product_users(product_user_id):
         
         # check if pass submit validation
         if form.validate_on_submit():
-            # if url exist in form
-            if form.data['likeToggle'] and (form.data['likeToggle'] == 0 or form.data['likeToggle'] == 1):
-                product_user.likeToggle = form.data['likeToggle']
+            product_user.likeToggle = form.data['likeToggle']
             
             # commit update
             db.session.commit()

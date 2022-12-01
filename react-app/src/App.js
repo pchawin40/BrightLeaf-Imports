@@ -15,6 +15,12 @@ import ShippingReturns from './components/ShippingReturns';
 import StorePolicy from './components/StorePolicy';
 import ShopProduct from './components/ShopProduct';
 import ProductFormModal from './components/ProductFormModal';
+import MyOrders from './components/AccountMenu/MyOrders';
+import MyAddresses from './components/AccountMenu/MyAddresses';
+import MyWallet from './components/AccountMenu/MyWallet';
+import MyWishlist from './components/AccountMenu/MyWishlist';
+import MyAccount from './components/AccountMenu/MyAccount';
+import AccountProvider from './context/AccountMenuContext';
 
 // import context
 import { useNavRight } from './context/NavRightContext';
@@ -37,12 +43,7 @@ import * as shoppingCartActions from './store/shoppingCarts';
 import * as productActions from './store/products';
 import * as reviewActions from './store/reviews';
 import * as userActions from './store/users';
-import MyOrders from './components/AccountMenu/MyOrders';
-import MyAddresses from './components/AccountMenu/MyAddresses';
-import MyWallet from './components/AccountMenu/MyWallet';
-import MyWishlist from './components/AccountMenu/MyWishlist';
-import MyAccount from './components/AccountMenu/MyAccount';
-import AccountProvider from './context/AccountMenuContext';
+import * as productUserActions from './store/productUser';
 
 function App() {
   /**
@@ -72,6 +73,8 @@ function App() {
     if (currentUserInfo) {
       //! TODO: To work on shopping cart error
       dispatch(shoppingCartActions.thunkGetSessionUserCarts());
+
+      dispatch(productUserActions.thunkGetProductUsers());
     }
 
     // load products

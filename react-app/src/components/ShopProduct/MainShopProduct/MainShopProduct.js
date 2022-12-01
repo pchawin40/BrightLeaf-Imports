@@ -21,6 +21,7 @@ import * as productActions from '../../../store/products';
 import * as imageActions from '../../../store/images';
 import * as sessionActions from '../../../store/session';
 import * as shoppingCartActions from '../../../store/shoppingCarts';
+import * as productUserActions from '../../../store/productUser';
 
 //? MainShopProduct component
 const MainShopProduct = () => {
@@ -45,14 +46,18 @@ const MainShopProduct = () => {
   const currentProductById = useSelector(productActions.getCurrentProductById(currentProductId));
   const currentImagesByProductId = useSelector(imageActions.getCurrentImagesByProductId(currentProductId));
   const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
+  const currentLikeByProductId = useSelector(productUserActions.getCurrentLikeByProductId(currentProductId));
 
   /**
    * UseEffect
    */
+  // per general
   useEffect(() => {
-    // if (currentProductId) {
-    //   setProductLoaded(true);
-    // }
+    // nothing for now
+  }, [currentLikeByProductId]);
+
+  // per current product id
+  useEffect(() => {
     if (Object.values(currentProducts).length >= 0 && !currentProductId) {
       setCurrentProductId(Object.values(currentProducts)[0]);
       setProductLoaded(true);
@@ -264,6 +269,19 @@ const MainShopProduct = () => {
     }
   }
 
+  // function to handle like click
+  const handleLikeClick = () => {
+    // toggled product user
+    const toggledProductUser = {
+      ...currentLikeByProductId,
+      likeToggle: !currentLikeByProductId.likeToggle
+    };
+
+    // call dispatch to edit then grab the information
+    return dispatch(productUserActions.thunkEditProductUser(toggledProductUser))
+      .then(() => dispatch(productUserActions.thunkGetProductUsers()));
+  };
+
   return (
     productLoaded &&
     <section className="lower-page-section shop-product">
@@ -389,8 +407,19 @@ const MainShopProduct = () => {
           }
 
           {/* Like Toggle */}
-          <figure className="pt-like">
-            <i className="fa-regular fa-heart" />
+          <figure
+            onClick={handleLikeClick}
+            className="pt-like"
+          >
+            {
+              currentLikeByProductId
+                &&
+                currentLikeByProductId.likeToggle
+                ?
+                <i className="fa-solid fa-heart like" />
+                :
+                <i className="fa-regular fa-heart" />
+            }
           </figure>
         </section>
 

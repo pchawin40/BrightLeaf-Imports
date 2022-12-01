@@ -2,6 +2,7 @@
 
 // import component
 import Footer from '../Footer';
+import MainShopProduct from './MainShopProduct';
 
 // import context
 import { useNavHeader } from '../../context/NavHeaderContext';
@@ -15,11 +16,10 @@ import { useEffect } from 'react';
 
 // import react-router-dom
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import store
 import * as imageActions from '../../store/images';
-import MainShopProduct from './MainShopProduct';
 
 //? ShopProduct component
 const ShopProduct = () => {
@@ -32,19 +32,9 @@ const ShopProduct = () => {
   const { headerColor, setHeaderColor } = useNavHeader();
   const { footerColor, setFooterColor } = useNavHeader();
 
-  // invoke history
-  const history = useHistory();
-
-  // invoke dispatch
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!currentProductId) return history.push('/product-page');
-  }, []);
-
   /**
- * useEffect
- */
+  * useEffect
+  */
   useEffect(() => {
     if (currentPage !== "shopproduct") {
       setCurrentPage("shopproduct");
@@ -61,6 +51,16 @@ const ShopProduct = () => {
     setHeaderColor('black');
     setFooterColor('black');
   }, [currentPage]);
+
+  // invoke history
+  const history = useHistory();
+
+  // invoke dispatch
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!currentProductId) return history.push('/product-page');
+  }, []);
 
   return (
     <section
