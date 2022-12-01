@@ -59,9 +59,14 @@ const LeftAMN = () => {
               :
               <figure>
                 <i className="fa-regular fa-user fa-2xl lamn-user-icon" />
+                {/* Container to edit picture */}
+                <figure className="um las edit-pic-container">
+                  <figure>
+                    <i className="fa-solid fa-camera edit-pic" />
+                  </figure>
+                </figure>
               </figure>
           }
-
 
           {/* User Profile Name */}
           <span>

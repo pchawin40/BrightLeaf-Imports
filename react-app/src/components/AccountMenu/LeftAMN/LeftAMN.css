@@ -61,11 +61,72 @@
 	color: white;
 
 	margin: 0;
+
+	position: relative;
 }
 
 .left-amn-section.user-menu > figure > span {
 	margin-top: 12px;
 	font-size: 18px;
+}
+
+.um.las.edit-pic-container {
+	position: absolute;
+
+	background-color: rgb(0, 0, 0, 0);
+
+	height: 100%;
+	width: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	border-radius: 128px;
+
+	margin: 0;
+}
+
+.edit-pic-container i {
+	color: rgb(0, 0, 0, 0);
+}
+
+.left-amn-section.user-menu > figure > figure:hover .um.las.edit-pic-container {
+	background-color: rgb(0, 0, 0, 0.25);
+	cursor: pointer;
+}
+
+.left-amn-section.user-menu
+	> figure
+	> figure:hover
+	.um.las.edit-pic-container
+	> figure {
+	background-color: white;
+	height: 32px;
+	width: 32px;
+
+	margin: 0;
+	padding: 0;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	border-radius: 128px;
+}
+
+.left-amn-section.user-menu
+	> figure
+	> figure:hover
+	.um.las.edit-pic-container
+	i {
+	color: rgb(0, 0, 0, 1);
+}
+
+.edit-pic-container,
+.edit-pic-container i {
+	margin: 0;
+	padding: 0;
 }
 
 /* Bottom: Account Nav */
