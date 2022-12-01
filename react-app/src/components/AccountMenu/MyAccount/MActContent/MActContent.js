@@ -20,10 +20,15 @@ const MActContent = () => {
         {/* Top */}
         <section className="cis top account">
           <section className="cis top-inner account">
-            {/* Title */}
-            <h1>
-              My Account
-            </h1>
+            <section className="title-container">
+              {/* Title */}
+              <h1>
+                My Account
+              </h1>
+              <p>
+                View and edit your personal info below.
+              </p>
+            </section>
 
             {/* Buttons Container */}
             <section className="buttons-container">
@@ -38,9 +43,6 @@ const MActContent = () => {
               </button>
             </section>
           </section>
-          <p>
-            View and edit your personal info below.
-          </p>
         </section>
 
         {/* Line Span */}

@@ -12,6 +12,11 @@
 	align-items: center;
 }
 
+.cis.top-inner.account > .title-container {
+	margin: 0;
+	padding: 0;
+}
+
 /* Buttons Container */
 .buttons-container {
 	margin: 0;
