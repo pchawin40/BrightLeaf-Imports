@@ -17,6 +17,8 @@ import * as sessionActions from '../../../../store/session';
 import * as productUserActions from '../../../../store/productUser';
 import * as productActions from '../../../../store/products';
 import * as shoppingCartActions from '../../../../store/shoppingCarts';
+
+// import context
 import { useNavHeader } from '../../../../context/NavHeaderContext';
 
 //? MWslContent component
@@ -53,6 +55,14 @@ const MWslContent = () => {
       setWishlistLoaded(false);
     }
   }, [currentUserId, currentProductsUserLikes, currentProductsIdsUserLikes, currentProductLikes]);
+
+  // per wishlistLoaded
+  useEffect(() => {
+    if (wishlistLoaded) {
+      window.addEventListener('scroll', useHorizontalScroll);
+      return () => window.removeEventListener('scroll', useHorizontalScroll);
+    }
+  }, [wishlistLoaded]);
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -241,7 +251,7 @@ const MWslContent = () => {
         </section>
 
         {/* Line Span */}
-        <section className="line-span-container AM">
+        <section className="line-span-container AM wl first">
           <span className='line-span AM' />
         </section>
 
@@ -250,7 +260,11 @@ const MWslContent = () => {
           {
             wishlistLoaded
               ?
-              loadCurrentWishlists()
+              <>
+                {
+                  loadCurrentWishlists()
+                }
+              </>
               :
               <>
                 <h2>
@@ -267,7 +281,7 @@ const MWslContent = () => {
         </section>
 
         {/* Line Span */}
-        <section className="line-span-container AM">
+        <section className="line-span-container AM wl">
           <span className='line-span AM' />
         </section>
       </section>

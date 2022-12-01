@@ -1,7 +1,7 @@
 /* src/components/AccountMenu/MyOrders/MOContent/MOContent.css */
 .AM.content-outer-section {
-	height: 100%;
-	width: calc(100% - 5rem);
+	height: 80vh;
+	width: 60vw;
 
 	margin: 0;
 	padding: 0;
@@ -10,15 +10,15 @@
 }
 
 .AM.content-inner-section {
-	height: 100%;
-	width: 100%;
+	height: 80vh;
+	width: 60vw;
 
 	margin: 0;
 	padding: 0;
 
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: 15% 1px auto 1px 36px;
+	grid-template-rows: 15% 1px 62.5vh 1px 36px;
 }
 
 /** Top: Orders */
