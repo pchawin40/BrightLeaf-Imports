@@ -37,7 +37,7 @@ const FacebookLoginComponent = () => {
 
 
       // grab name and id
-      const facebookUserResponse = await (await fetch(`https://graph.facebook.com/me?access_token=${res.authResponse.accessToken}`)).json();
+      const facebookUserResponse = await (await fetch(`https://graph.facebook.com/me?fields=id,name,email&access_token=${res.authResponse.accessToken}`)).json();
 
       // grab picture
       const facebookUserProfilePicture = await (
@@ -46,6 +46,7 @@ const FacebookLoginComponent = () => {
 
       const userData = {
         ...facebookUserResponse,
+        login_by: "facebook",
         profile_picture: facebookUserProfilePicture.data.url
       }
 

@@ -57,7 +57,8 @@ const SignUpForm = () => {
           name: googleUserData.name,
           email: googleUserData.email,
           id: googleUserData.sub,
-          profile_picture: googleUserData.picture
+          profile_picture: googleUserData.picture,
+          login_by: "google"
         }
 
         dispatch(sessionActions.thunkAPILogin(googleUserResponse));

@@ -3,8 +3,17 @@
 // import css
 import './MActContent.css';
 
+// import store
+import * as sessionActions from '../../../../store/session';
+import { useSelector } from 'react-redux';
+
 //? MActContent component
 const MActContent = () => {
+  /**
+   * Selector functions
+   */
+  const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
+
   return (
     <section className="MActContent AM content-outer-section">
       <section className="MActContent AM content-inner-section">
@@ -54,7 +63,7 @@ const MActContent = () => {
             Login Email:
           </p>
           <p className="cis la user-email">
-            pathocha000@gmail.com
+            {currentUserInfo.email}
           </p>
           <p>
             Your Login email can't be changed
@@ -62,21 +71,27 @@ const MActContent = () => {
 
           {/* Form */}
           <form>
-            {/* User Name */}
-            <figure>
-              <label>
-                User Name
-              </label>
-              <input />
-            </figure>
+            {
+              !currentUserInfo.login_by
+              &&
+              <>
+                {/* User Name */}
+                <figure>
+                  <label>
+                    User Name
+                  </label>
+                  <input />
+                </figure>
 
-            {/* Phone */}
-            <figure>
-              <label>
-                Phone
-              </label>
-              <input />
-            </figure>
+                {/* Phone */}
+                <figure>
+                  <label>
+                    Phone
+                  </label>
+                  <input />
+                </figure>
+              </>
+            }
 
             {/* Buttons Container */}
             <section className="buttons-container form">
