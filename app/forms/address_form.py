@@ -1,14 +1,12 @@
 from flask_wtf import FlaskForm
 from wtforms import BooleanField, IntegerField, StringField
-from wtforms.validators import DataRequired, ValidationError
+from wtforms.validators import DataRequired, ValidationError, Length, AnyOf, URL, Regexp
 from app.models import Address
+import re
 
-def check_valid_phone(form, field):
-  # check if phone is valid
-  PHONE_REGEX = "^\\+?[1-9][0-9]{7,14}$"
-  
-  if not PHONE_REGEX.match(field.data):
-    raise ValidationError("Phone number entered is invalid.")
+def validatePhoneNum(form, field):
+    if not (int(field.data)):
+        raise ValidationError("Invalid phone number")
 
 class AddressForm(FlaskForm):
   user_id = IntegerField('user_id')
@@ -19,6 +17,6 @@ class AddressForm(FlaskForm):
   country = StringField('country', validators=[DataRequired()])
   state = StringField('state')
   zipcode = StringField('zipcode')
-  phone = StringField('phone', validators=[DataRequired(), check_valid_phone])
+  phone = StringField('phone', validators=[DataRequired(),Length(min=10, max=10),validatePhoneNum])
   default = BooleanField('default')
   

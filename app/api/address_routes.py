@@ -44,7 +44,7 @@ def get_or_post_addresses():
         state=form.data['state'],
         zipcode=form.data['zipcode'],
         phone=form.data['phone'],
-        default=form.data['false']
+        default=form.data['default']
       )
       
       # add and commit new address
