@@ -1,1 +1,104 @@
 /* src/components/CheckOutModal/InnerLeft/ShippingAddress/ShippingAddress.css */
+.madr.ul.sa {
+	height: 50%;
+	width: 98%;
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+.cil.sa {
+	height: 100%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	text-align: left;
+
+	padding-left: 16px;
+}
+
+/* Header */
+section.cil.sa > h2 {
+	margin-left: 2%;
+}
+
+/* Fieldset */
+fieldset.madr.sa {
+	width: 100%;
+}
+
+li.madr.sa {
+	display: flex;
+}
+
+li.madr.sa * {
+	color: black;
+	opacity: 0.9;
+}
+
+fieldset.madr.sa > :not(li.madr.sa:first-child) {
+	margin-top: 2%;
+}
+
+.madr.li.sa > input {
+	margin-left: 2%;
+	margin-right: 2%;
+	color: #80ab63;
+}
+
+.madr.li.sa > section {
+	margin: 0;
+	padding: 0;
+}
+
+/* add address */
+figure:has(span.cil.add-address),
+figure:has(button.use-address),
+span.cil.add-address {
+	margin: 0;
+	padding: 0;
+}
+
+span.cil.add-address {
+	text-decoration: underline;
+	margin: 2%;
+}
+
+span.cil.add-address:hover {
+	cursor: pointer;
+}
+
+/* line-span */
+.cil.line-span {
+	box-sizing: border-box;
+	margin-left: 2%;
+	width: 96%;
+}
+
+/* use address button */
+button.use-address {
+	color: white;
+	background-color: #80ab63;
+
+	box-sizing: border-box;
+	width: 250px;
+	padding: 0.5vw 0;
+	font-size: 100%;
+	font-weight: bold;
+	letter-spacing: 0.1vw;
+	border: 3px solid #80ab63;
+	border-radius: 6px;
+
+	transition: all 0.4s ease;
+
+	text-transform: uppercase;
+
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+
+	margin: 2%;
+}
+
+button.use-address:hover {
+	cursor: pointer;
+}

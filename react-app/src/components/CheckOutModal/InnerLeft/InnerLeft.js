@@ -34,14 +34,14 @@ const InnerLeft = () => {
           className="true"
           onClick={_ => setCurrentStep(currentStep => currentStep - 1)}
         >
-          <i class="fa-solid fa-angle-left" />
+          <i className="fa-solid fa-angle-left" />
           Previous Step
         </span>
       )
     else
       return (
         <span className="false">
-          <i class="fa-solid fa-angle-left" />
+          <i className="fa-solid fa-angle-left" />
           Previous Step
         </span>
       )
@@ -76,6 +76,15 @@ const InnerLeft = () => {
           {
             loadButtonNav()
           }
+          <h1>
+            Checkout
+            (
+            <span>
+              n items
+            </span>
+            )
+          </h1>
+          <span />
         </section>
 
         {/* Load main content */}

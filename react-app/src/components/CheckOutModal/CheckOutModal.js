@@ -3,6 +3,7 @@
 // import css
 import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useAddress } from '../../context/AddressesContext';
 import { useCheckOut } from '../../context/CheckOutContext';
 import { useNavHeader } from '../../context/NavHeaderContext';
 import './CheckOutModal.css';
@@ -17,6 +18,7 @@ const CheckOutModal = () => {
   const { showCheckoutModal, setShowCheckoutModal } = useCheckOut();
   const { currentStep, setCurrentStep } = useCheckOut();
   const { loadCartModal, setLoadCartModal } = useNavHeader();
+  const { selectedAddress, setSelectedAddress } = useAddress();
 
   /**
    * UseEffect
@@ -24,7 +26,7 @@ const CheckOutModal = () => {
   // per general
   useEffect(() => {
     // nothing for now
-  }, [currentStep]);
+  }, [currentStep, selectedAddress]);
 
   // hide scroll
   document.body.style.overflowY = "hidden";

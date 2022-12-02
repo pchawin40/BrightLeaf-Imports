@@ -100,7 +100,7 @@ const InnerRight = () => {
 
         {/* Quick Fine Line */}
         < p >
-          By placing your order, you agree to Brightleaf Import's
+          By placing your order, you agree to Brightleaf Import's &nbsp;
           < NavLink
             to="/shipping-returns"
           >

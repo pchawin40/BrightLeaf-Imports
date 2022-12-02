@@ -10,6 +10,7 @@ export default function AddressProvider({ children }) {
   // state for context
   const [addressLoaded, setAddressLoaded] = useState(false);
   const [showAddressModal, setShowAddressModal] = useState(false);
+  const [selectedAddress, setSelectedAddress] = useState(null);
 
   // Address Provider
   return (
@@ -17,7 +18,8 @@ export default function AddressProvider({ children }) {
       <AddressesContext.Provider
         value={{
           addressLoaded, setAddressLoaded,
-          showAddressModal, setShowAddressModal
+          showAddressModal, setShowAddressModal,
+          selectedAddress, setSelectedAddress
         }}
       >
         {children}
