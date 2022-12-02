@@ -1,1 +1,174 @@
 /* src/components/AccountMenu/MyAddresses/MAdrContent/AddressModal/AddressModal.css */
+.address-modal.outer {
+	background-color: white;
+
+	height: 75vh;
+	width: 50vw;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.address-modal.inner {
+	height: calc(100% - 5rem);
+	width: calc(100% - 5rem);
+
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 10% 1px auto;
+}
+
+.address-modal.outer,
+.address-modal.inner,
+.ami.header > h1 {
+	margin: 0;
+	padding: 0;
+}
+
+.address-modal.inner {
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding-right: 16px;
+}
+
+.address-modal.inner::-webkit-scrollbar {
+	width: 0.3em;
+}
+
+.address-modal.inner::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.address-modal.inner::-webkit-scrollbar-thumb {
+	background-color: #80ab63;
+	outline: 1px solid #92b77a;
+	border-radius: 1rem;
+}
+
+/* Header Section */
+section.ami.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	height: 100%;
+	width: 100%;
+}
+
+section.ami.header > h1 {
+	font-size: 3vh;
+}
+
+section.ami.header > i:hover {
+	cursor: pointer;
+}
+
+/* AMI: Line Span */
+.ami.line-span {
+	background-color: black;
+}
+
+/* Submit Form */
+form.ami.add-address {
+	max-height: 100%;
+	height: fit-content;
+	padding-top: 16px;
+
+	display: flex;
+	flex-direction: column;
+}
+
+form.ami.add-address > section {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+form.ami.add-address > section > figure {
+	display: flex;
+	flex-direction: column;
+
+	width: 45%;
+
+	margin: 0;
+	padding: 0;
+}
+
+form.ami.add-address > section,
+form.ami.add-address input {
+	margin-bottom: 16px;
+}
+
+form.ami.add-address select,
+form.ami.add-address input {
+	height: 24px;
+}
+
+form.ami.add-address label {
+	margin-bottom: 6px;
+}
+
+form.ami.add-address input {
+	padding-left: 6px;
+}
+
+/* Default Address */
+figure.ami.default-address {
+	display: flex;
+	align-items: center;
+}
+
+figure.ami.default-address,
+figure.ami.default-address > input,
+figure.ami.default-address > label {
+	margin: 0;
+	padding: 0;
+}
+
+figure.ami.default-address > label {
+	margin-left: 6px;
+}
+
+.ami.aa.select-box-container > figure > select {
+	height: 28px;
+}
+
+.ami.aa.default-address {
+	margin-bottom: 16px;
+}
+
+/* Submit Button */
+figure.ami.submit-container {
+	margin: 0;
+	padding: 0;
+}
+
+button.ami.submit {
+	width: 200px;
+	font-size: 1.35vh;
+	position: relative;
+	text-align: start;
+	box-sizing: border-box;
+	padding: 10px 16px;
+	line-height: 22.4px;
+	letter-spacing: 1px;
+	border: none;
+	color: white;
+
+	margin: 0;
+	margin-top: 2rem;
+	display: flex;
+	justify-content: center;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+
+	transition: box-shadow 0.1s ease;
+
+	text-transform: uppercase;
+
+	background-color: #80ab63;
+}
+
+button.ami.submit:hover {
+	cursor: pointer;
+}

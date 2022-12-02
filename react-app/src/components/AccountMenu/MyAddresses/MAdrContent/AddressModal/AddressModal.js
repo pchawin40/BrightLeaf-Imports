@@ -42,8 +42,8 @@ const AddressModal = () => {
   };
 
   return (
-    <section className="address-modal-outer">
-      <section className="address-modal-inner top">
+    <section className="address-modal outer">
+      <section className="address-modal inner">
         {/* Header section */}
         <section className="ami header">
           <h1>
@@ -58,6 +58,8 @@ const AddressModal = () => {
             }}
           />
         </section>
+
+        <span className="line-span ami" />
 
         {/* Form to add address */}
         <form
@@ -111,76 +113,89 @@ const AddressModal = () => {
 
           {/* Country/State Select Box Container */}
           <section className="ami aa select-box-container">
-            {/* Country */}
-            <label htmlFor="country">Country</label>
-            <select name="country">
-              <option value=""></option>
-              <option value="dog">Dog</option>
-              <option value="cat">Cat</option>
-              <option value="hamster">Hamster</option>
-              <option value="parrot">Parrot</option>
-              <option value="spider">Spider</option>
-              <option value="goldfish">Goldfish</option>
-            </select>
+            <figure>
+              {/* Country */}
+              <label htmlFor="country">Country</label>
+              <select name="country">
+                <option value=""></option>
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="hamster">Hamster</option>
+                <option value="parrot">Parrot</option>
+                <option value="spider">Spider</option>
+                <option value="goldfish">Goldfish</option>
+              </select>
+            </figure>
 
-            {/* State (dropdown) */}
-            <label htmlFor="state">State</label>
-            <select name="state">
-              <option value=""></option>
-              <option value="dog">Dog</option>
-              <option value="cat">Cat</option>
-              <option value="hamster">Hamster</option>
-              <option value="parrot">Parrot</option>
-              <option value="spider">Spider</option>
-              <option value="goldfish">Goldfish</option>
-            </select>
+            <figure>
+              {/* State (dropdown) */}
+              <label htmlFor="state">State</label>
+              <select name="state">
+                <option value=""></option>
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="hamster">Hamster</option>
+                <option value="parrot">Parrot</option>
+                <option value="spider">Spider</option>
+                <option value="goldfish">Goldfish</option>
+              </select>
+            </figure>
           </section>
 
           {/* Zipcode/Phone Container */}
           <section className="ami aa zip-phone-container">
             {/* Zip / Postal code */}
-            <label
-              className=""
-              htmlFor=""
-            >
-              Zip / Postal code
-            </label>
-            <input
-              className="ami aa "
-            />
+            <figure>
+              <label
+                className=""
+                htmlFor=""
+              >
+                Zip / Postal code
+              </label>
+              <input
+                className="ami aa "
+              />
+            </figure>
 
             {/* Phone */}
-            <label
-              className=""
-              htmlFor=""
-            >
-              Phone
-            </label>
-            <input
-              className="ami aa "
-            />
+            <figure>
+              <label
+                className=""
+                htmlFor=""
+              >
+                Phone
+              </label>
+              <input
+                className="ami aa "
+              />
+            </figure>
           </section>
 
           {/* Default Address (checkbox) */}
-          <input
-            type="checkbox"
-          />
-          <label
-            className=""
-            htmlFor=""
-          >
-            Make this my default address
-          </label>
+          <figure className="ami aa default-address">
+            <input
+              type="checkbox"
+            />
+            <label
+              className=""
+              htmlFor=""
+            >
+              Make this my default address
+            </label>
+          </figure>
 
           {/* Line Span */}
           <span className="line-span" />
 
-          {/* Address: Lower: Submit Address */}
-          <button
-            type="submit"
-          >
-            Add Address
-          </button>
+          <figure className="ami aa submit-container">
+            {/* Address: Lower: Submit Address */}
+            <button
+              className="ami aa submit"
+              type="submit"
+            >
+              Add Address
+            </button>
+          </figure>
         </form>
 
       </section>
