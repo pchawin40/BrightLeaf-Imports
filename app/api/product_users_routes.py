@@ -11,7 +11,7 @@ product_users_routes = Blueprint('product_users', __name__)
 #* POST /api/product_users
 @product_users_routes.route('/', methods=['GET', 'POST'])
 @login_required
-def get_or_modify_product_users():
+def get_or_post_product_users():
     """
     GET: Get current user product_users information
     POST: Create current user product_users information
@@ -59,7 +59,7 @@ def get_or_modify_product_users():
 #* DELETE /api/product_users/:productUserId
 @product_users_routes.route('/<int:product_user_id>', methods=['PUT', 'DELETE'])
 @login_required
-def delete_product_users(product_user_id):
+def modify_or_delete_product_users(product_user_id):
     """
     PUT: Update current user product_users information
     DELETE: Delete current user product_users information
@@ -71,7 +71,7 @@ def delete_product_users(product_user_id):
     if product_user is None:
         return {'errors': [f"Product User {product_user_id} does not exist"]}, 404
     
-    # if found, proceed to update/delete product_user
+    #? if found, proceed to update/delete product_user
     
     #* [PUT] update product_user with given id
     if request.method == 'PUT':
@@ -94,8 +94,9 @@ def delete_product_users(product_user_id):
         # return error if any
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
     
+    #* [DELETE] delete product_user with given id
     if request.method == 'DELETE':
-        #* [DELETE] delete product_user with given id
+        # proceed to delete product_user
         db.session.delete(product_user)
         db.session.commit()
 
