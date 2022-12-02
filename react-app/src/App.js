@@ -99,8 +99,14 @@ function App() {
   // per general
   useEffect(() => {
     // nothing for now
-    if (currentUserAddresses) {
+    if (
+      currentUserAddresses
+      &&
+      currentUserAddresses.length > 0
+    ) {
       setAddressLoaded(true);
+    } else {
+      setAddressLoaded(false);
     }
   }, [currentUserAddresses]);
 

@@ -13,7 +13,7 @@ import { NavLink } from 'react-router-dom';
 import * as addressActions from '../../../../store/address';
 
 // import react-redux
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import react
 import { useEffect, useState } from 'react';
@@ -33,6 +33,30 @@ const MAdrContent = () => {
   /**
    * UseEffect
    */
+
+  // invoke dispatch
+  const dispatch = useDispatch();
+
+  // function to handle delete address
+  const handleDeleteAddress = addressId => {
+    // ask for confirmation before proceeding
+    const confirmDelete = prompt(
+      `Are you sure you want to delete this address? Type 'delete' to confirm`
+    );
+
+    // if 'delete' is the input, proceed to delete account
+    if (confirmDelete && confirmDelete.toLowerCase().trim() === 'delete') {
+      // alert to user, successful deletion
+      alert(`Address has been deleted`);
+
+      if (addressId) {
+        // call on thunk to delete current user
+        dispatch(addressActions.thunkDeleteAddress(addressId))
+          .then(() => dispatch(addressActions.thunkGetUserAddresses()));
+      }
+    }
+    // call on dispatch
+  }
 
   // function to load addresses if exists
   const loadAddresses = () => {
@@ -86,6 +110,7 @@ const MAdrContent = () => {
 
                       {/* Remove */}
                       <span
+                        onClick={_ => handleDeleteAddress(address.id)}
                         className="madr li remove-address"
                       >
                         Remove
@@ -108,7 +133,6 @@ const MAdrContent = () => {
               );
             })
           }
-
         </ul>
       )
     } else {
@@ -152,6 +176,14 @@ const MAdrContent = () => {
           {
             loadAddresses()
           }
+          {/* Button to add new address */}
+          <button
+            className="madr new-address"
+            type="button"
+            onClick={null}
+          >
+            Add New Address
+          </button>
         </section>
 
         {/* Line Span */}
