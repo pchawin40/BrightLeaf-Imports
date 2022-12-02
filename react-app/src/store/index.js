@@ -8,6 +8,7 @@ import reviewReducer from './reviews';
 import userReducer from './users';
 import mapsReducer from './maps';
 import productUserReducer from './productUser';
+import addressReducer from './address';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   reviews: reviewReducer,
   users: userReducer,
   maps: mapsReducer,
-  productUsers: productUserReducer
+  productUsers: productUserReducer,
+  addresses: addressReducer
 });
 
 

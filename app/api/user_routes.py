@@ -2,7 +2,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.forms import LoginForm, EditUserForm, ProductUserForm
-from app.models import User, db, Review, ShoppingCart, Product, ProductUser
+from app.models import User, db, Review, ShoppingCart, Product, ProductUser, Address
 from .auth_routes import validation_errors_to_error_messages
 
 user_routes = Blueprint('users', __name__)
@@ -137,3 +137,13 @@ def user_carts():
         current_user_cart_displays = {**current_user_cart_displays, current_user_cart.id: current_user_cart_display}
     
     return {'shopping_carts': current_user_cart_displays}
+
+#* GET /api/users/addresses
+@user_routes.route('/addresses')
+def user_addresses():
+    """
+    GET: get all addresses that belong to current user
+    """
+    addresses = Address.query.filter(Address.user_id == current_user.get_id()).all()
+    
+    return {'addresses': [address.to_dict() for address in addresses]}

@@ -173,7 +173,7 @@ export default function imageReducer(state = initialState, action) {
     // case to load images
     case LOAD_IMAGES:
       return Object.assign({}, action.images);
-    // case to delete cart
+    // case to delete image
     case DELETE_IMAGE:
       delete newImages[action.imageId];
 
