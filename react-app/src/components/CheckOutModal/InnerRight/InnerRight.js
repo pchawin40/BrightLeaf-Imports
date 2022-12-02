@@ -5,14 +5,90 @@ import './InnerRight.css';
 
 //import react-router-dom
 import { NavLink } from 'react-router-dom';
+import { useCheckOut } from '../../../context/CheckOutContext';
+import { useEffect } from 'react';
 
 //? InnerRight component
 const InnerRight = () => {
-  return (
-    // Checkout Modal: Inner Section: Right
-    < aside className="checkoutmodal inner-section right" >
-      {/* Submit Container */}
-      < section className="cir submit-container" >
+  /**
+  * Controlled inputs
+  */
+  const { currentStep, setCurrentStep } = useCheckOut();
+
+  /**
+  * UseEffect
+  */
+  // per general
+  useEffect(() => {
+    // nothing for now
+  }, [currentStep]);
+
+  // function to load inner right content container
+  const loadInnerRightContent = () => {
+    // if step 1, return shipping address
+    if (currentStep === 1) {
+      return (
+        loadShippingAddressIR()
+      );
+    }
+
+    // if step 2, return payment method
+    if (currentStep === 2) {
+      return (
+        loadPaymentMethodIR()
+      );
+    }
+
+    // if step 3, return review items and shipping
+    if (currentStep === 3) {
+      return (
+        loadReviewItemsIR()
+      );
+    }
+  }
+
+  // function to load step 1: Shipping Address
+  const loadShippingAddressIR = () => {
+    return (
+      <>
+        {/* Place Order */}
+        < button >
+          Use this address
+        </button >
+
+        {/* Quick Fine Line */}
+        < p >
+          Continue to step 3 to finish checking out.
+          You'll have a chance to review and edit your order
+          before it's final.
+        </p >
+      </>
+    );
+  }
+
+  // function to load step 2: Payment Method
+  const loadPaymentMethodIR = () => {
+    return (
+      <>
+        {/* Place Order */}
+        < button >
+          Use this payment method
+        </button >
+
+        {/* Quick Fine Line */}
+        < p >
+          Continue to step 3 to finish checking out.
+          You'll have a chance to review and edit your order
+          before it's final.
+        </p >
+      </>
+    );
+  }
+
+  // function to load step 3: Review Items and Shipping
+  const loadReviewItemsIR = () => {
+    return (
+      <>
         {/* Place Order */}
         < button >
           Place Order
@@ -21,12 +97,24 @@ const InnerRight = () => {
         {/* Quick Fine Line */}
         < p >
           By placing your order, you agree to Brightleaf Import's
-          <NavLink
+          < NavLink
             to="/shipping-returns"
           >
             Shipping and Return & Exchange Policy
           </NavLink >
         </p >
+      </>
+    );
+  }
+
+  return (
+    // Checkout Modal: Inner Section: Right
+    < aside className="checkoutmodal inner-section right" >
+      {/* Submit Container */}
+      < section className="cir submit-container" >
+        {
+          loadInnerRightContent()
+        }
       </section >
 
       {/* Order Summary */}

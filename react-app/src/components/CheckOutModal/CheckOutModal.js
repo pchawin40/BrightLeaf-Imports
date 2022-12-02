@@ -1,6 +1,7 @@
 // src/components/CheckOutModal/CheckOutModal.js
 
 // import css
+import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useCheckOut } from '../../context/CheckOutContext';
 import { useNavHeader } from '../../context/NavHeaderContext';
@@ -14,7 +15,16 @@ const CheckOutModal = () => {
    * Controlled inputs
    */
   const { showCheckoutModal, setShowCheckoutModal } = useCheckOut();
+  const { currentStep, setCurrentStep } = useCheckOut();
   const { loadCartModal, setLoadCartModal } = useNavHeader();
+
+  /**
+   * UseEffect
+   */
+  // per general
+  useEffect(() => {
+    // nothing for now
+  }, [currentStep]);
 
   return (
     // Checkout Modal: Outer Section
