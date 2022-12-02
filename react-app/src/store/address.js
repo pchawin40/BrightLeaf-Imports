@@ -148,6 +148,7 @@ export const thunkDeleteAddress = addressId => async (dispatch) => {
 
 /* --------- SELECTOR FUNCTIONS -------- */
 export const getCurrentUserAddresses = state => Object.values(state.addresses);
+export const getCurrentAddressById = addressId => state => Object.values(state.addresses).find(address => address.id === addressId);
 
 /* --------- REDUCERS -------- */
 const initialState = {}

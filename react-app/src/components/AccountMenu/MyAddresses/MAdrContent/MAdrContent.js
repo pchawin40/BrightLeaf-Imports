@@ -27,6 +27,7 @@ const MAdrContent = () => {
    */
   const { addressLoaded, setAddressLoaded } = useAddress();
   const { showAddressModal, setShowAddressModal } = useAddress();
+  const [currentAddressId, setCurrentAddressId] = useState(null);
 
   /**
    * Selector functions
@@ -106,7 +107,10 @@ const MAdrContent = () => {
                       {/* Edit */}
                       <span
                         className="madr li edit-address"
-                        onClick={_ => setShowAddressModal(true)}
+                        onClick={_ => {
+                          setShowAddressModal(true);
+                          setCurrentAddressId(address.id);
+                        }}
                       >
                         Edit
                       </span>
@@ -204,7 +208,7 @@ const MAdrContent = () => {
           }}
           currentVisible={false}
         >
-          <AddressModal />
+          <AddressModal currentAddressId={currentAddressId} />
         </Modal>
       )}
     </section>
