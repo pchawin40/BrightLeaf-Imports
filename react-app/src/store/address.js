@@ -49,7 +49,7 @@ export const deleteAddress = addressId => {
 // thunk to get addresses that belong to current user
 export const thunkGetUserAddresses = () => async (dispatch) => {
   // fetch all addresses that belong to current user
-  const res = await fetch('/api/users/addresses/');
+  const res = await fetch('/api/users/addresses');
 
   // if successful
   if (res.ok) {
@@ -147,7 +147,7 @@ export const thunkDeleteAddress = addressId => async (dispatch) => {
 }
 
 /* --------- SELECTOR FUNCTIONS -------- */
-export const getCurrentAddresses = state => Object.values(state.images);
+export const getCurrentUserAddresses = state => Object.values(state.addresses);
 
 /* --------- REDUCERS -------- */
 const initialState = {}

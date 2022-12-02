@@ -146,4 +146,4 @@ def user_addresses():
     """
     addresses = Address.query.filter(Address.user_id == current_user.get_id()).all()
     
-    return {'addresses': [address.to_dict() for address in addresses]}
+    return {'addresses': {address.id: address.to_dict() for address in addresses}}

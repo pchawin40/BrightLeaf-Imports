@@ -61,7 +61,7 @@ def get_or_post_addresses():
   # find addresses that belong to current user
   addresses = Address.query.filter(Address.user_id == current_user.get_id())
   
-  return {'addresses': [address.to_dict() for address in addresses]}
+  return {'addresses': {address.id: address.to_dict() for address in addresses}}
 
 #* PUT - /api/addresses/:addressId
 #* DELETE - /api/addresses/:addressId

@@ -1,11 +1,42 @@
 // src/components/AccountMenu/MyAddresses/MAdrContent/MAdrContent.js
 
 // import css
-import { NavLink } from 'react-router-dom';
 import './MAdrContent.css';
+
+// import react-router-dom
+import { NavLink } from 'react-router-dom';
+
+// import store
+import * as addressActions from '../../../../store/address';
+
+// import react-redux
+import { useSelector } from 'react-redux';
+
+// import react
+import { useEffect } from 'react';
 
 //? MAdrContent component
 const MAdrContent = () => {
+  /**
+   * Controlled inputs
+   */
+
+  /**
+   * Selector functions
+   */
+  const currentUserAddresses = useSelector(addressActions.getCurrentUserAddresses);
+
+  /**
+   * UseEffect
+   */
+  // per general
+  useEffect(() => {
+    // nothing for now
+    if (currentUserAddresses) {
+      console.log("currentUserAddresses", currentUserAddresses);
+    }
+  }, [currentUserAddresses]);
+
   return (
     <section className="MAdrContent AM content-outer-section">
       <section className="MAdrContent AM content-inner-section">

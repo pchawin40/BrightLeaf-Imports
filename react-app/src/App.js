@@ -44,6 +44,7 @@ import * as productActions from './store/products';
 import * as reviewActions from './store/reviews';
 import * as userActions from './store/users';
 import * as productUserActions from './store/productUser';
+import * as addressActions from './store/address';
 
 function App() {
   /**
@@ -71,10 +72,14 @@ function App() {
   // load data
   useEffect(() => {
     if (currentUserInfo) {
-      //! TODO: To work on shopping cart error
+      // get current user carts
       dispatch(shoppingCartActions.thunkGetSessionUserCarts());
 
+      // get product that belong to users
       dispatch(productUserActions.thunkGetProductUsers());
+
+      // get user addresses
+      dispatch(addressActions.thunkGetUserAddresses());
     }
 
     // load products

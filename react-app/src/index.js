@@ -23,10 +23,11 @@ import NavRightProvider from './context/NavRightContext';
 import ImageProvider from './context/ImageContext';
 import ProductProvider from './context/ProductContext';
 import ShoppingCartProvider from './context/ShoppingCartContext';
+import AddressProvider from './context/AddressesContext';
+import ProductUserProvider from './context/ProductUserContext';
 
 // import libraries
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import ProductUserProvider from './context/ProductUserContext';
 
 const store = configureStore();
 
@@ -37,15 +38,17 @@ ReactDOM.render(
         <GoogleOAuthProvider clientId="1082422331077-c0eugbsvcaj0tbv9v500qorljk16ucl3.apps.googleusercontent.com">
           <NavHeaderProvider>
             <NavRightProvider>
-              <ImageProvider>
-                <ProductProvider>
-                  <ProductUserProvider>
-                    <ShoppingCartProvider>
-                      <App />
-                    </ShoppingCartProvider>
-                  </ProductUserProvider>
-                </ProductProvider>
-              </ImageProvider>
+              <AddressProvider>
+                <ImageProvider>
+                  <ProductProvider>
+                    <ProductUserProvider>
+                      <ShoppingCartProvider>
+                        <App />
+                      </ShoppingCartProvider>
+                    </ProductUserProvider>
+                  </ProductProvider>
+                </ImageProvider>
+              </AddressProvider>
             </NavRightProvider>
           </NavHeaderProvider>
         </GoogleOAuthProvider>
