@@ -52,7 +52,9 @@ const InnerRight = () => {
     return (
       <>
         {/* Place Order */}
-        < button >
+        < button
+          onClick={_ => setCurrentStep(currentStep => currentStep + 1)}
+        >
           Use this address
         </button >
 
@@ -71,7 +73,9 @@ const InnerRight = () => {
     return (
       <>
         {/* Place Order */}
-        < button >
+        < button
+          onClick={_ => setCurrentStep(currentStep => currentStep + 1)}
+        >
           Use this payment method
         </button >
 
@@ -117,31 +121,76 @@ const InnerRight = () => {
         }
       </section >
 
+      <span className='line-span' />
+
       {/* Order Summary */}
       < section className="cir order-summary" >
-        {/* Items $ */}
+        {/* Header */}
+        <h2>
+          Order Summary
+        </h2>
 
-        {/* Shipping & Handling */}
+        <section className='cir order-summary inner'>
+          {/* Items $ */}
+          <p>
+            <span>
+              Items:
+            </span>
+            <span>
+              $USD
+            </span>
+          </p>
 
-        {/* Total before tax */}
+          {/* Shipping & Handling */}
+          <p>
+            <span>
+              Shipping & handling:
+            </span>
+            <span>
+              $USD
+            </span>
+          </p>
 
-        {/* Estimated tax to be collected */}
+          <p>
+            <span />
+            <span className='line-span' />
+          </p>
+
+          {/* Total before tax */}
+          <p>
+            <span>
+              Total before tax:
+            </span>
+            <span>
+              $USD
+            </span>
+          </p>
+
+          {/* Estimated tax to be collected */}
+          <p>
+            <span>
+              Estimated tax to be collected:
+            </span>
+            <span>
+              $USD
+            </span>
+          </p>
+
+        </section>
+
+        <span className='line-span' />
 
         {/* Order total */}
-      </section >
+        <p>
+          <span>
+            Order total:
+          </span>
+          <span>
+            $USD
+          </span>
+        </p>
 
-      {/* Order Total */}
-      < section className="cir order-total" >
-        {/* Total ($ USD) */}
       </section >
-
-      {/* Quick FAQ */}
-      < section className="cir faq" >
-        {/*  */}
-      </section >
-      <section>
-
-      </section>
     </aside >
   );
 };
