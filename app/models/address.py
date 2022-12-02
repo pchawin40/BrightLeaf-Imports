@@ -14,7 +14,7 @@ class Address(db.Model):
   state = db.Column(db.String(50))
   zipcode = db.Column(db.String(20))
   phone = db.Column(db.String(10))
-  default = db.Column(db.Boolean)
+  default = db.Column(db.Boolean, default=False)
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   

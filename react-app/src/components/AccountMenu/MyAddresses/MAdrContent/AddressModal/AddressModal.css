@@ -101,8 +101,15 @@ form.ami.add-address > section > figure {
 	padding: 0;
 }
 
-form.ami.add-address > section,
-form.ami.add-address input {
+form.ami.add-address > label {
+	margin-top: 16px;
+}
+
+.ami.aa.select-box-container > figure > :first-child {
+	margin-top: 16px;
+}
+
+form.ami.add-address > section {
 	margin-bottom: 16px;
 }
 
@@ -117,10 +124,26 @@ form.ami.add-address label {
 
 form.ami.add-address input {
 	padding-left: 6px;
+	padding-right: 7vw;
+	box-sizing: border-box;
 }
 
 form.ami.add-address option {
 	font-size: 16px;
+}
+
+form.ami.add-address label + figure {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.drop-down-select {
+	width: 100%;
+}
+
+form.ami.add-address label + figure > input {
+	width: 100%;
 }
 
 /* Default Address */
@@ -154,6 +177,59 @@ figure.ami.default-address > label {
 	margin-bottom: 16px;
 }
 
+.ami.text-figure {
+	position: relative;
+
+	display: flex;
+	align-items: center;
+}
+
+.ami.text-figure > span {
+	right: 0.25vw;
+	font-size: 1.5vh;
+	height: 100%;
+
+	margin: 0;
+	padding: 0;
+
+	position: absolute;
+
+	display: flex;
+	align-items: center;
+}
+
+.ami.text-figure:has(span.phone) {
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.ami.text-figure > span.phone {
+	position: relative;
+	padding-left: 12px;
+	font-size: 1.5vh;
+}
+
+.ami.text-figure > span.valid {
+	color: rgb(66, 66, 66, 0.6);
+}
+
+.ami.text-figure > span.invalid {
+	color: red;
+}
+
+.phone-label > span {
+	margin-left: 6px;
+	font-size: small;
+}
+
+.phone-label > span.phone-valid {
+	color: rgb(66, 66, 66, 0.6);
+}
+
+.phone-label > span.phone-invalid {
+	color: red;
+}
+
 /* Submit Button */
 figure.ami.submit-container {
 	margin: 0;
@@ -185,6 +261,10 @@ button.ami.submit {
 	background-color: #80ab63;
 }
 
-button.ami.submit:hover {
+button.ami.submit.false {
+	background-color: #ccc;
+}
+
+button.ami.submit.true:hover {
 	cursor: pointer;
 }

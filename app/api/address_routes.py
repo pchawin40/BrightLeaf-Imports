@@ -33,6 +33,13 @@ def get_or_post_addresses():
       if default_address_exist:
         return {'errors': f"Cannot have more than one default address for user {user.id}"}, 403
     
+      # if default is true, reset other default and make a new default
+      if form.data['default']:
+        # find any other address that is default and reset it
+        current_default_address = Address.query.filter(Address.default == True).first()
+        current_default_address.default = False
+        db.session.commit()
+        
       # create new address
       new_address = Address(
         user_id=current_user.get_id(),
@@ -54,6 +61,17 @@ def get_or_post_addresses():
       #  return successful response
       return new_address.to_dict()
 
+    print()
+    print()
+    print()
+    print()
+    print()
+    print(validation_errors_to_error_messages(form.errors))
+    print()
+    print()
+    print()
+    print()
+    print()
     # else if form did not pass validation, return error
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
   
@@ -108,6 +126,14 @@ def modify_or_delete_address(address_id):
         address.zipcode = form.data['zipcode']
       if(form.data['phone']):
         address.phone = form.data['phone']
+      
+      # if default is true, reset other default and make a new default
+      if form.data['default']:
+        # find any other address that is default and reset it
+        current_default_address = Address.query.filter(Address.default == True).first()
+        current_default_address.default = False
+        db.session.commit()
+        
       address.default = form.data['default']
       
       # commit update

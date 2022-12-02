@@ -37,6 +37,11 @@ const MAdrContent = () => {
   /**
    * UseEffect
    */
+  // per general
+  useEffect(() => {
+    // nothing for now
+    console.log("currentUserAddresses", currentUserAddresses);
+  }, [currentUserAddresses]);
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -69,36 +74,36 @@ const MAdrContent = () => {
         <ul className="madr ul">
           {/* all addresses that belong to current user */}
           {
-            currentUserAddresses.map(address => {
+            currentUserAddresses.map((currentAddress, index) => {
               return (
                 <li
                   className="madr li"
-                  key={address.address}
+                  key={`currentAddress ${index}`}
                 >
                   <section className="madr li top">
                     {/* Company Name */}
                     <span className="madr li company">
-                      {address.company_name}
+                      {currentAddress.company_name}
                     </span>
 
                     {/* Address */}
                     <span className="madr li address">
-                      {address.address}
+                      {currentAddress.address}
                     </span>
 
                     {/* Address 2 */}
                     <span className="madr li address2">
-                      {address.address_2}
+                      {currentAddress.address_2}
                     </span>
 
                     {/* City, Country, State */}
                     <span className="madr li city-country-state">
-                      {`${address.city}, ${address.state} ${address.state}`}
+                      {`${currentAddress.city && currentAddress.city + ","} ${currentAddress.state} ${currentAddress.zipcode}`}
                     </span>
 
                     {/* Phone */}
                     <span className="madr li phone">
-                      {address.phone}
+                      {currentAddress.phone}
                     </span>
                   </section>
 
@@ -109,7 +114,7 @@ const MAdrContent = () => {
                         className="madr li edit-address"
                         onClick={_ => {
                           setShowAddressModal(true);
-                          setCurrentAddressId(address.id);
+                          setCurrentAddressId(currentAddress.id);
                         }}
                       >
                         Edit
@@ -117,7 +122,7 @@ const MAdrContent = () => {
 
                       {/* Remove */}
                       <span
-                        onClick={_ => handleDeleteAddress(address.id)}
+                        onClick={_ => handleDeleteAddress(currentAddress.id)}
                         className="madr li remove-address"
                       >
                         Remove
@@ -127,11 +132,13 @@ const MAdrContent = () => {
                       {/* Default Address */}
                       <span className="madr li default">
                         {
-                          address.default
+                          currentAddress.default
                           &&
-                          <i className="fa-solid fa-check" />
+                          <>
+                            <i className="fa-solid fa-check" />
+                            Default Address
+                          </>
                         }
-                        Default Address
                       </span>
                     </section>
                     <span className="line-span madr li" />
@@ -209,7 +216,7 @@ const MAdrContent = () => {
           }}
           currentVisible={false}
         >
-          <AddressModal currentAddressId={currentAddressId} />
+          <AddressModal currentAddressId={currentAddressId} setCurrentAddressId={setCurrentAddressId} />
         </Modal>
       )}
     </section>
