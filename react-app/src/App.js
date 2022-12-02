@@ -27,6 +27,7 @@ import { useNavRight } from './context/NavRightContext';
 import { useProduct } from './context/ProductContext';
 import { useNavHeader } from './context/NavHeaderContext';
 import { Modal } from './context/Modal';
+import { useAddress } from './context/AddressesContext';
 
 // import react
 import React, { useState, useEffect } from 'react';
@@ -51,6 +52,7 @@ function App() {
   * Selector functions
   */
   const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
+  const currentUserAddresses = useSelector(addressActions.getCurrentUserAddresses);
 
   /**
    * Controlled inputs
@@ -58,10 +60,14 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const { showNavModal, setShowNavModal } = useNavRight();
   const { showProductFormModal, setShowProductFormModal } = useProduct();
+  const { addressLoaded, setAddressLoaded } = useAddress();
 
   // invoke dispatch
   const dispatch = useDispatch();
 
+  /**
+   * UseEffect
+   */
   useEffect(() => {
     (async () => {
       await dispatch(sessionActions.authenticate());
@@ -89,6 +95,14 @@ function App() {
     // load users
     dispatch(userActions.thunkGetUsers());
   }, [currentUserInfo]);
+
+  // per general
+  useEffect(() => {
+    // nothing for now
+    if (currentUserAddresses) {
+      setAddressLoaded(true);
+    }
+  }, [currentUserAddresses]);
 
   if (!loaded) {
     return null;

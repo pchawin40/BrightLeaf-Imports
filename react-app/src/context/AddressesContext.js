@@ -8,14 +8,14 @@ export const useAddress = () => useContext(AddressesContext);
 // create provider for address page
 export default function AddressProvider({ children }) {
   // state for context
-  const [displayName, setDisplayName] = useState("");
+  const [addressLoaded, setAddressLoaded] = useState(false);
 
   // Address Provider
   return (
     <>
       <AddressesContext.Provider
         value={{
-          displayName, setDisplayName
+          addressLoaded, setAddressLoaded
         }}
       >
         {children}

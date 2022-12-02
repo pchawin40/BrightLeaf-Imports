@@ -1,1 +1,88 @@
 /* src/components/AccountMenu/MyAddresses/MAdrContent/MAdrContent.css */
+
+/*? Lower */
+.cis.lower.address {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	width: 100%;
+
+	margin: 16px;
+	padding: 0;
+
+	position: relative;
+}
+
+/** Address Unordered List */
+.madr.ul {
+	list-style-type: none;
+
+	height: 40vh;
+	width: calc(60vw - 2rem);
+
+	overflow-x: auto;
+	overflow-y: hidden;
+
+	display: flex;
+	justify-content: flex-start;
+
+	margin: 0;
+	margin-top: 2rem;
+	padding: 0;
+	padding-bottom: 5vh;
+}
+
+section.madr.li {
+	display: flex;
+	width: calc(60vw - 2rem);
+
+	margin: 0;
+	padding: 0;
+
+	position: relative;
+}
+
+section.madr.li.top {
+	flex-direction: column;
+
+	/* background-color: red; */
+	color: rgba(66, 66, 66, 0.6);
+}
+
+section.madr.li.lower {
+	display: flex;
+	justify-content: space-between;
+
+	padding: 16px 0;
+}
+
+/* Left: Edit/Remove */
+.mll.left span {
+	text-decoration: underline;
+}
+
+.mll.left span:hover {
+	cursor: pointer;
+}
+
+.mll span.edit-address {
+	margin-right: 2vw;
+}
+
+/* Right: Default Address */
+
+.mll span.default > i {
+	margin-right: 16px;
+}
+
+/* Line Span */
+.line-span.madr.li {
+	width: calc(60vw - 2rem);
+	height: 1px;
+	background-color: #cbc7c3;
+	opacity: 0.45;
+
+	position: absolute;
+	bottom: 0;
+}
