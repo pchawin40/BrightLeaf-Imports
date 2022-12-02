@@ -121,33 +121,69 @@ const LeftAMN = () => {
           {/* User Profile */}
           {/* // TODO: To insert user profile picture */}
           {
-            currentUserInfo.profile_picture.trim() !== ""
-              ?
-              currentUserInfo.login_by
-                ?
-                <img
-                  src={currentUserInfo.profile_picture}
-                  alt="user-profile"
-                />
-                :
+            userPicLoading ? (
+              <figure
+                className="lamn custom outer-figure"
+              >
                 <figure
-                  className="lamn custom outer-figure"
-                  onClick={_ => document.querySelector('.left-amn-section.image-input').click()}
+                  className="lamn custom-user-pic"
                 >
+                  <img
+                    src='https://cdn.dribbble.com/users/2077073/screenshots/6005120/loadin_gif.gif'
+                    alt='Loading'
+                  />
+                </figure>
+              </figure>
+
+            )
+              :
+              currentUserInfo.profile_picture.trim() !== ""
+                ?
+                currentUserInfo.login_by
+                  ?
+                  <img
+                    src={currentUserInfo.profile_picture}
+                    alt="user-profile"
+                  />
+                  :
                   <figure
-                    className="lamn custom-user-pic"
+                    className="lamn custom outer-figure"
+                    onClick={_ => document.querySelector('.left-amn-section.image-input').click()}
                   >
-                    <img
-                      src={currentUserInfo.profile_picture}
-                      alt="user-profile"
+                    <figure
+                      className="lamn custom-user-pic"
+                    >
+                      <img
+                        src={currentUserInfo.profile_picture}
+                        alt="user-profile"
+                      />
+                    </figure>
+                    {/* Container to edit picture */}
+                    <figure className="um las custom edit-pic-container">
+                      <figure>
+                        <figure>
+                          <i className="fa-solid fa-camera edit-pic" />
+                        </figure>
+                      </figure>
+                    </figure>
+
+                    {/* Picture dropper */}
+                    <input
+                      type='file'
+                      accept='image/*'
+                      className="left-amn-section image-input"
+                      onChange={updateUserPic}
                     />
                   </figure>
+                :
+                <figure
+                  onClick={_ => document.querySelector('.left-amn-section.image-input').click()}
+                >
+                  <i className="fa-regular fa-user fa-2xl lamn-user-icon" />
                   {/* Container to edit picture */}
-                  <figure className="um las custom edit-pic-container">
+                  <figure className="um las edit-pic-container">
                     <figure>
-                      <figure>
-                        <i className="fa-solid fa-camera edit-pic" />
-                      </figure>
+                      <i className="fa-solid fa-camera edit-pic" />
                     </figure>
                   </figure>
 
@@ -159,26 +195,6 @@ const LeftAMN = () => {
                     onChange={updateUserPic}
                   />
                 </figure>
-              :
-              <figure
-                onClick={_ => document.querySelector('.left-amn-section.image-input').click()}
-              >
-                <i className="fa-regular fa-user fa-2xl lamn-user-icon" />
-                {/* Container to edit picture */}
-                <figure className="um las edit-pic-container">
-                  <figure>
-                    <i className="fa-solid fa-camera edit-pic" />
-                  </figure>
-                </figure>
-
-                {/* Picture dropper */}
-                <input
-                  type='file'
-                  accept='image/*'
-                  className="left-amn-section image-input"
-                  onChange={updateUserPic}
-                />
-              </figure>
           }
 
           {/* User Profile Name */}
