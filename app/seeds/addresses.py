@@ -14,8 +14,8 @@ def seed_addresses():
       address=f"Address of user {user.id}",
       address_2=f"Address 2 of user {user.id}",
       city=f"City of user {user.id}",
-      country=f"Country of user {user.id}",
-      state=f"State of user {user.id}",
+      country="US",
+      state="WA",
       zipcode="".join(random.sample('0123456789', 5)),
       phone="".join(random.sample('0123456789', 10)),
       default=True

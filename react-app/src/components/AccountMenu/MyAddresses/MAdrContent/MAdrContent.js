@@ -204,7 +204,8 @@ const MAdrContent = () => {
       {showAddressModal && (
         <Modal
           onClose={(_) => {
-            setShowAddressModal(false)
+            setShowAddressModal(false);
+            setCurrentAddressId(null);
           }}
           currentVisible={false}
         >
