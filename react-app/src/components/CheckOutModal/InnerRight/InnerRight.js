@@ -154,6 +154,7 @@ const InnerRight = () => {
             </p>
 
             <p className="line-span-container">
+              <span />
               <span className='line-span' />
             </p>
 

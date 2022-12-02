@@ -1,15 +1,11 @@
 /* src/components/CheckOutModal/InnerRight/InnerRight.css */
 aside.checkoutmodal.right {
-	/* background-color: red; */
-
 	display: flex;
 	justify-content: center;
 }
 
 /** CheckoutModal: Inner Section: Right Aside: Inner */
 .cir.inner-main {
-	/* background-color: orange; */
-
 	width: 95%;
 	height: fit-content;
 
@@ -27,20 +23,18 @@ aside.checkoutmodal.right {
 	box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
 }
 
-.cir.inner-main > * {
-	/* margin: 16px; */
-}
-
 .cir.inner-main * {
 	margin: 0;
 	margin-bottom: 6px;
 	padding: 0;
 }
 
+.cir.inner-main .line-span {
+	opacity: 0.65;
+}
+
 /* Submit Container */
 .cir.submit-container {
-	/* background-color: pink; */
-
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -84,8 +78,6 @@ aside.checkoutmodal.right {
 
 /* Order Summary */
 .cir.order-summary {
-	/* background-color: gold; */
-
 	margin-top: 1vh;
 	margin-bottom: 1vh;
 
@@ -108,7 +100,7 @@ p.cir.order-total,
 .cir.order-summary.inner > p.line-span-container {
 	display: grid;
 	grid-template-rows: 1fr;
-	grid-template-columns: auto 10%;
+	grid-template-columns: auto 15%;
 }
 
 .cir.order-summary.inner > p.line-span-container * {
@@ -118,4 +110,18 @@ p.cir.order-total,
 p.cir.order-total > span {
 	font-weight: bold;
 	font-size: 125%;
+}
+
+/* Order Total */
+.cir.order-total {
+	height: 100%;
+	display: flex;
+	align-items: center;
+
+	margin-top: 1vh;
+}
+
+.cir.order-total * {
+	margin: 0;
+	padding: 0;
 }
