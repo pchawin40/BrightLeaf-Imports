@@ -15,9 +15,12 @@ const CheckoutSteps = () => {
 
   return (
     // Inner Section: Left: Lower: Checkout Steps Nav
-    < section >
+    < section className="cil lower checkoutsteps-container">
       {/* Step 1: Shipping Address */}
-      < figure className={`cil lower payment-method ${currentStep >= 1}`} >
+      < figure
+        onClick={_ => (currentStep >= 1 && currentStep !== 1) && setCurrentStep(1)}
+        className={`cil lower payment-method ${currentStep >= 1} ${currentStep !== 1 ? "current" : ""}`}
+      >
         <span>
           1
         </span>
@@ -27,7 +30,10 @@ const CheckoutSteps = () => {
       </figure >
 
       {/* Step 2: Payment Method */}
-      < figure className={`cil lower payment-method ${currentStep >= 2}`} >
+      < figure
+        onClick={_ => (currentStep >= 2 && currentStep !== 2) && setCurrentStep(2)}
+        className={`cil lower payment-method ${currentStep >= 2} ${currentStep !== 2 ? "current" : ""}`}
+      >
         <span>
           2
         </span>
@@ -37,7 +43,10 @@ const CheckoutSteps = () => {
       </figure >
 
       {/* Step 3: Review items and shipping */}
-      < figure className={`cil lower payment-method ${currentStep >= 3}`} >
+      < figure
+        onClick={_ => (currentStep >= 3 && currentStep !== 3) && setCurrentStep(3)}
+        className={`cil lower payment-method ${currentStep >= 3} ${currentStep !== 3 ? "current" : ""}`}
+      >
         <span>
           3
         </span>

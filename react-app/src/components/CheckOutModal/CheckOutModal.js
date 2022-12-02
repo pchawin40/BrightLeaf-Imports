@@ -26,6 +26,9 @@ const CheckOutModal = () => {
     // nothing for now
   }, [currentStep]);
 
+  // hide scroll
+  document.body.style.overflowY = "hidden";
+
   return (
     // Checkout Modal: Outer Section
     <section className="checkoutmodal outer">

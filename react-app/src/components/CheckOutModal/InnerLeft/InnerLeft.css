@@ -1,5 +1,39 @@
 /* src/components/CheckOutModal/InnerLeft/InnerLeft.css */
 
 section.checkoutmodal.left {
-	background-color: cyan;
+	display: grid;
+	grid-template-rows: auto 15%;
 }
+
+/* Inner Section: Left: Upper: Main Content */
+.cil.upper.main-content {
+	display: grid;
+	justify-content: flex-start;
+	align-items: center;
+	text-align: center;
+	grid-template-rows: 10% auto;
+}
+
+.cil.upper.main-content > section {
+	margin-left: 16px;
+}
+
+/* Button Nav */
+.cil.upper.main-content > section:first-child > span {
+	display: flex;
+	align-items: center;
+}
+
+.cil.upper.main-content > section:first-child > span:hover {
+	cursor: pointer;
+}
+
+.cil.upper.main-content > section:first-child > span > i {
+	margin-right: 0.5vw;
+}
+
+.cil.upper.main-content > section:first-child > span.false {
+	visibility: hidden;
+}
+
+/* Main Content */

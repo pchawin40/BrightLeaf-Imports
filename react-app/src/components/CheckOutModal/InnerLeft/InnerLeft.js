@@ -30,11 +30,20 @@ const InnerLeft = () => {
     // Review Items: Show Previous
     if (currentStep > 1)
       return (
-        <button
+        <span
+          className="true"
           onClick={_ => setCurrentStep(currentStep => currentStep - 1)}
         >
-          Go back to previous step
-        </button>
+          <i class="fa-solid fa-angle-left" />
+          Previous Step
+        </span>
+      )
+    else
+      return (
+        <span className="false">
+          <i class="fa-solid fa-angle-left" />
+          Previous Step
+        </span>
       )
   }
 
@@ -61,16 +70,20 @@ const InnerLeft = () => {
     // Checkout Modal: Inner Section: Left
     < section className="checkoutmodal inner-section left" >
       {/* Inner Section: Left: Upper: Main Content */}
-      < section >
+      < section className="cil upper main-content">
         {/* Button to go back */}
-        {
-          loadButtonNav()
-        }
+        <section>
+          {
+            loadButtonNav()
+          }
+        </section>
 
         {/* Load main content */}
-        {
-          loadMainContent()
-        }
+        <section>
+          {
+            loadMainContent()
+          }
+        </section>
       </section >
 
       {/* Inner Section: Left: Lower: Checkout Steps Nav */}
