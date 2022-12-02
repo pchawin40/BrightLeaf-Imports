@@ -40,7 +40,6 @@ const MAdrContent = () => {
   // per general
   useEffect(() => {
     // nothing for now
-    console.log("currentUserAddresses", currentUserAddresses);
   }, [currentUserAddresses]);
 
   // invoke dispatch

@@ -88,16 +88,6 @@ const UserModal = () => {
             My Addresses
           </li>
 
-          {/* My Wallet */}
-          <li
-            onClick={_ => {
-              setShowUserModal(false);
-              return history.push('/account/my-wallet')
-            }}
-          >
-            My Wallet
-          </li>
-
           {/* My Wishlist */}
           <li
             onClick={_ => {

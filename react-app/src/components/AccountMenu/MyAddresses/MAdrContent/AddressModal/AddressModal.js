@@ -259,7 +259,6 @@ const AddressModal = ({ currentAddressId, setCurrentAddressId }) => {
     e.preventDefault();
 
     // grab address data
-    console.log('defaultAddress', defaultAddress);
     const addressSubmit = {
       ...currentAddressById,
       company_name: companyName,

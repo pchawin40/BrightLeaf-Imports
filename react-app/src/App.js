@@ -17,7 +17,6 @@ import ShopProduct from './components/ShopProduct';
 import ProductFormModal from './components/ProductFormModal';
 import MyOrders from './components/AccountMenu/MyOrders';
 import MyAddresses from './components/AccountMenu/MyAddresses';
-import MyWallet from './components/AccountMenu/MyWallet';
 import MyWishlist from './components/AccountMenu/MyWishlist';
 import MyAccount from './components/AccountMenu/MyAccount';
 import AccountProvider from './context/AccountMenuContext';
@@ -25,7 +24,6 @@ import AccountProvider from './context/AccountMenuContext';
 // import context
 import { useNavRight } from './context/NavRightContext';
 import { useProduct } from './context/ProductContext';
-import { useNavHeader } from './context/NavHeaderContext';
 import { Modal } from './context/Modal';
 import { useAddress } from './context/AddressesContext';
 
@@ -201,11 +199,6 @@ function App() {
           {/* My Addreses */}
           <ProtectedRoute path="/account/my-addresses">
             <MyAddresses />
-          </ProtectedRoute>
-
-          {/* My Wallet */}
-          <ProtectedRoute path="/account/my-wallet">
-            <MyWallet />
           </ProtectedRoute>
 
           {/* My Wishlist */}

@@ -243,17 +243,6 @@ const LeftAMN = () => {
             </li>
           </NavLink>
 
-          {/* My Wallet */}
-          <NavLink
-            to="/account/my-wallet"
-            className="nav-link AM"
-            activeClassName="nav-link AM selected"
-          >
-            <li>
-              My Wallet
-            </li>
-          </NavLink>
-
           {/* My Wishlist */}
           <NavLink
             to="/account/my-wishlist"

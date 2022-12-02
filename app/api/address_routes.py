@@ -147,8 +147,10 @@ def modify_or_delete_address(address_id):
     # if current address is default, make the first address query a default address if any
     if address.default == True:
         new_default_address = Address.query.filter(Address.default == False).first()
-        new_default_address.default = True
-        db.session.commit()
+        
+        if new_default_address:
+          new_default_address.default = True
+          db.session.commit()
     
     # proceed to delete address
     db.session.delete(address)
