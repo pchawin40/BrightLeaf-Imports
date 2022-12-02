@@ -114,83 +114,85 @@ const InnerRight = () => {
   return (
     // Checkout Modal: Inner Section: Right
     < aside className="checkoutmodal inner-section right" >
-      {/* Submit Container */}
-      < section className="cir submit-container" >
-        {
-          loadInnerRightContent()
-        }
-      </section >
+      <aside className="cir inner-main">
 
-      <span className='line-span' />
-
-      {/* Order Summary */}
-      < section className="cir order-summary" >
-        {/* Header */}
-        <h2>
-          Order Summary
-        </h2>
-
-        <section className='cir order-summary inner'>
-          {/* Items $ */}
-          <p>
-            <span>
-              Items:
-            </span>
-            <span>
-              $USD
-            </span>
-          </p>
-
-          {/* Shipping & Handling */}
-          <p>
-            <span>
-              Shipping & handling:
-            </span>
-            <span>
-              $USD
-            </span>
-          </p>
-
-          <p>
-            <span />
-            <span className='line-span' />
-          </p>
-
-          {/* Total before tax */}
-          <p>
-            <span>
-              Total before tax:
-            </span>
-            <span>
-              $USD
-            </span>
-          </p>
-
-          {/* Estimated tax to be collected */}
-          <p>
-            <span>
-              Estimated tax to be collected:
-            </span>
-            <span>
-              $USD
-            </span>
-          </p>
-
-        </section>
+        {/* Submit Container */}
+        < section className="cir submit-container" >
+          {
+            loadInnerRightContent()
+          }
+        </section >
 
         <span className='line-span' />
 
-        {/* Order total */}
-        <p>
-          <span>
-            Order total:
-          </span>
-          <span>
-            $USD
-          </span>
-        </p>
+        {/* Order Summary */}
+        < section className="cir order-summary" >
+          {/* Header */}
+          <h2>
+            Order Summary
+          </h2>
 
-      </section >
+          <section className='cir order-summary inner'>
+            {/* Items $ */}
+            <p>
+              <span>
+                Items:
+              </span>
+              <span>
+                $USD
+              </span>
+            </p>
+
+            {/* Shipping & Handling */}
+            <p>
+              <span>
+                Shipping & handling:
+              </span>
+              <span>
+                $USD
+              </span>
+            </p>
+
+            <p className="line-span-container">
+              <span className='line-span' />
+            </p>
+
+            {/* Total before tax */}
+            <p>
+              <span>
+                Total before tax:
+              </span>
+              <span>
+                $USD
+              </span>
+            </p>
+
+            {/* Estimated tax to be collected */}
+            <p>
+              <span>
+                Estimated tax to be collected:
+              </span>
+              <span>
+                $USD
+              </span>
+            </p>
+
+          </section>
+
+          <span className='line-span' />
+
+          {/* Order total */}
+          <p className="cir order-total">
+            <span>
+              Order total:
+            </span>
+            <span>
+              $USD
+            </span>
+          </p>
+
+        </section >
+      </aside>
     </aside >
   );
 };

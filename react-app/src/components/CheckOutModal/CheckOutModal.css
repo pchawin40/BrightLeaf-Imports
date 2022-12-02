@@ -12,26 +12,26 @@ section.checkoutmodal.outer {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	position: relative;
 }
 
 /** Checkout Modal: Inner Section */
 section.checkoutmodal.inner {
-	height: 95%;
-	width: 95%;
+	height: 90%;
+	width: 90%;
 
 	margin: 0;
 	padding: 0;
 
-	position: relative;
-
 	display: grid;
-	grid-template-columns: auto 30%;
+	grid-template-columns: auto 25%;
+	grid-gap: 2vw;
 }
 
 section.checkoutmodal.inner > i {
 	position: absolute;
-	top: 1rem;
-	right: 1rem;
+	top: 3vh;
+	right: 1.5vw;
 }
 
 section.checkoutmodal.inner > i:hover {

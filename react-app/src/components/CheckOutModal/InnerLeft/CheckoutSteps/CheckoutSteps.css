@@ -1,1 +1,6 @@
 /* src/components/CheckOutModal/InnerLeft/CheckoutSteps/CheckoutSteps.css */
+
+/* Steps */
+.cil.lower.payment-method.true {
+	font-weight: bold;
+}

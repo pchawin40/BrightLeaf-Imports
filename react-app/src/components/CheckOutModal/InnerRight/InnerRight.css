@@ -1,1 +1,121 @@
 /* src/components/CheckOutModal/InnerRight/InnerRight.css */
+aside.checkoutmodal.right {
+	/* background-color: red; */
+
+	display: flex;
+	justify-content: center;
+}
+
+/** CheckoutModal: Inner Section: Right Aside: Inner */
+.cir.inner-main {
+	/* background-color: orange; */
+
+	width: 95%;
+	height: fit-content;
+
+	border-radius: 8px;
+
+	display: grid;
+	grid-template-rows: 10vh 1px auto;
+	align-items: center;
+	justify-content: space-evenly;
+
+	padding: 1vw;
+	padding-top: 0.5vw;
+	padding-bottom: 0;
+
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
+}
+
+.cir.inner-main > * {
+	/* margin: 16px; */
+}
+
+.cir.inner-main * {
+	margin: 0;
+	margin-bottom: 6px;
+	padding: 0;
+}
+
+/* Submit Container */
+.cir.submit-container {
+	/* background-color: pink; */
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+
+	margin-top: 1vh;
+}
+
+.cir.submit-container > button {
+	color: white;
+	background-color: #80ab63;
+
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.5vw 0;
+	font-size: 100%;
+	font-weight: bold;
+	letter-spacing: 0.1vw;
+	border: 3px solid #80ab63;
+	border-radius: 6px;
+
+	transition: all 0.4s ease;
+
+	text-transform: uppercase;
+
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.cir.submit-container > button:hover {
+	cursor: pointer;
+}
+
+.cir.submit-container > p {
+	font-size: 75%;
+}
+
+/* Line Span */
+.cir.inner > span:first-child {
+}
+
+/* Order Summary */
+.cir.order-summary {
+	/* background-color: gold; */
+
+	margin-top: 1vh;
+	margin-bottom: 1vh;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.cir.order-summary > h2 {
+	font-size: 125%;
+}
+
+p.cir.order-total,
+.cir.order-summary.inner > p {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 100%;
+}
+
+.cir.order-summary.inner > p.line-span-container {
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: auto 10%;
+}
+
+.cir.order-summary.inner > p.line-span-container * {
+	width: 100%;
+}
+
+p.cir.order-total > span {
+	font-weight: bold;
+	font-size: 125%;
+}

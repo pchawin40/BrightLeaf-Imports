@@ -1,1 +1,5 @@
 /* src/components/CheckOutModal/InnerLeft/InnerLeft.css */
+
+section.checkoutmodal.left {
+	background-color: cyan;
+}

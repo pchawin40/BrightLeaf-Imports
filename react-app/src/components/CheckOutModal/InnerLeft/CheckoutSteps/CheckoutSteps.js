@@ -3,13 +3,21 @@
 // import css
 import './CheckoutSteps.css';
 
+// import context
+import { useCheckOut } from '../../../../context/CheckOutContext';
+
 //? CheckoutSteps component
 const CheckoutSteps = () => {
+  /**
+  * Controlled inputs
+  */
+  const { currentStep, setCurrentStep } = useCheckOut();
+
   return (
     // Inner Section: Left: Lower: Checkout Steps Nav
     < section >
       {/* Step 1: Shipping Address */}
-      < figure className="cil lower shipping-address" >
+      < figure className={`cil lower payment-method ${currentStep >= 1}`} >
         <span>
           1
         </span>
@@ -19,7 +27,7 @@ const CheckoutSteps = () => {
       </figure >
 
       {/* Step 2: Payment Method */}
-      < figure className="cil lower payment-method" >
+      < figure className={`cil lower payment-method ${currentStep >= 2}`} >
         <span>
           2
         </span>
@@ -29,7 +37,7 @@ const CheckoutSteps = () => {
       </figure >
 
       {/* Step 3: Review items and shipping */}
-      < figure className="cil lower review-items" >
+      < figure className={`cil lower payment-method ${currentStep >= 3}`} >
         <span>
           3
         </span>
