@@ -80,6 +80,14 @@
 	color: black;
 }
 
+.cis.lower > span.no-display {
+	text-decoration: underline;
+}
+
+.cis.lower > span.no-display:hover {
+	cursor: pointer;
+}
+
 /* Cart List */
 .cis.order-carts.ul {
 	list-style-type: none;

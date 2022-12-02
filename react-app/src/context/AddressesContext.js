@@ -9,13 +9,15 @@ export const useAddress = () => useContext(AddressesContext);
 export default function AddressProvider({ children }) {
   // state for context
   const [addressLoaded, setAddressLoaded] = useState(false);
+  const [showAddressModal, setShowAddressModal] = useState(false);
 
   // Address Provider
   return (
     <>
       <AddressesContext.Provider
         value={{
-          addressLoaded, setAddressLoaded
+          addressLoaded, setAddressLoaded,
+          showAddressModal, setShowAddressModal
         }}
       >
         {children}

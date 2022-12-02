@@ -17,6 +17,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // import react
 import { useEffect, useState } from 'react';
+import { Modal } from '../../../../context/Modal';
+import AddressModal from './AddressModal';
 
 //? MAdrContent component
 const MAdrContent = () => {
@@ -24,6 +26,7 @@ const MAdrContent = () => {
    * Controlled inputs
    */
   const { addressLoaded, setAddressLoaded } = useAddress();
+  const { showAddressModal, setShowAddressModal } = useAddress();
 
   /**
    * Selector functions
@@ -50,12 +53,11 @@ const MAdrContent = () => {
       alert(`Address has been deleted`);
 
       if (addressId) {
-        // call on thunk to delete current user
+        // call on thunk to delete current address
         dispatch(addressActions.thunkDeleteAddress(addressId))
           .then(() => dispatch(addressActions.thunkGetUserAddresses()));
       }
     }
-    // call on dispatch
   }
 
   // function to load addresses if exists
@@ -104,6 +106,7 @@ const MAdrContent = () => {
                       {/* Edit */}
                       <span
                         className="madr li edit-address"
+                        onClick={_ => setShowAddressModal(true)}
                       >
                         Edit
                       </span>
@@ -143,11 +146,12 @@ const MAdrContent = () => {
             You haven't saved any addresses yet.
           </h2>
           {/* // TODO: To add address later */}
-          <NavLink
-            to=""
+          <span
+            className="no-display"
+            onClick={_ => setShowAddressModal(true)}
           >
             Add New Address
-          </NavLink>
+          </span>
         </>
       )
     }
@@ -180,7 +184,7 @@ const MAdrContent = () => {
           <button
             className="madr new-address"
             type="button"
-            onClick={null}
+            onClick={_ => setShowAddressModal(true)}
           >
             Add New Address
           </button>
@@ -191,6 +195,17 @@ const MAdrContent = () => {
           <span className='line-span AM' />
         </section>
       </section>
+
+      {/* Address Modal */}
+      {showAddressModal && (
+        <Modal
+          onClose={(_) => {
+            setShowAddressModal(false)
+          }}
+        >
+          <AddressModal />
+        </Modal>
+      )}
     </section>
   );
 };
