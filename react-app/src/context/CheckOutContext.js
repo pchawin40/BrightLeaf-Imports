@@ -9,13 +9,17 @@ export const useCheckOut = () => useContext(CheckOutContext);
 export default function CheckOutProvider({ children }) {
   // state for context
   const [showCheckoutModal, setShowCheckoutModal] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1);
+  const [checkoutReady, setCheckoutReady] = useState(false);
 
   // Checkout Provider
   return (
     <>
       <CheckOutContext.Provider
         value={{
-          showCheckoutModal, setShowCheckoutModal
+          showCheckoutModal, setShowCheckoutModal,
+          currentStep, setCurrentStep,
+          checkoutReady, setCheckoutReady
         }}
       >
         {children}
