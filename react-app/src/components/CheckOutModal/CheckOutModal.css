@@ -1,0 +1,10 @@
+/* src/components/CheckOutModal/CheckOutModal.css */
+
+/*? Checkout Modal: Outer Section */
+.checkoutmodal.outer-section {
+	background-color: white;
+	height: 100vh;
+	width: 100vw;
+}
+
+/** Checkout Modal: Inner Section */

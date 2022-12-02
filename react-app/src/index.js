@@ -28,6 +28,7 @@ import ProductUserProvider from './context/ProductUserContext';
 
 // import libraries
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import CheckOutProvider from './context/CheckOutContext';
 
 const store = configureStore();
 
@@ -43,7 +44,9 @@ ReactDOM.render(
                   <ProductProvider>
                     <ProductUserProvider>
                       <ShoppingCartProvider>
-                        <App />
+                        <CheckOutProvider>
+                          <App />
+                        </CheckOutProvider>
                       </ShoppingCartProvider>
                     </ProductUserProvider>
                   </ProductProvider>

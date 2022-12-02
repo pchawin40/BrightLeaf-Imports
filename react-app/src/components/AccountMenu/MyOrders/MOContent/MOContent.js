@@ -15,6 +15,7 @@ import * as productActions from '../../../../store/products';
 
 // import context
 import { useShoppingCart } from '../../../../context/ShoppingCartContext';
+import { useCheckOut } from '../../../../context/CheckOutContext';
 
 //? MOContent component
 const MOContent = () => {
@@ -22,6 +23,7 @@ const MOContent = () => {
    * Controlled inputs
    */
   const { cartLoaded, setCartLoaded } = useShoppingCart();
+  const { showCheckoutModal, setShowCheckoutModal } = useCheckOut();
 
   /**
    * Selector Functions
@@ -188,7 +190,10 @@ const MOContent = () => {
         </section>
 
         {/* Checkout */}
-        <button className="cis ul-checkout-button">
+        <button
+          className="cis ul-checkout-button"
+          onClick={_ => setShowCheckoutModal(true)}
+        >
           Check Out
         </button>
       </ul>

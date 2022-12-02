@@ -2,6 +2,8 @@
 
 // import context
 import { useNavHeader } from '../../../context/NavHeaderContext';
+import { useShoppingCart } from '../../../context/ShoppingCartContext';
+import { useCheckOut } from '../../../context/CheckOutContext';
 
 // import css
 import './ShoppingCartModal.css';
@@ -19,8 +21,6 @@ import * as productActions from '../../../store/products';
 
 // import libraries
 import { Animate, AnimateKeyframes, AnimateGroup } from "react-simple-animate";
-import { useShoppingCart } from '../../../context/ShoppingCartContext';
-
 
 //? ShoppingCartModal component
 const ShoppingCartModal = ({ setShowCartModal }) => {
@@ -30,6 +30,7 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
   const { loadCartModal, setLoadCartModal } = useNavHeader();
   const { cartLoaded, setCartLoaded } = useShoppingCart();
   const { cartDisplay, setCartDisplay } = useShoppingCart();
+  const { showCheckoutModal, setShowCheckoutModal } = useCheckOut();
 
   /**
    * Selector functions
@@ -265,7 +266,10 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
                     </span>
                   </section>
 
-                  <button id="scms-ul-checkout-button">
+                  <button
+                    id="scms-ul-checkout-button"
+                    onClick={_ => setShowCheckoutModal(true)}
+                  >
                     Check Out
                   </button>
                 </ul>

@@ -20,12 +20,14 @@ import MyAddresses from './components/AccountMenu/MyAddresses';
 import MyWishlist from './components/AccountMenu/MyWishlist';
 import MyAccount from './components/AccountMenu/MyAccount';
 import AccountProvider from './context/AccountMenuContext';
+import CheckOutModal from './components/CheckOutModal/CheckOutModal';
 
 // import context
 import { useNavRight } from './context/NavRightContext';
 import { useProduct } from './context/ProductContext';
 import { Modal } from './context/Modal';
 import { useAddress } from './context/AddressesContext';
+import { useCheckOut } from './context/CheckOutContext';
 
 // import react
 import React, { useState, useEffect } from 'react';
@@ -59,6 +61,7 @@ function App() {
   const { showNavModal, setShowNavModal } = useNavRight();
   const { showProductFormModal, setShowProductFormModal } = useProduct();
   const { addressLoaded, setAddressLoaded } = useAddress();
+  const { showCheckoutModal, setShowCheckoutModal } = useCheckOut();
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -144,6 +147,18 @@ function App() {
           }}
         >
           <ProductFormModal />
+        </Modal>
+      )}
+
+
+      {/* CheckoutModal (placing in App for AccountMenu and ShopCartModal) */}
+      {showCheckoutModal && (
+        <Modal
+          onClose={(_) => {
+            setShowCheckoutModal(false);
+          }}
+        >
+          <CheckOutModal />
         </Modal>
       )}
 
