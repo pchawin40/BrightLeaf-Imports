@@ -8,6 +8,12 @@ import { NavLink } from 'react-router-dom';
 
 //? MidFooterRight component
 const MidFooterRight = () => {
+
+  // function to handle subscribe to email
+  const handleSubscribe = () => {
+    
+  }
+
   return (
     <section id="mfr-section">
       {/* Help Section */}
@@ -93,7 +99,9 @@ const MidFooterRight = () => {
           <input
             placeholder="E-mail"
           />
-          <button>
+          <button
+
+          >
             Subscribe
           </button>
         </section>

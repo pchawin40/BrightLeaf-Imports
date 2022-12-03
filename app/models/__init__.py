@@ -6,3 +6,4 @@ from .review import Review
 from .shopping_cart import ShoppingCart
 from .product_users import ProductUser
 from .address import Address
+from .message import Message
