@@ -7,6 +7,16 @@ import './MidFooterRight.css';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+
+// function to validate subscription email
+export const validateSubscribeEmail = (email) => {
+  return String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};
+
 //? MidFooterRight component
 const MidFooterRight = () => {
 
@@ -32,7 +42,7 @@ const MidFooterRight = () => {
 
   // function to handle subscribe to email
   const handleSubscribe = async e => {
-    if (validateSubscribeEmail()) {
+    if (validateSubscribeEmail(subscribeEmail)) {
       const res = await fetch('/api/mail/subscribe', {
         method: 'POST',
         headers: {
@@ -50,15 +60,6 @@ const MidFooterRight = () => {
       window.alert(`Your email was not valid. We have not added this email to our newsletter sender. Thank you for understanding.`);
     }
   }
-
-  // function to validate subscription email
-  const validateSubscribeEmail = () => {
-    return String(subscribeEmail)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-  };
 
   return (
     <section id="mfr-section">
