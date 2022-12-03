@@ -7,7 +7,7 @@ import './InnerRight.css';
 import { useSelector } from 'react-redux';
 
 //import react-router-dom
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 // import context
 import { useCheckOut } from '../../../context/CheckOutContext';
@@ -111,6 +111,12 @@ const InnerRight = () => {
     );
   }
 
+  // function to open another webpage
+  const openInNewTab = (url) => {
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+    if (newWindow) newWindow.opener = null;
+  };
+
   // function to load step 2: Payment Method
   const loadPaymentMethodIR = () => {
     return (
@@ -124,9 +130,14 @@ const InnerRight = () => {
 
         {/* Quick Fine Line */}
         < p >
-          Continue to step 3 to finish checking out.
-          You'll have a chance to review and edit your order
-          before it's final.
+          By placing your order, you agree to Brightleaf Import's &nbsp;
+          <Link
+            to="/store-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Shipping and Return & Exchange Policy
+          </Link >
         </p >
       </>
     );
@@ -146,11 +157,13 @@ const InnerRight = () => {
         {/* Quick Fine Line */}
         < p >
           By placing your order, you agree to Brightleaf Import's &nbsp;
-          < NavLink
-            to="/shipping-returns"
+          <Link
+            to="/store-policy"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Shipping and Return & Exchange Policy
-          </NavLink >
+          </Link >
         </p >
       </>
     );

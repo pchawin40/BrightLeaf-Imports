@@ -26,7 +26,7 @@ def post_stripe_charge():
     
     if os.environ.get('FLASK_ENV') == 'production':
       # if development mode, set it to port
-      url = "https://brightleaf-imports.herokuapp.com/"
+      url = os.environ.get('PUBLIC_SITE_URL')
     else:
       # otherwise set it to official website
       url = "http://localhost:3000/"
