@@ -46,6 +46,7 @@ import * as reviewActions from './store/reviews';
 import * as userActions from './store/users';
 import * as productUserActions from './store/productUser';
 import * as addressActions from './store/address';
+import AddressModal from './components/AccountMenu/MyAddresses/MAdrContent/AddressModal';
 
 function App() {
   /**
@@ -62,6 +63,8 @@ function App() {
   const { showProductFormModal, setShowProductFormModal } = useProduct();
   const { addressLoaded, setAddressLoaded } = useAddress();
   const { showCheckoutModal, setShowCheckoutModal } = useCheckOut();
+  const { showAddressModal, setShowAddressModal } = useAddress();
+  const { currentAddressId, setCurrentAddressId } = useAddress();
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -159,6 +162,19 @@ function App() {
           }}
         >
           <CheckOutModal />
+        </Modal>
+      )}
+
+      {/* Address Modal */}
+      {showAddressModal && (
+        <Modal
+          onClose={(_) => {
+            setShowAddressModal(false);
+            setCurrentAddressId(null);
+          }}
+          currentVisible={false}
+        >
+          <AddressModal currentAddressId={currentAddressId} setCurrentAddressId={setCurrentAddressId} />
         </Modal>
       )}
 

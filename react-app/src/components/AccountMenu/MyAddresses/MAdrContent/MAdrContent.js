@@ -27,7 +27,7 @@ const MAdrContent = () => {
    */
   const { addressLoaded, setAddressLoaded } = useAddress();
   const { showAddressModal, setShowAddressModal } = useAddress();
-  const [currentAddressId, setCurrentAddressId] = useState(null);
+  const { currentAddressId, setCurrentAddressId } = useAddress();
 
   /**
    * Selector functions
@@ -207,7 +207,7 @@ const MAdrContent = () => {
       </section>
 
       {/* Address Modal */}
-      {showAddressModal && (
+      {/* {showAddressModal && (
         <Modal
           onClose={(_) => {
             setShowAddressModal(false);
@@ -217,7 +217,7 @@ const MAdrContent = () => {
         >
           <AddressModal currentAddressId={currentAddressId} setCurrentAddressId={setCurrentAddressId} />
         </Modal>
-      )}
+      )} */}
     </section>
   );
 };

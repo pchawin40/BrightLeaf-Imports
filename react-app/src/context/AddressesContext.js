@@ -11,6 +11,7 @@ export default function AddressProvider({ children }) {
   const [addressLoaded, setAddressLoaded] = useState(false);
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState(null);
+  const [currentAddressId, setCurrentAddressId] = useState(null);
 
   // Address Provider
   return (
@@ -19,7 +20,8 @@ export default function AddressProvider({ children }) {
         value={{
           addressLoaded, setAddressLoaded,
           showAddressModal, setShowAddressModal,
-          selectedAddress, setSelectedAddress
+          selectedAddress, setSelectedAddress,
+          currentAddressId, setCurrentAddressId
         }}
       >
         {children}

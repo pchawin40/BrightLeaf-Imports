@@ -16,17 +16,19 @@ import './AddressModal.css';
 import * as addressActions from '../../../../../store/address';
 
 //? AddressModal component
-const AddressModal = ({ currentAddressId, setCurrentAddressId }) => {
-  /**
-   * Selector functions
-   */
-  const currentAddressById = useSelector(addressActions.getCurrentAddressById(currentAddressId));
+const AddressModal = () => {
 
   /**
    * Controlled inputs
    */
   const { showAddressModal, setShowAddressModal } = useAddress();
+  const { currentAddressId, setCurrentAddressId } = useAddress();
   const [editAddress, setEditAddress] = useState(false);
+
+  /**
+   * Selector functions
+   */
+  const currentAddressById = useSelector(addressActions.getCurrentAddressById(currentAddressId));
 
   // Company Name & Length
   const [companyName, setCompanyName] = useState(
@@ -354,6 +356,7 @@ const AddressModal = ({ currentAddressId, setCurrentAddressId }) => {
               setEditAddress(false);
               setCurrentAddressId(null);
               setShowAddressModal(false);
+              console.log('click');
               document.body.style.overflowY = "scroll";
             }}
           />
