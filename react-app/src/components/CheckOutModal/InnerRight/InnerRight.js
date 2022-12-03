@@ -3,11 +3,24 @@
 // import css
 import './InnerRight.css';
 
+// import react-redux
+import { useSelector } from 'react-redux';
+
 //import react-router-dom
 import { NavLink } from 'react-router-dom';
+
+// import context
 import { useCheckOut } from '../../../context/CheckOutContext';
+
+// import react
 import { useEffect } from 'react';
+
+// import component
 import PaymentForm from '../InnerLeft/PaymentMethod/PaymentForm';
+
+// import store
+import * as shoppingCartActions from '../../../store/shoppingCarts';
+import * as productActions from '../../../store/products';
 
 //? InnerRight component
 const InnerRight = () => {
@@ -18,12 +31,40 @@ const InnerRight = () => {
   const { stripeLoaded, setStripeLoaded } = useCheckOut();
 
   /**
+   * Selector functions
+   */
+  const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
+  const currentProducts = useSelector(productActions.getCurrentProducts);
+
+  /**
   * UseEffect
   */
   // per general
   useEffect(() => {
     // nothing for now
   }, [currentStep]);
+
+  // function to get price of cart item
+  const getCartItemPrice = (cartItem) => {
+    // given cart item, get the quantity
+    const cartItemQuantity = cartItem.quantity;
+    // find product's price
+    const cartItemPrice = Object.values(currentProducts).find(product => product.id === cartItem.product_id).price;
+
+    return Math.ceil(((cartItemQuantity * cartItemPrice) * 100) / 100);
+  }
+
+  // function to get price of cart total
+  const getCartTotal = () => {
+    // for every cart item, invoke getCartItemPrice to find the cart item price
+    let total = 0;
+
+    Object.values(currentUserCarts).map(cart => {
+      total += Math.ceil((getCartItemPrice(cart) * 100) / 100);
+    });
+
+    return total;
+  }
 
   // function to load inner right content container
   const loadInnerRightContent = () => {
@@ -143,7 +184,7 @@ const InnerRight = () => {
                 Items:
               </span>
               <span>
-                $USD
+                {` $ ${getCartTotal()} USD`}
               </span>
             </p>
 
@@ -153,7 +194,7 @@ const InnerRight = () => {
                 Shipping & handling:
               </span>
               <span>
-                $USD
+                {` $ ${0} USD`}
               </span>
             </p>
 
@@ -168,7 +209,7 @@ const InnerRight = () => {
                 Total before tax:
               </span>
               <span>
-                $USD
+                {` $ ${getCartTotal()} USD`}
               </span>
             </p>
 
@@ -178,7 +219,7 @@ const InnerRight = () => {
                 Estimated tax to be collected:
               </span>
               <span>
-                $USD
+                {` $ ${0} USD`}
               </span>
             </p>
 
@@ -192,7 +233,7 @@ const InnerRight = () => {
               Order total:
             </span>
             <span>
-              $USD
+              {` $ ${getCartTotal()} USD`}
             </span>
           </p>
 

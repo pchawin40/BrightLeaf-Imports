@@ -22,6 +22,15 @@ def post_stripe_charge():
   
   #* update user
   if form.validate_on_submit():
+    url = ""
+    
+    if os.environ.get('FLASK_ENV') == 'production':
+      # if development mode, set it to port
+      url = "https://brightleaf-imports.herokuapp.com/"
+    else:
+      # otherwise set it to official website
+      url = "http://localhost:3000/"
+    
     session = stripe.checkout.Session.create(
       line_items=[
         {
@@ -34,8 +43,8 @@ def post_stripe_charge():
         },
         ],
       mode="payment",
-      success_url="http://localhost:5000/success",
-      cancel_url="http://localhost:5000/cancel",
+      success_url=url,
+      cancel_url=url,
     )
 
     return {"session_url": session.url}
