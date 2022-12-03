@@ -124,6 +124,9 @@ const LeftAMN = () => {
             userPicLoading ? (
               <figure
                 className="lamn custom outer-figure"
+                style={{
+                  backgroundColor: 'rgb(0, 0, 0, 0)'
+                }}
               >
                 <figure
                   className="lamn custom-user-pic"

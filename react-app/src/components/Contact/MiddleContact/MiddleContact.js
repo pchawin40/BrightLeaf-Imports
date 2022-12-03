@@ -104,6 +104,8 @@ const MiddleContact = () => {
     e.preventDefault();
 
     if (validateContactInformation()) {
+      
+      
       const res = await fetch('/api/mail/contact', {
         method: 'POST',
         headers: {
@@ -116,10 +118,17 @@ const MiddleContact = () => {
           message
         })
       });
-
+      
       if (res.ok) {
+        // reset form information
+        setName("")
+        setPhone("")
+        setEmail("")
+        setMessage("")
+        
         window.alert(`Thank you for contacting us. We have received your email.`);
       }
+
     } else {
       window.alert(`Your email was not valid. Please try again with valid email. Thank you for understanding.`);
     }
