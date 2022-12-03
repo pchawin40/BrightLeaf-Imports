@@ -41,6 +41,25 @@
 	font-weight: bold;
 }
 
+.asterisk {
+	padding-left: 6px;
+}
+
+.asterisk.valid {
+	color: black;
+}
+
+.asterisk.invalid {
+	color: red;
+}
+
+p.invalid.email {
+	color: red;
+	margin: 0;
+	margin-top: 1%;
+	margin-left: 1%;
+}
+
 .mcs.input {
 	border: none;
 	margin-top: 18px;
@@ -103,17 +122,27 @@
 	font-family: questrial, sans-serif;
 	font-weight: 900;
 	letter-spacing: 0.1vw;
-	border: 3px solid #80ab63;
 
 	transition: all 0.4s ease;
 
 	text-transform: uppercase;
 
+	text-decoration: none;
+}
+
+.mcs.input.submit-button.valid {
+	border: 3px solid #80ab63;
 	color: white;
 	background-color: #80ab63;
 }
 
-.mcs.input.submit-button:hover {
+.mcs.input.submit-button.invalid {
+	border: 3px solid rgb(66, 66, 66, 0.06);
+	color: black;
+	background-color: rgb(66, 66, 66, 0.06);
+}
+
+.mcs.input.submit-button.valid:hover {
 	cursor: pointer;
 }
 

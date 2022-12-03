@@ -71,12 +71,39 @@ const MiddleContact = () => {
     setMessageLength(e.target.value.length);
   }
 
+  // function to handle name validation
+  const validateContactName = () => name.trim().length > 0;
+
+  // function to handle message validation
+  const validateMessageValidation = () => message.trim().length > 0;
+
+  // function to handle length validation
+  const validateLengthValidation = () => {
+    return (
+      emailLength > 0 && nameLength > 0 && messageLength > 0
+    )
+  }
+
+  // function to handle contact form validation
+  const validateContactInformation = () => {
+    if (
+      (validateSubscribeEmail(email) || emailLength === 0)
+      &&
+      (validateContactName() || nameLength === 0)
+      &&
+      (validateMessageValidation() || messageLength === 0)
+    ) {
+      return true;
+    }
+    return false;
+  }
+
   // function to handle contact form submit
   const handleContactSubmit = async e => {
     // prevent page from refreshing
     e.preventDefault();
 
-    if (validateSubscribeEmail(email)) {
+    if (validateContactInformation()) {
       const res = await fetch('/api/mail/contact', {
         method: 'POST',
         headers: {
@@ -125,7 +152,12 @@ const MiddleContact = () => {
       >
         {/* Name */}
         <label>
-          Enter Your Name *
+          Enter Your Name
+          <span
+            className={`asterisk ${validateContactName() ? "valid" : "invalid"}`}
+          >
+            * (requires)
+          </span>
         </label>
         <input
           placeholder="Full Name"
@@ -151,7 +183,17 @@ const MiddleContact = () => {
           {/* Email */}
           <figure>
             <label>
-              Enter Your Email *
+              Enter Your Email
+              <span
+                className={`asterisk ${email.trim().length > 0 ? "valid" : "invalid"}`}
+              >
+                *
+                <span
+                  className={`asterisk ${validateSubscribeEmail(email) ? "valid" : "invalid"}`}
+                >
+                  (Must be valid email)
+                </span>
+              </span>
             </label>
             <input
               placeholder="Email Address"
@@ -164,7 +206,12 @@ const MiddleContact = () => {
 
         {/* Message */}
         <label>
-          Enter Your Message *
+          Enter Your Message
+          <span
+            className={`asterisk ${validateMessageValidation() ? "valid" : "invalid"}`}
+          >
+            * (requires)
+          </span>
         </label>
         <textarea
           placeholder="Write Your Request"
@@ -175,8 +222,20 @@ const MiddleContact = () => {
 
         <figure className="mcs label submit-figure">
           <button
-            className="mcs input submit-button"
-            type="submit"
+            className={`
+            mcs
+            input
+            submit-button
+            ${validateContactInformation()
+                &&
+                validateLengthValidation()
+                ?
+                "valid"
+                :
+                "invalid"
+              }
+            `}
+            type={validateContactInformation() ? "submit" : "button"}
           >
             Submit
           </button>

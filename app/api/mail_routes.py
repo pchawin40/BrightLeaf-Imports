@@ -53,7 +53,8 @@ def post_contact_from_user():
         connection.sendmail(from_addr=email_address, to_addrs=email_address,
         msg=f"""subject:Contact from Customer \n\n 
         Client contact: {form.data['name']} (phone: {form.data['phone']}) inquires:\n\n
-        Message: \n{form.data['message']}
+        Message:
+        {form.data['message']}
         """)
 
         # send a copy to client
