@@ -34,8 +34,8 @@ def post_stripe_charge():
         },
         ],
       mode="payment",
-      success_url="http://localhost:5000/success.html",
-      cancel_url="http://localhost:5000/cancel.html",
+      success_url="http://localhost:5000/success",
+      cancel_url="http://localhost:5000/cancel",
     )
 
     return {"session_url": session.url}

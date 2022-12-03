@@ -220,7 +220,15 @@ function App() {
           <StorePolicy />
         </Route>
 
+        {/* //TODO: To provide page for success and close */}
         {/* Cancel/Success Route  */}
+        <Route path='/success'>
+          TBD
+        </Route>
+
+        <Route path='/close'>
+          TBD
+        </Route>
 
         {/* //? Account Menu */}
         <AccountProvider>
