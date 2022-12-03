@@ -1,6 +1,6 @@
 import os
 import smtplib 
-
+from app.models import User, db
 from flask import Blueprint, jsonify, request
 from flask import Flask 
 from app.forms import EmailForm
@@ -71,5 +71,39 @@ def post_contact_from_user():
         """)
 
         return "Email sent successfully"
+      return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return {'errors': [f"Email was not sent successfully"]}, 404
+
+#* POST: /api/mail/forgot_password
+@mail_routes.route('/forgot_password', methods=['POST'])
+def post_password_recovery():
+    """
+    POST: Method for sending password recovery
+    """
+    
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as connection:  
+      form = EmailForm()
+      
+      # validate csrf token
+      form['csrf_token'].data = request.cookies['csrf_token']
+      
+      if form.validate_on_submit():
+        # check if user is found
+        user = User.query.filter(User.email == form.data['email']).first()
+        
+        # if not found, throw an appropriate error
+        if user == None:
+          return {'errors': [f"Email does not exist in our database."]}, 404
+        else:
+          # if found, proceed to send to email
+          email_address = os.environ.get('EMAIL_USER')
+          email_password = os.environ.get('EMAIL_PASSWORD')
+          connection.login(email_address, email_password )
+          connection.sendmail(from_addr=email_address, to_addrs=form.data['email'],
+          msg=f"""subject:Password Recovery \n\n 
+          Hello, please enter this code validation to reset your password: 1234
+          """)
+
+          return "Email sent successfully"
       return {'errors': validation_errors_to_error_messages(form.errors)}, 401
     return {'errors': [f"Email was not sent successfully"]}, 404

@@ -36,6 +36,7 @@ const NavHeader = () => {
   const { loadCartModal, setLoadCartModal } = useNavHeader();
   const { showNavModal, setShowNavModal } = useNavRight();
   const { currentPage, setCurrentPage } = useNavHeader();
+  const { emailStep, setEmailStep } = useNavHeader();
 
   /**
   * Selector functions
@@ -109,6 +110,7 @@ const NavHeader = () => {
           onClose={(_) => {
             setShowUserModal(false);
             dispatch(shoppingCartActions.thunkGetSessionUserCarts());
+            setEmailStep(0);
             document.body.style.overflowY = "scroll"
           }}
         >

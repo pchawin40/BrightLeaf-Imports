@@ -10,6 +10,7 @@ import './UserModal.css';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import ForgotPasswordForm from './ForgotPasswordForm';
+import EmailVerification from './EmailVerification';
 
 // import context
 import { useNavHeader } from '../../../context/NavHeaderContext';
@@ -41,6 +42,7 @@ const UserModal = () => {
   const [userSignUp, setUserSignUp] = useState(false);
   const { forgotPassword, setForgotPassword } = useNavHeader();
   const { showUserModal, setShowUserModal } = useNavHeader();
+  const { emailStep, setEmailStep } = useNavHeader();
 
   /**
    * UseEffect
@@ -48,7 +50,7 @@ const UserModal = () => {
   // per general
   useEffect(() => {
     // nothing for now
-  }, [currentUserInfo]);
+  }, [currentUserInfo, emailStep]);
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -141,9 +143,21 @@ const UserModal = () => {
                 :
                 (
                   forgotPassword ?
-                    <>
-                      Create New Password
-                    </>
+                    emailStep === 0
+                      ?
+                      <>
+                        Create New Password
+                      </>
+                      :
+                      emailStep === 1
+                        ?
+                        <>
+                          Enter Email Verification
+                        </>
+                        :
+                        <>
+                          Enter New Password
+                        </>
                     :
                     <>
                       Log In
@@ -169,11 +183,27 @@ const UserModal = () => {
               (
                 forgotPassword
                   ?
-                  <section id="ums-toggle-section">
-                    <p id="ums-ts-cnp">
-                      Please enter your email address
-                    </p>
-                  </section>
+                  emailStep === 0
+                    ?
+                    <section id="ums-toggle-section">
+                      <p id="ums-ts-cnp">
+                        Please enter your email address
+                      </p>
+                    </section>
+                    :
+                    emailStep === 1
+                      ?
+                      <section id="ums-toggle-section">
+                        <p id="ums-ts-cnp">
+                          Please enter code verification
+                        </p>
+                      </section>
+                      :
+                      <section id="ums-toggle-section">
+                        <p id="ums-ts-cnp">
+                          Please enter new password
+                        </p>
+                      </section>
                   :
                   <section id="ums-toggle-section">
                     <p>
@@ -199,7 +229,16 @@ const UserModal = () => {
               (
                 forgotPassword
                   ?
-                  <ForgotPasswordForm />
+                  emailStep === 0
+                    ?
+                    <ForgotPasswordForm />
+                    :
+                    emailStep === 1
+                      ?
+                      <EmailVerification />
+                      :
+                      <>
+                      </>
                   :
                   <LoginForm />
               )
@@ -215,6 +254,7 @@ const UserModal = () => {
           onClick={_ => {
             setShowUserModal(false);
             setForgotPassword(false);
+            setEmailStep(0);
             document.body.style.overflowY = "scroll"
           }}
         />
