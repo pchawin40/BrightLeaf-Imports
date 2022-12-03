@@ -1,0 +1,12 @@
+/* src/components/CheckOutModal/InnerLeft/Paymentmethod/PaymentForm/PaymentForm.css */
+iframe.payment-form {
+	height: 98%;
+	width: 99%;
+
+	margin: 0;
+	padding: 0;
+
+	margin-right: 16px;
+
+	border: none;
+}

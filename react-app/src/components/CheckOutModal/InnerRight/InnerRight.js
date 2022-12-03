@@ -7,6 +7,7 @@ import './InnerRight.css';
 import { NavLink } from 'react-router-dom';
 import { useCheckOut } from '../../../context/CheckOutContext';
 import { useEffect } from 'react';
+import PaymentForm from '../InnerLeft/PaymentMethod/PaymentForm';
 
 //? InnerRight component
 const InnerRight = () => {
@@ -14,6 +15,7 @@ const InnerRight = () => {
   * Controlled inputs
   */
   const { currentStep, setCurrentStep } = useCheckOut();
+  const { stripeLoaded, setStripeLoaded } = useCheckOut();
 
   /**
   * UseEffect
@@ -35,14 +37,14 @@ const InnerRight = () => {
     // if step 2, return payment method
     if (currentStep === 2) {
       return (
-        loadPaymentMethodIR()
+        loadReviewItemsIR()
       );
     }
 
     // if step 3, return review items and shipping
     if (currentStep === 3) {
       return (
-        loadReviewItemsIR()
+        loadPaymentMethodIR()
       );
     }
   }
@@ -74,9 +76,9 @@ const InnerRight = () => {
       <>
         {/* Place Order */}
         < button
-          onClick={_ => setCurrentStep(currentStep => currentStep + 1)}
+          className={`stripe ${stripeLoaded}`}
         >
-          Use this payment method
+          Checkout
         </button >
 
         {/* Quick Fine Line */}
@@ -94,8 +96,10 @@ const InnerRight = () => {
     return (
       <>
         {/* Place Order */}
-        < button >
-          Place Order
+        < button
+          onClick={_ => setCurrentStep(currentStep => currentStep + 1)}
+        >
+          Proceed to Payment
         </button >
 
         {/* Quick Fine Line */}

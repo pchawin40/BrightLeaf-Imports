@@ -33,12 +33,10 @@ const MainShopProduct = () => {
   const [nextProduct, setNextProduct] = useState(null);
   const [productLoaded, setProductLoaded] = useState(false);
   const [currentImageId, setCurrentImageId] = useState(null);
-  const currentUserId = useSelector(sessionActions.getCurrentUserId);
-  const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
   const { showUserModal, setShowUserModal } = useNavHeader();
   const { showProductFormModal, setShowProductFormModal } = useProduct();
   const { editProduct, setEditProduct } = useProduct();
-
+  
   /**
    * Selector functions
    */
@@ -47,7 +45,9 @@ const MainShopProduct = () => {
   const currentImagesByProductId = useSelector(imageActions.getCurrentImagesByProductId(currentProductId));
   const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
   const currentLikeByProductId = useSelector(productUserActions.getCurrentLikeByProductId(currentProductId));
-
+  const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
+  const currentUserId = useSelector(sessionActions.getCurrentUserId);
+  
   /**
    * UseEffect
    */

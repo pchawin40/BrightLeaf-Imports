@@ -38,7 +38,7 @@ const CheckoutSteps = () => {
           2
         </span>
         <span>
-          Payment Method
+          Review Items and Shipping
         </span>
       </figure >
 
@@ -51,7 +51,7 @@ const CheckoutSteps = () => {
           3
         </span>
         <span>
-          Review Items and Shipping
+          Payment and Confirmation
         </span>
       </figure >
     </section >

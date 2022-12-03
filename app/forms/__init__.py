@@ -8,3 +8,4 @@ from .shopping_cart_form import ShoppingCartForm
 from .password_form import PasswordForm
 from .product_user_form import ProductUserForm
 from .address_form import AddressForm
+from .stripe_form import StripeForm

@@ -3,7 +3,7 @@ from flask import Blueprint
 
 map_routes = Blueprint('maps', __name__)
 
-#* GET: /api/maps/key
+#* POST: /api/maps/key
 @map_routes.route('/key', methods=['POST'])
 def post_map_key():
   """

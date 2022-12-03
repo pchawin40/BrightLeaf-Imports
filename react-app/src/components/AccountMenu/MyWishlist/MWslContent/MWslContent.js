@@ -37,7 +37,7 @@ const MWslContent = () => {
   const currentUserId = useSelector(sessionActions.getCurrentUserId);
   const currentProductsUserLikes = useSelector(productUserActions.getCurrentProductsUserLikes(currentUserId));
   const currentProductsIdsUserLikes = useSelector(productUserActions.getCurrentProductsIdsUserLikes(currentUserId));
-  const currentProductLikes = useSelector(productActions.getCurrentProductLikes(currentProductsIdsUserLikes));
+  const currentProductLikes = useSelector(productActions.getCurrentProductsByIds(currentProductsIdsUserLikes));
 
   /**
    * UseEffect

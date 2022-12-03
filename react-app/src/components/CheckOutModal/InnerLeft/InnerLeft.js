@@ -73,12 +73,12 @@ const InnerLeft = () => {
 
     // if step 2, return payment method
     if (currentStep === 2) {
-      return <PaymentMethod />
+      return <ReviewItems />
     }
-
+    
     // if step 3, return review items and shipping
     if (currentStep === 3) {
-      return <ReviewItems />
+      return <PaymentMethod />
     }
   }
 

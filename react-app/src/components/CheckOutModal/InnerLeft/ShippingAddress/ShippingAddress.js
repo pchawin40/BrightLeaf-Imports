@@ -126,7 +126,7 @@ const ShippingAddress = () => {
   }
 
   return (
-    <section className="cil sa">
+    <section className="cil main-content sa">
       <h2>
         My Saved Address
       </h2>
@@ -147,9 +147,7 @@ const ShippingAddress = () => {
       </figure>
 
       {/* line span */}
-      {/* <figure> */}
       <span className='line-span cil' />
-      {/* </figure> */}
 
       {/* Use This Address Button */}
       <figure>

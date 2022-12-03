@@ -220,6 +220,8 @@ function App() {
           <StorePolicy />
         </Route>
 
+        {/* Cancel/Success Route  */}
+
         {/* //? Account Menu */}
         <AccountProvider>
           {/* My Orders */}
