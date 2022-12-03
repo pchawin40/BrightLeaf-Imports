@@ -1,12 +1,23 @@
 // src/components/CheckOutModal/InnerLeft/InnerLeft.js
 
 // import css
-import { useCheckOut } from '../../../context/CheckOutContext';
-import CheckoutSteps from './CheckoutSteps';
 import './InnerLeft.css';
+
+// import react-redux
+import { useSelector } from 'react-redux';
+
+// import context
+import { useCheckOut } from '../../../context/CheckOutContext';
+
+// import component
+import CheckoutSteps from './CheckoutSteps';
 import PaymentMethod from './PaymentMethod';
 import ReviewItems from './ReviewItems';
 import ShippingAddress from './ShippingAddress';
+
+// import store
+import * as shoppingCartActions from '../../../store/shoppingCarts';
+import { useEffect } from 'react';
 
 //? InnerLeft component
 const InnerLeft = () => {
@@ -18,10 +29,15 @@ const InnerLeft = () => {
   /**
    * Selector functions
    */
+  const currentItemsQuantity = useSelector(shoppingCartActions.getCurrentItemsQuantity);
 
   /**
    * UseEffect
    */
+  // per general
+  useEffect(() => {
+    // nothing for now
+  }, [currentItemsQuantity]);
 
 
   // function to load button to go back or forward
@@ -80,7 +96,13 @@ const InnerLeft = () => {
             Checkout
             (
             <span>
-              n items
+              {
+                currentItemsQuantity <= 1
+                  ?
+                  `${currentItemsQuantity} item`
+                  :
+                  `${currentItemsQuantity} items`
+              }
             </span>
             )
           </h1>

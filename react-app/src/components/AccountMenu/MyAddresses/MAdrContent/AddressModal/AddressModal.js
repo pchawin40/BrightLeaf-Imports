@@ -356,7 +356,6 @@ const AddressModal = () => {
               setEditAddress(false);
               setCurrentAddressId(null);
               setShowAddressModal(false);
-              console.log('click');
               document.body.style.overflowY = "scroll";
             }}
           />
