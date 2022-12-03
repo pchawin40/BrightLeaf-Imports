@@ -56,7 +56,7 @@
 
 .lf-container > p {
 	color: red;
-	font-size: x-small;
+	font-size: 100%;
 }
 
 #lf-password-container {

@@ -28,7 +28,9 @@ import { useGoogleLogin } from '@react-oauth/google';
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState(null);
   const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState(null);
   const { forgotPassword, setForgotPassword } = useNavHeader();
   const { showUserModal, setShowUserModal } = useNavHeader();
   const key = useSelector(mapActions.getMapKey);
@@ -44,7 +46,16 @@ const LoginForm = () => {
   useEffect(() => {
     // nothing for now
     if (!key) dispatch(mapActions.getKey());
-  }, [email, password, key]);
+
+    if (emailError) {
+      console.log('emailError', emailError);
+    }
+
+    if (passwordError) {
+      console.log('passwordError', passwordError);
+    }
+
+  }, [email, password, key, errors, emailError, passwordError]);
 
   //* Google API: function to handle google login
   const handleGoogleLogin = useGoogleLogin({
@@ -81,10 +92,27 @@ const LoginForm = () => {
     // TODO: To handle log in properly
     e.preventDefault();
     const data = await dispatch(sessionActions.login(email, password))
-      .then(() => setShowUserModal(false));
-    if (data) {
-      setErrors(data);
-    }
+      .then(res => {
+        if (res) {
+          res.map(data => {
+            // if email error exists
+            if (data.email) {
+              setEmailError(data.email);
+            }
+
+            // if password error exists
+            if (data.password) {
+              if (data.password === 'No such user exists.') {
+                setPasswordError('');
+              } else {
+                setPasswordError(data.password);
+              }
+            }
+          });
+        } else {
+          setShowUserModal(false)
+        }
+      })
   };
 
   // function to update email
@@ -127,6 +155,16 @@ const LoginForm = () => {
           value={email}
           onChange={updateEmail}
         />
+        {/* if password have error, display password error here */}
+        {
+          emailError
+          &&
+          <p id="suf-errors-container login">
+            {
+              emailError
+            }
+          </p>
+        }
       </div>
 
       <div id="lf-password-container" className="lf-container">
@@ -137,6 +175,16 @@ const LoginForm = () => {
           value={password}
           onChange={updatePassword}
         />
+        {/* if password have error, display password error here */}
+        {
+          passwordError
+          &&
+          <p id="suf-errors-container login">
+            {
+              passwordError
+            }
+          </p>
+        }
       </div>
 
       {/* Check if there are length in log in */}
