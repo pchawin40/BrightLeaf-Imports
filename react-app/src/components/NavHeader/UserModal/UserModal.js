@@ -68,6 +68,16 @@ const UserModal = () => {
         id="logged-user-modal-section"
       >
         <ul id="logged-ums-ul">
+          {/* Home Page */}
+          <li
+            onClick={_ => {
+              setShowUserModal(false);
+              return history.push('/')
+            }}
+          >
+            Home Page
+          </li>
+
           {/* My Orders */}
           <li
             onClick={_ => {
