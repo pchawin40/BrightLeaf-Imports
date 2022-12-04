@@ -11,6 +11,7 @@ import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import ForgotPasswordForm from './ForgotPasswordForm';
 import EmailVerification from './EmailVerification';
+import ResetPasswordForm from './ResetPasswordForm';
 
 // import context
 import { useNavHeader } from '../../../context/NavHeaderContext';
@@ -237,8 +238,7 @@ const UserModal = () => {
                       ?
                       <EmailVerification />
                       :
-                      <>
-                      </>
+                      <ResetPasswordForm />
                   :
                   <LoginForm />
               )

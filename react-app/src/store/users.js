@@ -70,6 +70,7 @@ export const thunkEditUser = (userInfo, userId) => async (dispatch) => {
 
 /* --------- SELECTOR FUNCTIONS -------- */
 export const getCurrentUsers = state => Object.values(state.users);
+export const getCurrentUserByEmail = emailToReset => state => Object.values(state.users).find(user => user.email === emailToReset);
 
 /* --------- REDUCERS -------- */
 const initialState = {}

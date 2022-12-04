@@ -19,6 +19,7 @@ const ForgotPasswordForm = () => {
   const [messageFromServer, setMessageFromServer] = useState('');
   const [showNullError, setShowNullError] = useState(false);
   const { emailStep, setEmailStep } = useNavHeader();
+  const { emailToReset, setEmailToReset } = useNavHeader();
 
   /**
    * UseEffect
@@ -49,6 +50,7 @@ const ForgotPasswordForm = () => {
 
       if (res.ok) {
         // set email step to next: email verification
+        setEmailToReset(email);
         setEmailStep(1);
       } else {
         const emailErrorData = await res.json();

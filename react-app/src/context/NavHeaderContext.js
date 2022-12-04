@@ -18,6 +18,7 @@ export default function NavHeaderProvider({ children }) {
   const [footerColor, setFooterColor] = useState('white');
   const [footerRect, setFooterRect] = useState(0);
   const [emailStep, setEmailStep] = useState(0);
+  const [emailToReset, setEmailToReset] = useState("");
 
   const prevScrollY = useRef(0);
   // function to handle changing of background based on y scroll position
@@ -158,7 +159,8 @@ export default function NavHeaderProvider({ children }) {
           currentPage, setCurrentPage,
           footerColor, setFooterColor,
           footerRect, setFooterRect,
-          emailStep, setEmailStep
+          emailStep, setEmailStep,
+          emailToReset, setEmailToReset
         }}
       >
         {children}
