@@ -9,3 +9,4 @@ from .email_form import EmailForm
 from .product_user_form import ProductUserForm
 from .address_form import AddressForm
 from .stripe_form import StripeForm
+from .custom_login_form import CustomLoginForm

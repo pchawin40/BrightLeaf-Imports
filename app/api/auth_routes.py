@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request, current_app
 from app.models import User, db
-from app.forms import LoginForm, SignUpForm
+from app.forms import LoginForm, SignUpForm, CustomLoginForm
 from flask_login import current_user, login_user, logout_user, login_required
 
 auth_routes = Blueprint('auth', __name__)
@@ -32,17 +32,59 @@ def login():
     """
     Logs a user in
     """
-    form = LoginForm()
+    loginForm = LoginForm()
+    
+    # Get the csrf_token from the request cookie and put it into the
+    # form manually to validate_on_submit can be used
+    loginForm['csrf_token'].data = request.cookies['csrf_token']
+        
+    if loginForm.validate_on_submit():
+        # Add the user to the session, we are logged in!
+        user = User.query.filter(User.email == loginForm.data['email']).first()
+        login_user(user)
+        return user.to_dict()
+
+    return {'errors': validation_errors_to_error_messages(loginForm.errors)}, 401
+
+
+#* POST: /api/custom_api/login
+@auth_routes.route('/custom_api/login', methods=['POST'])
+def custom_api_login():
+    """
+    Logs a user in
+    """
+    form = CustomLoginForm()
+    
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
+        
     if form.validate_on_submit():
+        # check if id already exists
+        external_user = User.query.filter(User.email == form.data['email']).first()
+        
+        # if not, proceed to signup user
+        if(external_user == None):
+            new_external_user = User(
+                username=form.data['name'],
+                profile_picture=form.data['profile_picture'],
+                email=form.data['email'],
+                password="complex_password_123",
+                role="user",
+                login_by=form.data['login_by']
+            )
+            
+            db.session.add(new_external_user)
+            db.session.commit()
+            return new_external_user.to_dict()
+            return "Test"
+        
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
         return user.to_dict()
+    
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-
 
 #* GET: /api/auth/logout
 @auth_routes.route('/logout')

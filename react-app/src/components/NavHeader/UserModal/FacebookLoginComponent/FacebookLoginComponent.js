@@ -50,8 +50,13 @@ const FacebookLoginComponent = () => {
         profile_picture: facebookUserProfilePicture.data.url
       }
 
-      dispatch(sessionActions.thunkAPILogin(userData));
-      setShowUserModal(false);
+      // on facebook login, do custom login with backend 
+
+      dispatch(sessionActions.thunkAPILogin(userData))
+        .then(() => {
+          setShowUserModal(false);
+          window.location.reload();
+        })
     } catch (error) {
       console.log("Error from logging in with Facebook: ", error.message);
     }

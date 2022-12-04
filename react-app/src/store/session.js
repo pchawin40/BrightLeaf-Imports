@@ -61,12 +61,40 @@ export const login = (email, password) => async (dispatch) => {
 }
 
 export const thunkAPILogin = (response, role = "user") => async dispatch => {
-  const apiUser = {
-    ...response,
-    role
-  }
+  // const apiUser = {
+  //   ...response,
+  //   role
+  // }
 
-  dispatch(setUser(apiUser));
+  // dispatch(setUser(apiUser));
+  const res = await fetch('/api/auth/custom_api/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      ...response,
+      email: `${response.name.replaceAll(' ', '-').toLowerCase()}@${response.login_by}-login.com`,
+      password: "complex_password_123",
+      role
+    })
+  });
+
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(setUser({
+      ...data,
+      login_by: response.login_by
+    }))
+    return null;
+  } else if (res.status < 500) {
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
+  }
 }
 
 export const logout = () => async (dispatch) => {

@@ -12,6 +12,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_picture = db.Column(db.String(255), default="")
     role = db.Column(db.String(40), nullable=False)
+    login_by = db.Column(db.String(40), default="")
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   
@@ -49,6 +50,7 @@ class User(db.Model, UserMixin):
             'profile_picture': self.profile_picture,
             'email': self.email,
             'role': self.role,
+            'login_by': self.login_by,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
