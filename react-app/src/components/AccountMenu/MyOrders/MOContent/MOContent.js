@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import store
 import * as shoppingCartActions from '../../../../store/shoppingCarts';
 import * as productActions from '../../../../store/products';
+import * as sessionActions from '../../../../store/session';
 
 // import context
 import { useShoppingCart } from '../../../../context/ShoppingCartContext';
@@ -32,6 +33,7 @@ const MOContent = () => {
   const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
   // select current available products
   const currentProducts = useSelector(productActions.getCurrentProducts);
+  const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -228,17 +230,29 @@ const MOContent = () => {
                 {loadCarts()}
               </>
               :
-              <>
-                {/* // If No Shopping Carts for current user, show browse */}
-                <h2>
-                  You haven't placed any orders yet.
-                </h2>
-                <NavLink
-                  to='/product-page'
-                >
-                  Start Browsing
-                </NavLink>
-              </>
+              currentUserInfo.role === "user"
+                ?
+                <>
+                  {/* // If No Shopping Carts for current user, show browse */}
+                  <h2>
+                    You haven't placed any orders yet.
+                  </h2>
+                  <NavLink
+                    to='/product-page'
+                  >
+                    Start Browsing
+                  </NavLink>
+                </>
+                :
+                <>
+                  {/* // If No Shopping Carts for current user, show browse */}
+                  <h2>
+                    You're currently logged in as administrator.
+                  </h2>
+                  <p>
+                    Please log in as user to place an order.
+                  </p>
+                </>
           }
         </section>
 

@@ -266,16 +266,29 @@ const MWslContent = () => {
                 }
               </>
               :
-              <section className="no-loaded-wishlists">
-                <h2>
-                  You haven't added any products yet.
-                </h2>
-                <NavLink
-                  to=""
-                >
-                  Start adding products
-                </NavLink>
-              </section>
+              currentUserInfo.role === "user"
+                ?
+                <section className="no-loaded-wishlists">
+                  <h2>
+                    You haven't added any products yet.
+                  </h2>
+                  <NavLink
+                    to=""
+                  >
+                    Start adding products
+                  </NavLink>
+                </section>
+                :
+                <>
+                  <section className="no-loaded-wishlists administrator">
+                    <h2>
+                      You're currently logged in as administrator.
+                    </h2>
+                    <p>
+                      Please log in as user to save your wishlist.
+                    </p>
+                  </section>
+                </>
           }
 
         </section>

@@ -181,3 +181,12 @@ button.pt-out-of-stock.wl {
 .no-loaded-wishlists a {
 	color: black;
 }
+
+section.no-loaded-wishlists.administrator {
+	display: flex;
+	flex-direction: column;
+}
+
+section.no-loaded-wishlists.administrator > h2 {
+	font-weight: normal;
+}

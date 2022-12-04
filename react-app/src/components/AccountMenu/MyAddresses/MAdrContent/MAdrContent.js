@@ -11,6 +11,7 @@ import { NavLink } from 'react-router-dom';
 
 // import store
 import * as addressActions from '../../../../store/address';
+import * as sessionActions from '../../../../store/session';
 
 // import react-redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -33,6 +34,7 @@ const MAdrContent = () => {
    * Selector functions
    */
   const currentUserAddresses = useSelector(addressActions.getCurrentUserAddresses);
+  const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
 
   /**
    * UseEffect
@@ -151,18 +153,30 @@ const MAdrContent = () => {
     } else {
       // if address is not loaded, display blank display
       return (
-        <>
-          <h2>
-            You haven't saved any addresses yet.
-          </h2>
-          {/* // TODO: To add address later */}
-          <span
-            className="no-display"
-            onClick={_ => setShowAddressModal(true)}
-          >
-            Add New Address
-          </span>
-        </>
+        currentUserInfo.role === "user"
+          ?
+          <>
+            <h2>
+              You haven't saved any addresses yet.
+            </h2>
+            {/* // TODO: To add address later */}
+            <span
+              className="no-display"
+              onClick={_ => setShowAddressModal(true)}
+            >
+              Add New Address
+            </span>
+          </>
+          :
+          <>
+            <h2>
+              You're currently logged in as administrator.
+            </h2>
+            {/* // TODO: To add address later */}
+            <p>
+              Please log in as user to save an address.
+            </p>
+          </>
       )
     }
   }
@@ -191,13 +205,17 @@ const MAdrContent = () => {
             loadAddresses()
           }
           {/* Button to add new address */}
-          <button
-            className="madr new-address"
-            type="button"
-            onClick={_ => setShowAddressModal(true)}
-          >
-            Add New Address
-          </button>
+          {
+            currentUserInfo.role === "user"
+            &&
+            <button
+              className="madr new-address"
+              type="button"
+              onClick={_ => setShowAddressModal(true)}
+            >
+              Add New Address
+            </button>
+          }
         </section>
 
         {/* Line Span */}
