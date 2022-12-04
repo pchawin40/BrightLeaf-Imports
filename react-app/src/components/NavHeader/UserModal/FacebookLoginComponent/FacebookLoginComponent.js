@@ -10,7 +10,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 // import libraries
-import { FacebookProvider, useLogin, useProfile } from 'react-facebook';
+import { FacebookProvider, useLogin, useProfile, LoginButton } from 'react-facebook';
 
 // import store
 import * as sessionActions from '../../../../store/session';
@@ -55,9 +55,12 @@ const FacebookLoginComponent = () => {
       dispatch(sessionActions.thunkAPILogin(userData))
         .then(() => {
           setShowUserModal(false);
-          window.location.reload();
         })
     } catch (error) {
+      if (error.message) {
+        window.alert("There is a problem with facebook login. We are reloading the webpage. Please try again afterward.");
+        window.location.reload();
+      }
       console.log("Error from logging in with Facebook: ", error.message);
     }
   }
