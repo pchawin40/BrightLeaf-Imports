@@ -20,7 +20,7 @@ import { Redirect } from 'react-router-dom';
 
 // import store
 import * as sessionActions from '../../../../store/session';
-import * as mapActions from '../../../../store/maps';
+import * as keyActions from '../../../../store/keys';
 
 // import libraries
 import { useGoogleLogin } from '@react-oauth/google';
@@ -33,7 +33,7 @@ const LoginForm = () => {
   const [passwordError, setPasswordError] = useState(null);
   const { forgotPassword, setForgotPassword } = useNavHeader();
   const { showUserModal, setShowUserModal } = useNavHeader();
-  const key = useSelector(mapActions.getMapKey);
+  const googleMapsAPIKey = useSelector(keyActions.getMapKey);
 
   const user = useSelector(state => state.session.user);
 
@@ -45,9 +45,9 @@ const LoginForm = () => {
   // per general
   useEffect(() => {
     // nothing for now
-    if (!key) dispatch(mapActions.getKey());
-    
-  }, [email, password, key, errors, emailError, passwordError]);
+    if (!googleMapsAPIKey) dispatch(keyActions.getKey());
+
+  }, [email, password, googleMapsAPIKey, errors, emailError, passwordError]);
 
   //* Google API: function to handle google login
   const handleGoogleLogin = useGoogleLogin({

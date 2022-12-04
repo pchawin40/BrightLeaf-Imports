@@ -20,6 +20,7 @@ import { Redirect } from 'react-router-dom';
 
 // import store
 import * as sessionActions from '../../../../store/session';
+import * as keyActions from '../../../../store/keys';
 
 // import libraries
 import ReCAPTCHA from "react-google-recaptcha";
@@ -37,6 +38,11 @@ const SignUpForm = () => {
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
   const { showUserModal, setShowUserModal } = useNavHeader();
+
+  /**
+   * Selector functions
+   */
+  const recaptchaKey = useSelector(keyActions.getRecaptchaKey);
 
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
@@ -71,6 +77,12 @@ const SignUpForm = () => {
   });
 
   //* ReCaptcha API
+  // useEffect: get key for google map
+  useEffect(() => {
+    if (!recaptchaKey) dispatch(keyActions.getKey());
+  }, [dispatch, recaptchaKey]);
+
+  // per errors
   useEffect(() => {
     if (errors.length > 0) {
       errors.map(error => {
@@ -198,7 +210,7 @@ const SignUpForm = () => {
 
       {/* ReCaptcha Verification */}
       <ReCAPTCHA
-        sitekey={process.env.REACT_APP_SITE_KEY}
+        sitekey={recaptchaKey}
         ref={captchaRef}
         onChange={_ => setValidToken(true)}
       />

@@ -44,7 +44,7 @@ const UserModal = () => {
   const { forgotPassword, setForgotPassword } = useNavHeader();
   const { showUserModal, setShowUserModal } = useNavHeader();
   const { emailStep, setEmailStep } = useNavHeader();
-
+  
   /**
    * UseEffect
    */
