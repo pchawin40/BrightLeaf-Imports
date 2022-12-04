@@ -209,11 +209,15 @@ const SignUpForm = () => {
       </div>
 
       {/* ReCaptcha Verification */}
-      <ReCAPTCHA
-        sitekey={recaptchaKey}
-        ref={captchaRef}
-        onChange={_ => setValidToken(true)}
-      />
+      {
+        recaptchaKey
+        &&
+        <ReCAPTCHA
+          sitekey={recaptchaKey}
+          ref={captchaRef}
+          onChange={_ => setValidToken(true)}
+        />
+      }
 
       {
         validToken
