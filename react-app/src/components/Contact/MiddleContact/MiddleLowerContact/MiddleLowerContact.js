@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // import store
-import * as mapActions from '../../../../store/maps';
+import * as keyActions from '../../../../store/keys';
 
 // import component
 import Maps from "./Maps";
@@ -18,23 +18,23 @@ import './MiddleLowerContact.css';
 //? MapContainer component: index for Maps
 const MiddleLowerContact = () => {
   // get map key using selector
-  const key = useSelector(mapActions.getMapKey);
+  const googleMapsAPIKey = useSelector(keyActions.getMapKey);
 
   // invoke dispatch
   const dispatch = useDispatch();
 
   // useEffect: get key for google map
   useEffect(() => {
-    if (!key) dispatch(mapActions.getKey());
-  }, [dispatch, key]);
+    if (!googleMapsAPIKey) dispatch(keyActions.getKey());
+  }, [dispatch, googleMapsAPIKey]);
 
   // if there's no key, return null. else, return the Maps component using api key
-  return !key
+  return !googleMapsAPIKey
     ?
     null
     :
     <section className="ml-contact-section">
-      <Maps apiKey={key} />
+      <Maps apiKey={googleMapsAPIKey} />
     </section>
 };
 

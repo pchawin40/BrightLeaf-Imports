@@ -12,7 +12,7 @@ from .api.image_routes import image_routes
 from .api.review_routes import review_routes
 from .api.product_routes import product_routes
 from .api.shopping_cart_routes import shopping_cart_routes
-from .api.map_routes import map_routes
+from .api.key_routes import key_routes
 from .api.product_users_routes import product_users_routes
 from .api.address_routes import address_routes
 from .api.stripe_routes import stripe_routes
@@ -52,7 +52,7 @@ app.register_blueprint(image_routes, url_prefix='/api/images')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
 app.register_blueprint(product_routes, url_prefix='/api/products')
 app.register_blueprint(shopping_cart_routes, url_prefix='/api/shopping-carts')
-app.register_blueprint(map_routes, url_prefix='/api/maps')
+app.register_blueprint(key_routes, url_prefix='/api/keys')
 app.register_blueprint(product_users_routes, url_prefix='/api/product_users')
 app.register_blueprint(address_routes, url_prefix='/api/addresses')
 app.register_blueprint(stripe_routes, url_prefix='/api/stripe')
