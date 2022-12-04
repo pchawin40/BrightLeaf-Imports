@@ -46,15 +46,7 @@ const LoginForm = () => {
   useEffect(() => {
     // nothing for now
     if (!key) dispatch(mapActions.getKey());
-
-    if (emailError) {
-      console.log('emailError', emailError);
-    }
-
-    if (passwordError) {
-      console.log('passwordError', passwordError);
-    }
-
+    
   }, [email, password, key, errors, emailError, passwordError]);
 
   //* Google API: function to handle google login

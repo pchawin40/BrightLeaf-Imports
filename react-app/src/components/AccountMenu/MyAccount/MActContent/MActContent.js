@@ -39,6 +39,8 @@ const MActContent = () => {
     email ? email.length : 0
   );
 
+  const [emailError, setEmailError] = useState("");
+
   /**
    * UseEffect
    */
@@ -50,7 +52,8 @@ const MActContent = () => {
       username,
       usernameLength,
       email,
-      emailLength
+      emailLength,
+      emailError
     ]
   );
 
@@ -79,9 +82,26 @@ const MActContent = () => {
     formData.append("username", username);
     formData.append("email", email);
 
+    setEmailError("");
+
     // call on thunk to edit user information
     dispatch(userActions.thunkEditUser(formData, currentUserInfo.id))
-      .then(async res => dispatch(sessionActions.thunkAPILogin(res)));
+      .then(res => {
+        if (res.errors) {
+          setEmailError(res.errors[0].email);
+
+          throw new Error(res.errors[0].email);
+        }
+
+        return res;
+      })
+      .then(async res => {
+        dispatch(sessionActions.thunkGetNewSessionInfo(res.email))
+      })
+      .catch(e => {
+        //! leave this here to let user know the error
+        console.log(e);
+      })
   }
 
   // function to discard inputted user information
@@ -200,7 +220,7 @@ const MActContent = () => {
                   />
                 </figure>
 
-                {/* Phone */}
+                {/* Email */}
                 <figure>
                   <label
                     htmlFor='email'
@@ -213,6 +233,16 @@ const MActContent = () => {
                     value={email}
                     onChange={updateUserEmail}
                   />
+
+                  {
+                    emailError
+                    &&
+                    <p className="cis email-error">
+                      {
+                        emailError
+                      }
+                    </p>
+                  }
                 </figure>
               </>
             }
@@ -231,7 +261,7 @@ const MActContent = () => {
           <span className='line-span AM' />
         </section>
       </section>
-    </section>
+    </section >
   )
 };
 

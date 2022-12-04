@@ -61,6 +61,8 @@ const FacebookLoginComponent = () => {
         window.alert("There is a problem with facebook login. We are reloading the webpage. Please try again afterward.");
         window.location.reload();
       }
+
+      //! leave this error here to let user know the error
       console.log("Error from logging in with Facebook: ", error.message);
     }
   }

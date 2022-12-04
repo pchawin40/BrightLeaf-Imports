@@ -32,6 +32,33 @@ export const authenticate = () => async (dispatch) => {
   }
 }
 
+// thunk to set a new session in redux
+export const thunkGetNewSessionInfo = (email) => async (dispatch) => {
+  const response = await fetch('/api/auth/login_update', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email
+    })
+  });
+
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(setUser(data))
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
+  }
+}
+
 export const login = (email, password) => async (dispatch) => {
   const response = await fetch('/api/auth/login', {
     method: 'POST',

@@ -62,9 +62,14 @@ export const thunkEditUser = (userInfo, userId) => async (dispatch) => {
 
     // return edited user
     return editedUser;
+  } else if (res.status < 500) {
+    const data = await res.json();
+
+    if (data['errors']) {
+      return data;
+    }
   }
 
-  // return nothing, if there are error
   return null;
 }
 

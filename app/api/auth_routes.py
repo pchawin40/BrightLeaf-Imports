@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request, current_app
 from app.models import User, db
-from app.forms import LoginForm, SignUpForm, CustomLoginForm
+from app.forms import LoginForm, SignUpForm, CustomLoginForm, EditUserForm
 from flask_login import current_user, login_user, logout_user, login_required
 
 auth_routes = Blueprint('auth', __name__)
@@ -32,20 +32,35 @@ def login():
     """
     Logs a user in
     """
-    loginForm = LoginForm()
-    
+    form = LoginForm()
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
-    loginForm['csrf_token'].data = request.cookies['csrf_token']
-        
-    if loginForm.validate_on_submit():
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
         # Add the user to the session, we are logged in!
-        user = User.query.filter(User.email == loginForm.data['email']).first()
+        user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
         return user.to_dict()
+    
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-    return {'errors': validation_errors_to_error_messages(loginForm.errors)}, 401
-
+#* POST: /api/auth/login_update
+@auth_routes.route('/login_update', methods=['POST'])
+def login_update():
+    """
+    Logs a user in (for editing information)
+    """
+    form = EditUserForm()
+    # Get the csrf_token from the request cookie and put it into the
+    # form manually to validate_on_submit can be used
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        # Add the user to the session, we are logged in!
+        user = User.query.filter(User.email == form.data['email']).first()
+        login_user(user)
+        return user.to_dict()
+    
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 #* POST: /api/custom_api/login
 @auth_routes.route('/custom_api/login', methods=['POST'])
