@@ -135,6 +135,16 @@ const SignUpForm = () => {
     data ? setErrors(data) : setShowUserModal(false);
   }
 
+  // function to handle demo administrator login
+  const handleDemoAdministratorLogin = async () => {
+    const data = await dispatch(sessionActions.login('demo@aa.io', 'password'))
+      .then(() => setShowUserModal(false));
+
+    // if data is return, there is an error. set the errors
+    // turn modal off on successful log in
+    data ? setErrors(data) : setShowUserModal(false);
+  }
+
   return (
     <form id="sign-up-form" onSubmit={onSignUp}>
       <div id="suf-email-container" className="suf-container">
@@ -215,16 +225,29 @@ const SignUpForm = () => {
           </button>
       }
 
-      <button
-        id="suf-demo-btn"
-        className="suf-submit-btn suf-submit-btn-true"
-        type='button'
-        onClick={handleDemoLogin}
-      >
-        <span>
-          Demo User
-        </span>
-      </button>
+      <section className="demo-buttons-container">
+        <button
+          id="lf-demo-btn"
+          className="lf-submit-btn lf-submit-btn-true"
+          type='button'
+          onClick={handleDemoAdministratorLogin}
+        >
+          <span>
+            Demo Administrator
+          </span>
+        </button>
+
+        <button
+          id="lf-demo-btn"
+          className="lf-submit-btn lf-submit-btn-true"
+          type='button'
+          onClick={handleDemoLogin}
+        >
+          <span>
+            Demo User
+          </span>
+        </button>
+      </section>
 
       {/* Alternative Sign Up Line Break */}
       <div id="suf-asulb-container">
