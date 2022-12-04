@@ -1,5 +1,6 @@
 // src/components/context/NavHeaderContext.js
 import { useState, useContext, createContext, useRef, useEffect } from 'react';
+import ShopProduct from '../components/ShopProduct';
 
 // set up context
 export const NavHeaderContext = createContext();
@@ -15,6 +16,9 @@ export default function NavHeaderProvider({ children }) {
   const [headerColor, setHeaderColor] = useState('white');
   const [currentPage, setCurrentPage] = useState("landing");
   const [footerColor, setFooterColor] = useState('white');
+  const [footerRect, setFooterRect] = useState(0);
+  const [emailStep, setEmailStep] = useState(0);
+  const [emailToReset, setEmailToReset] = useState("");
 
   const prevScrollY = useRef(0);
   // function to handle changing of background based on y scroll position
@@ -25,27 +29,31 @@ export default function NavHeaderProvider({ children }) {
     // check currentPage and their variables conditions
     // set new color
     let newColor;
-    if (currentPage === "landing") {
-      newColor = "white";
-    } else if (currentPage === "portfolio") {
+    if (["landing", "portfolio", "about"].includes(currentPage)) {
       newColor = "white";
     }
 
-    // set color condition
-    let colorCondition;
-    if (currentPage === "landing") {
-      colorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (4 * (window.innerHeight * 1.05));
-    } else if (currentPage === "portfolio") {
-      colorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 10)) && window.scrollY < (2 * (window.innerHeight * 1.08))
+    // color condition
+    let backgroundColorCondition;
+    if (currentPage === "about") {
+      backgroundColorCondition = window.scrollY >= window.innerHeight * 1.5;
+    } else {
+      backgroundColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 1.25);
     }
-
-    // set footer color condition
 
     // set background color
-    if (window.scrollY >= window.innerHeight - (window.innerHeight / 1.25)) {
+    if (backgroundColorCondition) {
       setBackgroundColor(newColor);
     } else {
-      setBackgroundColor('#484644');
+      // change to default color...
+      // if about page, change to #242424
+      if (currentPage === "about") {
+        setBackgroundColor("#242424");
+      }
+      // if not shopProduct
+      else if (!["shopproduct", "store-policy", "shipping-returns", "account-menu"].includes(currentPage)) {
+        setBackgroundColor('#484644');
+      }
     }
 
     prevScrollY.current = currentScrollY;
@@ -56,14 +64,23 @@ export default function NavHeaderProvider({ children }) {
 
     const currentScrollY = window.scrollY;
 
+    // body height
+    const bodyHeight = document.querySelector("body").getBoundingClientRect().height;
 
     // if currentPage is landing, use these for color
     let headerColorCondition;
 
+    // view height for store-policy
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+
     if (currentPage === "landing") {
       headerColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (4 * (window.innerHeight * 1.05));
-    } else if (currentPage === "portfolio") {
-      headerColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (4 * (window.innerHeight * .985));
+    } else if (["store-policy", "shopproduct", "shipping-returns", "account-menu"].includes(currentPage)) {
+      headerColorCondition = window.scrollY < (bodyHeight - (1.1 * vh));
+    } else if (currentPage === "about") {
+      headerColorCondition = window.scrollY >= window.innerHeight * 1.5 && window.scrollY < (bodyHeight - (1.1 * footerRect));
+    } else {
+      headerColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (bodyHeight - (1.1 * footerRect));
     }
 
     // if mid, change to black
@@ -81,14 +98,24 @@ export default function NavHeaderProvider({ children }) {
 
     const currentScrollY = window.scrollY;
 
-    // check currentPage and their variables conditions
-    let footerColorCondition = false;
+    const bodyHeight = document.querySelector("body").getBoundingClientRect().height;
 
-    if (currentPage === "landing") {
-      footerColorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05)) && window.scrollY < (4 * (window.innerHeight / 1.25))
-    } else if (currentPage === "portfolio") {
-      footerColorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05)) && window.scrollY < (4 * (window.innerHeight / 1.3));
+    // check currentPage and their variables conditions
+    let footerColorCondition;
+
+    // view height for store-policy
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+
+    // if current page is shop product, show 'black' on top
+    if (["store-policy", "shopproduct", "shipping-returns", "account-menu"].includes(currentPage)) {
+      footerColorCondition = window.scrollY < (bodyHeight - (1.95 * vh));
+    } else if (currentPage === "about") {
+      footerColorCondition = window.scrollY >= window.innerHeight * 1.5 && window.scrollY < (bodyHeight - (1.95 * footerRect));;
+    } else {
+      footerColorCondition = (window.scrollY >= window.innerHeight - (window.innerHeight / 1.05)) && window.scrollY < (bodyHeight - (1.95 * footerRect));
     }
+
+
 
     // if mid, change to black
     if (footerColorCondition) {
@@ -130,7 +157,10 @@ export default function NavHeaderProvider({ children }) {
           backgroundColor, setBackgroundColor,
           headerColor, setHeaderColor,
           currentPage, setCurrentPage,
-          footerColor, setFooterColor
+          footerColor, setFooterColor,
+          footerRect, setFooterRect,
+          emailStep, setEmailStep,
+          emailToReset, setEmailToReset
         }}
       >
         {children}

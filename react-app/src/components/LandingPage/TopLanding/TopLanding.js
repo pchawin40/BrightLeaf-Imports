@@ -30,11 +30,6 @@ const TopLanding = () => {
 
         {/* Title */}
         <section>
-          {/* Back Figure */}
-          <figure id="tls-back-figure">
-            <i className="fa-solid fa-chevron-left fa-xl" />
-            <span>Portfolio</span>
-          </figure>
 
           <figure
             id="tls-brightleaf-logo-container"

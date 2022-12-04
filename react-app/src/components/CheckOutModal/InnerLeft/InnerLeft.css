@@ -1,0 +1,67 @@
+/* src/components/CheckOutModal/InnerLeft/InnerLeft.css */
+
+section.checkoutmodal.left {
+	display: grid;
+	grid-template-rows: auto 15%;
+}
+
+/* Inner Section: Left: Upper: Main Content */
+.cil.upper.main-content {
+	display: grid;
+	justify-content: flex-start;
+	align-items: center;
+	text-align: center;
+	grid-template-columns: 1fr;
+	grid-template-rows: 10% auto;
+
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
+	border-radius: 8px;
+}
+
+.cil.upper.main-content > section {
+	margin-left: 16px;
+}
+
+/* Button Nav */
+.cil.upper.main-content > section:first-child {
+	display: grid;
+	grid-template-columns: 25% auto auto;
+}
+
+.cil.upper.main-content > section:first-child > span {
+	display: flex;
+	align-items: center;
+}
+
+.cil.upper.main-content > section:first-child > span:hover {
+	cursor: pointer;
+}
+
+.cil.upper.main-content > section:first-child > span > i {
+	margin-right: 0.5vw;
+}
+
+.cil.upper.main-content > section:first-child > span.false {
+	visibility: hidden;
+}
+
+.cil.upper.main-content > section:first-child > h1 {
+	font-size: 200%;
+	margin: 0;
+	padding: 0;
+}
+
+.cil.upper.main-content > section:first-child > h1 > span {
+	color: #80ab63;
+	margin-left: 0.25vw;
+	margin-right: 0.25vw;
+}
+
+/* Main Content */
+.cil.upper.main-content > section:last-child {
+	height: 100%;
+	width: 100%;
+
+	margin: 0;
+	padding: 0;
+}

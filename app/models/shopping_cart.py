@@ -20,7 +20,7 @@ class ShoppingCart(db.Model):
   # connect parent (1: user) user to child (*: shopping carts)
   user = db.relationship('User', back_populates='carts')
   
-  # return product as object (dictionary)
+  # return cart as object (dictionary)
   def to_dict(self):
     return {
       'id': self.id,

@@ -1,1 +1,4 @@
 /* src/components/StorePolicy/StorePolicy.css */
+.page-section.store-policy {
+	grid-template-rows: 120px 100vh 100vh;
+}

@@ -1,0 +1,39 @@
+/* src/components/About/LowerAbout/BottomLower/MBL/MBL.css */
+.MBL-section {
+	display: grid;
+	grid-template-columns: repeat(2, 50%);
+	margin: 5rem;
+}
+
+/* Left */
+.BL-left.goal > h3,
+.BL-left.offer > h3 {
+	line-height: 1.7em;
+	font-size: 1.5vw;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.BL-left.goal > p,
+.BL-left.offer > p {
+	font-size: 1vw;
+	text-align: left;
+}
+
+/* Right */
+.BL.right.M {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.BL.right.M > figure {
+	height: 60vh;
+	width: 40vw;
+	margin: 0;
+}
+
+.BL.right.M video {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}

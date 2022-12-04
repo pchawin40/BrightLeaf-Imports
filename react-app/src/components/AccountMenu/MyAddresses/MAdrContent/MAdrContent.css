@@ -1,0 +1,152 @@
+/* src/components/AccountMenu/MyAddresses/MAdrContent/MAdrContent.css */
+
+/*? Lower */
+.cis.lower.address {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	width: 100%;
+
+	margin: 16px;
+	padding: 0;
+
+	position: relative;
+}
+
+/** Address Unordered List */
+.madr.ul {
+	list-style-type: none;
+
+	height: 40vh;
+	width: calc(60vw - 2rem);
+
+	overflow-x: auto;
+	overflow-y: hidden;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+
+	margin: 0;
+	padding: 0;
+	padding-bottom: 5vh;
+
+	position: relative;
+
+	overflow-y: auto;
+	overflow-x: hidden;
+
+	box-sizing: border-box;
+}
+
+.madr.ul::-webkit-scrollbar {
+	width: 0.5em;
+}
+
+.madr.ul::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.madr.ul::-webkit-scrollbar-thumb {
+	background-color: #80ab63;
+	outline: 1px solid #92b77a;
+	border-radius: 1rem;
+}
+
+section.madr.li {
+	display: flex;
+	width: calc(60vw - 5rem);
+
+	margin: 0;
+	padding: 0;
+
+	position: relative;
+
+	padding-top: 1rem;
+}
+
+section.madr.li.top {
+	flex-direction: column;
+
+	/* background-color: red; */
+	color: rgba(66, 66, 66, 0.6);
+}
+
+section.madr.li.lower {
+	display: flex;
+	justify-content: space-between;
+
+	padding: 16px 0;
+}
+
+/* Left: Edit/Remove */
+.mll.left span {
+	text-decoration: underline;
+}
+
+.mll.left span:hover {
+	cursor: pointer;
+}
+
+.mll span.edit-address {
+	margin-right: 2vw;
+}
+
+/* Right: Default Address */
+
+.mll span.default > i {
+	margin-right: 16px;
+}
+
+/* Line Span */
+.line-span.madr.li {
+	width: calc(60vw - 2rem);
+	height: 1px;
+	background-color: #cbc7c3;
+	opacity: 0.45;
+
+	position: absolute;
+	bottom: 0;
+}
+
+/* No Address Display */
+.cis.lower.address.false {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Button to add new address */
+.cis.lower.address.true {
+	flex-direction: column;
+}
+
+button.madr.new-address {
+	font-size: 1.35vh;
+	position: relative;
+	text-align: start;
+	box-sizing: border-box;
+	padding: 10px 16px;
+	line-height: 22.4px;
+	letter-spacing: 1px;
+	border: none;
+	color: white;
+
+	margin: 0;
+	margin-top: 2rem;
+	display: flex;
+	justify-content: center;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+
+	transition: box-shadow 0.1s ease;
+
+	text-transform: uppercase;
+
+	background-color: #80ab63;
+}
+
+button.madr.new-address:hover {
+	cursor: pointer;
+}

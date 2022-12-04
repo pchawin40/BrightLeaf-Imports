@@ -6,6 +6,9 @@ import productReducer from './products';
 import shoppingCartReducer from './shoppingCarts';
 import reviewReducer from './reviews';
 import userReducer from './users';
+import mapsReducer from './maps';
+import productUserReducer from './productUser';
+import addressReducer from './address';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -13,7 +16,10 @@ const rootReducer = combineReducers({
   products: productReducer,
   shoppingCarts: shoppingCartReducer,
   reviews: reviewReducer,
-  users: userReducer
+  users: userReducer,
+  maps: mapsReducer,
+  productUsers: productUserReducer,
+  addresses: addressReducer
 });
 
 

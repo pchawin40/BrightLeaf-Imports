@@ -3,9 +3,12 @@
 // import component
 import ShoppingCartModal from './ShoppingCartModal';
 import UserModal from './UserModal';
+import NavRight from '../NavRight';
+import NavModal from '../NavRight/NavModal';
 
 // import context
 import { useNavHeader } from '../../context/NavHeaderContext';
+import { useNavRight } from '../../context/NavRightContext';
 
 // import component
 import { Modal } from '../../context/Modal';
@@ -17,16 +20,11 @@ import './NavHeader.css';
 import { useEffect, useRef, useState } from 'react';
 
 // import react-redux
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import store
 import * as shoppingCartActions from '../../store/shoppingCarts';
-
-// import libraries
-import { Animate, AnimateKeyframes, AnimateGroup } from "react-simple-animate";
-import NavRight from '../NavRight';
-import { useNavRight } from '../../context/NavRightContext';
-import NavModal from '../NavRight/NavModal';
+import * as sessionActions from '../../store/session';
 
 //? NavHeader component
 const NavHeader = () => {
@@ -38,12 +36,24 @@ const NavHeader = () => {
   const { loadCartModal, setLoadCartModal } = useNavHeader();
   const { showNavModal, setShowNavModal } = useNavRight();
   const { currentPage, setCurrentPage } = useNavHeader();
+  const { emailStep, setEmailStep } = useNavHeader();
 
   /**
   * Selector functions
   */
   // grab shopping carts data
   const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
+  const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
+
+  /**
+   * UseEffect
+   */
+  useEffect(() => {
+    dispatch(shoppingCartActions.thunkGetSessionUserCarts());
+  }, [currentUserInfo])
+
+  // invoke dispatch
+  const dispatch = useDispatch();
 
   return (
     <section
@@ -98,7 +108,9 @@ const NavHeader = () => {
       {showUserModal && (
         <Modal
           onClose={(_) => {
-            setShowUserModal(false)
+            setShowUserModal(false);
+            dispatch(shoppingCartActions.thunkGetSessionUserCarts());
+            setEmailStep(0);
             document.body.style.overflowY = "scroll"
           }}
         >

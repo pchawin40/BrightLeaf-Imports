@@ -1,0 +1,21 @@
+/* src/components/AccountMenu/MyOrders/MyOrders.css */
+.page-section.AM {
+	grid-template-rows: 0px 100vh 100vh;
+}
+
+.AM.inner-section {
+	height: 80%;
+	width: calc(100% - 10rem);
+
+	margin-top: 8vh;
+
+	display: grid;
+	grid-template-columns: 30% auto;
+	padding: 0 5rem;
+}
+
+/* Content Inner Section */
+.cis.top {
+	margin: 0;
+	padding: 0;
+}

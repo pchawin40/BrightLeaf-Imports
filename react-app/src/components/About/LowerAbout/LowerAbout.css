@@ -1,0 +1,5 @@
+/* src/components/About/LowerAbout/LowerAbout.css */
+.lower-about-section {
+	display: grid;
+	grid-template-rows: 80vh auto;
+}

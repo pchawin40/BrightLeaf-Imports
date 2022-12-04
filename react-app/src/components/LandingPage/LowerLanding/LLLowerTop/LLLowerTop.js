@@ -3,8 +3,14 @@
 // import css
 import './LLLowerTop.css';
 
+// import react-router-dom
+import { useHistory } from 'react-router-dom';
+
 //? LLLowerTop component
 const LLLowerTop = () => {
+  // invoke history
+  const history = useHistory();
+
   return (
     // Lower Top
     <section id="ll-lts">
@@ -47,7 +53,9 @@ const LLLowerTop = () => {
             </li>
           </ul>
           {/* Button */}
-          <button>
+          <button
+            onClick={_ => history.push('/product-page')}
+          >
             Shop
           </button>
         </section>

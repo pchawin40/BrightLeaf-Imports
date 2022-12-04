@@ -8,9 +8,8 @@ import re
 def check_valid_email(form, field):
     EMAIL_REGEX = re.compile(r"[^@]+@[^@]+\.[^@]+")
     
-    if not EMAIL_REGEX.match(field.data):
+    if field.data != "" and not EMAIL_REGEX.match(field.data):
         raise ValidationError("Email entered is invalid.")
-    
 
 def user_exists(form, field):
     # Checking if user exists
@@ -20,10 +19,8 @@ def user_exists(form, field):
       raise ValidationError('Email address is already in use.')
 
 class EditUserForm(FlaskForm):
-    first_name = StringField(
-        'first_name')
-    last_name = StringField(
-        'last_name')
+    username = StringField('user_name', default="User")
+    profile_picture = StringField("profile_picture")
     email = StringField('email', validators=[user_exists, check_valid_email])
     password = StringField('password')
     role = StringField('role')

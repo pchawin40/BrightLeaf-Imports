@@ -2,6 +2,8 @@
 
 // import context
 import { useNavHeader } from '../../../context/NavHeaderContext';
+import { useShoppingCart } from '../../../context/ShoppingCartContext';
+import { useCheckOut } from '../../../context/CheckOutContext';
 
 // import css
 import './ShoppingCartModal.css';
@@ -20,15 +22,15 @@ import * as productActions from '../../../store/products';
 // import libraries
 import { Animate, AnimateKeyframes, AnimateGroup } from "react-simple-animate";
 
-
 //? ShoppingCartModal component
 const ShoppingCartModal = ({ setShowCartModal }) => {
   /**
    * Controlled inputs
    */
   const { loadCartModal, setLoadCartModal } = useNavHeader();
-  const [cartLoaded, setCartLoaded] = useState(false);
-  const [cartDisplay, setCartDisplay] = useState([]);
+  const { cartLoaded, setCartLoaded } = useShoppingCart();
+  const { cartDisplay, setCartDisplay } = useShoppingCart();
+  const { showCheckoutModal, setShowCheckoutModal } = useCheckOut();
 
   /**
    * Selector functions
@@ -59,17 +61,8 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
       // set to loaded
       setCartLoaded(true);
 
-      // initialize new cart total
-      let newCartSum = 0;
-
-      // set current products
-      Object.values(currentUserCarts).map(cartItem => {
-        // set cart total
-        newCartSum += cartItem.price;
-      });
-
       // set cart display
-      setCartDisplay(Object.values(currentUserCarts));
+      setCartDisplay(currentUserCarts);
     }
   }, [cartLoaded, currentUserCarts]);
 
@@ -86,19 +79,41 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
   }
 
   // function to handle quantity click
-  const handleCartQuantity = (cartItem, newQuantity) => {
+  const handleCartQuantity = (cartItem, newQuantity, addToCart = true) => {
+    const existingProduct = Object.values(currentProducts).find(product => product.id === cartItem.product_id);
     // if quantity is less than 1, delete it from shopping cart
     if (newQuantity === 0) {
       // TODO: To fix glitch when deleting last item of last cart
       dispatch(shoppingCartActions.thunkDeleteCart(cartItem.id))
         .then(() => {
+          // add quantity to product from removing from cart
+          // grab existing product
+
+          existingProduct.quantity += 1;
+          dispatch(productActions.thunkUpdateProduct(existingProduct, existingProduct.id));
+        })
+        .then(() => {
           dispatch(shoppingCartActions.thunkGetSessionUserCarts())
           setCartLoaded(false);
         });
     } else {
+      // nq < cq
+      // if newQuantity is less than current cart item quantity...
+      // set newProductQuantity as newQuantity + 1
+      if (addToCart) {
+        existingProduct.quantity -= 1;
+      } else {
+        // otherwise, set newProductQuantity as newQuantity - 1
+        // newProductQuantity += 1;
+        existingProduct.quantity += 1;
+      }
+
       // else, update current cart item from user
       cartItem.quantity = newQuantity;
-      dispatch(shoppingCartActions.thunkUpdateCart(cartItem, cartItem.id));
+      dispatch(shoppingCartActions.thunkUpdateCart(cartItem, cartItem.id))
+        .then(() => {
+          dispatch(productActions.thunkUpdateProduct(existingProduct, existingProduct.id));
+        })
     }
   };
 
@@ -128,6 +143,14 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
     return total;
   }
 
+  // function to check if there are enough product to add
+  const checkProductQuantity = (productId) => {
+    // check if product quantity is greater than 0
+    const existingProduct = Object.values(currentProducts).find(product => product.id === productId);
+
+    return existingProduct.quantity > 0;
+  }
+
   return (
     <section
       id="shopping-cart-modal-outer-section"
@@ -139,7 +162,7 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
         start={{
           transform: `translateX(400px)`
         }}
-        end={{ transform: `translateX(-191px)` }}
+        end={{ transform: `translateX(-255px)` }}
       >
         <section
           id="shopping-cart-modal-section"
@@ -170,42 +193,65 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
                     cartDisplay.map(cartItem => {
                       return (
                         <li key={"cart item: " + cartItem.id} className="scms-li">
-                          {/* Add more */}
-                          <i
-                            onClick={_ => handleCartQuantity(cartItem, cartItem.quantity + 1)}
-                            className="fa-solid fa-square-plus scms-li-add-quantity"
-                          />
+                          <section className="scms-buttons-containers">
+                            {/* Add more */}
+                            {/* Check if there are enough product */}
+                            {
+                              checkProductQuantity(cartItem.product_id)
+                                ?
+                                // If there are still product, proceed to add to cart quantity
+                                <i
+                                  onClick={_ => handleCartQuantity(cartItem, cartItem.quantity + 1, true)}
+                                  className="fa-solid fa-square-plus fa-lg scms-li-add-quantity"
+                                />
+                                :
+                                // Otherwise disable handleCartQuantity
+                                <i
+                                  className="fa-solid fa-square-plus fa-lg scms-li-add-quantity unavailable"
+                                />
+                            }
 
-                          {/* Delete */}
-                          <i
-                            onClick={_ => handleCartQuantity(cartItem, cartItem.quantity - 1)}
-                            className="fa-solid fa-square-minus scms-li-delete-quantity"
-                          />
+                            {/* Delete */}
+                            <i
+                              onClick={_ => handleCartQuantity(cartItem, cartItem.quantity - 1, false)}
+                              className="fa-solid fa-square-minus fa-lg scms-li-delete-quantity"
+                            />
+                          </section>
 
                           {/* Quantity */}
-                          <span className="scms-li-span quantity">
-                            {
-                              cartItem.quantity + "x"
-                            }
-                          </span>
+                          <section className="scms-li-span quantity">
+                            <p>
+                              {
+                                cartItem.quantity + "x"
+                              }
+                            </p>
+                          </section>
 
                           {/* Name */}
-                          <span className="scms-li-span">
-                            {
-                              cartItem.name
-                            }
-                          </span>
+                          <section className="scms-li-span name">
+                            <p>
+                              {
+                                cartItem.name.length > 15
+                                  ?
+                                  cartItem.name.slice(0, 15) + "..."
+                                  :
+                                  cartItem.name
+                              }
+                            </p>
+                          </section>
 
                           {/* Price */}
-                          <span className="scms-li-span">
-                            {
-                              "$"
-                              +
-                              getCartItemPrice(cartItem)
-                              +
-                              " USD"
-                            }
-                          </span>
+                          <section className="scms-li-span price">
+                            <p>
+                              {
+                                "$ "
+                                +
+                                getCartItemPrice(cartItem)
+                                +
+                                " USD"
+                              }
+                            </p>
+                          </section>
                         </li>
                       );
                     })
@@ -216,11 +262,14 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
                       Total
                     </span>
                     <span>
-                      {`$${getCartTotal()} USD`}
+                      {` $ ${getCartTotal()} USD`}
                     </span>
                   </section>
 
-                  <button id="scms-ul-checkout-button">
+                  <button
+                    id="scms-ul-checkout-button"
+                    onClick={_ => setShowCheckoutModal(true)}
+                  >
                     Check Out
                   </button>
                 </ul>
@@ -231,8 +280,8 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
             }
           </section>
         </section>
-      </Animate>
-    </section>
+      </Animate >
+    </section >
   );
 };
 

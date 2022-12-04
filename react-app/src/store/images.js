@@ -161,6 +161,7 @@ export const thunkDeleteImage = imageId => async (dispatch) => {
 export const getCurrentImages = state => state.images;
 export const getCurrentImagesByType = type => state => Object.values(state.images).filter(image => image.imageable_type === type)
 export const getCurrentImageById = imageId => state => Object.values(state.images).find(image => image.id === imageId);
+export const getCurrentImagesByProductId = productId => state => Object.values(state.images).filter(image => image.imageable_id === productId);
 
 /* --------- REDUCERS -------- */
 const initialState = {}
@@ -172,7 +173,7 @@ export default function imageReducer(state = initialState, action) {
     // case to load images
     case LOAD_IMAGES:
       return Object.assign({}, action.images);
-    // case to delete cart
+    // case to delete image
     case DELETE_IMAGE:
       delete newImages[action.imageId];
 

@@ -13,9 +13,21 @@ import About from './components/About';
 import Contact from './components/Contact';
 import ShippingReturns from './components/ShippingReturns';
 import StorePolicy from './components/StorePolicy';
+import ShopProduct from './components/ShopProduct';
+import ProductFormModal from './components/ProductFormModal';
+import MyOrders from './components/AccountMenu/MyOrders';
+import MyAddresses from './components/AccountMenu/MyAddresses';
+import MyWishlist from './components/AccountMenu/MyWishlist';
+import MyAccount from './components/AccountMenu/MyAccount';
+import AccountProvider from './context/AccountMenuContext';
+import CheckOutModal from './components/CheckOutModal/CheckOutModal';
 
 // import context
 import { useNavRight } from './context/NavRightContext';
+import { useProduct } from './context/ProductContext';
+import { Modal } from './context/Modal';
+import { useAddress } from './context/AddressesContext';
+import { useCheckOut } from './context/CheckOutContext';
 
 // import react
 import React, { useState, useEffect } from 'react';
@@ -29,25 +41,37 @@ import { useDispatch, useSelector } from 'react-redux';
 // import store
 import * as sessionActions from './store/session';
 import * as shoppingCartActions from './store/shoppingCarts';
-import * as imageActions from './store/images';
 import * as productActions from './store/products';
-
+import * as reviewActions from './store/reviews';
+import * as userActions from './store/users';
+import * as productUserActions from './store/productUser';
+import * as addressActions from './store/address';
+import AddressModal from './components/AccountMenu/MyAddresses/MAdrContent/AddressModal';
 
 function App() {
   /**
   * Selector functions
   */
   const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
+  const currentUserAddresses = useSelector(addressActions.getCurrentUserAddresses);
 
   /**
    * Controlled inputs
    */
   const [loaded, setLoaded] = useState(false);
   const { showNavModal, setShowNavModal } = useNavRight();
+  const { showProductFormModal, setShowProductFormModal } = useProduct();
+  const { addressLoaded, setAddressLoaded } = useAddress();
+  const { showCheckoutModal, setShowCheckoutModal } = useCheckOut();
+  const { showAddressModal, setShowAddressModal } = useAddress();
+  const { currentAddressId, setCurrentAddressId } = useAddress();
 
   // invoke dispatch
   const dispatch = useDispatch();
 
+  /**
+   * UseEffect
+   */
   useEffect(() => {
     (async () => {
       await dispatch(sessionActions.authenticate());
@@ -58,16 +82,37 @@ function App() {
   // load data
   useEffect(() => {
     if (currentUserInfo) {
-      //! TODO: To work on shopping cart error
+      // get current user carts
       dispatch(shoppingCartActions.thunkGetSessionUserCarts());
-    }
 
-    // load images
-    // dispatch(imageActions.thunkGetImages(""));
+      // get product that belong to users
+      dispatch(productUserActions.thunkGetProductUsers());
+
+      // get user addresses
+      dispatch(addressActions.thunkGetUserAddresses());
+    }
 
     // load products
     dispatch(productActions.thunkGetProducts());
+    // load reviews
+    dispatch(reviewActions.thunkGetReviews());
+    // load users
+    dispatch(userActions.thunkGetUsers());
   }, [currentUserInfo]);
+
+  // per general
+  useEffect(() => {
+    // nothing for now
+    if (
+      currentUserAddresses
+      &&
+      currentUserAddresses.length > 0
+    ) {
+      setAddressLoaded(true);
+    } else {
+      setAddressLoaded(false);
+    }
+  }, [currentUserAddresses]);
 
   if (!loaded) {
     return null;
@@ -97,6 +142,42 @@ function App() {
         )
       }
 
+      {/* ProductFormModal (placing in App for ShopAll and ShopProduct) */}
+      {showProductFormModal && (
+        <Modal
+          onClose={(_) => {
+            setShowProductFormModal(false)
+          }}
+        >
+          <ProductFormModal />
+        </Modal>
+      )}
+
+
+      {/* CheckoutModal (placing in App for AccountMenu and ShopCartModal) */}
+      {showCheckoutModal && (
+        <Modal
+          onClose={(_) => {
+            setShowCheckoutModal(false);
+          }}
+        >
+          <CheckOutModal />
+        </Modal>
+      )}
+
+      {/* Address Modal */}
+      {showAddressModal && (
+        <Modal
+          onClose={(_) => {
+            setShowAddressModal(false);
+            setCurrentAddressId(null);
+          }}
+          currentVisible={false}
+        >
+          <AddressModal currentAddressId={currentAddressId} setCurrentAddressId={setCurrentAddressId} />
+        </Modal>
+      )}
+
       <Switch>
         {/* Home */}
         <Route path='/' exact={true} >
@@ -104,34 +185,73 @@ function App() {
         </Route>
 
         {/* Shop All */}
-        <Route path='/shop-all'>
+        <Route path='/product-page' exact={true}>
           <ShopAll />
         </Route>
 
+        {/* Shop All specific page */}
+        <Route path='/product-page/:productName'>
+          {/* //TODO: For specific product */}
+          <ShopProduct />
+        </Route>
+
         {/* Portfolio */}
-        <Route to="/for-home">
+        <Route path="/for-home">
           <Portfolio />
         </Route>
 
         {/* About */}
-        <Route to="/about">
+        <Route path="/about">
           <About />
         </Route>
 
         {/* Contact */}
-        <Route to="/contact">
+        <Route path="/contact">
           <Contact />
         </Route>
 
         {/* Shipping & Return */}
-        <Route to="/shipping-returns">
+        <Route path="/shipping-returns">
           <ShippingReturns />
         </Route>
 
         {/* Store Policy | Payment Methods */}
-        <Route to="/store-policy">
+        <Route path="/store-policy">
           <StorePolicy />
         </Route>
+
+        {/* //TODO: To provide page for success and close */}
+        {/* Cancel/Success Route  */}
+        <Route path='/success'>
+          TBD
+        </Route>
+
+        <Route path='/close'>
+          TBD
+        </Route>
+
+        {/* //? Account Menu */}
+        <AccountProvider>
+          {/* My Orders */}
+          <ProtectedRoute path="/account/my-orders">
+            <MyOrders />
+          </ProtectedRoute>
+
+          {/* My Addreses */}
+          <ProtectedRoute path="/account/my-addresses">
+            <MyAddresses />
+          </ProtectedRoute>
+
+          {/* My Wishlist */}
+          <ProtectedRoute path="/account/my-wishlist">
+            <MyWishlist />
+          </ProtectedRoute>
+
+          {/* My Account */}
+          <ProtectedRoute path="/account/my-account">
+            <MyAccount />
+          </ProtectedRoute>
+        </AccountProvider>
 
         {/* //? 404 Route */}
         <Route>404 Page Not Found</Route>

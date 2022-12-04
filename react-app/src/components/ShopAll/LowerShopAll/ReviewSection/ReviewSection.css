@@ -1,0 +1,111 @@
+/* src/components/ShopAll/LowerShopAll/ReviewSection/ReviewSection.css */
+
+.review-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.review-section > h2 {
+	font-size: 36px;
+	text-transform: uppercase;
+}
+
+.review-section * {
+	margin: 0;
+	padding: 0;
+}
+
+.review-section.inner-display {
+	/* background-color: red; */
+	width: fit-content;
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: flex-start;
+}
+
+.review-section.inner-display > * {
+	margin: 5vh 5vw;
+}
+
+/* Review List */
+.review-ul {
+	list-style-type: none;
+	width: 25vw;
+	text-align: left;
+}
+
+.rs.review-li {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+
+	position: relative;
+
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+.rs.review-li > h3 {
+	margin: 0;
+}
+
+.review-icons-container {
+	position: absolute;
+
+	top: 0;
+	right: 0;
+
+	display: flex;
+}
+
+.review-icons-container > figure {
+	margin: 0 5px;
+}
+
+/* Text area */
+.insert-review-section.form {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.insert-review-section.form > textarea {
+	resize: none;
+	height: 10vh;
+	width: 20vw;
+}
+
+.review-icons-container > figure:hover,
+.insert-review-section.form > button:hover {
+	cursor: pointer;
+}
+
+.star-button.display:hover,
+.star-span.display:hover {
+	cursor: default;
+}
+
+.submit-review-btn {
+	margin: 0;
+	padding: 0.5rem 1.5rem;
+	margin-top: 0.5rem;
+
+	background-color: #6fa04e;
+	color: white;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	border: none;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+/* More Reviews */
+.more-review-link:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}

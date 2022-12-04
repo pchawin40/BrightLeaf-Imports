@@ -1,0 +1,8 @@
+/* src/components/CheckOutModal/InnerLeft/ReviewItems/ReviewItems.css */
+ul.order-carts.ri {
+	height: 55% !important;
+}
+
+figure:has(.cil.use-address) > span {
+	font-weight: bold;
+}

@@ -1,0 +1,39 @@
+/* src/components/CheckOutModal/InnerLeft/CheckoutSteps/CheckoutSteps.css */
+
+/* Steps */
+section.cil.checkoutsteps-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.cil.lower.payment-method {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.cil.lower.payment-method.true {
+	font-weight: bold;
+}
+
+.cil.lower.payment-method.true.current:hover {
+	cursor: pointer;
+}
+
+.cil.lower.payment-method > span {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 100%;
+}
+
+.cil.lower.payment-method > span:first-child {
+	border-radius: 128px;
+	border: 3px solid #80ab63;
+	color: #80ab63;
+	font-weight: bold;
+	width: 2rem;
+	height: 2rem;
+	margin-bottom: 16px;
+}

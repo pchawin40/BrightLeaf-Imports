@@ -60,7 +60,7 @@ def product_by_id(product_id):
   product = Product.query.get(product_id)
   
   # if product not found, throw appropriate error
-  if product == Gallery:
+  if product == None:
     return {'errors': [f"Product {product_id} does not exist"]}, 404
   
   # otherwise, return successful response
@@ -79,7 +79,7 @@ def secure_product_by_id(product_id):
   product = Product.query.get(product_id)
   
   # check if product is found
-  if product == Gallery:
+  if product == None:
     return {'errors': [f"Product {product_id} does not exist"]}, 404
   
   # [PUT]
@@ -103,9 +103,9 @@ def secure_product_by_id(product_id):
       # if price exist
       if form.data['price']:
         product.price = form.data['price']
-      
+        
       # if quantity exist
-      if form.data['quantity']:
+      if form.data['quantity'] or form.data['quantity'] == 0:
         product.quantity = form.data['quantity']
       
       # if preview_image exist
@@ -124,9 +124,9 @@ def secure_product_by_id(product_id):
   # [DELETE]
   if request.method == 'DELETE':
     # remove all images part of product 4
-    destroy_product_images = Image.query.filter(Image.imageable_id == product_id).filter(Image.imageable_type == "Product")
+    destroy_shopall_images = Image.query.filter(Image.imageable_id == product_id).filter(Image.imageable_type == "ShopAll")
 
-    destroy_product_images.delete(synchronize_session=False)
+    destroy_shopall_images.delete(synchronize_session=False)
 
     # remove itself from its own model
     # remove all reviews part of given product

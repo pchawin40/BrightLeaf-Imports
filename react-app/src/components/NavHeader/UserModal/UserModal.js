@@ -10,19 +10,24 @@ import './UserModal.css';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import ForgotPasswordForm from './ForgotPasswordForm';
+import EmailVerification from './EmailVerification';
+import ResetPasswordForm from './ResetPasswordForm';
 
 // import context
 import { useNavHeader } from '../../../context/NavHeaderContext';
 
 // import react
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+// import react-router-dom
+import { useHistory } from 'react-router-dom';
 
 // import store
 import * as sessionActions from '../../../store/session';
+import * as shoppingCartActions from '../../../store/shoppingCarts';
 
 // import libraries
 import { FacebookProvider } from 'react-facebook';
-
 
 //? UserModal component
 const UserModal = () => {
@@ -38,9 +43,21 @@ const UserModal = () => {
   const [userSignUp, setUserSignUp] = useState(false);
   const { forgotPassword, setForgotPassword } = useNavHeader();
   const { showUserModal, setShowUserModal } = useNavHeader();
+  const { emailStep, setEmailStep } = useNavHeader();
+
+  /**
+   * UseEffect
+   */
+  // per general
+  useEffect(() => {
+    // nothing for now
+  }, [currentUserInfo, emailStep]);
 
   // invoke dispatch
   const dispatch = useDispatch();
+
+  // invoke history
+  const history = useHistory();
 
   // function to handle log out
   const handleLogout = async (e) => {
@@ -54,13 +71,59 @@ const UserModal = () => {
         id="logged-user-modal-section"
       >
         <ul id="logged-ums-ul">
-          <li>My Orders</li>
-          <li>My Addresses</li>
-          <li>My Wallet</li>
-          <li>My Wishlist</li>
-          <li>My Account</li>
+          {/* Home Page */}
+          <li
+            onClick={_ => {
+              setShowUserModal(false);
+              return history.push('/')
+            }}
+          >
+            Home Page
+          </li>
+
+          {/* My Orders */}
+          <li
+            onClick={_ => {
+              setShowUserModal(false);
+              return history.push('/account/my-orders')
+            }}
+          >
+            My Orders
+          </li>
+
+          {/* My Addresses */}
+          <li
+            onClick={_ => {
+              setShowUserModal(false);
+              return history.push('/account/my-addresses')
+            }}
+          >
+            My Addresses
+          </li>
+
+          {/* My Wishlist */}
+          <li
+            onClick={_ => {
+              setShowUserModal(false);
+              return history.push('/account/my-wishlist')
+            }}
+          >
+            My Wishlist
+          </li>
+
+          {/* My Account */}
+          <li
+            onClick={_ => {
+              setShowUserModal(false);
+              return history.push('/account/my-account')
+            }}
+          >
+            My Account
+          </li>
           <span className="line-span" />
-          <li onClick={handleLogout}>Log Out</li>
+          <li onClick={handleLogout}>
+            Log Out
+          </li>
         </ul>
       </section>
       :
@@ -81,9 +144,21 @@ const UserModal = () => {
                 :
                 (
                   forgotPassword ?
-                    <>
-                      Create New Password
-                    </>
+                    emailStep === 0
+                      ?
+                      <>
+                        Create New Password
+                      </>
+                      :
+                      emailStep === 1
+                        ?
+                        <>
+                          Enter Email Verification
+                        </>
+                        :
+                        <>
+                          Enter New Password
+                        </>
                     :
                     <>
                       Log In
@@ -109,11 +184,27 @@ const UserModal = () => {
               (
                 forgotPassword
                   ?
-                  <section id="ums-toggle-section">
-                    <p id="ums-ts-cnp">
-                      Please enter your email address
-                    </p>
-                  </section>
+                  emailStep === 0
+                    ?
+                    <section id="ums-toggle-section">
+                      <p id="ums-ts-cnp">
+                        Please enter your email address
+                      </p>
+                    </section>
+                    :
+                    emailStep === 1
+                      ?
+                      <section id="ums-toggle-section">
+                        <p id="ums-ts-cnp">
+                          Please enter code verification
+                        </p>
+                      </section>
+                      :
+                      <section id="ums-toggle-section">
+                        <p id="ums-ts-cnp">
+                          Please enter new password
+                        </p>
+                      </section>
                   :
                   <section id="ums-toggle-section">
                     <p>
@@ -139,7 +230,15 @@ const UserModal = () => {
               (
                 forgotPassword
                   ?
-                  <ForgotPasswordForm />
+                  emailStep === 0
+                    ?
+                    <ForgotPasswordForm />
+                    :
+                    emailStep === 1
+                      ?
+                      <EmailVerification />
+                      :
+                      <ResetPasswordForm />
                   :
                   <LoginForm />
               )
@@ -155,6 +254,7 @@ const UserModal = () => {
           onClick={_ => {
             setShowUserModal(false);
             setForgotPassword(false);
+            setEmailStep(0);
             document.body.style.overflowY = "scroll"
           }}
         />

@@ -4,7 +4,6 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
-from app.forms import PasswordForm
 
 from .models import db, User
 from .api.user_routes import user_routes
@@ -13,10 +12,17 @@ from .api.image_routes import image_routes
 from .api.review_routes import review_routes
 from .api.product_routes import product_routes
 from .api.shopping_cart_routes import shopping_cart_routes
+from .api.map_routes import map_routes
+from .api.product_users_routes import product_users_routes
+from .api.address_routes import address_routes
+from .api.stripe_routes import stripe_routes
+from .api.mail_routes import mail_routes
 
 from .seeds import seed_commands
 
 from .config import Config
+
+from .api.auth_routes import validation_errors_to_error_messages
 
 app = Flask(__name__)
 
@@ -46,6 +52,11 @@ app.register_blueprint(image_routes, url_prefix='/api/images')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
 app.register_blueprint(product_routes, url_prefix='/api/products')
 app.register_blueprint(shopping_cart_routes, url_prefix='/api/shopping-carts')
+app.register_blueprint(map_routes, url_prefix='/api/maps')
+app.register_blueprint(product_users_routes, url_prefix='/api/product_users')
+app.register_blueprint(address_routes, url_prefix='/api/addresses')
+app.register_blueprint(stripe_routes, url_prefix='/api/stripe')
+app.register_blueprint(mail_routes, url_prefix='/api/mail')
 
 db.init_app(app)
 Migrate(app, db)
@@ -85,25 +96,3 @@ def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
-
-#! TODO
-# #* POST /forgotPassword
-# @app.route('/forgotPassword', methods=['POST'])
-# def forgot_password():
-#     """
-#     method for using w/ flask_mail and for resetting user's password
-#     """
-#     form = PasswordForm()
-    
-#     # validate csrf token
-#     form['csrf_token'].data = request.cookies['csrf_token']
-    
-#     recipient = request 
-    
-#     if form.validate_on_submit():
-#         msg = Message('Create Your New Password', sender = 'brightleafs_imports@mailtrap.io', recipients = [request.json['email']])
-#         msg.body = f"Hello {request.json['email']}, your password confirmation code is 1234"
-#         mail.send(msg)
-#         return "Message sent!"
-    
-#     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

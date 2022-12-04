@@ -1,0 +1,10 @@
+/* src/components/About/LowerAbout/BottomLower/BottomLower.css */
+.bottom-lower-section > h1 {
+	color: #80ab63;
+	font-size: 64px;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 3.36px;
+	overflow-wrap: break-word;
+	vertical-align: baseline;
+}

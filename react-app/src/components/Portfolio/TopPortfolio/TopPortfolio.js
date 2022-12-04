@@ -12,7 +12,7 @@ const TopPortfolio = () => {
 
   return (
     <section
-      id="tp-section"
+      className="top-page-section"
       style={{
         backgroundColor,
         transition: "background-color 1s ease"
@@ -37,7 +37,7 @@ const TopPortfolio = () => {
             alt="brightleaf-logo"
           />
         </figure>
-        <section id="tp-header-section">
+        <section className="tps-header-section">
           <h1>
             Our Portfolio
           </h1>

@@ -1,0 +1,147 @@
+/* src/components/AccountMenu/MyAccount/MActContent/MActContent.css */
+/** Top */
+.cis.top-inner.account {
+	margin: 0;
+	padding: 0;
+
+	width: 100%;
+	height: 100%;
+
+	display: grid;
+	grid-template-columns: repeat(2, auto);
+	align-items: center;
+}
+
+.cis.top-inner.account > .title-container {
+	margin: 0;
+	padding: 0;
+}
+
+.top-inner.account > form {
+	margin: 0;
+	padding: 0;
+}
+
+/* Buttons Container */
+.buttons-container {
+	margin: 0;
+	padding: 0;
+
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+/** Lower */
+.cis.lower.account {
+	align-items: flex-start;
+	justify-content: flex-start;
+	margin: 16px;
+}
+
+/* Account */
+.cis.lower.account h2 {
+	margin: 0;
+}
+
+.cis.lower.account h2:first-child {
+	margin-top: 16px;
+}
+
+/* Login Email */
+.cis.la.email-subheader {
+	margin-bottom: 0;
+}
+
+.cis.la.user-email {
+	margin-top: 0;
+	margin-bottom: 36px;
+}
+
+.cis.la.user-email {
+	margin-top: 6px;
+}
+
+.cis.email-error {
+	color: red;
+	font-size: 80%;
+	margin-top: 2%;
+	margin-left: 1%;
+}
+
+/* Form */
+.cis.lower.account > form {
+	height: 100%;
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.cis.lower.account > form > figure {
+	width: 50%;
+	margin: 0;
+	margin-bottom: 12px;
+	padding: 0;
+}
+
+.cis.lower.account > form > figure * {
+	width: 100%;
+}
+
+.cis.lower.account > form input {
+	height: 24px;
+	padding-left: 6px;
+}
+
+.cis.lower.account > form .buttons-container > button {
+	margin: 16px;
+}
+
+.cis.button {
+	padding: 1vh 3vw;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+
+	text-transform: uppercase;
+
+	transition: box-shadow 0.5s ease;
+
+	position: relative;
+	z-index: 5;
+
+	font-size: 16px;
+
+	transition: 0.1s all ease-in-out;
+}
+
+.cis.button:hover {
+	cursor: pointer;
+}
+
+.cis.button.false:hover {
+	cursor: default;
+}
+
+.cis.button.update {
+	background-color: #80ab63;
+	border: 1px solid #80ab63;
+	color: white;
+}
+
+.cis.button.discard {
+	background-color: white;
+	color: black;
+	font-weight: bold;
+	border: 1px solid black;
+}
+
+.cis.button.discard.false {
+	border-color: #cbc7c3;
+	color: #cbc7c3;
+}
+
+.cis.button.update.false {
+	background-color: #cbc7c3;
+	color: white;
+	border-color: rgb(0, 0, 0, 0);
+}

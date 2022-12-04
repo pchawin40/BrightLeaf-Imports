@@ -1,0 +1,20 @@
+/* src/components/About/TopAbout/TopAbout.css */
+
+/* Image Background */
+.image-background-container.about {
+	height: 80vh;
+}
+
+/* Header Section*/
+.tps-header-section.about > h1 {
+	margin-top: 15vh;
+	font-size: 4vw;
+	position: relative;
+	z-index: 5;
+}
+
+/* Right Image */
+.top-figure-title.about {
+	right: 25.5em;
+	top: 18vh;
+}

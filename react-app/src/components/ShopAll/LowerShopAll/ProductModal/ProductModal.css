@@ -1,0 +1,140 @@
+/* src/components/ShopAll/LowerShopAll/ProductModal/ProductModal.css */
+
+#product-modal {
+	background-color: white;
+
+	height: fit-content;
+	width: 50vw;
+
+	position: relative;
+
+	box-shadow: 0 3px 10px black;
+
+	display: grid;
+	grid-template-columns: 60% auto;
+}
+
+/** Image Aside  */
+
+/* Product Image */
+
+.pm-image-aside {
+	display: grid;
+
+	grid-template-rows: 90% auto;
+
+	height: 100%;
+	width: 100%;
+}
+
+.pm-cis-figure {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.pm-cis-figure > img {
+	object-fit: cover;
+	height: 90%;
+	width: 90%;
+}
+
+/* Image Selector */
+
+.pm-image-aside > ul {
+	height: 100%;
+	width: 100%;
+
+	list-style-type: none;
+
+	display: flex;
+	justify-content: center;
+}
+
+.pm-image-aside > ul,
+.pm-image-aside > li,
+.pm-image-aside > li > i {
+	padding: 0;
+	margin: 0;
+}
+
+.pm-is-figure {
+	display: flex;
+	align-items: center;
+}
+
+.select-square {
+	margin: 0 12px;
+}
+
+.select-square:hover {
+	cursor: pointer;
+}
+
+/** Text Quick Details Section  */
+.pm-text-section {
+	height: 100%;
+	padding-bottom: 2vh;
+}
+
+/* Product Text Details */
+.pm-dpt.name {
+	font-size: 26px;
+}
+
+.pm-dpt.price {
+	font-size: 20px;
+}
+
+.pm-dpt.id {
+	font-size: 12px;
+}
+
+/* Button to buy */
+.pm-button {
+	font-size: 14px;
+	position: relative;
+	text-align: start;
+	box-sizing: border-box;
+	padding: 10px 16px;
+	line-height: 22.4px;
+	border: none;
+	color: white;
+
+	margin-top: 3rem;
+	margin-bottom: 1rem;
+	width: 85%;
+	display: flex;
+	justify-content: center;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+
+	transition: box-shadow 0.1s ease;
+
+	text-transform: uppercase;
+}
+
+.pm-button.available {
+	background-color: #80ab63;
+}
+
+.pm-button.available:hover {
+	cursor: pointer;
+}
+
+.pm-button.available:active {
+	box-shadow: 0 3px 15px rgb(0 0 0 / 0.2);
+}
+
+.pm-button.out-of-stock {
+	background-color: rgb(199, 199, 199);
+}
+
+/* View More Details link */
+.pm-navlink > a {
+	color: black;
+}

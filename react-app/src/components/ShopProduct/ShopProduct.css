@@ -1,0 +1,4 @@
+/* src/components/ShopAll/ShopProduct/ShopProduct.css */
+.page-section.shop-product {
+	grid-template-rows: 120px 90vh 100vh;
+}

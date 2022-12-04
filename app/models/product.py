@@ -9,11 +9,14 @@ class Product(db.Model):
   name = db.Column(db.String(50), nullable=False)
   description = db.Column(db.String(255))
   price = db.Column(db.Numeric(5, 2), nullable=False)
-  quantity = db.Column(db.Integer, nullable=False)
+  quantity = db.Column(db.Integer)
   preview_image = db.Column(db.String(255))
   
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+  
+  # connect product (*) to users (*)
+  products_users = db.relationship("ProductUser", backref="product", cascade="all, delete")
   
   # connect polymorphic relationship
   __mapper_args__ = {
@@ -25,10 +28,8 @@ class Product(db.Model):
   # connect parent (1: shopping cart) to child (*: products)
   products = db.relationship('ShoppingCart', cascade='delete')
   
-  review = db.relationship('Review', back_populates='products', cascade='delete')
-  
   # return product as object (dictionary)
-  def to_dict(self):
+  def to_dict(self):    
     return {
       'id': self.id,
       'name': self.name,

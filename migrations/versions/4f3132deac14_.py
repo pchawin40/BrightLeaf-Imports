@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: cb0a4e4fc002
+Revision ID: 4f3132deac14
 Revises: 
-Create Date: 2022-11-14 16:59:28.500654
+Create Date: 2022-12-03 19:36:18.685972
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'cb0a4e4fc002'
+revision = '4f3132deac14'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -29,40 +29,69 @@ def upgrade():
     sa.ForeignKeyConstraint(['imageable_id'], ['reviews.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('reviews',
+    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('review', sa.String(length=255), nullable=True),
+    sa.Column('stars', sa.Integer(), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.ForeignKeyConstraint(['id'], ['images.imageable_id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('users',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('username', sa.String(length=40), nullable=True),
+    sa.Column('email', sa.String(length=255), nullable=False),
+    sa.Column('hashed_password', sa.String(length=255), nullable=False),
+    sa.Column('profile_picture', sa.String(length=255), nullable=True),
+    sa.Column('role', sa.String(length=40), nullable=False),
+    sa.Column('login_by', sa.String(length=40), nullable=True),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('email')
+    )
+    op.create_table('addresses',
+    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('company_name', sa.String(length=50), nullable=True),
+    sa.Column('address', sa.String(length=100), nullable=True),
+    sa.Column('address_2', sa.String(length=100), nullable=True),
+    sa.Column('city', sa.String(length=50), nullable=True),
+    sa.Column('country', sa.String(length=50), nullable=True),
+    sa.Column('state', sa.String(length=50), nullable=True),
+    sa.Column('zipcode', sa.String(length=20), nullable=True),
+    sa.Column('phone', sa.String(length=10), nullable=True),
+    sa.Column('default', sa.Boolean(), nullable=True),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('products',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('description', sa.String(length=255), nullable=True),
     sa.Column('price', sa.Numeric(precision=5, scale=2), nullable=False),
-    sa.Column('quantity', sa.Integer(), nullable=False),
+    sa.Column('quantity', sa.Integer(), nullable=True),
     sa.Column('preview_image', sa.String(length=255), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['id'], ['images.imageable_id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('reviews',
-    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('product_id', sa.Integer(), nullable=False),
-    sa.Column('review', sa.String(length=255), nullable=True),
-    sa.Column('stars', sa.Integer(), nullable=False),
-    sa.Column('created_at', sa.DateTime(), nullable=True),
-    sa.Column('updated_at', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['id'], ['images.imageable_id'], ondelete='CASCADE'),
-    sa.ForeignKeyConstraint(['product_id'], ['products.id'], ondelete='CASCADE'),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
-    sa.PrimaryKeyConstraint('id')
-    )
-    op.create_table('users',
+    op.create_table('product_users',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('email', sa.String(length=255), nullable=False),
-    sa.Column('hashed_password', sa.String(length=255), nullable=False),
-    sa.Column('role', sa.String(length=40), nullable=False),
+    sa.Column('likeToggle', sa.Boolean(), nullable=True),
+    sa.Column('product_id', sa.Integer(), nullable=True),
+    sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('email')
+    sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('shopping_carts',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
@@ -81,8 +110,10 @@ def upgrade():
 def downgrade():
     # ### commands auto generated by Alembic - please adjust! ###
     op.drop_table('shopping_carts')
+    op.drop_table('product_users')
+    op.drop_table('products')
+    op.drop_table('addresses')
     op.drop_table('users')
     op.drop_table('reviews')
-    op.drop_table('products')
     op.drop_table('images')
     # ### end Alembic commands ###

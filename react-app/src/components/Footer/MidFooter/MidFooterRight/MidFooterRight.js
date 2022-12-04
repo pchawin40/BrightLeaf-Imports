@@ -5,9 +5,62 @@ import './MidFooterRight.css';
 
 // import react-router-dom
 import { NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+
+// function to validate subscription email
+export const validateSubscribeEmail = (email) => {
+  return String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};
 
 //? MidFooterRight component
 const MidFooterRight = () => {
+
+  /**
+   * Controlled inputs
+   */
+  const [subscribeEmail, setSubscribeEmail] = useState("");
+  const [subscribeEmailLength, setSubscribeEmailLength] = useState(0);
+
+  /**
+   * UseEffect
+   */
+  // per general
+  useEffect(() => {
+    // nothing for now
+  }, [subscribeEmail]);
+
+  // function to update email
+  const updateSubscribeEmail = e => {
+    setSubscribeEmail(e.target.value);
+    setSubscribeEmailLength(e.target.value.length);
+  }
+
+  // function to handle subscribe to email
+  const handleSubscribe = async e => {
+    if (validateSubscribeEmail(subscribeEmail)) {
+      const res = await fetch('/api/mail/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          'email': subscribeEmail
+        })
+      });
+
+      if (res.ok) {
+        window.alert(`Thank you for subscribing. You have been subscribed to our newsletter at ${subscribeEmail}`);
+      }
+    } else {
+      window.alert(`Your email was not valid. We have not added this email to our newsletter sender. Thank you for understanding.`);
+    }
+  }
+
   return (
     <section id="mfr-section">
       {/* Help Section */}
@@ -22,12 +75,22 @@ const MidFooterRight = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/store-policy">
+            <NavLink
+              to="/store-policy"
+              onClick={_ => {
+                window.scrollTo(0, 0);
+              }}
+            >
               Store Policy
             </NavLink>
           </li>
           <li>
-            <NavLink to="/store-policy">
+            <NavLink
+              to="/store-policy"
+              onClick={_ => {
+                window.scrollTo(0, 0);
+              }}
+            >
               Payment Methods
             </NavLink>
           </li>
@@ -46,8 +109,8 @@ const MidFooterRight = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/shop-all">
-              Shop All
+            <NavLink to="/about">
+              About
             </NavLink>
           </li>
           <li>
@@ -56,8 +119,8 @@ const MidFooterRight = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/about">
-              About
+            <NavLink to="/product-page">
+              Shop All
             </NavLink>
           </li>
           <li>
@@ -81,9 +144,13 @@ const MidFooterRight = () => {
         {/* Email */}
         <section>
           <input
+            onChange={updateSubscribeEmail}
+            value={subscribeEmail}
             placeholder="E-mail"
           />
-          <button>
+          <button
+            onClick={handleSubscribe}
+          >
             Subscribe
           </button>
         </section>

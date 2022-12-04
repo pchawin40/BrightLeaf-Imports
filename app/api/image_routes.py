@@ -30,6 +30,9 @@ def images():
     
   if(request.args.get('Review')):
     filter_list.append('Review')
+    
+  if(request.args.get('ShopAll')):
+    filter_list.append('ShopAll')
 
   # search image by filter_list
   images = Image.query.filter(or_(*[Image.imageable_type.ilike(prefix + "%") for prefix in filter_list])).all()

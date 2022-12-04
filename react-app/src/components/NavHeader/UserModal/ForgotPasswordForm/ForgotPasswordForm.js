@@ -4,8 +4,9 @@
 import './ForgotPasswordForm.css';
 
 // import react
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
+import { useNavHeader } from '../../../../context/NavHeaderContext';
 
 // import libraries
 
@@ -13,41 +14,48 @@ import { useDispatch } from 'react-redux';
 //? ForgotPasswordForm component
 const ForgotPasswordForm = () => {
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState(null);
   const [showError, setShowError] = useState(false);
   const [messageFromServer, setMessageFromServer] = useState('');
   const [showNullError, setShowNullError] = useState(false);
+  const { emailStep, setEmailStep } = useNavHeader();
+  const { emailToReset, setEmailToReset } = useNavHeader();
 
-  // invoke dispatch
-  const dispatch = useDispatch();
+  /**
+   * UseEffect
+   */
+  // per general
+  useEffect(() => {
+    // nothing for now
+  }, [email, emailError]);
 
   // function to send email (nodemailer)
   const sendEmail = async e => {
     // prevent page from refreshing
     e.preventDefault();
 
-    if (email = '') {
+    if (email === '') {
       setShowError(false);
       setMessageFromServer('');
     } else {
-      const res = await fetch('/api/auth/forgotPassword', {
+      const res = await fetch('/api/mail/forgot_password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(email)
+        body: JSON.stringify({
+          email
+        })
       });
 
       if (res.ok) {
-
-        if (res.data === 'email not in db') {
-          setShowError(true);
-          setMessageFromServer('');
-        } else if (res.data === "recovery email sent") {
-          setShowError(false);
-          setMessageFromServer("recovery email sent");
-        }
+        // set email step to next: email verification
+        setEmailToReset(email);
+        setEmailStep(1);
       } else {
-        console.log("error from sendEmail: ", res);
+        const emailErrorData = await res.json();
+
+        setEmailError(emailErrorData.errors[0]);
       }
     }
   }
@@ -56,6 +64,8 @@ const ForgotPasswordForm = () => {
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
+
+  // function to load code verification
 
   return (
     <form id="forgot-password-form" onSubmit={sendEmail}>
@@ -95,6 +105,15 @@ const ForgotPasswordForm = () => {
           value={email}
           onChange={updateEmail}
         />
+        {
+          emailError
+          &&
+          <p id="suf-errors-container fpf">
+            {
+              emailError
+            }
+          </p>
+        }
       </div>
 
       <button

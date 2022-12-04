@@ -1,15 +1,14 @@
 # app/api/user_routes.py
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.forms import LoginForm, EditUserForm
-from app.models import User, db, Review, ShoppingCart, Product
+from app.forms import LoginForm, EditUserForm, ProductUserForm
+from app.models import User, db, Review, ShoppingCart, Product, ProductUser, Address
 from .auth_routes import validation_errors_to_error_messages
 
 user_routes = Blueprint('users', __name__)
 
 #* GET /api/users
 @user_routes.route('/')
-@login_required
 def users():
     """
     get all available users
@@ -23,6 +22,7 @@ def users():
 @login_required
 def get_or_modify_user(user_id):
     """
+    GET: Get given user information
     PUT: Update given user information
     DELETE: Delete given user
     """
@@ -33,38 +33,31 @@ def get_or_modify_user(user_id):
     session_user = User.query.get(current_user.get_id())
     
     # if no user found, throw error
-    if(user == Gallery):
+    if(user == None):
         return {'errors': [f"User {user_id} does not exist"]}, 404
-            
+    
     # [PUT] update user information
     if request.method == 'PUT':
         # if current session user is not administrator, throw error saying need permission
         session_role = session_user.role 
 
-        if session_role != 'administrator':
-            return {'errors': [f"User {session_user.id} does not have permission to modify user {user.id}"]}, 400
-    
         # get user data from form
         form = EditUserForm()
         
         # validate csrf token
         form['csrf_token'].data = request.cookies['csrf_token']
-        
+    
         #* update user
         if form.validate_on_submit():
             # check for any form errors
-            # if first name exist
-            if(form.data['first_name']):
-                user.first_name = form.data['first_name']
-
-            # if last name exist
-            if(form.data['last_name']):
-                user.last_name = form.data['last_name']
-
             # if user name exist
             if(form.data['username']):
                 user.username = form.data['username']
 
+            # if profile picture exists
+            if(form.data['profile_picture']):
+                user.profile_picture = form.data['profile_picture']
+                
             # if email exist
             if(form.data['email']):
                 user.email = form.data['email']
@@ -82,7 +75,7 @@ def get_or_modify_user(user_id):
             
             # return current user
             return user.to_dict()
-        
+    
         # return error if any
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -109,7 +102,7 @@ def get_or_modify_user(user_id):
 @login_required
 def get_current_user():
     """
-    get current user
+    GET: get current user
     """
     user = User.query.get(current_user.get_id())
     return user.to_dict()
@@ -125,6 +118,9 @@ def user_reviews():
 #* GET /api/users/shopping-carts
 @user_routes.route('/shopping-carts')
 def user_carts():
+    """
+    GET: get all shopping-carts that belong to user
+    """
     current_user_carts = ShoppingCart.query.filter(ShoppingCart.user_id == current_user.get_id()).all()
     
     current_user_cart_displays = {}
@@ -141,3 +137,13 @@ def user_carts():
         current_user_cart_displays = {**current_user_cart_displays, current_user_cart.id: current_user_cart_display}
     
     return {'shopping_carts': current_user_cart_displays}
+
+#* GET /api/users/addresses
+@user_routes.route('/addresses')
+def user_addresses():
+    """
+    GET: get all addresses that belong to current user
+    """
+    addresses = Address.query.filter(Address.user_id == current_user.get_id()).all()
+    
+    return {'addresses': {address.id: address.to_dict() for address in addresses}}

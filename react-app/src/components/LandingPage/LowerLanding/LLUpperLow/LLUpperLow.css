@@ -85,21 +85,22 @@
 	margin-bottom: 5vh;
 }
 
-#uls-right-inner > button {
-	width: fit-content;
-	font-family: questrial, sans-serif;
-	background-color: white;
-	border: 3px solid #80ab63;
+#uls-right-inner > a > button {
 	padding: 0.5vw 2vw;
-	font-weight: 900;
+	color: #80ab63;
+	background-color: white;
 	font-size: 1.5vw;
+	font-family: questrial, sans-serif;
+	font-weight: 900;
 	letter-spacing: 0.1vw;
-	margin-left: 0.5vw;
+	border: 3px solid #80ab63;
 
-	transition: all 0.5s ease;
+	transition: all 0.4s ease;
+
+	text-transform: uppercase;
 }
 
-#uls-right-inner > button:hover {
+#uls-right-inner > a > button:hover {
 	cursor: pointer;
 
 	color: white;

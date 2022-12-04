@@ -57,9 +57,7 @@ const ImageModal = ({ imageType }) => {
 
   // per imageAdd
   useEffect(() => {
-    // reset image sample after setting image loading to false
-    //! TODO
-    // document.querySelector('.im-image-input').value = '';
+    // nothing for now
   }, [imageAdd]);
 
   // invoke dispatch
@@ -94,7 +92,6 @@ const ImageModal = ({ imageType }) => {
       description: imageDescription
     }
 
-    console.log('imageToAdd', imageToAdd);
     // call on thunk to add image after getting imageToAdd data
     dispatch(imageActions.thunkPostImages(imageToAdd))
       .then(() => {
