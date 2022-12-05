@@ -29,7 +29,8 @@ def post_stripe_charge():
       url = "http://localhost:3000/"
     else:
       # return to live site url's homepage
-      url = os.environ.get('REACT_APP_BASE_URL')
+      url = "https://brightleaf-imports.herokuapp.com/"
+      # url = os.environ.get('REACT_APP_BASE_URL')
     
     session = stripe.checkout.Session.create(
       line_items=[
