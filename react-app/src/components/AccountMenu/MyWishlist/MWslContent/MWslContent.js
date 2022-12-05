@@ -64,9 +64,10 @@ const MWslContent = () => {
   // invoke dispatch
   const dispatch = useDispatch();
 
+  const elRef = useRef();
+
   // function to use horizontal scroll
   const useHorizontalScroll = () => {
-    const elRef = useRef();
     useEffect(() => {
       const el = elRef.current;
       if (el) {
