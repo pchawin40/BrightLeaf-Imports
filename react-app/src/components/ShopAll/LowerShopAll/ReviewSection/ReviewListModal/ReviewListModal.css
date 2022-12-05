@@ -11,6 +11,9 @@
 	height: 50vh;
 	width: 50vw;
 	overflow-y: auto;
+
+	padding-left: 25px;
+	padding-right: 25px;
 }
 
 .review-modal-ul::-webkit-scrollbar {

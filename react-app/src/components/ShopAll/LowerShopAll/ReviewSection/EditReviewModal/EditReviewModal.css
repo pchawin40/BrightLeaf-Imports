@@ -4,11 +4,14 @@
 	height: fit-content;
 	width: fit-content;
 	padding: 1rem;
+
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
 }
 
 .edit-review-modal > form {
 	height: 100%;
 	width: 100%;
+	position: relative;
 }
 
 .edit-inner-section.review {
@@ -24,4 +27,44 @@
 
 .edit-review-modal > form > button:hover {
 	cursor: pointer;
+}
+
+/* label */
+section.edit-inner-section.review > label {
+	margin: 20px 0;
+	font-weight: bold;
+}
+
+button.post-review.erv {
+	color: white;
+	background-color: #80ab63;
+
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.5vw 0;
+	font-size: 100%;
+	font-weight: bold;
+	letter-spacing: 0.1vw;
+	border: 3px solid #80ab63;
+	border-radius: 6px;
+
+	transition: all 0.4s ease;
+
+	text-transform: uppercase;
+
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+
+	margin-top: 20px;
+}
+
+button.post-review.erv:hover,
+.edit-review-modal > form > i:hover {
+	cursor: pointer;
+}
+
+.edit-review-modal > form > i {
+	position: absolute;
+
+	top: 5%;
+	right: 0;
 }

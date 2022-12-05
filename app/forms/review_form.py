@@ -6,4 +6,4 @@ from app.models import Review
 class ReviewForm(FlaskForm):
   user_id = IntegerField('user_id', validators=[DataRequired()])
   review = StringField('review')
-  stars = IntegerField('stars', validators=[DataRequired()])
+  stars = IntegerField('stars', default=0)

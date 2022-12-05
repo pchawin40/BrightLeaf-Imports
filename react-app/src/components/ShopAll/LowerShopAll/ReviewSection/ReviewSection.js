@@ -44,7 +44,7 @@ const ReviewSection = () => {
   const [reviewLength, setReviewLength] = useState(0);
   const { rating, setRating } = useReview();
   const { showReviewModal, setShowReviewModal } = useReview();
-  const [currentReviewId, setCurrentReviewId] = useState(null);
+  const { currentReviewId, setCurrentReviewId } = useReview();
   const { editReview, setEditReview } = useReview();
   const { hover, setHover } = useReview();
   const { showUserModal, setShowUserModal } = useNavHeader();
@@ -56,10 +56,12 @@ const ReviewSection = () => {
   // per general
   useEffect(() => {
     // nothing for now
-    // reset data upon page refreshing
-    setReview("");
-    setRating(0);
-  }, [editReview, showReviewModal]);
+    if (!editReview) {
+      // reset data upon page refreshing
+      setReview("");
+      setRating(0);
+    }
+  }, [editReview, showReviewModal, currentReviewId]);
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -192,6 +194,9 @@ const ReviewSection = () => {
     //* check if is user, if not, lead to sign in
     if (!currentUserInfo) {
       alert("Must be logged in as user to post review");
+      setReview("");
+      setRating(0);
+      setHover(0);
       return setShowUserModal(true);
     }
 
@@ -199,6 +204,7 @@ const ReviewSection = () => {
     if (currentUserInfo && currentUserInfo.role !== "user") {
       setReview("");
       setRating(0);
+      setHover(0);
       return alert("Must be user and not administrator to submit");
     }
 
@@ -210,9 +216,14 @@ const ReviewSection = () => {
       stars: rating
     };
 
+    if (!rating) {
+      newReview.stars = 0;
+    }
+
     // reset form after grabbing data
     setReview("");
     setRating(0);
+    setHover(0);
 
     // call on thunk to edit review
     // then do a dispatch to get all reviews

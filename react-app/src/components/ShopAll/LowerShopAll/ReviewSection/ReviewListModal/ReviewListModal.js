@@ -7,7 +7,7 @@ import './ReviewListModal.css';
 import { useReview } from '../../../../../context/ReviewContext';
 
 // import react
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // import react-redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -33,8 +33,23 @@ const ReviewListModal = ({ setShowReviewListModal }) => {
    * Controlled inputs
    */
   const { showReviewModal, setShowReviewModal } = useReview();
-  const [currentReviewId, setCurrentReviewId] = useState(null);
+  const { currentReviewId, setCurrentReviewId } = useReview();
   const { editReview, setEditReview } = useReview();
+  const { review, setReview } = useReview();
+  const { rating, setRating } = useReview();
+
+  /**
+   * UseEffect
+   */
+  // per general
+  useEffect(() => {
+    // nothing for now
+    if (!editReview) {
+      // reset data upon page refreshing
+      setReview("");
+      setRating(0);
+    }
+  }, [editReview, showReviewModal, currentReviewId]);
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -100,9 +115,9 @@ const ReviewListModal = ({ setShowReviewListModal }) => {
                 <figure
                   className="edit-review-figure"
                   onClick={_ => {
-                    setShowReviewModal(true);
                     setCurrentReviewId(review.id);
                     setEditReview(true);
+                    setShowReviewModal(true);
                   }}
                 >
                   <i className="fa-solid fa-pencil" />
