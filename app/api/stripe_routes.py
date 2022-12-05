@@ -24,12 +24,12 @@ def post_stripe_charge():
   if form.validate_on_submit():
     url = ""
   
-    if os.environ.get('FLASK_ENV') == 'production':
-      # return user back to homepage
-      url = os.environ.get('REACT_APP_BASE_URL')
     if os.environ.get('FLASK_ENV') == 'development':
-      # otherwise set it to official website
+      # return user back to homepage
       url = "http://localhost:3000/"
+    else:
+      # return to live site url's homepage
+      url = os.environ.get('REACT_APP_BASE_URL')
     
     session = stripe.checkout.Session.create(
       line_items=[
