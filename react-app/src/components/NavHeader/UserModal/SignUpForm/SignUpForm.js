@@ -103,12 +103,13 @@ const SignUpForm = () => {
     // prevent page from refreshing
     e.preventDefault();
 
+    // ! To fix later
     // encapsulate captcha ref capsule
-    const token = captchaRef.current.getValue();
-    setValidToken(false);
+    // const token = captchaRef.current.getValue();
+    // setValidToken(false);
 
     // reset captcha ref
-    captchaRef.current.reset();
+    // captchaRef.current.reset();
 
     // reset errors
     setErrors([]);
