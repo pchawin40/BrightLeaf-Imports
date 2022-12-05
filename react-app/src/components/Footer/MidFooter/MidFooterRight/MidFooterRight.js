@@ -57,7 +57,7 @@ const MidFooterRight = () => {
         window.alert(`Thank you for subscribing. You have been subscribed to our newsletter at ${subscribeEmail}`);
       }
     } else {
-      window.alert(`Your email was not valid. We have not added this email to our newsletter sender. Thank you for understanding.`);
+      window.alert(`Your email was not valid. We have not added this email to our newsletter sender. Thank you for your understanding.`);
     }
   }
 
