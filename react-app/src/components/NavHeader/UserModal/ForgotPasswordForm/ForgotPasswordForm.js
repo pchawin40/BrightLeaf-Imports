@@ -49,6 +49,9 @@ const ForgotPasswordForm = () => {
       });
 
       if (res.ok) {
+        // alert user to check their email
+        window.alert("Your passcode confirmation have been sent to your email. Please check your email to get the passcode for next screen.")
+
         // set email step to next: email verification
         setEmailToReset(email);
         setEmailStep(1);
