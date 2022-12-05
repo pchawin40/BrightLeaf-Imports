@@ -163,9 +163,9 @@ function App() {
         <Modal
           onClose={(_) => {
             // resetting cart modal
+            setCurrentStep(0);
             setLoadCartModal(false);
             setShowCheckoutModal(false);
-            setCurrentStep(0);
             setSelectedAddress(null);
           }}
         >
