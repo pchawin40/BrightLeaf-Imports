@@ -32,8 +32,8 @@
 .sub-section.policy button {
 	color: #80ab63;
 	background-color: white;
-	padding: 0.5vw 2vw;
-	font-size: 1.5vw;
+	padding: 10px 25px;
+	font-size: 100%;
 	font-family: questrial, sans-serif;
 	font-weight: 900;
 	letter-spacing: 0.1vw;

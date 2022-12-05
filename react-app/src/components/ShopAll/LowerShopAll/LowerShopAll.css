@@ -107,10 +107,14 @@
 
 .lp-product-span.name {
 	margin-top: 10px;
+
+	font-size: 100%;
 }
 
 .lp-product-span.price {
 	margin-top: 5px;
+
+	font-size: 100%;
 }
 
 .lp-product-button {
@@ -130,6 +134,8 @@
 	padding: 1.5vh 0;
 
 	width: 42%;
+
+	font-size: 100%;
 }
 
 .lp-product-button.available:active {

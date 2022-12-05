@@ -104,8 +104,8 @@ const MiddleContact = () => {
     e.preventDefault();
 
     if (validateContactInformation()) {
-      
-      
+
+
       const res = await fetch('/api/mail/contact', {
         method: 'POST',
         headers: {
@@ -118,14 +118,14 @@ const MiddleContact = () => {
           message
         })
       });
-      
+
       if (res.ok) {
         // reset form information
         setName("")
         setPhone("")
         setEmail("")
         setMessage("")
-        
+
         window.alert(`Thank you for contacting us. We have received your email.`);
       }
 
@@ -244,7 +244,15 @@ const MiddleContact = () => {
                 "invalid"
               }
             `}
-            type={validateContactInformation() ? "submit" : "button"}
+            type={
+              validateContactInformation()
+                &&
+                validateLengthValidation()
+                ?
+                "submit"
+                :
+                "button"
+            }
           >
             Submit
           </button>

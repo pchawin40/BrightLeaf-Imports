@@ -48,10 +48,10 @@
 #ll-uts-right-inner > h2 {
 	text-align: center;
 	color: #80ab63;
-	font-size: 2vw;
+	font-size: 100%;
 }
 
 #ll-uts-right-inner > p {
-	font-size: 1.25vw;
+	font-size: 100%;
 	color: black;
 }
