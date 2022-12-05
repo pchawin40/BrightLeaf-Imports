@@ -45,8 +45,10 @@ const CheckOutModal = () => {
         <i
           className="fa-solid fa-x fa-xl"
           onClick={_ => {
+            // reset modal and inputs
             setLoadCartModal(false);
             setShowCheckoutModal(false);
+            setSelectedAddress(null);
 
             document.body.style.overflowY = "scroll";
           }}

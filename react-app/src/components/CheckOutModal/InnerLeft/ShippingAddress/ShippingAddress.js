@@ -14,6 +14,15 @@ import { useSelector } from 'react-redux';
 import * as addressActions from '../../../../store/address';
 import { useEffect } from 'react';
 
+// function to check if address have been selected
+export const checkAddressSelected = (selectedAddress) => {
+  return (
+    document.querySelector("li.madr.sa > input") && document.querySelector("li.madr.sa > input").checked
+    ||
+    selectedAddress
+  );
+}
+
 //? ShippingAddress component
 const ShippingAddress = () => {
   /**
@@ -49,7 +58,7 @@ const ShippingAddress = () => {
         }
       }
     }
-  }, [currentUserAddresses]);
+  }, [currentUserAddresses, selectedAddress]);
 
   // function to load addresses if exists
   const loadCurrentAddresses = () => {
@@ -123,7 +132,7 @@ const ShippingAddress = () => {
   return (
     <section className="cil main-content sa">
       <h2>
-        My Saved Address
+        My Saved Addresses
       </h2>
 
       {
@@ -147,8 +156,12 @@ const ShippingAddress = () => {
       {/* Use This Address Button */}
       <figure>
         <button
-          className="cil use-address"
-          onClick={_ => setCurrentStep(2)}
+          className={`cil use-address ${checkAddressSelected(selectedAddress) ? "valid" : "invalid"}`}
+          onClick={_ => {
+            if (checkAddressSelected(selectedAddress)) {
+              setCurrentStep(2);
+            }
+          }}
         >
           Use this address
         </button>

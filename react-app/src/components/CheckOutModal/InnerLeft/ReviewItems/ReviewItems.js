@@ -19,6 +19,12 @@ import * as shoppingCartActions from '../../../../store/shoppingCarts';
 import * as productActions from '../../../../store/products';
 import * as sessionActions from '../../../../store/session';
 import { useShoppingCart } from '../../../../context/ShoppingCartContext';
+import { useHistory } from 'react-router-dom';
+
+// function to check current cart quantity
+export const checkCurrentCartQuantity = (currentItemsQuantity = 0) => {
+  return currentItemsQuantity > 0;
+}
 
 //? ReviewItems component
 const ReviewItems = () => {
@@ -30,6 +36,7 @@ const ReviewItems = () => {
   const [reviewProductLoaded, setProductReviewLoaded] = useState(false);;
   const { showUserModal, setShowUserModal } = useNavHeader();
   const { cartLoaded, setCartLoaded } = useShoppingCart();
+  const { showCheckoutModal, setShowCheckoutModal } = useCheckOut();
 
   /**
    * Selector functions
@@ -40,6 +47,7 @@ const ReviewItems = () => {
   const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
   const currentUserId = useSelector(sessionActions.getCurrentUserId);
   const currentProducts = useSelector(productActions.getCurrentProducts);
+  const currentItemsQuantity = useSelector(shoppingCartActions.getCurrentItemsQuantity);
 
   /**
    * UseEffect
@@ -55,6 +63,8 @@ const ReviewItems = () => {
   // invoke dispatch
   const dispatch = useDispatch();
 
+  // invoke history
+  const history = useHistory();
 
   // function to handle quantity click
   const handleCartQuantity = (cartItem, newQuantity, addToCart = true) => {
@@ -64,6 +74,17 @@ const ReviewItems = () => {
       // TODO: To fix glitch when deleting last item of last cart
       dispatch(shoppingCartActions.thunkDeleteCart(cartItem.id))
         .then(() => {
+          // if productreview is loaded and cart have no item, show window alert warning and exit modal
+          if (currentItemsQuantity === 1) {
+            window.alert("Your cart have no more item. Proceeding back to home page.");
+
+            // close out modal
+            setShowCheckoutModal(false);
+
+            // return back to homepage
+            return history.push('/');
+          }
+
           // add quantity to product from removing from cart
           // grab existing product
 
@@ -125,6 +146,7 @@ const ReviewItems = () => {
 
     return existingProduct.quantity > 0;
   }
+
 
   // function to load carts
   const loadCarts = () => {
@@ -221,8 +243,12 @@ const ReviewItems = () => {
       {/* Use This Address Button */}
       <figure>
         <button
-          className="cil use-address"
-          onClick={_ => setCurrentStep(3)}
+          className={`cil accept-review ${checkCurrentCartQuantity(currentItemsQuantity) ? "valid" : "invalid"}`}
+          onClick={_ => {
+            if (checkCurrentCartQuantity(currentItemsQuantity)) {
+              setCurrentStep(3)
+            }
+          }}
         >
           Proceed to Payment
         </button>
