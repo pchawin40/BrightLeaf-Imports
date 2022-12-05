@@ -116,12 +116,16 @@ def modify_or_delete_address(address_id):
       if(form.data['phone']):
         address.phone = form.data['phone']
       
+      db.session.commit()
+      
       # if default is true, reset other default and make a new default
       if form.data['default']:
         # find any other address that is default and reset it
         current_default_address = Address.query.filter(Address.default == True).first()
-        current_default_address.default = False
-        db.session.commit()
+        
+        if current_default_address:
+          current_default_address.default = False
+          db.session.commit()
         
       address.default = form.data['default']
       
