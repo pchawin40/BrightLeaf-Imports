@@ -118,6 +118,17 @@ def secure_product_by_id(product_id):
       # return successful response
       return product.to_dict()
 
+    print()
+    print()
+    print()
+    print()
+    print()
+    print(validation_errors_to_error_messages(form.errors))
+    print()
+    print()
+    print()
+    print()
+
     # return error if any
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

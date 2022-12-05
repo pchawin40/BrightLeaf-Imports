@@ -160,8 +160,9 @@ export const thunkDeleteCart = (cartId) => async (dispatch) => {
 
 /* --------- SELECTOR FUNCTIONS -------- */
 export const getCurrentUserCarts = state => Object.values(state.shoppingCarts);
-export const getCurrentItemsQuantity = state => Object.values(state.shoppingCarts).map(cart => cart.quantity).reduce((acc, curr) => acc + curr);
+export const getCurrentItemsQuantity = state => Object.values(state.shoppingCarts).map(cart => cart.quantity).reduce((acc, curr) => acc + curr, 0);
 export const getCurrentCartProductIds = state => Object.values(state.shoppingCarts).map(cart => cart.product_id);
+
 
 /* --------- REDUCERS -------- */
 const initialState = {}

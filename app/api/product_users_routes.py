@@ -10,7 +10,6 @@ product_users_routes = Blueprint('product_users', __name__)
 #* GET /api/product_users
 #* POST /api/product_users
 @product_users_routes.route('/', methods=['GET', 'POST'])
-@login_required
 def get_or_post_product_users():
     """
     GET: Get current user product_users information

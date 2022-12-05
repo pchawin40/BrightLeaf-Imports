@@ -24,6 +24,10 @@ import * as keyActions from '../../../../store/keys';
 
 // import libraries
 import ReCAPTCHA from "react-google-recaptcha";
+// import {
+//   GoogleReCaptchaProvider,
+//   GoogleReCaptcha
+// } from 'react-google-recaptcha-v3';
 import { useGoogleLogin } from '@react-oauth/google';
 
 const SignUpForm = () => {
@@ -67,9 +71,8 @@ const SignUpForm = () => {
           login_by: "google"
         }
 
-        dispatch(sessionActions.thunkAPILogin(googleUserResponse));
-
-        setShowUserModal(false);
+        dispatch(sessionActions.thunkAPILogin(googleUserResponse))
+          .then(() => setShowUserModal(false));
       } else {
         throw new Error(`Error fetching user data with token: ${tokenResponse.access_token}`)
       }
@@ -212,6 +215,9 @@ const SignUpForm = () => {
       {
         recaptchaKey
         &&
+        // <GoogleReCaptchaProvider reCaptchaKey={recaptchaKey}>
+        //   <GoogleReCaptcha onVerify={handleVerify} />
+        // </GoogleReCaptchaProvider>
         <ReCAPTCHA
           sitekey={recaptchaKey}
           ref={captchaRef}
