@@ -176,6 +176,18 @@ def sign_up():
     # query product to add for ProductUser
     products = Product.query.all()
     
+    print()
+    print()
+    print()
+    print()
+    print()
+    print('here')
+    print()
+    print()
+    print()
+    print()
+    print()
+    
     if form.validate_on_submit():
         user = User(
             username=form.data['username'],
@@ -184,6 +196,18 @@ def sign_up():
             password=form.data['password'],
             role=form.data['role']
         )
+        
+        print()
+        print()
+        print()
+        print()
+        print()
+        print('here 2')
+        print()
+        print()
+        print()
+        print()
+        print()
         
         db.session.add(user)
         db.session.commit()
@@ -202,7 +226,7 @@ def sign_up():
             # Sign up shopping carts
             current_user_carts = ShoppingCart(
                 product_id = product.id,
-                user_id = new_external_user.id,
+                user_id = user.id,
                 quantity = 0
             )
             
@@ -211,6 +235,19 @@ def sign_up():
         
         login_user(user)
         return user.to_dict()
+    
+    print()
+    print()
+    print()
+    print()
+    print()
+    print(validation_errors_to_error_messages(form.errors))
+    print()
+    print()
+    print()
+    print()
+    print()
+    
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 #* GET: /api/auth/unauthorized

@@ -117,11 +117,18 @@ const SignUpForm = () => {
 
     // check if password matches
     if (password === repeatPassword) {
-      const data = await dispatch(sessionActions.signUp(email, password));
-
-      if (data) {
-        setErrors(data)
-      }
+      const data = await dispatch(sessionActions.signUp(email, password))
+        .then(async res => {
+          if (res) {
+            const error = res;
+            setErrors(error)
+            throw new Error(error);
+          }
+        })
+        .then(() => setShowUserModal(false))
+        .catch(error => {
+          //! handling error by form not via console log
+        });
     } else {
       setPasswordError("Password do not match. Please try again.")
     }

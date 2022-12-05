@@ -130,7 +130,7 @@ const MiddleContact = () => {
       }
 
     } else {
-      window.alert(`Your email was not valid. Please try again with valid email. Thank you for understanding.`);
+      window.alert(`Your email was not valid. Please try again with valid email. Thank you for your understanding.`);
     }
   }
 
