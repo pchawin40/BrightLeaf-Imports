@@ -58,7 +58,7 @@
 
 .suf-container > p {
 	color: red;
-	font-size: x-small;
+	font-size: 100%;
 }
 
 #suf-submit-btn,
