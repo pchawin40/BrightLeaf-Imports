@@ -104,25 +104,27 @@ const NavHeader = () => {
         >
           <i className="fa-regular fa-user fa-xl nh-user-icon" />
         </figure>
-
         {/* Shopping Cart Modal */}
         <figure
           onClick={_ => {
             setLoadCartModal(true);
           }}
-          className="nh-figure"
+          className="nh-figure cart"
           style={{
             color: headerColor,
             transition: "color 1s ease"
           }}
         >
+
           <i className="fa-solid fa-cart-shopping fa-xl" />
-          <span id="nhs-cart-span" className={`${headerColor === 'black' ? 'white' : 'black'}`}>
-            {/* //TODO: TBD: To count how many items are in shopping cart for current user */}
-            {
-              currentItemsQuantity
-            }
-          </span>
+          <figure>
+            <span id="nhs-cart-span" className={`${headerColor === 'black' ? 'white' : 'black'}`}>
+              {/* //TODO: TBD: To count how many items are in shopping cart for current user */}
+              {
+                currentItemsQuantity
+              }
+            </span>
+          </figure>
         </figure>
       </section>
       {/* Shopping Cart Modal */}
