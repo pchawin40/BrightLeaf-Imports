@@ -159,13 +159,6 @@ const MAdrContent = () => {
             <h2>
               You haven't saved any addresses yet.
             </h2>
-            {/* // TODO: To add address later */}
-            {/* <span
-              className="no-display"
-              onClick={_ => setShowAddressModal(true)}
-            >
-              Add New Address
-            </span> */}
           </>
           :
           <>
