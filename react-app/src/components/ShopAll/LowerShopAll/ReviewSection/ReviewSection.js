@@ -85,7 +85,7 @@ const ReviewSection = () => {
 
   // function to load current reviews (load up to 5)
   const loadReviews = () => {
-    if (currentReviews.length > 0 && currentUsers.length > 0) {
+    if (currentReviews.length > 0) {
       const displayReviews = currentReviews.map((review, index) => {
 
         // find user's name from review's user_id
@@ -183,6 +183,25 @@ const ReviewSection = () => {
             }
           </ul>
       );
+    } else {
+      return (
+        <ul className="review-ul">
+          No review to display.
+          {
+            currentUserInfo
+              &&
+              currentUserInfo.role === 'user'
+              ?
+              <>
+                &nbsp; Post review to start the conversation.
+              </>
+              :
+              <>
+                &nbsp; Post review by logging in as user.
+              </>
+          }
+        </ul>
+      )
     }
   }
 

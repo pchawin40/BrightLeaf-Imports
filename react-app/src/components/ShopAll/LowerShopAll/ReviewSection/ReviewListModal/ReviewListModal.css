@@ -4,7 +4,8 @@
 
 	padding: 2vw;
 	margin-right: -1rem;
-	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.8);
+	border-radius: 8px;
 }
 
 .review-modal-ul {
