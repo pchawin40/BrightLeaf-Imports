@@ -23,7 +23,8 @@ import * as sessionActions from '../../../../store/session';
 import * as keyActions from '../../../../store/keys';
 
 // import libraries
-import ReCAPTCHA from "react-google-recaptcha";
+// import ReCAPTCHA from "react-google-recaptcha";
+import ReCAPTCHA from "react-google-recaptcha-enterprise";
 // import {
 //   GoogleReCaptchaProvider,
 //   GoogleReCaptcha
@@ -158,6 +159,11 @@ const SignUpForm = () => {
     // if data is return, there is an error. set the errors
     // turn modal off on successful log in
     data ? setErrors(data) : setShowUserModal(false);
+  }
+
+  // function to handle onchange for recaptcha
+  function onChange(value) {
+    console.log("Captcha value:", value);
   }
 
   return (
