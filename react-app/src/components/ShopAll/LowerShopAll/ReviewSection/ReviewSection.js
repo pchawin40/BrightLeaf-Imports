@@ -56,10 +56,12 @@ const ReviewSection = () => {
   // per general
   useEffect(() => {
     // nothing for now
-    // reset data upon page refreshing
-    setReview("");
-    setRating(0);
-  }, [editReview, showReviewModal]);
+    if (!editReview) {
+      // reset data upon page refreshing
+      setReview("");
+      setRating(0);
+    }
+  }, [editReview, showReviewModal, currentReviewId]);
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -209,6 +211,10 @@ const ReviewSection = () => {
       review,
       stars: rating
     };
+
+    if (!rating) {
+      newReview.stars = 0;
+    }
 
     // reset form after grabbing data
     setReview("");

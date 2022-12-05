@@ -58,7 +58,7 @@ const FacebookLoginComponent = () => {
         })
     } catch (error) {
       if (error.message) {
-        window.alert("There is a problem with facebook login. We are reloading the webpage. Please try again afterward.");
+        window.alert("There is a problem with facebook login. We are reloading the webpage. Please try again or try other method afterward.");
         window.location.reload();
       }
 

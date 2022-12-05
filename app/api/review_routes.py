@@ -46,6 +46,16 @@ def secure_reviews():
     # return successful response
     return new_review.to_dict()
   
+  print()
+  print()
+  print()
+  print()
+  print(validation_errors_to_error_messages(form.errors))
+  print()
+  print()
+  print()
+  print()
+  
   # else if form did not pass validation, return error
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

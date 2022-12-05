@@ -28,6 +28,7 @@ def post_stripe_charge():
       # return user back to homepage
       url = "http://localhost:3000/"
     else:
+      # TODO: change url to live site url
       # return to live site url's homepage
       url = "https://brightleaf-imports.herokuapp.com/"
       # url = os.environ.get('REACT_APP_BASE_URL')
