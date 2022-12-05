@@ -23,10 +23,12 @@ def post_stripe_charge():
   #* update user
   if form.validate_on_submit():
     url = ""
-    
+  
     if os.environ.get('FLASK_ENV') == 'production':
-      # if development mode, set it to port
-      url = os.environ.get('PUBLIC_SITE_URL')
+        # return user back to homepage
+        url = request.url.replace('/account/my-orders', '/', 1)
+        code = 301
+        return redirect(url, code=code)
     else:
       # otherwise set it to official website
       url = "http://localhost:3000/"
