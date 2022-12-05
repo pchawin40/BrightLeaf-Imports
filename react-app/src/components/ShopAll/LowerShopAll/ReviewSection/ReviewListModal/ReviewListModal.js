@@ -49,7 +49,7 @@ const ReviewListModal = ({ setShowReviewListModal }) => {
       setReview("");
       setRating(0);
     }
-  }, [editReview, showReviewModal, currentReviewId]);
+  }, [editReview, showReviewModal, currentReviewId, currentReviews]);
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -64,7 +64,7 @@ const ReviewListModal = ({ setShowReviewListModal }) => {
 
   // function to load current reviews (load up to 5)
   const loadReviews = () => {
-    if (currentReviews.length > 0 && currentUsers.length > 0) {
+    if (currentReviews.length > 0) {
       const displayReviews = currentReviews.map((review, index) => {
 
         // find user's name from review's user_id
@@ -138,7 +138,15 @@ const ReviewListModal = ({ setShowReviewListModal }) => {
 
       return (
         <ul className="review-modal-ul">
-          {displayReviews}
+          {
+            displayReviews
+          }
+        </ul>
+      );
+    } else {
+      return (
+        <ul className="review-modal-ul">
+          No review to display. Post review by logging in as user.
         </ul>
       );
     }
