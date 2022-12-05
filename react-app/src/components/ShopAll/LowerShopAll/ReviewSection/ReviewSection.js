@@ -186,7 +186,20 @@ const ReviewSection = () => {
     } else {
       return (
         <ul className="review-ul">
-          No review to display. Post review by logging in as user.
+          No review to display.
+          {
+            currentUserInfo
+              &&
+              currentUserInfo.role === 'user'
+              ?
+              <>
+                &nbsp; Post review to start the conversation.
+              </>
+              :
+              <>
+                &nbsp; Post review by logging in as user.
+              </>
+          }
         </ul>
       )
     }

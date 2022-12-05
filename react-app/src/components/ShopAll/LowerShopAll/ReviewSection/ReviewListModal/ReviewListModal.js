@@ -144,11 +144,7 @@ const ReviewListModal = ({ setShowReviewListModal }) => {
         </ul>
       );
     } else {
-      return (
-        <ul className="review-modal-ul">
-          No review to display. Post review by logging in as user.
-        </ul>
-      );
+      setShowReviewListModal(false);
     }
   }
 
