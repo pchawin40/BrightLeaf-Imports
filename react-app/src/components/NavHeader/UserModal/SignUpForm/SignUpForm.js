@@ -161,9 +161,18 @@ const SignUpForm = () => {
     data ? setErrors(data) : setShowUserModal(false);
   }
 
-  // function to handle onchange for recaptcha
-  function onChange(value) {
-    console.log("Captcha value:", value);
+  // function to check if sign up is ready
+  const checkSignUp = () => {
+    if (
+      email.length > 0
+      &&
+      password.length > 0
+      &&
+      repeatPassword.length > 0
+    ) {
+      return true;
+    }
+    return false;
   }
 
   return (
@@ -218,7 +227,7 @@ const SignUpForm = () => {
       </div>
 
       {/* ReCaptcha Verification */}
-      {
+      {/* {
         recaptchaKey
         &&
         <ReCAPTCHA
@@ -226,10 +235,10 @@ const SignUpForm = () => {
           ref={captchaRef}
           onChange={_ => setValidToken(true)}
         />
-      }
+      } */}
 
       {
-        validToken
+        checkSignUp()
           ?
           <button
             id="suf-submit-btn"
