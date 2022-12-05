@@ -84,7 +84,7 @@ const SignUpForm = () => {
   // useEffect: get key for google map
   useEffect(() => {
     if (!recaptchaKey) dispatch(keyActions.getKey());
-  }, [dispatch, recaptchaKey]);
+  }, [dispatch, recaptchaKey, ReCAPTCHA]);
 
   // per errors
   useEffect(() => {
