@@ -46,6 +46,7 @@ const CheckOutModal = () => {
           className="fa-solid fa-x fa-xl"
           onClick={_ => {
             // reset modal and inputs
+            setCurrentStep(0);
             setLoadCartModal(false);
             setShowCheckoutModal(false);
             setSelectedAddress(null);
