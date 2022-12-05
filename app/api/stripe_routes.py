@@ -26,7 +26,7 @@ def post_stripe_charge():
   
     if os.environ.get('FLASK_ENV') == 'production':
       # return user back to homepage
-      url = "https://brightleaf-imports.herokuapp.com/"
+      url = os.environ.get('REACT_APP_BASE_URL')
     if os.environ.get('FLASK_ENV') == 'development':
       # otherwise set it to official website
       url = "http://localhost:3000/"
