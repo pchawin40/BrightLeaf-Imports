@@ -68,6 +68,7 @@ function App() {
   const { currentAddressId, setCurrentAddressId } = useAddress();
   const { loadCartModal, setLoadCartModal } = useNavHeader();
   const { selectedAddress, setSelectedAddress } = useAddress();
+  const { currentStep, setCurrentStep } = useCheckOut();
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -161,8 +162,10 @@ function App() {
       {showCheckoutModal && (
         <Modal
           onClose={(_) => {
+            // resetting cart modal
             setLoadCartModal(false);
             setShowCheckoutModal(false);
+            setCurrentStep(0);
             setSelectedAddress(null);
           }}
         >
