@@ -54,8 +54,13 @@ export const thunkEditUser = (userInfo, userId) => async (dispatch) => {
 
   // if successful
   if (res.ok) {
-    // parse res to json
-    const editedUser = await res.json();
+    let editedUser;
+    try {
+      // parse res to json
+      editedUser = await res.json();
+    } catch (e) {
+      editedUser = res;
+    }
 
     // dispatch setting user
     dispatch(editUser(editedUser));
@@ -63,7 +68,12 @@ export const thunkEditUser = (userInfo, userId) => async (dispatch) => {
     // return edited user
     return editedUser;
   } else if (res.status < 500) {
-    const data = await res.json();
+    let data;
+    try {
+      data = await res.json();
+    } catch (e) {
+      data = res;
+    }
 
     if (data['errors']) {
       return data;

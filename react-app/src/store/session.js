@@ -88,10 +88,15 @@ export const login = (email, password) => async (dispatch) => {
 }
 
 export const thunkAPILogin = (response, role = "user") => async dispatch => {
-  // const apiUser = {
-  //   ...response,
-  //   role
-  // }
+  const apiUser = {
+    ...response,
+    role
+  }
+
+  if (response.login_by) {
+    apiUser.email = `${response.name.replaceAll(' ', '-').toLowerCase()}@${response.login_by}-login.com`
+    apiUser.password = "complex_p@ssword_123"
+  }
 
   // dispatch(setUser(apiUser));
   const res = await fetch('/api/auth/custom_api/login', {
@@ -99,12 +104,7 @@ export const thunkAPILogin = (response, role = "user") => async dispatch => {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      ...response,
-      email: `${response.name.replaceAll(' ', '-').toLowerCase()}@${response.login_by}-login.com`,
-      password: "complex_password_123",
-      role
-    })
+    body: JSON.stringify(apiUser)
   });
 
   if (res.ok) {

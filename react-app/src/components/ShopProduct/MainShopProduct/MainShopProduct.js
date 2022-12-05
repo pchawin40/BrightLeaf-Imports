@@ -36,7 +36,7 @@ const MainShopProduct = () => {
   const { showUserModal, setShowUserModal } = useNavHeader();
   const { showProductFormModal, setShowProductFormModal } = useProduct();
   const { editProduct, setEditProduct } = useProduct();
-  
+
   /**
    * Selector functions
    */
@@ -47,7 +47,7 @@ const MainShopProduct = () => {
   const currentLikeByProductId = useSelector(productUserActions.getCurrentLikeByProductId(currentProductId));
   const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
   const currentUserId = useSelector(sessionActions.getCurrentUserId);
-  
+
   /**
    * UseEffect
    */
@@ -271,6 +271,8 @@ const MainShopProduct = () => {
 
   // function to handle like click
   const handleLikeClick = () => {
+    
+
     // toggled product user
     const toggledProductUser = {
       ...currentLikeByProductId,
