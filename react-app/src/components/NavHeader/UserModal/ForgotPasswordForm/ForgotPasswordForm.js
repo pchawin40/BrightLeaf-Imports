@@ -53,9 +53,7 @@ const ForgotPasswordForm = () => {
         setEmailToReset(email);
         setEmailStep(1);
       } else {
-        const emailErrorData = await res.json();
-
-        setEmailError(emailErrorData.errors[0]);
+        setEmailError("Email does not exist in our database");
       }
     }
   }
