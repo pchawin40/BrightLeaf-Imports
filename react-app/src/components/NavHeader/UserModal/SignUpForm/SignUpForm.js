@@ -262,8 +262,7 @@ const SignUpForm = () => {
 
       <section className="demo-buttons-container">
         <button
-          id="lf-demo-btn"
-          className="lf-submit-btn lf-submit-btn-true"
+          className="lf-submit-btn lf-submit-btn-true lf-demo-btn"
           type='button'
           onClick={handleDemoAdministratorLogin}
         >
@@ -273,8 +272,7 @@ const SignUpForm = () => {
         </button>
 
         <button
-          id="lf-demo-btn"
-          className="lf-submit-btn lf-submit-btn-true"
+          className="lf-submit-btn lf-submit-btn-true lf-demo-btn"
           type='button'
           onClick={handleDemoLogin}
         >

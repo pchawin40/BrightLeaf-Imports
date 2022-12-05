@@ -73,8 +73,21 @@ def custom_api_login():
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
-        
+
     if form.validate_on_submit():
+        # TODO: If no login_by, just find the user (if exists) and then login with no password needed
+        if(form['login_by']) is None:
+            # find user
+            internal_user = User.query.filter(Use.email == form.data['email']).first()
+            
+            # if user is not found, throw error
+            if internal_user is None:
+                return {'errors': {"User Not Found": "Given user is not found"}}, 404
+        
+            # login with no password needed
+            login_user(internal_user)
+            return internal_user.to_dict()
+            
         # check if id already exists
         external_user = User.query.filter(User.email == form.data['email']).first()
         
@@ -126,8 +139,19 @@ def custom_api_login():
         
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.email == form.data['email']).first()
+        
         login_user(user)
         return user.to_dict()
+    
+    print()
+    print()
+    print()
+    print()
+    print(validation_errors_to_error_messages(form.errors))
+    print()
+    print()
+    print()
+    print()
     
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

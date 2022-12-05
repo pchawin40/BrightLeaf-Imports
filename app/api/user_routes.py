@@ -19,7 +19,7 @@ def users():
 #* PUT /api/users/:userId
 #* DELETE /api/users/:userId
 @user_routes.route('/<int:user_id>', methods=['GET', 'PUT', 'DELETE'])
-@login_required
+# @login_required
 def get_or_modify_user(user_id):
     """
     GET: Get given user information
@@ -30,7 +30,7 @@ def get_or_modify_user(user_id):
     user = User.query.get(user_id)
 
     # get current user information
-    session_user = User.query.get(current_user.get_id())
+    session_user = User.query.get(current_user.get_id() or user_id)
     
     # if no user found, throw error
     if(user == None):
@@ -69,7 +69,7 @@ def get_or_modify_user(user_id):
             # if role exist
             if(form.data['role']):
                 user.role = form.data['role']
-        
+    
             # commit update
             db.session.commit()
             

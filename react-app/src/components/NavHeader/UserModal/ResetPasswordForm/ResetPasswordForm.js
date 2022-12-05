@@ -28,6 +28,9 @@ const ResetPasswordForm = () => {
   const [passwordConfirmationLength, setPasswordConfirmationLength] = useState(0);
   const [passwordError, setPasswordError] = useState(null);
   const { emailToReset, setEmailToReset } = useNavHeader();
+  const { showUserModal, setShowUserModal } = useNavHeader();
+  const { forgotPassword, setForgotPassword } = useNavHeader();
+  const { emailStep, setEmailStep } = useNavHeader();
 
   /**
    * Selector functions
@@ -94,7 +97,10 @@ const ResetPasswordForm = () => {
   const dispatch = useDispatch();
 
   // function to handle changing to new password
-  const handlePasswordChange = () => {
+  const handlePasswordChange = e => {
+    // prevent page from refreshing
+    e.preventDefault();
+
     if (validatePassword()) {
       // grab password
       const formData = new FormData();
@@ -104,7 +110,19 @@ const ResetPasswordForm = () => {
       // call on dispatch to update current user password
       // grab the new information afterward
       dispatch(userActions.thunkEditUser(formData, currentUserByEmail.id))
-        .then(async res => dispatch(sessionActions.thunkAPILogin(res)));
+        .then(async res => dispatch(sessionActions.thunkAPILogin(res)))
+        .then(() => {
+          // set current step back to beginning
+          setForgotPassword(false);
+          setEmailStep(0);
+
+          // set user modal to false
+          setShowUserModal(false);
+        })
+        .catch(error => {
+          //! leave this error here to let user know the error
+          console.log('Error from editing user:', error);
+        });
     } else {
       setPasswordError("Password does not match");
     }
