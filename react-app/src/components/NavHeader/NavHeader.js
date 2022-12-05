@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import store
 import * as shoppingCartActions from '../../store/shoppingCarts';
 import * as sessionActions from '../../store/session';
+import * as productActions from '../../store/products';
 
 //? NavHeader component
 const NavHeader = () => {
@@ -44,6 +45,8 @@ const NavHeader = () => {
   // grab shopping carts data
   const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
   const currentUserInfo = useSelector(sessionActions.getCurrentUserInfo);
+  const currentProducts = useSelector(productActions.getCurrentProducts);
+  const currentItemsQuantity = useSelector(shoppingCartActions.getCurrentItemsQuantity);
 
   /**
    * UseEffect
@@ -54,6 +57,32 @@ const NavHeader = () => {
 
   // invoke dispatch
   const dispatch = useDispatch();
+
+  // function to get price of cart item
+  const getCartItemPrice = (cartItem) => {
+    // given cart item, get the quantity
+    const cartItemQuantity = cartItem.quantity;
+    // find product's price
+    const cartItemPrice = Object.values(currentProducts).find(product => product.id === cartItem.product_id).price;
+
+    return Math.ceil(((cartItemQuantity * cartItemPrice) * 100) / 100);
+  }
+
+  // function to get price of cart total
+  const getCartTotal = () => {
+
+    // set cart total 
+    // setCartItemTotal(Math.ceil(newCartSum * 100) / 100);
+
+    // for every cart item, invoke getCartItemPrice to find the cart item price
+    let total = 0;
+
+    Object.values(currentUserCarts).map(cart => {
+      total += Math.ceil((getCartItemPrice(cart) * 100) / 100);
+    });
+
+    return total;
+  }
 
   return (
     <section
@@ -91,7 +120,7 @@ const NavHeader = () => {
           <span id="nhs-cart-span" className={`${headerColor === 'black' ? 'white' : 'black'}`}>
             {/* //TODO: TBD: To count how many items are in shopping cart for current user */}
             {
-              Object.values(currentUserCarts).length
+              currentItemsQuantity
             }
           </span>
         </figure>

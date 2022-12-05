@@ -23,7 +23,12 @@ import * as sessionActions from '../../../../store/session';
 import * as keyActions from '../../../../store/keys';
 
 // import libraries
-import ReCAPTCHA from "react-google-recaptcha";
+// import ReCAPTCHA from "react-google-recaptcha";
+import ReCAPTCHA from "react-google-recaptcha-enterprise";
+// import {
+//   GoogleReCaptchaProvider,
+//   GoogleReCaptcha
+// } from 'react-google-recaptcha-v3';
 import { useGoogleLogin } from '@react-oauth/google';
 
 const SignUpForm = () => {
@@ -67,9 +72,8 @@ const SignUpForm = () => {
           login_by: "google"
         }
 
-        dispatch(sessionActions.thunkAPILogin(googleUserResponse));
-
-        setShowUserModal(false);
+        dispatch(sessionActions.thunkAPILogin(googleUserResponse))
+          .then(() => setShowUserModal(false));
       } else {
         throw new Error(`Error fetching user data with token: ${tokenResponse.access_token}`)
       }
@@ -157,6 +161,11 @@ const SignUpForm = () => {
     data ? setErrors(data) : setShowUserModal(false);
   }
 
+  // function to handle onchange for recaptcha
+  function onChange(value) {
+    console.log("Captcha value:", value);
+  }
+
   return (
     <form id="sign-up-form" onSubmit={onSignUp}>
       <div id="suf-email-container" className="suf-container">
@@ -212,6 +221,9 @@ const SignUpForm = () => {
       {
         recaptchaKey
         &&
+        // <GoogleReCaptchaProvider reCaptchaKey={recaptchaKey}>
+        //   <GoogleReCaptcha onVerify={handleVerify} />
+        // </GoogleReCaptchaProvider>
         <ReCAPTCHA
           sitekey={recaptchaKey}
           ref={captchaRef}

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request, current_app
-from app.models import User, db
+from app.models import User, db, ProductUser, Product, ShoppingCart
 from app.forms import LoginForm, SignUpForm, CustomLoginForm, EditUserForm
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -89,10 +89,40 @@ def custom_api_login():
                 login_by=form.data['login_by']
             )
             
+            # Sign up user with all products 
+            
             db.session.add(new_external_user)
             db.session.commit()
+            
+            # query product to add for ProductUser
+            products = Product.query.all()
+            
+            # Sign up user with all products
+            for product in products:
+                
+                # add likeToggle to current product
+                current_product_user = ProductUser(
+                    likeToggle=True,
+                    product_id=product.id,
+                    user_id=new_external_user.id
+                )
+            
+                db.session.add(current_product_user)
+                
+                # Sign up shopping carts
+                current_user_carts = ShoppingCart(
+                    product_id = product.id,
+                    user_id = new_external_user.id,
+                    quantity = 0
+                )
+                
+                db.session.add(current_user_carts)
+                db.session.commit()
+            
+            # log in new user
+            login_user(new_external_user)
+            
             return new_external_user.to_dict()
-            return "Test"
         
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.email == form.data['email']).first()
@@ -118,6 +148,10 @@ def sign_up():
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    
+    # query product to add for ProductUser
+    products = Product.query.all()
+    
     if form.validate_on_submit():
         user = User(
             username=form.data['username'],
@@ -126,8 +160,31 @@ def sign_up():
             password=form.data['password'],
             role=form.data['role']
         )
+        
         db.session.add(user)
         db.session.commit()
+        
+        # Sign up user with all products
+        for product in products:
+            # add likeToggle to current product
+            current_product_user = ProductUser(
+                likeToggle=True,
+                product_id=product.id,
+                user_id=user.id
+            )
+            
+            db.session.add(current_product_user)
+            
+            # Sign up shopping carts
+            current_user_carts = ShoppingCart(
+                product_id = product.id,
+                user_id = new_external_user.id,
+                quantity = 0
+            )
+            
+            db.session.add(current_user_carts)
+            db.session.commit()
+        
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

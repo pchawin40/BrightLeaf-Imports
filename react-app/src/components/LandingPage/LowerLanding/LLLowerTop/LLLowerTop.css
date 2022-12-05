@@ -68,6 +68,8 @@
 	left: 0;
 	letter-spacing: 1px;
 	transform: rotate(-90deg);
+
+	font-size: 100%;
 }
 
 #lts-left-lower > figure > i {

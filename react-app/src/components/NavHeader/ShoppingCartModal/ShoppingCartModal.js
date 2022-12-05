@@ -187,73 +187,81 @@ const ShoppingCartModal = ({ setShowCartModal }) => {
           <section id="scms-lower-section">
             {
               cartLoaded
+                &&
+                getCartTotal() > 0
                 ?
                 <ul id="scms-ul">
                   {
                     cartDisplay.map(cartItem => {
-                      return (
-                        <li key={"cart item: " + cartItem.id} className="scms-li">
-                          <section className="scms-buttons-containers">
-                            {/* Add more */}
-                            {/* Check if there are enough product */}
-                            {
-                              checkProductQuantity(cartItem.product_id)
-                                ?
-                                // If there are still product, proceed to add to cart quantity
-                                <i
-                                  onClick={_ => handleCartQuantity(cartItem, cartItem.quantity + 1, true)}
-                                  className="fa-solid fa-square-plus fa-lg scms-li-add-quantity"
-                                />
-                                :
-                                // Otherwise disable handleCartQuantity
-                                <i
-                                  className="fa-solid fa-square-plus fa-lg scms-li-add-quantity unavailable"
-                                />
-                            }
-
-                            {/* Delete */}
-                            <i
-                              onClick={_ => handleCartQuantity(cartItem, cartItem.quantity - 1, false)}
-                              className="fa-solid fa-square-minus fa-lg scms-li-delete-quantity"
-                            />
-                          </section>
-
-                          {/* Quantity */}
-                          <section className="scms-li-span quantity">
-                            <p>
+                      if (
+                        cartItem.quantity > 0
+                        &&
+                        getCartTotal() > 0
+                      ) {
+                        return (
+                          <li key={"cart item: " + cartItem.id} className="scms-li">
+                            <section className="scms-buttons-containers">
+                              {/* Add more */}
+                              {/* Check if there are enough product */}
                               {
-                                cartItem.quantity + "x"
-                              }
-                            </p>
-                          </section>
-
-                          {/* Name */}
-                          <section className="scms-li-span name">
-                            <p>
-                              {
-                                cartItem.name.length > 15
+                                checkProductQuantity(cartItem.product_id)
                                   ?
-                                  cartItem.name.slice(0, 15) + "..."
+                                  // If there are still product, proceed to add to cart quantity
+                                  <i
+                                    onClick={_ => handleCartQuantity(cartItem, cartItem.quantity + 1, true)}
+                                    className="fa-solid fa-square-plus fa-lg scms-li-add-quantity"
+                                  />
                                   :
-                                  cartItem.name
+                                  // Otherwise disable handleCartQuantity
+                                  <i
+                                    className="fa-solid fa-square-plus fa-lg scms-li-add-quantity unavailable"
+                                  />
                               }
-                            </p>
-                          </section>
 
-                          {/* Price */}
-                          <section className="scms-li-span price">
-                            <p>
-                              {
-                                "$ "
-                                +
-                                getCartItemPrice(cartItem)
-                                +
-                                " USD"
-                              }
-                            </p>
-                          </section>
-                        </li>
-                      );
+                              {/* Delete */}
+                              <i
+                                onClick={_ => handleCartQuantity(cartItem, cartItem.quantity - 1, false)}
+                                className="fa-solid fa-square-minus fa-lg scms-li-delete-quantity"
+                              />
+                            </section>
+
+                            {/* Quantity */}
+                            <section className="scms-li-span quantity">
+                              <p>
+                                {
+                                  cartItem.quantity + "x"
+                                }
+                              </p>
+                            </section>
+
+                            {/* Name */}
+                            <section className="scms-li-span name">
+                              <p>
+                                {
+                                  cartItem.name.length > 15
+                                    ?
+                                    cartItem.name.slice(0, 15) + "..."
+                                    :
+                                    cartItem.name
+                                }
+                              </p>
+                            </section>
+
+                            {/* Price */}
+                            <section className="scms-li-span price">
+                              <p>
+                                {
+                                  "$ "
+                                  +
+                                  getCartItemPrice(cartItem)
+                                  +
+                                  " USD"
+                                }
+                              </p>
+                            </section>
+                          </li>
+                        );
+                      }
                     })
                   }
                   {/* Cart Items total */}
