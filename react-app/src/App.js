@@ -21,6 +21,7 @@ import MyWishlist from './components/AccountMenu/MyWishlist';
 import MyAccount from './components/AccountMenu/MyAccount';
 import AccountProvider from './context/AccountMenuContext';
 import CheckOutModal from './components/CheckOutModal/CheckOutModal';
+import AddressModal from './components/AccountMenu/MyAddresses/MAdrContent/AddressModal';
 
 // import context
 import { useNavRight } from './context/NavRightContext';
@@ -28,6 +29,7 @@ import { useProduct } from './context/ProductContext';
 import { Modal } from './context/Modal';
 import { useAddress } from './context/AddressesContext';
 import { useCheckOut } from './context/CheckOutContext';
+import { useNavHeader } from './context/NavHeaderContext';
 
 // import react
 import React, { useState, useEffect } from 'react';
@@ -46,7 +48,6 @@ import * as reviewActions from './store/reviews';
 import * as userActions from './store/users';
 import * as productUserActions from './store/productUser';
 import * as addressActions from './store/address';
-import AddressModal from './components/AccountMenu/MyAddresses/MAdrContent/AddressModal';
 
 function App() {
   /**
@@ -65,6 +66,8 @@ function App() {
   const { showCheckoutModal, setShowCheckoutModal } = useCheckOut();
   const { showAddressModal, setShowAddressModal } = useAddress();
   const { currentAddressId, setCurrentAddressId } = useAddress();
+  const { loadCartModal, setLoadCartModal } = useNavHeader();
+  const { selectedAddress, setSelectedAddress } = useAddress();
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -158,7 +161,9 @@ function App() {
       {showCheckoutModal && (
         <Modal
           onClose={(_) => {
+            setLoadCartModal(false);
             setShowCheckoutModal(false);
+            setSelectedAddress(null);
           }}
         >
           <CheckOutModal />

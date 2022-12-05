@@ -17,6 +17,8 @@ import { useEffect } from 'react';
 
 // import component
 import PaymentForm from '../InnerLeft/PaymentMethod/PaymentForm';
+import { checkAddressSelected } from '../InnerLeft/ShippingAddress/ShippingAddress';
+import { checkCurrentCartQuantity } from '../InnerLeft/ReviewItems/ReviewItems';
 
 // import store
 import * as shoppingCartActions from '../../../store/shoppingCarts';
@@ -35,6 +37,7 @@ const InnerRight = () => {
    */
   const currentUserCarts = useSelector(shoppingCartActions.getCurrentUserCarts);
   const currentProducts = useSelector(productActions.getCurrentProducts);
+  const currentItemsQuantity = useSelector(shoppingCartActions.getCurrentItemsQuantity);
 
   /**
   * UseEffect
@@ -96,7 +99,12 @@ const InnerRight = () => {
       <>
         {/* Place Order */}
         < button
-          onClick={_ => setCurrentStep(currentStep => currentStep + 1)}
+          className={`${checkAddressSelected() ? "valid" : "invalid"}`}
+          onClick={_ => {
+            if (checkAddressSelected()) {
+              setCurrentStep(currentStep => currentStep + 1)
+            }
+          }}
         >
           Use this address
         </button >
@@ -149,7 +157,13 @@ const InnerRight = () => {
       <>
         {/* Place Order */}
         < button
-          onClick={_ => setCurrentStep(currentStep => currentStep + 1)}
+          className={`cil accept-review ${checkCurrentCartQuantity(currentItemsQuantity) ? "valid" : "invalid"}`}
+          onClick={_ => {
+            if (checkCurrentCartQuantity(currentItemsQuantity)) {
+              setCurrentStep(currentStep => currentStep + 1)
+            }
+
+          }}
         >
           Proceed to Payment
         </button >

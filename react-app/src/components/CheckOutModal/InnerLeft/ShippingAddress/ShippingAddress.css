@@ -79,16 +79,12 @@ span.cil.add-address:hover {
 
 /* use address button */
 button.use-address {
-	color: white;
-	background-color: #80ab63;
-
 	box-sizing: border-box;
 	width: 250px;
 	padding: 0.5vw 0;
 	font-size: 100%;
 	font-weight: bold;
 	letter-spacing: 0.1vw;
-	border: 3px solid #80ab63;
 	border-radius: 6px;
 
 	transition: all 0.4s ease;
@@ -100,6 +96,18 @@ button.use-address {
 	margin: 2%;
 }
 
-button.use-address:hover {
+button.use-address.valid {
+	border: 3px solid #80ab63;
+	color: white;
+	background-color: #80ab63;
+}
+
+button.use-address.invalid {
+	border: 3px solid rgb(66, 66, 66, 0.06);
+	color: black;
+	background-color: rgb(66, 66, 66, 0.06);
+}
+
+button.use-address.valid:hover {
 	cursor: pointer;
 }

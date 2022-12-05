@@ -45,8 +45,8 @@ aside.checkoutmodal.right {
 }
 
 .cir.submit-container > button {
-	color: white;
-	background-color: #80ab63;
+	/* color: white; */
+	/* background-color: #80ab63; */
 
 	box-sizing: border-box;
 	width: 100%;
@@ -54,7 +54,7 @@ aside.checkoutmodal.right {
 	font-size: 100%;
 	font-weight: bold;
 	letter-spacing: 0.1vw;
-	border: 3px solid #80ab63;
+	/* border: 3px solid #80ab63; */
 	border-radius: 6px;
 
 	transition: all 0.4s ease;
@@ -64,7 +64,19 @@ aside.checkoutmodal.right {
 	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
-.cir.submit-container > button:hover {
+.cir.submit-container > button.valid {
+	border: 3px solid #80ab63;
+	color: white;
+	background-color: #80ab63;
+}
+
+.cir.submit-container > button.invalid {
+	border: 3px solid rgb(66, 66, 66, 0.06);
+	color: black;
+	background-color: rgb(66, 66, 66, 0.06);
+}
+
+.cir.submit-container > button.valid:hover {
 	cursor: pointer;
 }
 
