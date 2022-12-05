@@ -32,21 +32,20 @@ const EditReviewModal = ({ currentReviewId }) => {
   const [reviewInputLength, setReviewInputLength] = useState(0);
   const { rating, setRating } = useReview();
   const { showReviewModal, setShowReviewModal } = useReview();
+  const { editReview, setEditReview } = useReview();
 
   /**
    * UseEffect
    */
   useEffect(() => {
-    if (currentReviewById) {
-      setReview(currentReviewById.review);
-      setRating(currentReviewById.stars);
-    }
+    setReview(currentReviewById && editReview ? currentReviewById.review : "");
+    setRating(currentReviewById && editReview ? currentReviewById.stars : 0);
   }, [currentReviewId]);
 
   // per general
   useEffect(() => {
     // nothing for now
-  }, [review, rating]);
+  }, [review, rating, currentReviewId]);
 
 
   // invoke dispatch
@@ -99,9 +98,16 @@ const EditReviewModal = ({ currentReviewId }) => {
         {/* Edit Review's stars */}
         <StarSystem />
         {/* Edit Review's submit button */}
-        <button>
+        <button className="post-review erv">
           Post Review
         </button>
+        {/* Exit Modal Icon */}
+        <i
+          className="fa-solid fa-x"
+          onClick={_ => {
+            setShowReviewModal(false);
+          }}
+        />
       </form>
     </section>
   );
