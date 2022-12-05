@@ -26,12 +26,10 @@ def post_stripe_charge():
   
     if os.environ.get('FLASK_ENV') == 'production':
       # return user back to homepage
-      url = request.url.replace('/account/my-orders', '/', 1)
-      code = 301
-    else if os.environ.get('FLASK_ENV') == 'development':
+      url = os.environ.get('PUBLIC_SITE_URL')
+    if os.environ.get('FLASK_ENV') == 'development':
       # otherwise set it to official website
       url = "http://localhost:3000/"
-      code = 301
     
     session = stripe.checkout.Session.create(
       line_items=[
