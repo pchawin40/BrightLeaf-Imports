@@ -133,69 +133,71 @@ const ReviewItems = () => {
         {/* Cart List */}
         {
           currentUserCarts.map(cartItem => {
-            return (<li key={"cart item: " + cartItem.id} className="coc li orders">
-              <section className="clo left-containers">
-                <section className="clo buttons-containers">
-                  {/* Add more */}
-                  {/* Check if there are enough product */}
-                  {
-                    checkProductQuantity(cartItem.product_id)
-                      ?
-                      // If there are still product, proceed to add to cart quantity
-                      <i
-                        onClick={_ => handleCartQuantity(cartItem, cartItem.quantity + 1, true)}
-                        className="fa-solid fa-square-plus fa-lg clo li-add-quantity"
-                      />
-                      :
-                      // Otherwise disable handleCartQuantity
-                      <i
-                        className="fa-solid fa-square-plus fa-lg clo li-add-quantity unavailable"
-                      />
-                  }
-
-                  {/* Delete */}
-                  <i
-                    onClick={_ => handleCartQuantity(cartItem, cartItem.quantity - 1, false)}
-                    className="fa-solid fa-square-minus fa-lg clo li-delete-quantity"
-                  />
-                </section>
-
-                {/* Quantity */}
-                <section className="clo li-span quantity-container">
-                  <p>
+            if (cartItem.quantity > 0) {
+              return (<li key={"cart item: " + cartItem.id} className="coc li orders">
+                <section className="clo left-containers">
+                  <section className="clo buttons-containers">
+                    {/* Add more */}
+                    {/* Check if there are enough product */}
                     {
-                      cartItem.quantity + "x"
-                    }
-                  </p>
-                </section>
-
-                {/* Name */}
-                <section className="clo li-span name">
-                  <p>
-                    {
-                      cartItem.name.length > 100
+                      checkProductQuantity(cartItem.product_id)
                         ?
-                        cartItem.name.slice(0, 100) + "..."
+                        // If there are still product, proceed to add to cart quantity
+                        <i
+                          onClick={_ => handleCartQuantity(cartItem, cartItem.quantity + 1, true)}
+                          className="fa-solid fa-square-plus fa-lg clo li-add-quantity"
+                        />
                         :
-                        cartItem.name
+                        // Otherwise disable handleCartQuantity
+                        <i
+                          className="fa-solid fa-square-plus fa-lg clo li-add-quantity unavailable"
+                        />
+                    }
+
+                    {/* Delete */}
+                    <i
+                      onClick={_ => handleCartQuantity(cartItem, cartItem.quantity - 1, false)}
+                      className="fa-solid fa-square-minus fa-lg clo li-delete-quantity"
+                    />
+                  </section>
+
+                  {/* Quantity */}
+                  <section className="clo li-span quantity-container">
+                    <p>
+                      {
+                        cartItem.quantity + "x"
+                      }
+                    </p>
+                  </section>
+
+                  {/* Name */}
+                  <section className="clo li-span name">
+                    <p>
+                      {
+                        cartItem.name.length > 100
+                          ?
+                          cartItem.name.slice(0, 100) + "..."
+                          :
+                          cartItem.name
+                      }
+                    </p>
+                  </section>
+                </section>
+
+                {/* Price */}
+                <section className="clo li-span price">
+                  <p>
+                    {
+                      "$ "
+                      +
+                      getCartItemPrice(cartItem)
+                      +
+                      " USD"
                     }
                   </p>
                 </section>
-              </section>
-
-              {/* Price */}
-              <section className="clo li-span price">
-                <p>
-                  {
-                    "$ "
-                    +
-                    getCartItemPrice(cartItem)
-                    +
-                    " USD"
-                  }
-                </p>
-              </section>
-            </li>);
+              </li>);
+            }
           })
         }
       </ul>

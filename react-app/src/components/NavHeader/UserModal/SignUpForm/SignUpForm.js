@@ -221,9 +221,6 @@ const SignUpForm = () => {
       {
         recaptchaKey
         &&
-        // <GoogleReCaptchaProvider reCaptchaKey={recaptchaKey}>
-        //   <GoogleReCaptcha onVerify={handleVerify} />
-        // </GoogleReCaptchaProvider>
         <ReCAPTCHA
           sitekey={recaptchaKey}
           ref={captchaRef}

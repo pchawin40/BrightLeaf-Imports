@@ -41,10 +41,12 @@ const ShippingAddress = () => {
       currentUserAddresses.length > 0
     ) {
       // check if there is any checked address, if none then set to first current user address
-      const checkedAddresses = document.querySelector("li.madr.sa > input").checked;
+      if (document.querySelector("li.madr.sa > input").checked) {
+        const checkedAddresses = document.querySelector("li.madr.sa > input").checked;
 
-      if (!checkedAddresses) {
-        document.querySelector("li.madr.sa > input").checked = true;
+        if (!checkedAddresses) {
+          document.querySelector("li.madr.sa > input").checked = true;
+        }
       }
     }
   }, [currentUserAddresses]);
@@ -114,12 +116,12 @@ const ShippingAddress = () => {
             You haven't saved any addresses yet.
           </h2>
           {/* // TODO: To add address later */}
-          <span
+          {/* <span
             className="no-display"
             onClick={_ => setShowAddressModal(true)}
           >
             Add New Address
-          </span>
+          </span> */}
         </>
       )
     }
