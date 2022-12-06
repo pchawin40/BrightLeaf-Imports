@@ -68,8 +68,8 @@ const MWslContent = () => {
 
   // function to use horizontal scroll
   const useHorizontalScroll = () => {
-    useEffect(() => {
-      try {
+    try {
+      useEffect(() => {
         const el = elRef.current;
         if (el) {
           const onWheel = e => {
@@ -83,10 +83,10 @@ const MWslContent = () => {
           el.addEventListener("wheel", onWheel);
           return () => el.removeEventListener("wheel", onWheel);
         }
-      } catch (e) {
-        // nothing for now
-      }
-    }, []);
+      }, []);
+    } catch (e) {
+      // nothing for now
+    }
     return elRef;
   }
 
