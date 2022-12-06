@@ -271,7 +271,7 @@ const MainShopProduct = () => {
 
   // function to handle like click
   const handleLikeClick = () => {
-    
+
 
     // toggled product user
     const toggledProductUser = {
@@ -400,7 +400,7 @@ const MainShopProduct = () => {
                 <button
                   className='pt-available'
                   type="button"
-                  onClick={_ => setShowUserModal(true)}
+                  onClick={_ => currentUserInfo && currentUserInfo.role === 'administrator' ? null : setShowUserModal(true)}
                 >
                   <span>
                     Sign In As User To Buy ( {currentProductById.quantity} available )
@@ -409,20 +409,25 @@ const MainShopProduct = () => {
           }
 
           {/* Like Toggle */}
-          <figure
-            onClick={handleLikeClick}
-            className="pt-like"
-          >
-            {
-              currentLikeByProductId
-                &&
-                currentLikeByProductId.likeToggle
-                ?
-                <i className="fa-solid fa-heart like" />
-                :
-                <i className="fa-regular fa-heart" />
-            }
-          </figure>
+          {
+            currentUserInfo
+            && currentUserInfo.role === 'user'
+            &&
+            <figure
+              onClick={handleLikeClick}
+              className="pt-like"
+            >
+              {
+                currentLikeByProductId
+                  &&
+                  currentLikeByProductId.likeToggle
+                  ?
+                  <i className="fa-solid fa-heart like" />
+                  :
+                  <i className="fa-regular fa-heart" />
+              }
+            </figure>
+          }
         </section>
 
         {/* Description */}
