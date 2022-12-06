@@ -99,20 +99,20 @@ const PaymentForm = () => {
 
       setStripeLoaded(false);
 
-      if (stripeUrlToSet) {
-        if (window.confirm("You are about to leave to another page to pay. Do you accept?")) {
-          window.open(stripeUrlToSet.session_url, '_self');
-        } else {
-          window.alert("You have cancelled the payment. Heading back to home page.");
+      // if (stripeUrlToSet) {
+      //   if (window.confirm("You are about to leave to another page to pay. Do you accept?")) {
+      //     window.open(stripeUrlToSet.session_url, '_self');
+      //   } else {
+      //     window.alert("You have cancelled the payment. Heading back to home page.");
 
-          // proceed to close and reset everything if cancelled
-          history.push('/');
-          setLoadCartModal(false);
-          setCurrentStep(1);
-          document.body.style.overflowY = "auto";
-          setShowCheckoutModal(false);
-        }
-      }
+      //     // proceed to close and reset everything if cancelled
+      //     history.push('/');
+      //     setLoadCartModal(false);
+      //     setCurrentStep(1);
+      //     document.body.style.overflowY = "auto";
+      //     setShowCheckoutModal(false);
+      //   }
+      // }
     }
   }
 
@@ -124,6 +124,7 @@ const PaymentForm = () => {
       </section>
       :
       <figure
+        className="loading-screen"
       >
         <img
           src='https://cdn.dribbble.com/users/2077073/screenshots/6005120/loadin_gif.gif'

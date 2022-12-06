@@ -2,6 +2,7 @@
 
 section.checkoutmodal.left {
 	display: grid;
+	grid-gap: 2vh;
 	grid-template-rows: auto 15%;
 }
 

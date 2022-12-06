@@ -1,6 +1,6 @@
 /* src/components/CheckOutModal/InnerLeft/Paymentmethod/PaymentForm/PaymentForm.css */
 iframe.payment-form {
-	height: 98%;
+	height: 50%;
 	width: 99%;
 
 	margin: 0;
@@ -9,4 +9,19 @@ iframe.payment-form {
 	margin-right: 16px;
 
 	border: none;
+}
+
+figure.loading-screen {
+	margin-top: 10%;
+	height: 50vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+figure.loading-screen > img {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
 }
