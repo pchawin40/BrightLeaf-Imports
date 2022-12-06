@@ -465,8 +465,8 @@ const ProductFormModal = () => {
                         <figure
                           onClick={e => {
                             e.stopPropagation();
-
-                            handleDeleteImage(image.id)
+                            setEditProduct(false);
+                            handleDeleteImage(image.id);
                           }}
                           className="lps-ul-inner-figure"
                         >
