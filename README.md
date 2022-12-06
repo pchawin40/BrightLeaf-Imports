@@ -79,92 +79,83 @@ Assign `PORT` to `5000`, and a strong JWT secret.
 - `NavRight`: This is the main navigation component where user are able to click on whether to navigate to home page, about page, portfolio page, shop all page, or contact page.
 - `Portfolio`: This page display all the product and gallery images. If the user is an admin, they are able to add, delete, modify the current display images.
 - `ProductFormModal`: This modal component allow administrator to add and modify products.
-- `ShippingReturns`: This page display Brightleaf Import's shipping & returns and store policies
+- `ShippingReturns`: This page display Brightleaf Import's shipping & returns policies and payment methods availability
 - `ShopAll`: This page display all the products available to be purchased for the users. Users, and only users, are also able to post reviews of the business. If administrator are logged in, they able to delete products, and add more if desired.
-- `ShopProduct`: This page display one product at a time for the user and administrator. The administrator are also able to edit the product. Users are 
-- `Spot`: Makes a fetch to the backend on mount and update to load the details of the selected Spot.
+- `ShopProduct`: This page display one product at a time for the user and administrator. The administrator are also able to edit the product. Users, and only logged-in users, are able to toggle likes to add to their wishlists.
+- `StorePolicy`: This page display Brightleaf Import's store policies
 
 ---
 
-## Landing Page:
+### Proxy
 
-Depending on whether the user is logged in, the first screen with direct to either a Login Page:
-![Login Page](https://github.com/pchawin40/CSRF-ers/blob/dev/assets/LoginPage.png)
-Or the Landing Page:
-![Slack Landing Page](https://github.com/pchawin40/CSRF-ers/blob/dev/assets/LandingPage.png).
+In this project, two servers will be run on the following addresses:
 
----
-
-## Main Page:
-
-After logging in, the user will be redirected to the Slack main page: the chat rooms, where the main functionality of the service takes place.
-![Chat Page](https://github.com/pchawin40/CSRF-ers/blob/dev/assets/ChatPage.png)
+- `http://localhost:3000` for your frontend
+- `http://localhost:5000` for your backend
 
 ---
 
-## Channels and Direct Message Rooms:
+## Brightleaf Imports LLC's Revamped at a Glance
 
-### Create a Channel or a Direct Message Room
+This revamp web project is a fullstack [MERN](https://www.geeksforgeeks.org/mern-stack/) app that lets the user (i.e. buyers and potential customers) do full CRUD for reviews, addresses, and shopping carts including check out their desired items (if available). It also allow administrator (i.e. business owner and their partner(s)) the full CRUD for images and products.
 
-Users are able to create a new Channel or Direct Message Room. This will lead them through one or more modal pages that allows them to customize specific details of the newly created Channel/Direct Message Room.
-<br>
-For example, a user may customize a newly created Channel by customizing the name, public setting, and members.
-<br>
-Note that unlike Channels, Direct Message Rooms do not have a function of customizing the name or the public setting. This is because DMRs have a default name of all the conversation members and existing DMRs cannot be seen by users that are not a part of them.
-<br>
-<br>
+##### BrightLeaf Imports LLC's Revamped at a glance (Landing Page)
 
-### Read Channels and Direct Message Rooms:
+![AirBnB at a glance](/readme-resources/at-a-glance.png)
 
-Redux will load the Channels and Direct Message Rooms the user is a part of on the left side bar. From there, users are able to switch between Channels and Direct Message Room.
-<br>
-<br>
+##### BrightLeaf Imports LLC's Revamped at a glance (Portfolio)
 
-### Updating Channels:
+![AirBnB at a glance-portfolio](/readme-resources/at-a-glance-portfolio.png)
 
-If the user is the owner of a Channel, right clicking it will open a menu with the option of `Edit Chat`. This option will allow the owner of the Channel to change the Channel name as well as add/remove users.
-<br>
-_Note_: There is no function of editing Direct Message Rooms of changing the name or adding/removing users. To add users to a Direct Message Room, a new one would need to be created.
-<br>
-<br>
+##### BrightLeaf Imports LLC's Revamped at a glance (Shop All)
 
-### Deleting a Channel and Direct Message Room:
+![AirBnB at a glance-shop-all](/readme-resources/at-a-glance-product.png)
 
-If the user is the owner of a Channel, right clicking it will open a menu with an option of `Delete channel`. This will delete the Channel for all users part of the Channel.
-<br>
-Right clicking a Direct Message Room or a Channel the user is not an owner of will open a menu with only one option: `Leave chat`.
+##### BrightLeaf Imports LLC's Revamped at a glance (Contact)
 
----
+![AirBnB at a glance-contact](/readme-resources/at-a-glance-contact.png)
 
-## Messages for Channels and Direct Message Rooms:
+##### BrightLeaf Imports LLC's Revamped at a glance (Navigation)
 
-### Create Messages:
+![AirBnB at a glance-navigation](/readme-resources/at-a-glance-nav.png)
 
-Users are able to send messages in Channels and Direct Message Rooms where only the user and other members of the respective chat room will be able to see the messages.
+##### BrightLeaf Imports LLC's Revamped at a glance (Account Menu)
 
-### Read Messages:
+![AirBnB at a glance-account-menu](/readme-resources/at-a-glance-account-menu.png)
 
-Messages will load via Redux on the Message Display box with the respective sender's name and profile picture.
+##### BrightLeaf Imports LLC's Revamped at a glance (Checkout)
 
-### Edit/Delete Messages:
+![AirBnB at a glance-checkout](/readme-resources/at-a-glance-checkout.png)
 
-Users are able to update their sent messages in Channels and Direct Message Rooms by either editing the sent message or by deleting the messag entirely.
+## Application Architecture and Technologies Used
+
+As noted above, this revamped of Brightleaf Imports LLC's website is a fullstack MERN application. The majority of the application logic occurs within front end's [Redux](https://redux.js.org/) store and its interactions with the [Google Maps API](https://developers.google.com/maps/documentation/) via the [react-google-maps](https://www.npmjs.com/package/react-google-maps) library, [Facebook's Login API](https://developers.facebook.com/apps/525043799200328/fb-login/quickstart/) via the [react-facebook](https://www.npmjs.com/package/react-facebook), [Google's Login API](https://developers.google.com/maps/documentation/) via the [react-oauth/google@latest](https://www.npmjs.com/package/@react-oauth/google), [Moment Package](https://www.npmjs.com/package/moment) for grabbing current time alloted since updated, and [Stripe API](https://stripe.com/docs/api) via the (https://www.npmjs.com/package/stripe), .
+
+The backend serves the frontend, responds to frontend requests, acts as an intermediary to serve images, reviews, shopping carts, products, addresses, product-users, and api keys data to the frontend, and fetches data from the SQLite and PostgreSQL database.
 
 ---
 
-## Technologies Used:
+### Frontend Technologies Used:
 
-This Slack Clone utilizes:
+#### React
 
-1.  React and Redux to manage reducers, actions, and the store to reduce the amount of times the webpage must be refreshed
-2.  Flask, SQLAlchemy, and FlaskForm to manage the database and allow users to interact with the web application
-    <br>
-    Future technologies that may be utilized are Text Editors (e.g. Lexical) and Socket.io to allow users to send messages in real time and with more customization.
+At its core, Brightleaf Imports LLC's revamped is a React application. It uses very little of the core React library besides passing a few props, but makes extensive use of the technologies and libraries of the React ecosystem. Without the robust and well-documented React ecosystem, creating this project would have been a substantially more challenging enterprise.
 
----
+#### Redux
 
-## Future Features:
+[Redux](https://redux.js.org/) and the [react-redux](https://react-redux.js.org/) library were used to manage application state and make fetch requests to the server for data.
 
-Future features that would need to be added is the ability for users to upload photos/files for their profile picture or attached to messages.
-<br>
-A bonus feature that would need to be added is having the Channels and Direct Message Rooms playing a sound and displaying a notification note to indicate to the user when they receive a new message.
+All information are fetched on page load and kept in the Redux store. While this expensive operation lengthens the initial load time, it also allows for a snappy experience after that load.
+
+By managing states in Redux, it provides easy access to the information across components without prop threading. This was particularly important because there were so many components in the application, largely due to all the products, images, addresses, shopping carts, and reviews being individual components, that if too many components were re-rendering constantly because of state change it would cause significant performance issues or crash the application completely. Redux provided a relatively simple way to manage this point of complexity.
+
+Redux also allows for a lot of extendibility if new features are to be implemented (additional feature wish-list discussed in [conclusion](#conclusion-and-next-steps)).
+
+## Backend Overview
+
+Brightleaf Imports LLC's revamped website uses SQLAlchemy and Flask server with SQLite and PostgreSQL as the database. Compared to the frontend, the backend of this project is fairly simple, with the server sending the front end to the client, receiving requests, and sending data to the frontend.
+
+## Conclusion and Next Steps
+Brightleaf Imports LLC's revamped website was fun to build. It made me appreciate the efforts that went into building the popular modern app of today for e-commerce businesses.
+
+This also marks the first time that I've built a fullstack app with payment processing and log-in using api such as Facebook and Google, and my first project of significant scope where I originated the idea and brought it into existence. This revamped website has been an incredibly rewarding to create. 
