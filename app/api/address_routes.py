@@ -36,9 +36,12 @@ def get_or_post_addresses():
       # if default is true, reset other default and make a new default
       if form.data['default']:
         # find any other address that is default and reset it
-        current_default_address = Address.query.filter(Address.default == True).first()
-        current_default_address.default = False
-        db.session.commit()
+        current_default_addresses = Address.query.filter(Address.default == True and Address.user_id == current_user.get_id())
+
+        for current_default_address in current_default_addresses:
+          if current_default_address:          
+            current_default_address.default = False
+            db.session.commit()
         
       # create new address
       new_address = Address(
@@ -96,6 +99,16 @@ def modify_or_delete_address(address_id):
     # validate csrf token
     form['csrf_token'].data = request.cookies['csrf_token']
     
+    # if default is true, reset other default and make a new default
+    if form.data['default']:
+      # find any other address that is default and reset it
+      current_default_addresses = Address.query.filter(Address.default == True and Address.user_id == current_user.get_id())
+      
+      for current_default_address in current_default_addresses:
+        if current_default_address:
+          current_default_address.default = False
+          db.session.commit()
+    
     # check if pass submit validation
     if form.validate_on_submit():
       
@@ -116,17 +129,6 @@ def modify_or_delete_address(address_id):
       if(form.data['phone']):
         address.phone = form.data['phone']
       
-      db.session.commit()
-      
-      # if default is true, reset other default and make a new default
-      if form.data['default']:
-        # find any other address that is default and reset it
-        current_default_address = Address.query.filter(Address.default == True).first()
-        
-        if current_default_address:
-          current_default_address.default = False
-          db.session.commit()
-        
       address.default = form.data['default']
       
       # commit update
