@@ -8,6 +8,7 @@ import { useContext, createContext, createRef, useEffect, useState } from "react
 
 // import css
 import './Modal.css';
+import { useLanding } from "./LandingContext";
 
 //? ModalContext
 const ModalContext = createContext();
@@ -24,6 +25,7 @@ export const useModal = () => useContext(ModalContext);
 export const Modal = ({ onClose, children, currentVisible = true }) => {
   // state for modal
   const [visible, setVisible] = useState(currentVisible);
+  const { screenLoaded, setScreenLoaded } = useLanding();
 
   // modalNode: reference to actual HTML DOM element of ModalProvider's div
   const modalNode = useModal();
@@ -32,7 +34,10 @@ export const Modal = ({ onClose, children, currentVisible = true }) => {
   if (!modalNode) return null;
 
   return ReactDOM.createPortal(
-    <div id="modal" style={{ zIndex: 11 }}>
+    <div
+      id="modal"
+      style={{ zIndex: 11 }}
+    >
       {/* modal-background div */}
       {/* When clicked, invoke onClose */}
       <div
@@ -41,7 +46,7 @@ export const Modal = ({ onClose, children, currentVisible = true }) => {
         onClick={onClose}
       />
       {/* modal-content div */}
-      <div id="modal-content" style={{zIndex: 10}}>
+      <div id="modal-content" style={{ zIndex: 10 }}>
         {/* render children props */}
         {children}
       </div>
@@ -75,7 +80,7 @@ export function ModalProvider({ children }) {
       >
         {children}
       </ModalContext.Provider>
-      <div ref={modalRef}/>
+      <div ref={modalRef} />
     </>
   );
 }

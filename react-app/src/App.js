@@ -30,6 +30,7 @@ import { Modal } from './context/Modal';
 import { useAddress } from './context/AddressesContext';
 import { useCheckOut } from './context/CheckOutContext';
 import { useNavHeader } from './context/NavHeaderContext';
+import { useLanding } from './context/LandingContext';
 
 // import react
 import React, { useState, useEffect } from 'react';
@@ -48,6 +49,8 @@ import * as reviewActions from './store/reviews';
 import * as userActions from './store/users';
 import * as productUserActions from './store/productUser';
 import * as addressActions from './store/address';
+import * as imageActions from './store/images';
+import LoadingScreenModal from './components/LoadingScreenModal';
 
 function App() {
   /**
@@ -69,6 +72,8 @@ function App() {
   const { loadCartModal, setLoadCartModal } = useNavHeader();
   const { selectedAddress, setSelectedAddress } = useAddress();
   const { currentStep, setCurrentStep } = useCheckOut();
+  const { screenLoaded, setScreenLoaded } = useLanding();
+  const { hideLoadingModal, setHideLoadingModal } = useLanding();
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -82,6 +87,11 @@ function App() {
       setLoaded(true);
     })();
   }, [dispatch]);
+
+  // per screen loading
+  useEffect(() => {
+    // nothing for now
+  }, [screenLoaded, hideLoadingModal]);
 
   // load data
   useEffect(() => {
@@ -186,6 +196,13 @@ function App() {
         </Modal>
       )}
 
+      {/* Show Loading Screen Modal */}
+      {!hideLoadingModal && (
+        <Modal>
+          <LoadingScreenModal />
+        </Modal>
+      )}
+
       <Switch>
         {/* Home */}
         <Route path='/' exact={true} >
@@ -264,7 +281,7 @@ function App() {
         {/* //? 404 Route */}
         <Route>404 Page Not Found</Route>
       </Switch>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 

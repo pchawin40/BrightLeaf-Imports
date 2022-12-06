@@ -8,13 +8,17 @@ export const useLanding = () => useContext(LandingContext);
 // create provider for landing page
 export default function LandingProvider({ children }) {
   // state for context
-  
+  const [screenLoaded, setScreenLoaded] = useState(true);
+  const [hideLoadingModal, setHideLoadingModal] = useState(false);
 
   // Landing Provider
   return (
     <>
       <LandingContext.Provider
-        value={{}}
+        value={{
+          screenLoaded, setScreenLoaded,
+          hideLoadingModal, setHideLoadingModal
+        }}
       >
         {children}
       </LandingContext.Provider>
