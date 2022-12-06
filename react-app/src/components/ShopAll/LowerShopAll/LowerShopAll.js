@@ -35,6 +35,7 @@ const LowerShopAll = () => {
   const [showProductModal, setShowProductModal] = useState(false);
   const { currentProductId, setCurrentProductId } = useProduct();
   const { showProductFormModal, setShowProductFormModal } = useProduct();
+  const { editProduct, setEditProduct } = useProduct();
 
   /**
    * Selector functions
@@ -198,7 +199,11 @@ const LowerShopAll = () => {
           currentUserInfo &&
           currentUserInfo.role === "administrator" &&
           <button
-            onClick={_ => setShowProductFormModal(true)}
+            onClick={_ => {
+              setCurrentProductId(null);
+              setEditProduct(false);
+              setShowProductFormModal(true);
+            }}
           >
             Add Product
           </button>
@@ -215,6 +220,7 @@ const LowerShopAll = () => {
         showProductModal && (
           <Modal
             onClose={(_) => {
+              setCurrentProductId(null);
               setShowProductModal(false)
             }}
             currentVisible={false}
