@@ -8,9 +8,6 @@ import './LoadingScreenModal.css';
 // load loader
 const loader = document.querySelector('.loader');
 
-// if you want to show the loader when React loads data again
-const showLoader = () => loader && loader.classList.remove('loader--hide');
-
 //? LoadingScreenModal component
 const LoadingScreenModal = () => {
   /**
@@ -54,7 +51,6 @@ const LoadingScreenModal = () => {
           {/* Loading bar */}
           <figure
             className='loader'
-            showLoader={showLoader}
           />
         </figure>
 
