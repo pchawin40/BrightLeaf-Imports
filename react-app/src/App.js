@@ -1,7 +1,7 @@
 // src/App.js
 
 // import components
-import ProtectedRoute from './components/auth/ProtectedRoute';
+import ProtectedRoute from './components/Auth/ProtectedRoute';
 import LandingPage from './components/LandingPage/LandingPage';
 import NavHeader from './components/NavHeader';
 import NavRight from './components/NavRight';
