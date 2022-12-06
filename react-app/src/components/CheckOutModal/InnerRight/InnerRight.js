@@ -11,7 +11,6 @@ import { Link, NavLink } from 'react-router-dom';
 
 // import context
 import { useCheckOut } from '../../../context/CheckOutContext';
-
 // import react
 import { useEffect } from 'react';
 

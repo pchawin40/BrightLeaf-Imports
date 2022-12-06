@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 
 // import context
 import { useCheckOut } from '../../../context/CheckOutContext';
+import { useAddress } from '../../../context/AddressesContext';
 
 // import component
 import CheckoutSteps from './CheckoutSteps';
@@ -17,6 +18,8 @@ import ShippingAddress from './ShippingAddress';
 
 // import store
 import * as shoppingCartActions from '../../../store/shoppingCarts';
+
+// import react
 import { useEffect } from 'react';
 
 //? InnerLeft component
@@ -25,6 +28,7 @@ const InnerLeft = () => {
    * Controlled inputs
    */
   const { currentStep, setCurrentStep } = useCheckOut();
+  const { selectedAddress, setSelectedAddress } = useAddress();
 
   /**
    * Selector functions
@@ -48,7 +52,10 @@ const InnerLeft = () => {
       return (
         <span
           className="true"
-          onClick={_ => setCurrentStep(currentStep => currentStep - 1)}
+          onClick={_ => {
+            setSelectedAddress(null);
+            setCurrentStep(currentStep => currentStep - 1);
+          }}
         >
           <i className="fa-solid fa-angle-left" />
           Previous Step
@@ -75,7 +82,7 @@ const InnerLeft = () => {
     if (currentStep === 2) {
       return <ReviewItems />
     }
-    
+
     // if step 3, return review items and shipping
     if (currentStep === 3) {
       return <PaymentMethod />
