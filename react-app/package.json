@@ -34,6 +34,7 @@
     "redux": "^4.1.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "snake-game-react": "^1.0.6",
     "stripe": "^11.1.0",
     "vue-five-star-input": "^0.1.5"
   },

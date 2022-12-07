@@ -19,9 +19,10 @@ import MyOrders from './components/AccountMenu/MyOrders';
 import MyAddresses from './components/AccountMenu/MyAddresses';
 import MyWishlist from './components/AccountMenu/MyWishlist';
 import MyAccount from './components/AccountMenu/MyAccount';
-import AccountProvider from './context/AccountMenuContext';
 import CheckOutModal from './components/CheckOutModal/CheckOutModal';
 import AddressModal from './components/AccountMenu/MyAddresses/MAdrContent/AddressModal';
+import LoadingScreenModal from './components/LoadingScreenModal';
+import ResourceNotFound from './components/ResourceNotFound';
 
 // import context
 import { useNavRight } from './context/NavRightContext';
@@ -31,6 +32,7 @@ import { useAddress } from './context/AddressesContext';
 import { useCheckOut } from './context/CheckOutContext';
 import { useNavHeader } from './context/NavHeaderContext';
 import { useLanding } from './context/LandingContext';
+import AccountProvider from './context/AccountMenuContext';
 
 // import react
 import React, { useState, useEffect } from 'react';
@@ -50,7 +52,6 @@ import * as userActions from './store/users';
 import * as productUserActions from './store/productUser';
 import * as addressActions from './store/address';
 import * as imageActions from './store/images';
-import LoadingScreenModal from './components/LoadingScreenModal';
 
 function App() {
   /**
@@ -245,16 +246,6 @@ function App() {
           <StorePolicy />
         </Route>
 
-        {/* //TODO: To provide page for success and close */}
-        {/* Cancel/Success Route  */}
-        <Route path='/success'>
-          TBD
-        </Route>
-
-        <Route path='/close'>
-          TBD
-        </Route>
-
         {/* //? Account Menu */}
         <AccountProvider>
           {/* My Orders */}
@@ -276,10 +267,12 @@ function App() {
           <ProtectedRoute path="/account/my-account">
             <MyAccount />
           </ProtectedRoute>
-        </AccountProvider>
 
-        {/* //? 404 Route */}
-        <Route>404 Page Not Found</Route>
+          {/* //? 404 Route */}
+          <Route path="*">
+            <ResourceNotFound />
+          </Route>
+        </AccountProvider>
       </Switch>
     </BrowserRouter >
   );
