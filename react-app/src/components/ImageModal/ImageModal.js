@@ -65,8 +65,8 @@ const ImageModal = ({ imageType }) => {
 
   // function to update picture description
   const updateImageDescription = e => {
-    setImageDescription(e.target.value);
-    setDescriptionInputLength(e.target.value.length);
+    setImageDescription(e.target.value.replace(/  +/g, ' '));
+    setDescriptionInputLength(e.target.value.replace(/  +/g, ' ').length);
   }
 
   // add image
@@ -130,6 +130,15 @@ const ImageModal = ({ imageType }) => {
     }
   }
 
+  // function to check if review is ready to be submitted
+  const checkSubmitReady = () => {
+    return (
+      imageAdd.length > 0
+      &&
+      (descriptionInputLength > 0 && descriptionInputLength <= 255 && imageDescription.trim() !== "")
+    )
+  }
+
   return (
     <section id="image-modal">
       <form
@@ -181,32 +190,23 @@ const ImageModal = ({ imageType }) => {
         {/* Image description textarea container */}
         <section className="im-description-container">
           {/* Image description textarea */}
-          <textarea
-            className="im-textarea-description"
-            placeholder="Enter image description"
-            onChange={updateImageDescription}
-          />
-
-          {/* Input length */}
-          {
-            descriptionInputLength > 0
-            &&
-            <span
-              style={{
-                color: 255 - descriptionInputLength >= 0 ? "black" : "red"
-              }}
-            >
-              {255 - descriptionInputLength} characters left
+          <figure className="im-textarea-container">
+            <textarea
+              className="im-textarea-description"
+              placeholder="Enter image description"
+              onChange={updateImageDescription}
+            />
+            <span className={`valid-image ${255 - descriptionInputLength >= 0}`}>
+              {` ${imageDescription.trim() !== "" ? 255 - descriptionInputLength : 255} characters left`}
             </span>
-          }
+          </figure>
         </section>
 
         <section className="im-button-containers">
           {/* Button to add image */}
           <button
-            className={`add-image button ${255 - descriptionInputLength >= 0}`}
-            onClick={onImageAdding}
-            type={255 - descriptionInputLength >= 0 ? "submit" : "button"}
+            className={`add-image button ${checkSubmitReady()}`}
+            type={`${checkSubmitReady() ? "submit" : "button"}`}
           >
             Submit Pictures
           </button>

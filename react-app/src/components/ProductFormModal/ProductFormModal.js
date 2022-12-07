@@ -93,7 +93,6 @@ const ProductFormModal = () => {
     if (!formReady) {
       setFormReady(true);
     }
-
   },
     [
       formReady,
@@ -113,8 +112,8 @@ const ProductFormModal = () => {
 
   // function to update product name
   const updateProductName = e => {
-    setProductName(e.target.value);
-    setProductNameLength(e.target.value.length);
+    setProductName(e.target.value.replace(/  +/g, ' '));
+    setProductNameLength(e.target.value.replace(/  +/g, ' ').length);
   };
 
   // function to update product price
@@ -124,8 +123,8 @@ const ProductFormModal = () => {
 
   // function to update product description
   const updateProductDescription = e => {
-    setProductDescription(e.target.value);
-    setProductDescriptionLength(e.target.value.length);
+    setProductDescription(e.target.value.replace(/  +/g, ' '));
+    setProductDescriptionLength(e.target.value.replace(/  +/g, ' ').length);
   }
 
   // function to update product quantity
@@ -275,7 +274,7 @@ const ProductFormModal = () => {
       &&
       productPrice > 0 && productPrice <= 99999
       &&
-      productNameLength <= 50
+      (productNameLength > 0 && productNameLength <= 50 && productName.trim() !== "")
     )
   }
 
@@ -311,8 +310,8 @@ const ProductFormModal = () => {
             htmlFor='product_name'
           >
             Product Name
-            <span className={`valid-name ${50 - productNameLength >= 0}`}>
-              {` ( ${50 - productNameLength} characters left )`}
+            <span className={`valid-name ${50 - productNameLength > 0}`}>
+              {` ( ${productName.trim() !== "" ? 50 - productNameLength : 50} characters left )`}
             </span>
           </label>
           <input

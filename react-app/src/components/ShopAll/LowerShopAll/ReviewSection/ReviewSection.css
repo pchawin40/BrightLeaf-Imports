@@ -46,6 +46,8 @@
 
 	margin-bottom: 20px;
 	width: 100%;
+
+	white-space: pre-wrap;
 }
 
 .rs.review-li > h3 {
@@ -72,10 +74,40 @@
 	align-items: flex-start;
 }
 
-.insert-review-section.form > textarea {
+.text-area-container {
+	position: relative;
+
+	padding-bottom: 5%;
+
+	border: 1px solid black;
+}
+
+.review-ta:active .text-area-container {
+	outline: 1px solid black;
+}
+
+textarea.review-ta {
+	box-sizing: border-box;
+
 	resize: none;
 	height: 10vh;
 	width: 20vw;
+
+	border: none;
+	outline: none;
+
+	white-space: pre-wrap;
+}
+
+.text-area-container > .valid-review {
+	position: absolute;
+
+	right: 1%;
+	bottom: 2.5%;
+}
+
+.text-area-container > .valid-review.false {
+	color: red;
 }
 
 .review-icons-container > figure:hover,
@@ -102,6 +134,22 @@
 
 	border: none;
 	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+button.submit-review-btn.true {
+	border: 3px solid #80ab63;
+	color: white;
+	background-color: #80ab63;
+}
+
+button.submit-review-btn.false {
+	border: 3px solid rgb(66, 66, 66, 0.06);
+	color: black;
+	background-color: rgb(66, 66, 66, 0.06);
+}
+
+button.submit-review-btn.false:hover {
+	cursor: default;
 }
 
 /* More Reviews */

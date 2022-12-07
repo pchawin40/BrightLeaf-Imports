@@ -30,6 +30,10 @@
 	font-size: 18px;
 }
 
+.contact-information-description {
+	width: 85%;
+}
+
 /** Right */
 .mcs.right {
 	display: flex;
