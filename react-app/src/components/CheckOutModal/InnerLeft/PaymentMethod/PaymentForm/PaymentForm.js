@@ -100,7 +100,7 @@ const PaymentForm = () => {
       setStripeLoaded(false);
 
       if (stripeUrlToSet) {
-        if (window.confirm("You are about to leave to another page to pay. Do you accept?")) {
+        if (window.confirm(`You are about to leave to another page to pay. Do you accept? \n\nDISCLAIMER: STRIPE API CHARGES REAL $ AND WILL NOT BE SENDING ANY REAL PRODUCTS AS OF YET`)) {
           window.open(stripeUrlToSet.session_url, '_self');
         } else {
           window.alert("You have cancelled the payment. Heading back to home page.");
