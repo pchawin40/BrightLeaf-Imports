@@ -200,19 +200,6 @@ const ImageModal = ({ imageType }) => {
               {` ${imageDescription.trim() !== "" ? 255 - descriptionInputLength : 255} characters left`}
             </span>
           </figure>
-
-          {/* Input length */}
-          {
-            descriptionInputLength > 0
-            &&
-            <span
-              style={{
-                color: 255 - descriptionInputLength >= 0 ? "black" : "red"
-              }}
-            >
-              {255 - descriptionInputLength} characters left
-            </span>
-          }
         </section>
 
         <section className="im-button-containers">
