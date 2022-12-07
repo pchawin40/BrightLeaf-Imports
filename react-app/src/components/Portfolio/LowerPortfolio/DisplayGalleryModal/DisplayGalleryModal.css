@@ -143,6 +143,10 @@
 	pointer-events: none;
 }
 
+.valid-image.false {
+	color: red;
+}
+
 .dgm-db-submit-btn.false:hover {
 	cursor: default;
 }

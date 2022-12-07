@@ -143,7 +143,7 @@ const DisplayGalleryModal = ({ imageType }) => {
                 onChange={updateImageDescription}
                 placeholder={`Enter description ${currentImageById ? `for ${currentImageById.imageable_type} ${currentImageById.imageable_id}` : ""}`}
               />
-              <span className={`valid-image ${255 - descriptionInputLength > 0}`}>
+              <span className={`valid-image ${255 - descriptionInputLength >= 0}`}>
                 {` ${imageDescription.trim() !== "" ? 255 - descriptionInputLength : 255} characters left`}
               </span>
             </figure>

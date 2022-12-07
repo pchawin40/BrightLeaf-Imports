@@ -196,7 +196,7 @@ const ImageModal = ({ imageType }) => {
               placeholder="Enter image description"
               onChange={updateImageDescription}
             />
-            <span className={`valid-image ${255 - descriptionInputLength > 0}`}>
+            <span className={`valid-image ${255 - descriptionInputLength >= 0}`}>
               {` ${imageDescription.trim() !== "" ? 255 - descriptionInputLength : 255} characters left`}
             </span>
           </figure>
