@@ -93,7 +93,6 @@ const ProductFormModal = () => {
     if (!formReady) {
       setFormReady(true);
     }
-
   },
     [
       formReady,

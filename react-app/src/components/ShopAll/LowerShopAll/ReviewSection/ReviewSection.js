@@ -69,8 +69,8 @@ const ReviewSection = () => {
   // function to update review
   const updateReview = e => {
     if (!editReview) {
-      setReview(e.target.value);
-      setReviewLength(e.target.value.length);
+      setReview(e.target.value.replace(/  +/g, ' '));
+      setReviewLength(e.target.value.replace(/  +/g, ' ').length);
     }
   }
 
@@ -205,6 +205,13 @@ const ReviewSection = () => {
     }
   }
 
+  // function to check if review is ready to be submitted
+  const checkSubmitReady = () => {
+    return (
+      (reviewLength > 0 && reviewLength <= 255 && review.trim() !== "")
+    )
+  }
+
   // function to handle review submission
   const handleReviewSubmit = (e, currentReview) => {
     // prevent page from refreshing
@@ -277,16 +284,22 @@ const ReviewSection = () => {
         }
 
         {/* Textarea */}
-        <textarea
-          value={!editReview ? review : ""}
-          onChange={updateReview}
-          placeholder='Join the conversation'
-          onClick={_ => setEditReview(false)}
-        />
+        <figure className="text-area-container">
+          <textarea
+            className='review-ta'
+            value={!editReview ? review : ""}
+            onChange={updateReview}
+            placeholder='Join the conversation'
+            onClick={_ => setEditReview(false)}
+          />
+          <span className={`valid-review ${255 - reviewLength > 0}`}>
+            {` ${review.trim() !== "" ? 255 - reviewLength : 255} characters left`}
+          </span>
+        </figure>
 
         <button
-          type="submit"
-          className="submit-review-btn"
+          className={`submit-review-btn ${checkSubmitReady()}`}
+          type={`${checkSubmitReady() ? "submit" : "button"}`}
         >
           Post Review
         </button>

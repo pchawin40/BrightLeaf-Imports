@@ -101,7 +101,7 @@ const ReviewListModal = ({ setShowReviewListModal }) => {
               </div>
             </span>
 
-            <p>
+            <p className="review rlm">
               {/* Review */}
               {review.review}
             </p>

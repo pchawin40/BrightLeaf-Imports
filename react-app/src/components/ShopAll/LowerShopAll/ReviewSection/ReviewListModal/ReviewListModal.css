@@ -17,6 +17,12 @@
 	padding-right: 25px;
 }
 
+p.review.rlm {
+	margin-top: 0;
+	padding-top: 0;
+	margin-left: 1%;
+}
+
 .review-modal-ul::-webkit-scrollbar {
 	width: 0.5em;
 }
