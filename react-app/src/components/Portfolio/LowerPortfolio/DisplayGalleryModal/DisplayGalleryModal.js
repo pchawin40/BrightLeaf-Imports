@@ -74,8 +74,8 @@ const DisplayGalleryModal = ({ imageType }) => {
 
   // function to update image description
   const updateImageDescription = e => {
-    setImageDescription(e.target.value);
-    setDescriptionInputLength(e.target.value.length);
+    setImageDescription(e.target.value.replace(/  +/g, ' '));
+    setDescriptionInputLength(e.target.value.replace(/  +/g, ' ').length);
   }
 
   // function to handle submission of description edit
@@ -95,6 +95,15 @@ const DisplayGalleryModal = ({ imageType }) => {
         dispatch(imageActions.thunkGetImages("Product=True&Gallery=True"));
       });
   };
+
+  // function to check if edit image description is ready to be submitted
+  const checkSubmitReady = () => {
+    return (
+      imageDescription.trim() !== ""
+      &&
+      (descriptionInputLength > 0 && descriptionInputLength <= 255 && imageDescription.trim() !== "" || imageDescription.length > 0)
+    )
+  }
 
   return (
     <section id="display-gallery-modal">
@@ -126,18 +135,22 @@ const DisplayGalleryModal = ({ imageType }) => {
             <label htmlFor='dgm-textarea'>
               Enter new description
             </label>
-            <textarea
-              name="dgm-textarea"
-              className="dgm-db-textarea"
-              value={imageDescription}
-              onChange={updateImageDescription}
-              placeholder={`Enter description ${currentImageById ? `for ${currentImageById.imageable_type} ${currentImageById.imageable_id}` : ""}`}
-            />
+            <figure className="dgm-textarea-container">
+              <textarea
+                name="dgm-textarea"
+                className="dgm-db-textarea"
+                value={imageDescription}
+                onChange={updateImageDescription}
+                placeholder={`Enter description ${currentImageById ? `for ${currentImageById.imageable_type} ${currentImageById.imageable_id}` : ""}`}
+              />
+              <span className={`valid-image ${255 - descriptionInputLength > 0}`}>
+                {` ${imageDescription.trim() !== "" ? 255 - descriptionInputLength : 255} characters left`}
+              </span>
+            </figure>
             {/* Button to submit if administraotr */}
             <button
-              className="dgm-db-submit-btn"
-              type='submit'
-              onClick={updateImage}
+              className={`dgm-db-submit-btn ${checkSubmitReady()}`}
+              type={`${checkSubmitReady() ? "submit" : "button"}`}
             >
               Edit Description
             </button>

@@ -149,8 +149,8 @@ const MiddleContact = () => {
           360.584.3606
         </span>
 
-        <p>
-          If you have any questions or special inquries, you're <br /> welcome to contact us or fill out this form.
+        <p className="contact-information-description">
+          If you have any questions or special inquries, you're welcome to contact us or fill out this form.
         </p>
       </section>
 

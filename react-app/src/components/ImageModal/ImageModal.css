@@ -159,7 +159,7 @@
 	background-color: gray;
 }
 
-.button.add-image.false {
+.button.add-image.false:hover {
 	cursor: default;
 }
 
