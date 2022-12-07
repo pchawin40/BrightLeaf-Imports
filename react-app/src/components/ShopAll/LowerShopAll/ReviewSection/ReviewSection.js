@@ -68,10 +68,8 @@ const ReviewSection = () => {
 
   // function to update review
   const updateReview = e => {
-    if (!editReview) {
-      setReview(e.target.value.replace(/  +/g, ' '));
-      setReviewLength(e.target.value.replace(/  +/g, ' ').length);
-    }
+    setReview(e.target.value.replace(/  +/g, ' '));
+    setReviewLength(e.target.value.replace(/  +/g, ' ').length);
   }
 
 

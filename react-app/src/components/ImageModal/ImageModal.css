@@ -106,6 +106,13 @@
 	padding-bottom: 24px;
 }
 
+.im-textarea-container {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
 .im-textarea-description {
 	resize: none;
 	height: 100%;
@@ -126,7 +133,7 @@
 	border-radius: 1rem;
 }
 
-.im-description-container > span {
+.im-description-container span {
 	position: absolute;
 
 	right: 0;
@@ -154,6 +161,18 @@
 
 .button.add-image.false {
 	cursor: default;
+}
+
+button.reset-image.true {
+	border: 3px solid #80ab63;
+	color: white;
+	background-color: #80ab63;
+}
+
+button.reset-image.false {
+	border: 3px solid rgb(66, 66, 66, 0.06);
+	color: black;
+	background-color: rgb(66, 66, 66, 0.06);
 }
 
 /* Exit Modal Icon */
