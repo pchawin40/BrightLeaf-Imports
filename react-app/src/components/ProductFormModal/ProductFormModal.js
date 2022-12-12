@@ -275,6 +275,8 @@ const ProductFormModal = () => {
       productPrice > 0 && productPrice <= 99999
       &&
       (productNameLength > 0 && productNameLength <= 50 && productName.trim() !== "")
+      &&
+      productPreviewImage !== ""
     )
   }
 
