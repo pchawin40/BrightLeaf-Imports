@@ -59,14 +59,26 @@ const LowerShopAll = () => {
 
   // function to handle delete product
   const handleDeleteProduct = productId => {
-    // delete image first
-    dispatch(imageActions.thunkDeleteImage())
+    // prompt to ask for delete confirmation
+    // ask for confirmation before proceeding
+    const confirmDelete = prompt(
+      `Are you sure you want to delete product ${productId}? Type 'delete' to confirm`
+    );
 
-    // then delete product
-    dispatch(productActions.thunkDeleteProduct(productId))
-      .then(() => {
-        dispatch(productActions.thunkDeleteProduct(productId));
-      })
+    // if 'delete' is the input, proceed to delete account
+    if (confirmDelete && confirmDelete.toLowerCase().trim() === 'delete') {
+      // alert to user, successful deletion
+      alert(`Product ${productId} have been deleted`);
+
+      // delete image first
+      dispatch(imageActions.thunkDeleteImage())
+
+      // then delete product
+      dispatch(productActions.thunkDeleteProduct(productId))
+        .then(() => {
+          dispatch(productActions.thunkDeleteProduct(productId));
+        })
+    }
   }
 
   // load products
