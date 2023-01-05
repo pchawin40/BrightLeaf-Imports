@@ -74,7 +74,7 @@ export default function NavHeaderProvider({ children }) {
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
     if (currentPage === "landing") {
-      headerColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (4 * (window.innerHeight * 1.05));
+      headerColorCondition = window.scrollY >= window.innerHeight - (window.innerHeight / 10) && window.scrollY < (4 * (window.innerHeight * 1.035));
     } else if (["store-policy", "shopproduct", "shipping-returns", "account-menu", "rnf"].includes(currentPage)) {
       headerColorCondition = window.scrollY < (bodyHeight - (1.1 * vh));
     } else if (currentPage === "about") {

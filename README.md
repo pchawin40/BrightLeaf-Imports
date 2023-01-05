@@ -1,4 +1,4 @@
-# Slack Clone Project
+# Brightleaf Imports Project
 
 Heroku Link: http://brightleaf-imports.herokuapp.com/
 
