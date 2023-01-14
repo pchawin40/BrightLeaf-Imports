@@ -38,7 +38,7 @@ import AccountProvider from './context/AccountMenuContext';
 import React, { useState, useEffect } from 'react';
 
 // import react-router-dom
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, useLocation } from 'react-router-dom';
 
 // import react-redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -75,6 +75,7 @@ function App() {
   const { currentStep, setCurrentStep } = useCheckOut();
   const { screenLoaded, setScreenLoaded } = useLanding();
   const { hideLoadingModal, setHideLoadingModal } = useLanding();
+  const { currentPage, setCurrentPage } = useNavHeader();
 
   // invoke dispatch
   const dispatch = useDispatch();
@@ -249,22 +250,22 @@ function App() {
         {/* //? Account Menu */}
         <AccountProvider>
           {/* My Orders */}
-          <ProtectedRoute path="/account/my-orders">
+          <ProtectedRoute exact path="/account/my-orders">
             <MyOrders />
           </ProtectedRoute>
 
           {/* My Addreses */}
-          <ProtectedRoute path="/account/my-addresses">
+          <ProtectedRoute exact path="/account/my-addresses">
             <MyAddresses />
           </ProtectedRoute>
 
           {/* My Wishlist */}
-          <ProtectedRoute path="/account/my-wishlist">
+          <ProtectedRoute exact path="/account/my-wishlist">
             <MyWishlist />
           </ProtectedRoute>
 
           {/* My Account */}
-          <ProtectedRoute path="/account/my-account">
+          <ProtectedRoute exact path="/account/my-account">
             <MyAccount />
           </ProtectedRoute>
 

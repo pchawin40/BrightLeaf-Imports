@@ -14,7 +14,7 @@ import Footer from '../Footer';
 import GameComponent from './GameComponent';
 
 // import react-router-dom
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 //? ResourceNotFound component
 const ResourceNotFound = () => {
@@ -25,13 +25,21 @@ const ResourceNotFound = () => {
   const { headerColor, setHeaderColor } = useNavHeader();
   const { footerColor, setFooterColor } = useNavHeader();
 
+  // invoke use location
+  const location = useLocation();
+
   /**
   * useEffect
   */
   useEffect(() => {
-    if (currentPage !== "rnf" || currentPage !== "account-menu") {
+    // console.log('here');
+    // console.log('location.pathname:', location.pathname);
+    if (
+      !location.pathname.includes('/account')
+      &&
+      currentPage !== "rnf"
+    ) {
       setCurrentPage("rnf");
-      console.log('currentPage', currentPage);
     }
 
     // to reset color upon clicking from shop product
@@ -43,42 +51,46 @@ const ResourceNotFound = () => {
   const history = useHistory();
 
   return (
-    <section
-      className="page-section rnf"
-    >
-      {/* Lower ShopProduct */}
-      <section className='inner rnf'>
-        <figure
-          onClick={_ => history.push('/')}
-        >
-          {/* Button to go back to home page */}
-          <i className="fa-solid fa-house fa-xl" />
+    !location.pathname.includes('/account')
+      ?
+      <section
+        className="page-section rnf"
+      >
+        {/* Lower ShopProduct */}
+        <section className='inner rnf'>
+          <figure
+            onClick={_ => history.push('/')}
+          >
+            {/* Button to go back to home page */}
+            <i className="fa-solid fa-house fa-xl" />
 
-          <span>
-            Go Back to Home Page
-          </span>
-        </figure>
+            <span>
+              Go Back to Home Page
+            </span>
+          </figure>
 
-        {/* NPM Game Package */}
-        <figure className='rnf content'>
-          <p>
-            Hello, we currently do not have the page you're looking for.
-            <br />
-            <br />
-            However, you may click on upper top left to go
-            back to home page
-            <br />
-            Or you may press 'enter' to start a snake game
-            &nbsp;
-            <i className="fa-regular fa-face-smile-beam" />
-          </p>
-          <GameComponent />
-        </figure>
-      </section>
+          {/* NPM Game Package */}
+          <figure className='rnf content'>
+            <p>
+              Hello, we currently do not have the page you're looking for.
+              <br />
+              <br />
+              However, you may click on upper top left to go
+              back to home page
+              <br />
+              Or you may press 'enter' to start a snake game
+              &nbsp;
+              <i className="fa-regular fa-face-smile-beam" />
+            </p>
+            <GameComponent />
+          </figure>
+        </section>
 
-      {/* Footer */}
-      <Footer />
-    </section>
+        {/* Footer */}
+        <Footer />
+      </section> :
+      <>
+      </>
   );
 };
 
