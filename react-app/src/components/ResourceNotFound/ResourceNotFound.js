@@ -29,8 +29,9 @@ const ResourceNotFound = () => {
   * useEffect
   */
   useEffect(() => {
-    if (currentPage !== "rnf") {
+    if (currentPage !== "rnf" || currentPage !== "account-menu") {
       setCurrentPage("rnf");
+      console.log('currentPage', currentPage);
     }
 
     // to reset color upon clicking from shop product

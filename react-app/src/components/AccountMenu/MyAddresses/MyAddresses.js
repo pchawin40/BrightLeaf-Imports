@@ -29,6 +29,7 @@ const MyAddresses = () => {
   useEffect(() => {
     if (currentPage !== "account-menu") {
       setCurrentPage("account-menu");
+      console.log('currentPage', currentPage);
     }
 
     // on open, always scroll to top
