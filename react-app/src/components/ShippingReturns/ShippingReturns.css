@@ -1,1 +1,10 @@
 /* src/components/ShippingReturns/ShippingReturns.css */
+
+/***
+Media Queries
+***/
+@media only screen and (max-width: 1600px){
+  .page-section.shipping-returns{
+    grid-template-rows: 120vh auto 100vh;
+  }
+}

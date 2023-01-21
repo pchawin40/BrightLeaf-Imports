@@ -47,6 +47,7 @@ const Maps = ({ apiKey }) => {
           // load google map if api is loaded
           <>
             <GoogleMap
+              className="google-map"
               mapContainerStyle={containerStyle}
               center={center}
               zoom={16}

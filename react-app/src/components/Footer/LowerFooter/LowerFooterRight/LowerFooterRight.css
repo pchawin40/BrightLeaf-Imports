@@ -21,3 +21,12 @@
 	align-items: center;
 	justify-content: center;
 }
+
+/***
+Media Queries
+***/
+@media only screen and (max-width: 1600px){
+	#lfr-section-inner-figure{
+		margin-top: 4vh;
+	}
+}

@@ -14,3 +14,13 @@
 	height: 100%;
 	width: 100%;
 }
+
+
+/***
+Media Queries
+***/
+@media only screen and (max-width: 1600px){
+  #lower-landing-section{
+		grid-gap: 10vh;
+	}
+}

@@ -221,3 +221,13 @@
 	background-color: #80ab63;
 	color: white;
 }
+
+/***
+Media Queries
+***/
+@media only screen and (max-width: 1600px){
+	.left-amn-section {
+		height: 90%;
+		width: 100%;
+	}
+}
